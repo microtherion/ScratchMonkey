@@ -2,7 +2,7 @@
 //
 // ScratchMonkey 0.1        - STK500v2 compatible programmer for Arduino
 //
-// File: SMoCommand.h       - Command parser 
+// File: SMoGeneral.h       - Protocol independent global commands
 //
 // Copyright (c) 2013 Matthias Neeracher <microtherion@gmail.com>
 // All rights reserved.
@@ -10,29 +10,18 @@
 // See license at bottom of this file or at
 // http://opensource.org/licenses/bsd-license.php
 //
+
 #include <inttypes.h>
 
-#include "stk500v2_proto.h"
+namespace SMoGeneral {
+    extern uint8_t  gSCKDuration;
+    extern uint32_t gAddress;
 
-namespace SMoCommand {
-    //
-    // Special "command" codes
-    //
-    enum {
-        kHeaderError    = -1,
-        kChecksumError  = -2,
-        kIncomplete     = 0
-    };
-    extern uint8_t  gBody[];
-    extern uint16_t gSize;
-    //
-    // Parse next command, return command code if command is fully read
-    // and checksum matches. Handles timeouts and checksum errors 
-    // autonomously.
-    //
-    int         GetNextCommand();
-    void        SendResponse(uint8_t status = STATUS_CMD_OK, uint16_t bodySize=2);
-} // namespace SMoCommand
+    void    SignOn();
+    void    SetParam();
+    void    GetParam();
+    void    LoadAddress();
+} // namespace SMoGeneral
 
 //
 // LICENSE

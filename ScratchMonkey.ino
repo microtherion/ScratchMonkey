@@ -22,6 +22,7 @@
 //
 
 #include "SMoCommand.h"
+#include "SMoGeneral.h"
 #include "SMoISP.h"
 
 void
@@ -34,12 +35,24 @@ void
 loop()
 {
     switch (SMoCommand::GetNextCommand()) {
+    case CMD_SIGN_ON:
+        SMoGeneral::SignOn();
+        break;
+    case CMD_SET_PARAMETER:
+        SMoGeneral::SetParam();
+        break;
+    case CMD_GET_PARAMETER:
+        SMoGeneral::GetParam();
+        break;
+    case CMD_LOAD_ADDRESS:
+        SMoGeneral::LoadAddress();
+        break;
     case SMoCommand::kHeaderError:
     case SMoCommand::kChecksumError:
     case SMoCommand::kIncomplete:
         break;  // Ignore
     default:
-        SMoCommand::SendStatusResponse(STATUS_CMD_UNKNOWN);
+        SMoCommand::SendResponse(STATUS_CMD_UNKNOWN);
         break;
     }
 }

@@ -80,7 +80,8 @@ SMoCommand::GetNextCommand()
         return kIncomplete;
     case kBodyState:
         if (sCheckSum) {
-            SendStatusResponse(STATUS_CKSUM_ERROR);
+            gBody[0] = ANSWER_CKSUM_ERROR;
+            SendResponse(ANSWER_CKSUM_ERROR);
             return kChecksumError;
         } else {
             sState  = kCompleteState;
@@ -91,8 +92,9 @@ SMoCommand::GetNextCommand()
 }
 
 void        
-SMoCommand::SendResponse(uint16_t bodySize)
+SMoCommand::SendResponse(uint8_t status, uint16_t bodySize)
 {
+    gBody[1] = status;
     sCheckSum   = MESSAGE_START ^ TOKEN ^ sSequenceNumber;
     Serial.write(MESSAGE_START);
     Serial.write(sSequenceNumber);
@@ -109,13 +111,6 @@ SMoCommand::SendResponse(uint16_t bodySize)
     Serial.write(sCheckSum);
 
     ResetToIdle();
-}
-
-void 
-SMoCommand::SendStatusResponse(uint8_t status)
-{
-    gBody[1] = status;
-    SendResponse(2);
 }
 
 //
