@@ -1,4 +1,4 @@
-// -*- mode: c++; tab-width: 4; indent-tabs-mode: nil
+// -*- mode: c++; tab-width: 4; indent-tabs-mode: nil -*-
 //
 // ScratchMonkey 0.1            - STK500v2 compatible programmer for Arduino
 //
