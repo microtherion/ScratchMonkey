@@ -35,6 +35,20 @@
 //
 
 namespace SMoISP {
+    void EnterProgmode();
+    void LeaveProgmode();
+    void ChipErase();
+    void ProgramFlash();
+    void ReadFlash();
+    void ProgramEEPROM();
+    void ReadEEPROM();
+    void ProgramFuse();
+    void ReadFuse();
+    void ProgramLock()      { ProgramFuse(); }
+    void ReadLock()         { ReadFuse();    }
+    void ReadSignature()    { ReadFuse();    }
+    void ReadOscCal()       { ReadFuse();    }
+    void SPIMulti();
 } // namespace SMoISP
 
 //

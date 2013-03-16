@@ -35,6 +35,9 @@ void
 loop()
 {
     switch (SMoCommand::GetNextCommand()) {
+        //
+        // General commands
+        //
     case CMD_SIGN_ON:
         SMoGeneral::SignOn();
         break;
@@ -46,6 +49,51 @@ loop()
         break;
     case CMD_LOAD_ADDRESS:
         SMoGeneral::LoadAddress();
+        break;
+        //
+        // ISP Commands
+        //
+    case CMD_ENTER_PROGMODE_ISP:
+        SMoISP::EnterProgmode();
+        break;
+    case CMD_LEAVE_PROGMODE_ISP:
+        SMoISP::LeaveProgmode();
+        break;
+    case CMD_CHIP_ERASE_ISP:
+        SMoISP::ChipErase();    
+        break;
+    case CMD_PROGRAM_FLASH_ISP:
+        SMoISP::ProgramFlash();
+        break;
+    case CMD_READ_FLASH_ISP:
+        SMoISP::ReadFlash();
+        break;
+    case CMD_PROGRAM_EEPROM_ISP:
+        SMoISP::ProgramEEPROM();
+        break;
+    case CMD_READ_EEPROM_ISP:
+        SMoISP::ReadEEPROM();
+        break;
+    case CMD_PROGRAM_FUSE_ISP:
+        SMoISP::ProgramFuse();
+        break;
+    case CMD_READ_FUSE_ISP:
+        SMoISP::ReadFuse();
+        break;
+    case CMD_PROGRAM_LOCK_ISP:
+        SMoISP::ProgramLock();
+        break;
+    case CMD_READ_LOCK_ISP:
+        SMoISP::ReadLock();
+        break;
+    case CMD_READ_SIGNATURE_ISP:
+        SMoISP::ReadSignature();
+        break;
+    case CMD_READ_OSCCAL_ISP:
+        SMoISP::ReadOscCal();
+        break;
+    case CMD_SPI_MULTI:
+        SMoISP::SPIMulti();
         break;
     case SMoCommand::kHeaderError:
     case SMoCommand::kChecksumError:
