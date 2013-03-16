@@ -10,16 +10,29 @@
 // See license at bottom of this file or at
 // http://opensource.org/licenses/bsd-license.php
 //
+#include <inttypes.h>
+
+#include "stk500v2_proto.h"
+
 namespace SMoCommand {
+    //
+    // Special "command" codes
+    //
+    enum {
+        kHeaderError    = -1,
+        kChecksumError  = -2,
+        kIncomplete     = 0
+    };
+    extern uint8_t  gBody[];
+    extern uint16_t gSize;
     //
     // Parse next command, return command code if command is fully read
     // and checksum matches. Handles timeouts and checksum errors 
     // autonomously.
     //
-    enum {
-        kNone
-    };
-    int GetNextCommand();
+    int         GetNextCommand();
+    void        SendResponse(uint16_t bodySize);
+    void        SendStatusResponse(uint8_t status);
 } // namespace SMoCommand
 
 //

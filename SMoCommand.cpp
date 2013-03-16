@@ -11,21 +11,112 @@
 // http://opensource.org/licenses/bsd-license.php
 //
 
+#include <Arduino.h>
+
 #include "SMoCommand.h"
 
-namespace SMoCommand {
+const uint16_t  kHeaderSize         = 5;
+const int       kMaxBodySize        = 275;  // STK500 hardware limit
+
+static uint8_t  sSequenceNumber;
+static uint16_t sNumBytesRead       = 0;
+static uint16_t sNumBytesWanted     = 1;
+static uint8_t  sCheckSum           = 0;
+
+uint16_t SMoCommand::gSize;
+uint8_t  SMoCommand::gBody[kMaxBodySize+1];
+
+static enum {
+    kIdleState,         // Waiting for MESSAGE_START
+    kHeaderState,       // Reading message header
+    kBodyState,         // Reading message body
+    kCompleteState      // Message being processed
+}               sState              = kIdleState;
+
+static void
+ResetToIdle()
+{
+    sState          = kIdleState;
+    sNumBytesRead   = 0;
+    sNumBytesWanted = 1;
+    sCheckSum       = 0;
+}
 //
 // Parse next command, return command code if command is fully read
 // and checksum matches. Handles timeouts and checksum errors 
 // autonomously.
 //
 int 
-GetNextCommand()
+SMoCommand::GetNextCommand()
 {
-    return kNone;
+    if (!Serial.available() || sState == kCompleteState)
+        return kIncomplete;
+    sCheckSum ^= (gBody[sNumBytesRead++] = Serial.read());
+    if (sNumBytesRead < sNumBytesWanted)
+        return kIncomplete;
+    switch (sState) {
+    case kIdleState:
+        if (gBody[0] != MESSAGE_START) {
+        reportHeaderError:
+            ResetToIdle();
+            return kHeaderError;
+        } else {                            // Start of message
+            sState          = kHeaderState;
+            sNumBytesWanted = kHeaderSize;
+
+            return kIncomplete;
+        }
+    case kHeaderState:
+        if (gBody[4] != TOKEN)
+            goto reportHeaderError;
+        sNumBytesWanted = (uint16_t(gBody[2])<<8) | gBody[3];
+        if (sNumBytesWanted > kMaxBodySize)
+            goto reportHeaderError;
+        sState          = kBodyState;
+        sSequenceNumber = gBody[1];
+        sNumBytesRead   = 0;
+        ++sNumBytesWanted;  // For checksum byte
+        
+        return kIncomplete;
+    case kBodyState:
+        if (sCheckSum) {
+            SendStatusResponse(STATUS_CKSUM_ERROR);
+            return kChecksumError;
+        } else {
+            sState  = kCompleteState;
+            gSize   = sNumBytesRead-1;
+            return gBody[0];   // Success!
+        }
+    }
 }
 
-} // namespace SMoCommand
+void        
+SMoCommand::SendResponse(uint16_t bodySize)
+{
+    sCheckSum   = MESSAGE_START ^ TOKEN ^ sSequenceNumber;
+    Serial.write(MESSAGE_START);
+    Serial.write(sSequenceNumber);
+    sCheckSum  ^= bodySize >> 8;
+    Serial.write(bodySize >> 8);
+    sCheckSum  ^= bodySize & 0xFF;
+    Serial.write(bodySize & 0xFF);
+    Serial.write(TOKEN);
+
+    for (uint16_t i=0; i<bodySize; ++i)
+        sCheckSum   ^= gBody[i];
+
+    Serial.write(&gBody[0], bodySize);
+    Serial.write(sCheckSum);
+
+    ResetToIdle();
+}
+
+void 
+SMoCommand::SendStatusResponse(uint8_t status)
+{
+    gBody[1] = status;
+    SendResponse(2);
+}
 
 //
 // LICENSE

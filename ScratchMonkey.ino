@@ -34,7 +34,12 @@ void
 loop()
 {
     switch (SMoCommand::GetNextCommand()) {
+    case SMoCommand::kHeaderError:
+    case SMoCommand::kChecksumError:
+    case SMoCommand::kIncomplete:
+        break;  // Ignore
     default:
+        SMoCommand::SendStatusResponse(STATUS_CMD_UNKNOWN);
         break;
     }
 }
