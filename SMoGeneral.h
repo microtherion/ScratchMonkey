@@ -11,6 +11,9 @@
 // http://opensource.org/licenses/bsd-license.php
 //
 
+#ifndef _SMO_GENERAL_
+#define _SMO_GENERAL_
+
 #include <inttypes.h>
 
 namespace SMoGeneral {
@@ -22,6 +25,8 @@ namespace SMoGeneral {
     void    GetParam();
     void    LoadAddress();
 } // namespace SMoGeneral
+
+#endif /* _SMO_GENERAL_ */
 
 //
 // LICENSE

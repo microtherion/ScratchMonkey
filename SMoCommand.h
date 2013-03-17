@@ -10,6 +10,10 @@
 // See license at bottom of this file or at
 // http://opensource.org/licenses/bsd-license.php
 //
+
+#ifndef _SMO_COMMAND_
+#define _SMO_COMMAND_
+
 #include <inttypes.h>
 
 #include "stk500v2_proto.h"
@@ -33,6 +37,8 @@ namespace SMoCommand {
     int         GetNextCommand();
     void        SendResponse(uint8_t status = STATUS_CMD_OK, uint16_t bodySize=2);
 } // namespace SMoCommand
+
+#endif /* _SMO_COMMAND_ */
 
 //
 // LICENSE

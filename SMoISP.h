@@ -42,6 +42,9 @@
 // 7        Programming Communicating with slave
 //
 
+#ifndef _SMO_ISP_
+#define _SMO_ISP_
+
 namespace SMoISP {
     void EnterProgmode();
     void LeaveProgmode();
@@ -59,6 +62,7 @@ namespace SMoISP {
     void SPIMulti();
 } // namespace SMoISP
 
+#endif /* _SMO_ISP_ */
 //
 // LICENSE
 //
