@@ -1,0 +1,4 @@
+buspirate.name=ScratchMonkey
+buspirate.communication=serial
+buspirate.protocol=stk500v2
+
