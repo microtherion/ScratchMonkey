@@ -13,12 +13,16 @@
 // Derived from Randall Bohn's ArduinoISP sketch
 //
 
-#include <Arduino.h>
+#undef DEBUG_SPI
+
 #include <SPI.h>
 
 #include "SMoISP.h"
 #include "SMoGeneral.h"
 #include "SMoCommand.h"
+#ifdef DEBUG_SPI
+#include "SMoDebug.h"
+#endif
 
 //
 // Pin definitions
@@ -37,11 +41,25 @@ SPITransaction(const uint8_t * sendData, int8_t responseIndex = 3)
 {
     uint8_t response;
 
+#ifdef DEBUG_SPI
+    SMoDebug.print("SPI ");
+#endif
     for (int8_t ix=0; ix<4; ++ix) {
+#ifdef DEBUG_SPI
+        SMoDebug.print(*sendData, HEX);
+#endif
         uint8_t recv = SPI.transfer(*sendData++);
+#ifdef DEBUG_SPI
+        SMoDebug.print(ix == responseIndex ? " ![" : " [");
+        SMoDebug.print(recv, HEX);
+        SMoDebug.print("] ");
+#endif
         if (ix == responseIndex)
             response = recv;
     }
+#ifdef DEBUG_SPI
+    SMoDebug.println();
+#endif
     return response;
 }
 
@@ -55,10 +73,29 @@ SPITransactionMatching(const uint8_t * sendData, uint8_t pollValue, int8_t respo
 static uint8_t
 SPITransaction(uint8_t b1, uint8_t b2, uint8_t b3, uint8_t b4)
 {
+#ifdef DEBUG_SPI
+    SMoDebug.print("SPI ");
+    SMoDebug.print(b1, HEX);
+    SMoDebug.print(" ");
+    SMoDebug.print(b2, HEX);
+    SMoDebug.print(" ");
+    SMoDebug.print(b3, HEX);
+    SMoDebug.print(" ");
+    SMoDebug.print(b4, HEX);
+#endif
     SPI.transfer(b1);
     SPI.transfer(b2);
     SPI.transfer(b3);
+#ifdef DEBUG_SPI
+    uint8_t result = SPI.transfer(b4);
+    SMoDebug.print(" [");
+    SMoDebug.print(b4, HEX);
+    SMoDebug.println("]");
+  
+    return result;  
+#else
     return SPI.transfer(b4);
+#endif
 }
 
 static uint8_t
@@ -98,6 +135,9 @@ LoadExtendedAddress()
 void
 SMoISP::EnterProgmode()
 {
+#ifdef DEBUG_SPI
+    SMoDebugInit();
+#endif
     // const uint8_t   timeOut     =   SMoCommand::gBody[1];
     // const uint8_t   stabDelay   =   SMoCommand::gBody[2];
     // const uint8_t   cmdexeDelay =   SMoCommand::gBody[3];
@@ -272,8 +312,20 @@ SMoISP::SPIMulti()
     const uint8_t * txData  =  &SMoCommand::gBody[4];
     uint8_t *       rxData  =  &SMoCommand::gBody[2];
 
+#ifdef DEBUG_SPI
+    SMoDebug.print("SPI");
+#endif
     while (numTX) {
+#ifdef DEBUG_SPI
+        SMoDebug.print(" ");
+        SMoDebug.print(*txData, HEX);
+#endif
         *rxData = SPI.transfer(*txData++);
+#ifdef DEBUG_SPI
+        SMoDebug.print(rxStart ? " (" : " [");
+        SMoDebug.print(*rxData, HEX);
+        SMoDebug.print(rxStart ? ")" : "]");
+#endif
         if (rxStart) {
             --rxStart;
         } else if (numRX) {
@@ -281,10 +333,25 @@ SMoISP::SPIMulti()
             --numRX;
         }
     }
-    while (numRX--)
-        *rxData++ = SPI.transfer(0);
+    while (numRX) {
+        *rxData = SPI.transfer(0);
+#ifdef DEBUG_SPI
+        SMoDebug.print(rxStart ? " . (" : " . [");
+        SMoDebug.print(*rxData, HEX);
+        SMoDebug.print(rxStart ? ")" : "]");
+#endif
+        if (rxStart) {
+            --rxStart;
+        } else {
+            ++rxData;
+            --numRX;
+        }
+    }
     *rxData++ = STATUS_CMD_OK;
     SMoCommand::SendResponse(STATUS_CMD_OK, rxData-&SMoCommand::gBody[0]);
+#ifdef DEBUG_SPI
+    SMoDebug.println();
+#endif
 }
 
 //

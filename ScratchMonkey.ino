@@ -20,7 +20,9 @@
 //  * stk500pp    for HVPP programming (high voltage parallel, for 20 pin 
 //                ATtinys and all ATmegas). See SMoHVPP.h for pinout.
 //
+
 #include <SPI.h>
+#include <SoftwareSerial.h>
 
 #include "SMoCommand.h"
 #include "SMoGeneral.h"
