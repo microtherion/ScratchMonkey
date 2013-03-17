@@ -164,7 +164,7 @@ SMoISP::EnterProgmode()
     delay(50);
     digitalWrite(RESET, LOW);
     delay(50);
-    SPITransactionMatching(command, pollValue, pollIndex);
+    SPITransactionMatching(command, pollValue, pollIndex-1);
 }
 
 void
@@ -321,6 +321,7 @@ SMoISP::SPIMulti()
         SMoDebug.print(*txData, HEX);
 #endif
         *rxData = SPI.transfer(*txData++);
+        --numTX;
 #ifdef DEBUG_SPI
         SMoDebug.print(rxStart ? " (" : " [");
         SMoDebug.print(*rxData, HEX);
