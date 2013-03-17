@@ -22,7 +22,7 @@ void
 SMoGeneral::SignOn()
 {
     memcpy(&SMoCommand::gBody[2], "\010STK500_2", 9);
-    SMoCommand::SendResponse(STATUS_CMD_OK, 10);
+    SMoCommand::SendResponse(STATUS_CMD_OK, 11);
 }
 
 const uint8_t       kBuildNumberLow     = 0x01;
@@ -30,7 +30,7 @@ const uint8_t       kBuildNumberHigh    = 0x00;
 const uint8_t       kHardwareVersion    = 0x00;
 const uint8_t       kSoftwareMajor      = 0x00;
 const uint8_t       kSoftwareMinor      = 0x01;
-const uint8_t       kVoltage            = 0x50;
+const uint8_t       kVoltage            =   50;
 uint8_t SMoGeneral::gSCKDuration        = 2;    // 125kHz
 static uint8_t      gControllerInit     = 0;
 
@@ -99,6 +99,7 @@ SMoGeneral::GetParam()
         SMoCommand::SendResponse(STATUS_CMD_FAILED);
         return;
     }
+    SMoCommand::SendResponse(STATUS_CMD_OK, 3);
 #undef result
 }
 
