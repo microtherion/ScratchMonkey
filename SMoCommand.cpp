@@ -16,7 +16,7 @@
 #include "SMoCommand.h"
 
 const uint16_t  kHeaderSize         = 5;
-const int       kMaxBodySize        = 275;  // STK500 hardware limit
+const uint16_t  kMaxBodySize        = 275;  // STK500 hardware limit
 
 static uint8_t  sSequenceNumber;
 static uint16_t sNumBytesRead       = 0;
@@ -88,6 +88,8 @@ SMoCommand::GetNextCommand()
             gSize   = sNumBytesRead-1;
             return gBody[0];   // Success!
         }
+    default:
+      return kIncomplete;
     }
 }
 
