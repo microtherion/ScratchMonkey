@@ -106,9 +106,9 @@ void
 SMoGeneral::LoadAddress()
 {
     SMoGeneral::gAddress = 
-               (SMoCommand::gBody[1] << 24) 
-             | (SMoCommand::gBody[2] << 16)
-             | (SMoCommand::gBody[3] << 8 )
+               (uint32_t(SMoCommand::gBody[1]) << 24UL) 
+             | (uint32_t(SMoCommand::gBody[2]) << 16UL)
+             | (uint32_t(SMoCommand::gBody[3]) <<  8UL)
              |  SMoCommand::gBody[4];
     SMoCommand::SendResponse();
 }
