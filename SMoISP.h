@@ -33,6 +33,14 @@
 // GND       4          14           6          10          22          31
 // VCC       8           1           5          20           7          10
 //
+// Optionally, the following pins on your Arduino can be equipped with diagnostic
+// LEDs (with suitable resistors):
+//
+// PIN      Function    Discussion
+//
+// 8        Error       Lights up if programming failed
+// 7        Programming Communicating with slave
+//
 
 namespace SMoISP {
     void EnterProgmode();
@@ -44,10 +52,10 @@ namespace SMoISP {
     void ReadEEPROM();
     void ProgramFuse();
     void ReadFuse();
-    void ProgramLock()      { ProgramFuse(); }
-    void ReadLock()         { ReadFuse();    }
-    void ReadSignature()    { ReadFuse();    }
-    void ReadOscCal()       { ReadFuse();    }
+    inline void ProgramLock()      { ProgramFuse(); }
+    inline void ReadLock()         { ReadFuse();    }
+    inline void ReadSignature()    { ReadFuse();    }
+    inline void ReadOscCal()       { ReadFuse();    }
     void SPIMulti();
 } // namespace SMoISP
 
