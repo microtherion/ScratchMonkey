@@ -33,6 +33,8 @@ const uint8_t       kSoftwareMinor      = 0x01;
 const uint8_t       kVoltage            =   50;
 uint8_t SMoGeneral::gSCKDuration        = 2;    // 125kHz
 static uint8_t      gControllerInit     = 0;
+static uint8_t      gPrescale           = 0;    // Settable
+static uint8_t      gClockMatch         = 0;    //  ... but ignored
 
 void    
 SMoGeneral::SetParam()
@@ -54,6 +56,12 @@ SMoGeneral::SetParam()
         break;
     case PARAM_CONTROLLER_INIT:
         gControllerInit = value;
+        break;
+    case PARAM_OSC_PSCALE:
+        gPrescale = value;
+        break;
+    case PARAM_OSC_CMATCH:
+        gClockMatch = value;
         break;
     default:
         SMoCommand::SendResponse(STATUS_CMD_FAILED);
@@ -94,6 +102,15 @@ SMoGeneral::GetParam()
         break;
     case PARAM_CONTROLLER_INIT:
         result  = gControllerInit;
+        break;
+    case PARAM_OSC_PSCALE:
+        result = gPrescale;
+        break;
+    case PARAM_OSC_CMATCH:
+        result = gClockMatch;
+        break;
+    case PARAM_TOPCARD_DETECT:
+        result = 0;
         break;
     default:
         SMoCommand::SendResponse(STATUS_CMD_FAILED);
