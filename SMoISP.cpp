@@ -38,6 +38,35 @@ enum {
 
 const bool  kProgFlicker    = true;
 
+//
+// If an MCU has been set to use the 125kHz internal oscillator, 
+// regular SPI speeds are much too fast, so we do a software 
+// emulation that's deliberately slow.
+//
+static bool sSPILimpMode    = false;
+
+static uint8_t 
+SPITransfer(uint8_t out)
+{
+    if (!sSPILimpMode)
+        return SPI.transfer(out); // Hardware SPI
+        
+    const int kQuarterCycle = 25; // 25µS -> 10kHz bit clock
+    uint8_t in = 0;
+    for (int i=0; i<8; ++i) {
+        delayMicroseconds(kQuarterCycle);
+        digitalWrite(SCK, HIGH);
+        delayMicroseconds(kQuarterCycle);
+        digitalWrite(MOSI, (out & 0x80) != 0);
+        out <<= 1;
+        in = (in << 1) | digitalRead(MISO);
+        delayMicroseconds(kQuarterCycle);
+        digitalWrite(SCK, LOW);
+        delayMicroseconds(kQuarterCycle);        
+    }
+    return in;
+}
+
 static uint8_t 
 SPITransaction(const uint8_t * sendData, int8_t responseIndex = 3)
 {
@@ -50,7 +79,7 @@ SPITransaction(const uint8_t * sendData, int8_t responseIndex = 3)
 #ifdef DEBUG_SPI
         SMoDebug.print(*sendData, HEX);
 #endif
-        uint8_t recv = SPI.transfer(*sendData++);
+        uint8_t recv = SPITransfer(*sendData++);
 #ifdef DEBUG_SPI
         SMoDebug.print(ix == responseIndex ? " ![" : " [");
         SMoDebug.print(recv, HEX);
@@ -63,13 +92,6 @@ SPITransaction(const uint8_t * sendData, int8_t responseIndex = 3)
     SMoDebug.println();
 #endif
     return response;
-}
-
-static void
-SPITransactionMatching(const uint8_t * sendData, uint8_t pollValue, int8_t responseIndex = 3)
-{
-    uint8_t response = SPITransaction(sendData, responseIndex);
-    SMoCommand::SendResponse(response==pollValue ? STATUS_CMD_OK : STATUS_CMD_FAILED);
 }
 
 static uint8_t
@@ -85,18 +107,18 @@ SPITransaction(uint8_t b1, uint8_t b2, uint8_t b3, uint8_t b4)
     SMoDebug.print(" ");
     SMoDebug.print(b4, HEX);
 #endif
-    SPI.transfer(b1);
-    SPI.transfer(b2);
-    SPI.transfer(b3);
+    SPITransfer(b1);
+    SPITransfer(b2);
+    SPITransfer(b3);
 #ifdef DEBUG_SPI
-    uint8_t result = SPI.transfer(b4);
+    uint8_t result = SPITransfer(b4);
     SMoDebug.print(" [");
     SMoDebug.print(b4, HEX);
     SMoDebug.println("]");
   
     return result;  
 #else
-    return SPI.transfer(b4);
+    return SPITransfer(b4);
 #endif
 }
 
@@ -184,14 +206,35 @@ SMoISP::EnterProgmode()
     delay(50);
     digitalWrite(RESET, LOW);
     delay(50);
-    SPITransactionMatching(command, pollValue, pollIndex-1);
+    uint8_t response = SPITransaction(command, pollIndex-1);
+    if (response != pollValue) {
+        //
+        // Ooops, that's bad. Try again in limping mode
+        //
+        SPI.end();
+        sSPILimpMode = true;
+        pinMode(MOSI, OUTPUT);
+        pinMode(SCK, OUTPUT);
+        pinMode(MISO, INPUT);
+        
+        digitalWrite(RESET, HIGH);
+        digitalWrite(SCK, LOW);
+        delay(50);
+        digitalWrite(RESET, LOW);
+        delay(50);
+        response     = SPITransaction(command, pollIndex-1);
+    }
+    SMoCommand::SendResponse(response==pollValue ? STATUS_CMD_OK : STATUS_CMD_FAILED);
 }
 
 void
 SMoISP::LeaveProgmode()
 {
     TCCR2B = 0;    // Stop 1MHz clock
-    SPI.end();     // Stop SPI
+    if (sSPILimpMode)
+        sSPILimpMode = false;
+    else 
+        SPI.end();     // Stop SPI
     digitalWrite(RESET, HIGH);
     digitalWrite(LED_PROGRAMMING, LOW);
     pinMode(LED_PROGRAMMING, INPUT);
@@ -341,7 +384,7 @@ SMoISP::SPIMulti()
         SMoDebug.print(" ");
         SMoDebug.print(*txData, HEX);
 #endif
-        *rxData = SPI.transfer(*txData++);
+        *rxData = SPITransfer(*txData++);
         --numTX;
 #ifdef DEBUG_SPI
         SMoDebug.print(rxStart ? " (" : " [");
@@ -356,7 +399,7 @@ SMoISP::SPIMulti()
         }
     }
     while (numRX) {
-        *rxData = SPI.transfer(0);
+        *rxData = SPITransfer(0);
 #ifdef DEBUG_SPI
         SMoDebug.print(rxStart ? " . (" : " . [");
         SMoDebug.print(*rxData, HEX);
