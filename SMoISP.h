@@ -20,6 +20,12 @@
 // MISO:            12                      50 
 // SCK:             13                      52 
 //
+// 1MHz clock        3                      18 (?)
+//
+// The clock is available in case your chip's fuses are set to require an 
+// external clock signal. If you want the clock, connect it to XTAL1 on 
+// your target chip.
+//
 // On your target system, connect these pins, and power, to the following
 // pins of the DIP packages (for other packages, consult the data sheet):
 //
@@ -32,6 +38,7 @@
 // SCK       7 (PB2)     9 (PA4)     3 (PB2)    19 (PB7)    19 (PB5)     8 (PB7)
 // GND       4          14           6          10          22          31
 // VCC       8           1           5          20           7          10
+// XTAL1     2 (PB3)     2 (PB0)     7 (PB4)     5 (PA0)     9 (PB6)    13     
 //
 // Optionally, the following pins on your Arduino can be equipped with diagnostic
 // LEDs (with suitable resistors):

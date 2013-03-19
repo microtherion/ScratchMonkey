@@ -32,6 +32,8 @@ enum {
     
     LED_ERROR       = 8,
     LED_PROGRAMMING = 7,
+
+    MCU_CLOCK       = 3,    
 };
 
 const bool  kProgFlicker    = true;
@@ -151,6 +153,10 @@ SMoISP::EnterProgmode()
     digitalWrite(LED_PROGRAMMING, HIGH);
     pinMode(LED_ERROR,      OUTPUT);
     digitalWrite(LED_ERROR, LOW);
+    
+    //
+    // Set up SPI
+    //
     digitalWrite(MISO,      LOW);
     pinMode(MISO,           INPUT);
     SPI.begin();
@@ -160,6 +166,20 @@ SMoISP::EnterProgmode()
         SMoGeneral::gSCKDuration == 0 ? SPI_CLOCK_DIV8  :   // 2MHz
        (SMoGeneral::gSCKDuration == 1 ? SPI_CLOCK_DIV32 :   // 500kHz  
                                         SPI_CLOCK_DIV128)); // 125kHz (Default)
+    //
+    // Set up 1MHz clock on OC2A
+    //
+    pinMode(MCU_CLOCK, OUTPUT);
+    TCCR2A = _BV(COM2B0) | _BV(WGM21); // CTC mode, toggle OC2A
+    OCR2A  = 0;                        // F(OC2A) = 16MHz / (2*8*(1+0) == 1MHz
+    TIMSK2 = 0;
+    ASSR   = 0;
+    TCCR2B = _BV(CS21);                // Prescale by 8
+    TCNT2  = 0;
+    
+    //
+    // Now reset the chip and issue the programming mode instruction
+    //
     digitalWrite(SCK, LOW);
     delay(50);
     digitalWrite(RESET, LOW);
@@ -170,7 +190,8 @@ SMoISP::EnterProgmode()
 void
 SMoISP::LeaveProgmode()
 {
-    SPI.end();
+    TCCR2B = 0;    // Stop 1MHz clock
+    SPI.end();     // Stop SPI
     digitalWrite(RESET, HIGH);
     digitalWrite(LED_PROGRAMMING, LOW);
     pinMode(LED_PROGRAMMING, INPUT);

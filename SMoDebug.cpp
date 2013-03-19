@@ -13,7 +13,9 @@
 
 #include "SMoDebug.h"
 
-SoftwareSerial SMoDebug(2,3);
+#ifdef SMO_WANT_DEBUG
+
+SoftwareSerial SMoDebug(0,2);
 
 void SMoDebugInit()
 {
@@ -24,6 +26,7 @@ void SMoDebugInit()
 		sNeedsInit = false;
 	}
 }
+#endif
 
 //
 // LICENSE
