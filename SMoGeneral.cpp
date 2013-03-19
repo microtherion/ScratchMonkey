@@ -53,7 +53,7 @@ SMoGeneral::SetParam()
         break;
     case PARAM_RESET_POLARITY:
         SMoCommand::SendResponse(value ? STATUS_CMD_OK : STATUS_CMD_FAILED);    
-        break;
+        return;
     case PARAM_CONTROLLER_INIT:
         gControllerInit = value;
         break;
