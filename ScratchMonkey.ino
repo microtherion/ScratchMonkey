@@ -27,6 +27,7 @@
 #include "SMoCommand.h"
 #include "SMoGeneral.h"
 #include "SMoISP.h"
+#include "SMoHVSP.h"
 
 void
 setup()
