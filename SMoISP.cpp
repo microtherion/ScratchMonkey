@@ -36,8 +36,6 @@ enum {
     MCU_CLOCK       = 3,    
 };
 
-const bool  kProgFlicker    = true;
-
 //
 // If an MCU has been set to use the 125kHz internal oscillator, 
 // regular SPI speeds are much too fast, so we do a software 
