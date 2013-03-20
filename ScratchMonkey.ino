@@ -99,6 +99,48 @@ loop()
     case CMD_SPI_MULTI:
         SMoISP::SPIMulti();
         break;
+        //
+        // HVSP Commands
+        //
+    case CMD_ENTER_PROGMODE_HVSP:
+        SMoHVSP::EnterProgmode();
+        break;
+    case CMD_LEAVE_PROGMODE_HVSP:
+        SMoHVSP::LeaveProgmode();
+        break;
+    case CMD_CHIP_ERASE_HVSP:
+        SMoHVSP::ChipErase();    
+        break;
+    case CMD_PROGRAM_FLASH_HVSP:
+        SMoHVSP::ProgramFlash();
+        break;
+    case CMD_READ_FLASH_HVSP:
+        SMoHVSP::ReadFlash();
+        break;
+    case CMD_PROGRAM_EEPROM_HVSP:
+        SMoHVSP::ProgramEEPROM();
+        break;
+    case CMD_READ_EEPROM_HVSP:
+        SMoHVSP::ReadEEPROM();
+        break;
+    case CMD_PROGRAM_FUSE_HVSP:
+        SMoHVSP::ProgramFuse();
+        break;
+    case CMD_READ_FUSE_HVSP:
+        SMoHVSP::ReadFuse();
+        break;
+    case CMD_PROGRAM_LOCK_HVSP:
+        SMoHVSP::ProgramLock();
+        break;
+    case CMD_READ_LOCK_HVSP:
+        SMoHVSP::ReadLock();
+        break;
+    case CMD_READ_SIGNATURE_HVSP:
+        SMoHVSP::ReadSignature();
+        break;
+    case CMD_READ_OSCCAL_HVSP:
+        SMoHVSP::ReadOscCal();
+        break;        
     case SMoCommand::kHeaderError:
     case SMoCommand::kChecksumError:
     case SMoCommand::kIncomplete:
