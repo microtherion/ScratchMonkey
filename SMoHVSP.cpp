@@ -30,13 +30,12 @@ enum {
 inline bool
 HVSPBit(bool instrInBit, bool dataInBit)
 {
-    digitalWrite(SCI, HIGH);
-    bool dataOutBit = digitalRead(SDO);
     digitalWrite(SII, instrInBit);
     digitalWrite(SDI, dataInBit);
+    digitalWrite(SCI, HIGH);
     digitalWrite(SCI, LOW);
     
-    return dataOutBit;
+    return digitalRead(SDO);
 }
 
 static uint8_t
@@ -51,7 +50,7 @@ HVSPTransfer(uint8_t instrIn, uint8_t dataIn)
     // Next bits, data in/out
     //
     for (char i=0; i<7; ++i) {
-        dataOut = (dataOut << 1) | HVSPBit(instrIn & 0x80, dataIn & 0x80);
+        dataOut = (dataOut << 1) | HVSPBit((instrIn & 0x80) != 0, (dataIn & 0x80) != 0);
         instrIn <<= 1;
         dataIn  <<= 1;
     }
@@ -83,7 +82,7 @@ SMoHVSP::EnterProgmode()
 {
     // const uint8_t   stabDelay   = SMoCommand::gBody[1];
     // const uint8_t   cmdexeDelay = SMoCommand::gBody[2];
-    // const uint8_t   syncCyles   = SMoCommand::gBody[3];
+    const uint8_t   syncCyles   = SMoCommand::gBody[3];
     // const uint8_t   latchCycles = SMoCommand::gBody[4];
     // const uint8_t   toggleVtg   = SMoCommand::gBody[5];
     const uint8_t   powoffDelay = SMoCommand::gBody[6];
@@ -106,6 +105,10 @@ SMoHVSP::EnterProgmode()
     delay(powoffDelay);
     digitalWrite(VCC, HIGH);
     delayMicroseconds(40);
+    for (uint8_t i=0; i<syncCycles; ++i) {
+        digitalWrite(SCI, HIGH);
+        digitalWrite(SCI, LOW);
+    }
     digitalWrite(RESET, LOW);
     delayMicroseconds(20);
     pinMode(SDO, INPUT);
@@ -178,6 +181,24 @@ SMoHVSP::ProgramFlash()
             HVSPTransfer(0x6C, 0x00);
             timeout = !HVSPPollWait(pollTimeout);
         }
+    } else { // Word mode, ATtiny11/12
+        uint32_t address = SMoGeneral::gAddress;
+        HVSPTransfer(0x1C, address >> 8);
+        for (; numBytes > 0; numBytes -= 2) {
+            //
+            // Write Flash Low / High Byte
+            //
+            HVSPTransfer(0x0C, SMoGeneral::gAddress & 0xFF);
+            HVSPTransfer(0x2C, *data++);
+            HVSPTransfer(0x64, 0x00);
+            HVSPTransfer(0x6C, 0x00);
+            HVSPTransfer(0x3C, *data++);
+            HVSPTransfer(0x74, 0x00);
+            HVSPTransfer(0x7C, 0x00);
+            ++SMoGeneral::gAddress;
+            if ((timeout = !HVSPPollWait(pollTimeout)))
+                break;
+        }
     }
     //
     // Leave Flash Programming Mode
@@ -244,6 +265,19 @@ SMoHVSP::ProgramEEPROM()
             HVSPTransfer(0x64, 0x00);
             HVSPTransfer(0x6C, 0x00);
             timeout = !HVSPPollWait(pollTimeout);
+        }
+    } else { // Byte mode (ATtiny12)
+        for (; numBytes > 0; --numBytes) {
+            //
+            // Load EEPROM Page Buffer
+            //
+            HVSPTransfer(0x0C, SMoGeneral::gAddress & 0xFF);
+            HVSPTransfer(0x2C, *data++);
+            HVSPTransfer(0x64, 0x00);
+            HVSPTransfer(0x6C, 0x00);
+            ++SMoGeneral::gAddress;
+             if ((timeout = !HVSPPollWait(pollTimeout)))
+                break;
         }
     }
     //
