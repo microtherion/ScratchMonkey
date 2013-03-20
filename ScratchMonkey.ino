@@ -54,6 +54,9 @@ loop()
     case CMD_LOAD_ADDRESS:
         SMoGeneral::LoadAddress();
         break;
+    case CMD_SET_CONTROL_STACK:
+        SMoGeneral::SetControlStack();
+        break;
         //
         // ISP Commands
         //

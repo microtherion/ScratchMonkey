@@ -19,11 +19,13 @@
 namespace SMoGeneral {
     extern uint8_t  gSCKDuration;
     extern uint32_t gAddress;
+    extern uint8_t  gControlStack[];
 
     void    SignOn();
     void    SetParam();
     void    GetParam();
     void    LoadAddress();
+    void    SetControlStack();
 } // namespace SMoGeneral
 
 #endif /* _SMO_GENERAL_ */
