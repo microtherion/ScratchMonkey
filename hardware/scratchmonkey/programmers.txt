@@ -1,4 +1,8 @@
-buspirate.name=ScratchMonkey
-buspirate.communication=serial
-buspirate.protocol=stk500v2
+scratchmonkey.name=ScratchMonkey
+scratchmonkey.communication=serial
+scratchmonkey.protocol=stk500v2
+
+scratchmonkey_hvsp.name=ScratchMonkey HVSP
+scratchmonkey_hvsp.communication=serial
+scratchmonkey_hvsp.protocol=stk500hvsp
 
