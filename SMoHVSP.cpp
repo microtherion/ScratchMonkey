@@ -12,35 +12,48 @@
 // http://opensource.org/licenses/bsd-license.php
 //
 
+#undef DEBUG_HVSP
+
 #include "SMoHVSP.h"
 #include "SMoCommand.h"
 #include "SMoGeneral.h"
 
+#ifdef DEBUG_HVSP
+#include "SMoDebug.h"
+#endif
+
 #include <Arduino.h>
 
 enum {
-    VCC   = 8,
-    RESET = 9,
-    SCI   = 10,
-    SDI   = 11,
-    SII   = 12,
-    SDO   = 13,
+    HVSP_VCC   = 8,
+    HVSP_RESET = 9,
+    HVSP_SCI   = 13,
+    HVSP_SDI   = 11,
+    HVSP_SII   = 12,
+    HVSP_SDO   = 10,
 };
 
 inline bool
 HVSPBit(bool instrInBit, bool dataInBit)
 {
-    digitalWrite(SII, instrInBit);
-    digitalWrite(SDI, dataInBit);
-    digitalWrite(SCI, HIGH);
-    digitalWrite(SCI, LOW);
-    
-    return digitalRead(SDO);
+    digitalWrite(HVSP_SII, instrInBit);
+    digitalWrite(HVSP_SDI, dataInBit);
+    digitalWrite(HVSP_SCI, HIGH);
+    digitalWrite(HVSP_SCI, LOW);
+    uint8_t dataOutBit = digitalRead(HVSP_SDO);
+
+    return dataOutBit;
 }
 
 static uint8_t
 HVSPTransfer(uint8_t instrIn, uint8_t dataIn)
 {
+#ifdef DEBUG_HVSP
+    SMoDebug.print("Byte ");
+    SMoDebug.print(instrIn, HEX);
+    SMoDebug.print(" ");
+    SMoDebug.print(dataIn, HEX);
+#endif
     //
     // First bit, data out only
     //
@@ -64,6 +77,12 @@ HVSPTransfer(uint8_t instrIn, uint8_t dataIn)
     //
     HVSPBit(0, 0);
     HVSPBit(0, 0);
+
+#ifdef DEBUG_HVSP
+    SMoDebug.print(" -> ");
+    SMoDebug.println(dataOut, HEX);
+#endif
+    return dataOut;
 }
 
 static bool
@@ -71,7 +90,7 @@ HVSPPollWait(uint8_t pollTimeout)
 {
     uint32_t target = millis()+pollTimeout;
     while (millis() != target)
-        if (digitalRead(SDO)) 
+        if (digitalRead(HVSP_SDO)) 
             return true;
     SMoCommand::SendResponse(STATUS_RDY_BSY_TOUT);
     return false;
@@ -80,38 +99,43 @@ HVSPPollWait(uint8_t pollTimeout)
 void
 SMoHVSP::EnterProgmode()
 {
+#ifdef DEBUG_HVSP
+    SMoDebugInit();
+#endif
+
     // const uint8_t   stabDelay   = SMoCommand::gBody[1];
     // const uint8_t   cmdexeDelay = SMoCommand::gBody[2];
-    const uint8_t   syncCyles   = SMoCommand::gBody[3];
+    const uint8_t   syncCycles  = SMoCommand::gBody[3];
     // const uint8_t   latchCycles = SMoCommand::gBody[4];
     // const uint8_t   toggleVtg   = SMoCommand::gBody[5];
     const uint8_t   powoffDelay = SMoCommand::gBody[6];
     const uint8_t   resetDelay1 = SMoCommand::gBody[7];
     const uint8_t   resetDelay2 = SMoCommand::gBody[8];
     
-    pinMode(VCC, OUTPUT);
-    digitalWrite(VCC, LOW);
-    digitalWrite(RESET, HIGH); // Set BEFORE pinMode, so we don't glitch LOW
-    pinMode(RESET, OUTPUT);
-    pinMode(SCI, OUTPUT);
-    digitalWrite(SCI, LOW);
-    pinMode(SDI, OUTPUT);
-    digitalWrite(SDI, LOW);
-    pinMode(SCI, OUTPUT);
-    digitalWrite(SCI, LOW);
-    pinMode(SDO, OUTPUT);       // progEnable[2] on tinyX5
-    digitalWrite(SDO, LOW);
+    pinMode(HVSP_VCC, OUTPUT);
+    digitalWrite(HVSP_VCC, LOW);
+    digitalWrite(HVSP_RESET, HIGH); // Set BEFORE pinMode, so we don't glitch LOW
+    pinMode(HVSP_RESET, OUTPUT);
+    pinMode(HVSP_SCI, OUTPUT);
+    digitalWrite(HVSP_SCI, LOW);
+    pinMode(HVSP_SDI, OUTPUT);
+    digitalWrite(HVSP_SDI, LOW);
+    pinMode(HVSP_SII, OUTPUT);
+    digitalWrite(HVSP_SII, LOW);
+    pinMode(HVSP_SDO, OUTPUT);       // progEnable[2] on tinyX5
+    digitalWrite(HVSP_SDO, LOW);
 
     delay(powoffDelay);
-    digitalWrite(VCC, HIGH);
-    delayMicroseconds(40);
+    digitalWrite(HVSP_VCC, HIGH);
+    delayMicroseconds(80);
     for (uint8_t i=0; i<syncCycles; ++i) {
-        digitalWrite(SCI, HIGH);
-        digitalWrite(SCI, LOW);
+        digitalWrite(HVSP_SCI, HIGH);
+        delayMicroseconds(10);
+        digitalWrite(HVSP_SCI, LOW);
     }
-    digitalWrite(RESET, LOW);
-    delayMicroseconds(20);
-    pinMode(SDO, INPUT);
+    digitalWrite(HVSP_RESET, LOW);
+    delayMicroseconds(1);
+    pinMode(HVSP_SDO, INPUT);
     
     SMoCommand::SendResponse();
 }
@@ -119,8 +143,8 @@ SMoHVSP::EnterProgmode()
 void
 SMoHVSP::LeaveProgmode()
 {
-    digitalWrite(RESET, HIGH);
-    digitalWrite(VCC, LOW);
+    digitalWrite(HVSP_RESET, HIGH);
+    digitalWrite(HVSP_VCC, LOW);
 
     SMoCommand::SendResponse();
 }
@@ -218,16 +242,22 @@ SMoHVSP::ReadFlash()
     // Flash Read
     //
     HVSPTransfer(0x4C, 0x02);
+    uint8_t prevPage = 0xFF;
     for (; numBytes>0; numBytes-=2) {
         //
         // Read Flash Low and High Bytes
         //
         HVSPTransfer(0x0C, SMoGeneral::gAddress & 0xFF);
-        HVSPTransfer(0x1C, SMoGeneral::gAddress >> 8);
+        uint8_t page = SMoGeneral::gAddress >> 8;
+        if (page != prevPage) {
+            HVSPTransfer(0x1C, page);
+            prevPage = page;
+        }
         HVSPTransfer(0x68, 0x00);
         *outData++ = HVSPTransfer(0x6C, 0x00);
         HVSPTransfer(0x78, 0x00);
         *outData++ = HVSPTransfer(0x7C, 0x00);
+        ++SMoGeneral::gAddress;
     }
     *outData = STATUS_CMD_OK;
     SMoCommand::SendResponse(STATUS_CMD_OK, outData-&SMoCommand::gBody[0]);
@@ -306,6 +336,7 @@ SMoHVSP::ReadEEPROM()
         HVSPTransfer(0x1C, SMoGeneral::gAddress >> 8);
         HVSPTransfer(0x68, 0x00);
         *outData++ = HVSPTransfer(0x6C, 0x00);
+        ++SMoGeneral::gAddress;
     }
     *outData = STATUS_CMD_OK;
     SMoCommand::SendResponse(STATUS_CMD_OK, outData-&SMoCommand::gBody[0]);
