@@ -13,9 +13,11 @@
 
 #include "SMoDebug.h"
 
+#include <Arduino.h>
+
 #ifdef SMO_WANT_DEBUG
 
-SoftwareSerial SMoDebug(-1,2);
+SoftwareSerial SMoDebug(A4,A5);
 
 void SMoDebugInit()
 {

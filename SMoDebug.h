@@ -14,7 +14,7 @@
 #ifndef _SMO_DEBUG_
 #define _SMO_DEBUG_
 
-#undef SMO_WANT_DEBUG
+#define SMO_WANT_DEBUG
 
 #ifdef SMO_WANT_DEBUG
 #include <SoftwareSerial.h>
