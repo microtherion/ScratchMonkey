@@ -12,7 +12,7 @@
 // http://opensource.org/licenses/bsd-license.php
 //
 
-#define DEBUG_HVPP
+#undef DEBUG_HVPP
 
 #include "SMoHVPP.h"
 #include "SMoCommand.h"
