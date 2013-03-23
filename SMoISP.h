@@ -20,7 +20,7 @@
 // MISO:            12                      50 
 // SCK:             13                      52 
 //
-// 1MHz clock        3                      18 (?)
+// 1MHz clock        3                      18 (?)          Optional
 //
 // The clock is available in case your chip's fuses are set to require an 
 // external clock signal. If you want the clock, connect it to XTAL1 on 
@@ -40,15 +40,6 @@
 // VCC       8           1           5          20           7          10
 // XTAL1     2 (PB3)     2 (PB0)     7 (PB4)     5 (PA0)     9 (PB6)    13     
 //
-// Optionally, the following pins on your Arduino can be equipped with diagnostic
-// LEDs (with suitable resistors):
-//
-// PIN      Function    Discussion
-//
-// 8        Error       Lights up if programming failed
-// 7        Programming Communicating with slave
-//
-
 #ifndef _SMO_ISP_
 #define _SMO_ISP_
 

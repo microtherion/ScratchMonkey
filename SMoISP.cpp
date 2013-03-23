@@ -29,10 +29,6 @@
 //
 enum {
     RESET           = SS,
-    
-    LED_ERROR       = 8,
-    LED_PROGRAMMING = 7,
-
     MCU_CLOCK       = 3,    
 };
 
@@ -169,11 +165,6 @@ SMoISP::EnterProgmode()
     const uint8_t   pollIndex   =   SMoCommand::gBody[7];
     const uint8_t * command     =  &SMoCommand::gBody[8];
 
-    pinMode(LED_PROGRAMMING,OUTPUT);
-    digitalWrite(LED_PROGRAMMING, HIGH);
-    pinMode(LED_ERROR,      OUTPUT);
-    digitalWrite(LED_ERROR, LOW);
-    
     //
     // Set up SPI
     //
@@ -234,9 +225,6 @@ SMoISP::LeaveProgmode()
     else 
         SPI.end();     // Stop SPI
     digitalWrite(RESET, HIGH);
-    digitalWrite(LED_PROGRAMMING, LOW);
-    pinMode(LED_PROGRAMMING, INPUT);
-    pinMode(LED_ERROR, INPUT);
     SMoCommand::SendResponse();
 }
 
