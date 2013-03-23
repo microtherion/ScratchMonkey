@@ -349,7 +349,7 @@ SMoHVPP::ProgramFlash()
     //
     // Enter Flash Programming Mode
     //
-    HVPPLoadCommand(0x40);
+    HVPPLoadCommand(0x10);
 
     bool timeout = false;
     if (mode & 1) { // Paged mode
@@ -441,12 +441,12 @@ SMoHVPP::ProgramEEPROM()
     HVPPLoadCommand(0x11);
     bool timeout = false;
     if (mode & 1) { // Paged mode
-        HVPPLoadAddress(kHighByte, SMoGeneral::gAddress & 0xFF);
+        HVPPLoadAddress(kHighByte, (SMoGeneral::gAddress >> 8) & 0xFF);
         for (; numBytes > 0; --numBytes) {
             //
             // Load EEPROM Page Buffer
             //
-            HVPPLoadAddress(kLowByte, SMoGeneral::gAddress >> 8);
+            HVPPLoadAddress(kLowByte, SMoGeneral::gAddress & 0xFF);
             HVPPLoadData(kLowByte, *data++);
             //
             // Latch EEPROM
