@@ -25,12 +25,12 @@
 #include <Arduino.h>
 
 enum {
-    HVSP_VCC   = 8,
-    HVSP_RESET = 9,
-    HVSP_SCI   = 13,
+    HVSP_VCC   = A0,
+    HVSP_RESET = 10,
+    HVSP_SII   =  9,
     HVSP_SDI   = 11,
-    HVSP_SII   = 12,
-    HVSP_SDO   = 10,
+    HVSP_SDO   = 12,
+    HVSP_SCI   = 13,
 };
 
 inline bool

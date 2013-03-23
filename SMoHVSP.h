@@ -16,12 +16,12 @@
 //
 // PIN          All Arduinos
 //
-// Slave VCC        8
-// Slave Reset      9
-// SCI             10
+// Slave VCC       A0
+// Slave Reset     10
+// SII              9      
 // SDI             11      
-// SII             12      
-// SDO             13      
+// SDO             12      
+// SCI             13
 //
 // The Slave Reset signal must then be used to generate a 12V signal to 
 // apply to the RESET pin of the target MCU. A few suitable arrangements 
