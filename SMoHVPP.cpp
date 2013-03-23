@@ -12,7 +12,7 @@
 // http://opensource.org/licenses/bsd-license.php
 //
 
-#undef DEBUG_HVPP
+#define DEBUG_HVPP
 
 #include "SMoHVPP.h"
 #include "SMoCommand.h"
@@ -66,6 +66,13 @@ enum {
 inline void
 HVPPSetControls(uint8_t controlIx)
 {
+#ifdef DEBUG_HVPP
+    SMoDebug.print("Ctrl ");
+    SMoDebug.print(controlIx, DEC);
+    SMoDebug.print(" / ");
+    SMoDebug.print(SMoGeneral::gControlStack[controlIx], HEX);
+    SMoDebug.println();
+#endif
     digitalWrite(HVPP_RCLK, LOW);
     SPI.transfer(SMoGeneral::gControlStack[controlIx]);
     digitalWrite(HVPP_RCLK, HIGH);
@@ -104,7 +111,10 @@ HVPPEndControls()
 inline void
 HVPPDataMode(uint8_t mode)
 {
-    if (mode == OUTPUT) {
+#ifdef DEBUG_HVPP
+   SMoDebug.println(mode == output ? "Data OUT" : "Data IN");
+#endif
+   if (mode == OUTPUT) {
         DDRD |= 0xFC;
         DDRB |= 0x03;
     } else {
@@ -116,6 +126,10 @@ HVPPDataMode(uint8_t mode)
 inline void
 HVPPSetDataRaw(uint8_t dataOut)
 {
+#ifdef DEBUG_HVPP
+   SMoDebug.print("Data<");
+   SMoDebug.println(dataOut, HEX);
+#endif
     PORTD = (PORTD & 0x03) | ((dataOut << 2) & 0xFF);
     PORTB = (PORTB & 0xFC) | (dataOut >> 6);
 }
@@ -123,7 +137,14 @@ HVPPSetDataRaw(uint8_t dataOut)
 inline uint8_t
 HVPPGetDataRaw()
 {
-    return ((PINB << 6) | (PIND >> 2)) & 0xFF;
+    uint8_t dataIn = ((PINB << 6) | (PIND >> 2)) & 0xFF;
+    
+#ifdef DEBUG_HVPP
+    SMoDebug.print("Data>");
+    SMoDebug.println(dataIn, HEX);
+#endif
+
+    return dataIn;
 }
 #else
 //
@@ -133,6 +154,9 @@ HVPPGetDataRaw()
 inline void
 HVPPDataMode(uint8_t mode)
 {
+#ifdef DEBUG_HVPP
+   SMoDebug.println(mode == OUTPUT ? "Data OUT" : "Data IN");
+#endif
     for (uint8_t pin=2; pin<10; ++pin)
         pinMode(pin, mode);
 }
@@ -140,6 +164,10 @@ HVPPDataMode(uint8_t mode)
 inline void
 HVPPSetDataRaw(uint8_t dataOut)
 {
+#ifdef DEBUG_HVPP
+   SMoDebug.print("Data<");
+   SMoDebug.println(dataOut, HEX);
+#endif
     for (uint8_t pin=2; pin<10; ++pin) {
         digitalWrite(pin, dataOut & 1);
         dataOut >>= 1;
@@ -153,6 +181,11 @@ HVPPGetDataRaw()
 
     for (uint8_t pin=9; pin >= 2; --pin)
         dataIn = (dataIn << 1) | digitalRead(pin);
+
+#ifdef DEBUG_HVPP
+    SMoDebug.print("Data>");
+    SMoDebug.println(dataIn, HEX);
+#endif
 
     return dataIn;
 }
