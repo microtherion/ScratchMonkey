@@ -34,12 +34,12 @@
 // PIN      Tiny13/X5   TinyX4      
 //          (8 pin)     (14 pin)    
 //
-// RESET     1 (PB5)     4 (PB3)    
+// RESET     1 (PB5)     4 (PB3)    From HV switch, NOT Slave Reset
 // SCI       2 (PB3)     2 (PB0)    
 // SDI       5 (PB0)     7 (PA6)    
 // SII       6 (PB1)     8 (PA5)    
 // SDO       7 (PB2)     9 (PA4)
-// VCC       8           1          Connect to Slave VCC, NOT TO 12V signal
+// VCC       8           1          Slave VCC, NOT 12V
 // GND       4          14 
 //                      13 (PA2)         
 //                      12 (PA1)         
