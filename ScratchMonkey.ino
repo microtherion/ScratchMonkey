@@ -28,6 +28,7 @@
 #include "SMoGeneral.h"
 #include "SMoISP.h"
 #include "SMoHVSP.h"
+#include "SMoHVPP.h"
 
 void
 setup()
@@ -144,6 +145,49 @@ loop()
     case CMD_READ_OSCCAL_HVSP:
         SMoHVSP::ReadOscCal();
         break;        
+        //
+        // HVPP Commands
+        //
+    case CMD_ENTER_PROGMODE_PP:
+        SMoHVPP::EnterProgmode();
+        break;
+    case CMD_LEAVE_PROGMODE_PP:
+        SMoHVPP::LeaveProgmode();
+        break;
+    case CMD_CHIP_ERASE_PP:
+        SMoHVPP::ChipErase();    
+        break;
+    case CMD_PROGRAM_FLASH_PP:
+        SMoHVPP::ProgramFlash();
+        break;
+    case CMD_READ_FLASH_PP:
+        SMoHVPP::ReadFlash();
+        break;
+    case CMD_PROGRAM_EEPROM_PP:
+        SMoHVPP::ProgramEEPROM();
+        break;
+    case CMD_READ_EEPROM_PP:
+        SMoHVPP::ReadEEPROM();
+        break;
+    case CMD_PROGRAM_FUSE_PP:
+        SMoHVPP::ProgramFuse();
+        break;
+    case CMD_READ_FUSE_PP:
+        SMoHVPP::ReadFuse();
+        break;
+    case CMD_PROGRAM_LOCK_PP:
+        SMoHVPP::ProgramLock();
+        break;
+    case CMD_READ_LOCK_PP:
+        SMoHVPP::ReadLock();
+        break;
+    case CMD_READ_SIGNATURE_PP:
+        SMoHVPP::ReadSignature();
+        break;
+    case CMD_READ_OSCCAL_PP:
+        SMoHVPP::ReadOscCal();
+        break;     
+        // Pseudocommands   
     case SMoCommand::kHeaderError:
     case SMoCommand::kChecksumError:
     case SMoCommand::kIncomplete:
