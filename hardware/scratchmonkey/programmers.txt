@@ -6,3 +6,7 @@ scratchmonkey_hvsp.name=ScratchMonkey HVSP
 scratchmonkey_hvsp.communication=serial
 scratchmonkey_hvsp.protocol=stk500hvsp
 
+scratchmonkey_hvpp.name=ScratchMonkey HVPP
+scratchmonkey_hvpp.communication=serial
+scratchmonkey_hvpp.protocol=stk500pp
+
