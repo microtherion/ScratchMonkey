@@ -91,6 +91,8 @@ HVPPInitControls()
     SPI.setDataMode(SPI_MODE0);
     SPI.setBitOrder(MSBFIRST);
     SPI.setClockDivider(SPI_CLOCK_DIV2);// Pedal to the metal
+    digitalWrite(HVPP_RCLK, LOW);
+    pinMode(HVPP_RCLK, OUTPUT);
     HVPPSetControls(kInit);            // Set all control pins to zero
 }
 
@@ -285,6 +287,8 @@ SMoHVPP::EnterProgmode()
     pinMode(HVPP_RESET, OUTPUT);
     pinMode(HVPP_RDY, INPUT);
     digitalWrite(HVPP_RDY, LOW);
+    pinMode(HVPP_XTAL, OUTPUT);
+    digitalWrite(HVPP_XTAL, LOW);
     HVPPDataMode(OUTPUT);
     HVPPInitControls();
 
@@ -524,7 +528,9 @@ ReadFuseLock(uint8_t byteSel)
     uint8_t * dataOut   = &SMoCommand::gBody[2];
 
     HVPPLoadCommand(0x04);
+    HVPPDataMode(INPUT);
     *dataOut = HVPPReadData(byteSel);
+    HVPPDataMode(OUTPUT);
 
     SMoCommand::SendResponse(STATUS_CMD_OK, 3);
 }
@@ -564,7 +570,9 @@ ReadSignatureCal(uint8_t addr, uint8_t byteSel)
 
     HVPPLoadCommand(0x08);
     HVPPLoadAddress(kLowByte, addr);
+    HVPPDataMode(INPUT);
     *dataOut = HVPPReadData(byteSel);
+    HVPPDataMode(OUTPUT);
 
     SMoCommand::SendResponse(STATUS_CMD_OK, 3);
 }
