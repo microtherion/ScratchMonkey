@@ -1,3 +1,9 @@
+<html>
+<head>
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK href="manual.css" rel="stylesheet" type="text/css">
+</head>
+<body>
 <h2>Overview</h2>
 
 <p><span class=logo>ScratchMonkey</span> uses the Arduino serial port to communicate with the Arduino IDE (or the <tt>avrdude</tt> command line tool used internally by the Arduino IDE) using the STK500v2 protocol. It implements the following programming methods:</p>
@@ -21,8 +27,10 @@
 <dd>
 <p><em>High Voltage Parallel Programming</em> uses the same +12V signal protocol on the <strong>RESET</strong> pin as HVSP, but employs a parallel, not a serial protocol. This requires up to 17 signals, which, combined with the pins needed to control <strong>VCC</strong> and <strong>RESET</strong>, takes more pins than the Arduino has available!</p>
 
-<p>While some High Voltage Parallel Programmers, notably the HC Rescue Shield (<a href="http://mightyohm.com/blog/products/hv-rescue-shield-2-x">http://mightyohm.com/blog/products/hv-rescue-shield-2-x</a>) solve this by reusing the TX/RX pins, <span class=logo>ScratchMonkey</span> takes the easy way out by delegating most of the control signals to a <tt>74HC595</tt> shift register (Feel free to explore the other approach if you want to save yourself the 50&cent; expense).</p>
+<p>While some High Voltage Parallel Programmers, notably the HV Rescue Shield (<a href="http://mightyohm.com/blog/products/hv-rescue-shield-2-x">http://mightyohm.com/blog/products/hv-rescue-shield-2-x</a>) solve this by reusing the TX/RX pins, <span class=logo>ScratchMonkey</span> takes the easy way out by delegating most of the control signals to a <tt>74HC595</tt> shift register (Feel free to explore the other approach if you want to save yourself the 50&cent; expense).</p>
 
 <p>Like HVSP, HVPP works regardless of the fuse settings. It is supported on all AVR microcontrollers with 20 pins or more.</p>
 </dd>
 </dl> 
+</body>
+</html>
