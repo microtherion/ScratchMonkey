@@ -3,7 +3,7 @@ ScratchMonkey
 
 Arduino software programmer sketch, supporting ISP, HVSP, and HVPP
 
-For details, please consult the [User Manual])(doc/index.html)
+For details, please consult the [User Manual](doc/)
 
 I'm still putting the finishing touches on the release, so while all 
 three programming methods have been tested briefly, this has not
