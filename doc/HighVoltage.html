@@ -1,25 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<META http-equiv="Content-Style-Type" content="text/css">
-<LINK href="manual.css" rel="stylesheet" type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link href="manual.css" rel="stylesheet" type="text/css">
+<title>High Voltage Programming</title>
 </head>
 <body>
 <h2>High Voltage Programming</h2>
 
-As their name implies, the High Voltage Serial and High Voltage Parallel Programming techniques require a +12V signal. It should be noted that the <em>current</em> drawn from this signal is quite small. 
+<p>As their name implies, the <a href="HVSP.html">High Voltage Serial</a> and <a href="HVPP.html">High Voltage Parallel Programming</a> techniques require a +12V signal. It should be noted that the <em>current</em> drawn from this signal is quite small.</p>
 
-Here are some ways to generate that 12V signal, depending on what components you have at hand.
+<p>Here are some ways to generate that 12V signal, depending on what components you have at hand.</p>
 
 <h4>Using an External Power Supply</h4>
 
 <img src="img/external.png" alt="switching external 12V signal" class=circuit>
 
-By far the simplest method is to use an external 12V power supply. Either bring the power directly to the bread board (connecting the ground to the Arduino ground), or plug it into the Arduino and use the Arduino <strong>Vin</strong> pin as the 12V source. To switch this signal on and off using the Slave Reset pin (<strong>D10</strong>), any NPN transistor with a reasonably large hFE should work in this circuit. <strong>R3</strong> is a pull-up resistor ensuring that the 12V signal is turned off when <strong>D10</strong> is undefined (e.g. because the sketch is not running), while <strong>R1</strong> limits the current flowing through the transistor.
+<p>By far the simplest method is to use an external 12V power supply. Either bring the power directly to the bread board (connecting the ground to the Arduino ground), or plug it into the Arduino and use the Arduino <strong>Vin</strong> pin as the 12V source. To switch this signal on and off using the Slave Reset pin (<strong>D10</strong>), any NPN transistor with a reasonably large hFE should work in this circuit.</p>
+
+<p><strong>R3</strong> is a pull-up resistor ensuring that the 12V signal is turned off when <strong>D10</strong> is undefined (e.g. because the sketch is not running), while <strong>R1</strong> limits the current flowing through the transistor.</p>
 
 <h4 style="clear:both">Using a Charge Pump IC</h4>
 
 <img src="img/maxim.png" alt="MAX662ACPA+ generating 12V signal" class=circuit>
 
-The Maxim MAX662ACPA+ is an integrated circuit that, combined with some capacitors, can generate a 12V, 30mA signal from a 5V input. The Slave Reset pin <strong>D10</strong> is here connected to the <strong>SHDN</strong> pin, which will put the MAX662ACPA+ into <em>shutdown mode</em>. As opposed to the previous circuit, in shutdown mode, the RESET pin will be 5V instead of 0V, but for our purposes, this makes no difference.
+<p>The Maxim MAX662ACPA+ is an integrated circuit that, combined with some capacitors, can generate a 12V, 30mA signal from a 5V input. The Slave Reset pin <strong>D10</strong> is here connected to the <strong>SHDN</strong> pin, which will put the MAX662ACPA+ into <em>shutdown mode</em>.</p>
+
+<p>As opposed to the previous circuit, in shutdown mode, the RESET pin will be 5V instead of 0V, but for our purposes, this makes no difference.</p>
+
 </body>
 </html>
