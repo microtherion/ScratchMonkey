@@ -24,7 +24,7 @@ void SMoDebugInit()
 	static bool sNeedsInit = true;
 
 	if (sNeedsInit) {
-		SMoDebug.begin(115200);
+		SMoDebug.begin(19200);
 		sNeedsInit = false;
 	}
 }
