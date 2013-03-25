@@ -45,14 +45,14 @@ SPITransfer(uint8_t out)
     if (!sSPILimpMode)
         return SPI.transfer(out); // Hardware SPI
         
-    const int kQuarterCycle = 25; // 25µS -> 10kHz bit clock
+    const int kQuarterCycle = 75; // 75µS -> 3.3kHz bit clock
     uint8_t in = 0;
     for (int i=0; i<8; ++i) {
+        digitalWrite(MOSI, (out & 0x80) != 0);
+        out <<= 1;
         delayMicroseconds(kQuarterCycle);
         digitalWrite(SCK, HIGH);
         delayMicroseconds(kQuarterCycle);
-        digitalWrite(MOSI, (out & 0x80) != 0);
-        out <<= 1;
         in = (in << 1) | digitalRead(MISO);
         delayMicroseconds(kQuarterCycle);
         digitalWrite(SCK, LOW);
@@ -177,15 +177,16 @@ SMoISP::EnterProgmode()
         SMoGeneral::gSCKDuration == 0 ? SPI_CLOCK_DIV8  :   // 2MHz
        (SMoGeneral::gSCKDuration == 1 ? SPI_CLOCK_DIV32 :   // 500kHz  
                                         SPI_CLOCK_DIV128)); // 125kHz (Default)
+
     //
-    // Set up 1MHz clock on OC2A
+    // Set up clock generator on OC2B
     //
     pinMode(MCU_CLOCK, OUTPUT);
-    TCCR2A = _BV(COM2B0) | _BV(WGM21); // CTC mode, toggle OC2A
-    OCR2A  = 0;                        // F(OC2A) = 16MHz / (2*8*(1+0) == 1MHz
+    TCCR2A = _BV(COM2B0) | _BV(WGM21); // CTC mode, toggle OC2B on comparison with OCR2A
+    OCR2A  = 0;                        // F(OC2A) = 16MHz / (2*64*(1+0) == 125kHz
     TIMSK2 = 0;
     ASSR   = 0;
-    TCCR2B = _BV(CS21);                // Prescale by 8
+    TCCR2B = _BV(CS22);                // Prescale by 64
     TCNT2  = 0;
     
     //
@@ -198,9 +199,12 @@ SMoISP::EnterProgmode()
     uint8_t response = SPITransaction(command, pollIndex-1);
     if (response != pollValue) {
         //
-        // Ooops, that's bad. Try again in limping mode
+        // Ooops, that's bad. Try again in limp mode
         //
         SPI.end();
+ #ifdef DEBUG_SPI
+        SMoDebug.println("Retrying in limp mode.\n");
+ #endif
         sSPILimpMode = true;
         pinMode(MOSI, OUTPUT);
         pinMode(SCK, OUTPUT);
@@ -219,7 +223,7 @@ SMoISP::EnterProgmode()
 void
 SMoISP::LeaveProgmode()
 {
-    TCCR2B = 0;    // Stop 1MHz clock
+    TCCR2B = 0;    // Stop clock generator
     if (sSPILimpMode)
         sSPILimpMode = false;
     else 
