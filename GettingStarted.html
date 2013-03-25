@@ -35,13 +35,47 @@ ln -sh \
 </li>
 </ul>
 
-If your installation was successful, the <tt>Tools -> Programmer</tt> menu in your Arduino IDE should look like the picture on the right after your next restart.
+<p>If your installation was successful, the <tt>Tools</tt> &rarr; <tt>Programmer</tt> menu in your Arduino IDE should look like the picture on the right after your next restart.</p>
 
 <h3 style="clear:both">Connecting With The Target</h3>
 
+<p>Now it's time to connect your Arduino to your target microcontroller. The details for this vary between the different programming methods, and will be discussed in the individual sections.</p>
+
+<h3>Uploading the <span class=logo>ScratchMonkey</span> sketch</h3>
+
+<p>Before communicating with your target microcontroller, you first have to upload the <span class=logo>ScratchMonkey</span> software to your Arduino:</p>
+
+<ul>
+<li>Open the <span class=logo>ScratchMonkey</span> sketch in Arduino.</li>
+<li>From the <tt>Tools</tt> &rarr; <tt>Board</tt> menu, select your Arduino board.</li>
+<li>Upload the <span class=logo>ScratchMonkey</span> sketch.</li>
+</ul>
+
+<p>Now that your Arduino is programmed, it's often helpful to temporarily disable its <strong>RESET</strong> pin. On an Arduino Uno, this can be done by connecting a 10µF capacitor between the <strong>RESET</strong> and <strong>GND</strong> pins (With the "-" side of the capacitor to <strong>GND</strong>). Doing this prevents the board from resetting when <tt>avrdude</tt> connects to it, which will at least speed up the target programming process.</p>
+ 
 <h3>Burning a Bootloader</h3>
+
+<p>Now it's time to communicate with your target. In a first step, you may need to upload a bootloader to your target and/or reprogram its fuses (Despite the name, <tt>Tools</tt> &rarr; <tt>Burn Bootloader</tt> will NOT necessarily burn a bootloader. With typical ATtiny cores, only the fuse settings are programmed with this item.)</p>
+
+<ul>
+<li>From the <tt>Tools</tt> &rarr; <tt>Board</tt> menu, select your target processor or board.</li>
+<li>From the <tt>Tools</tt> &rarr; <tt>Programmer</tt> menu, select:
+<ul>
+<li><tt>ScratchMonkey</tt> for In-System Programming</li>
+<li><tt>ScratchMonkey HVSP</tt> for High Voltage Serial Programming</li>
+<li><tt>ScratchMonkey HVPP</tt> for High Voltage Parallel Programming</li>
+</ul></li>
+<li>Select <tt>Tools</tt> &rarr; <tt>Burn Bootloader</tt>.</li>
+</ul>
 
 <h3>Uploading a Sketch</h3>
 
+<p>To upload your actual program:</p>
+
+<ul>
+<li>Open your sketch in Arduino.</li>
+<li>Select your board and programmer as above.</li>
+<li>Upload your sketch.</li>
+</ul> 
 </body>
 </html>

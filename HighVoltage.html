@@ -9,6 +9,11 @@
 <body>
 <h2>High Voltage Programming</h2>
 
+<p>If your microcontroller has its fuse settings scrambled to an extent that ISP is no longer available to reprogram it, you have to resort to an alternative programming method: High Voltage Programming.</p>
+
+<p>Depending on the microcontroller you have, you have to use <a href="HVSP.html">High Voltage Serial Programming</a> (for 8 and 14 pin ICs) or <a href="HVPP.html">High Voltage Parallel Programming</a> (for ICs with 20 pins or more). Connections for these methods are discussed in their respective sections, but both methods need a high voltage signal, controlled by the Slave Reset pin <strong>D10</strong>, for which you need a bit of external hardware.</p>
+
+<h3>Generating High Voltage</h3>
 <p>As their name implies, the <a href="HVSP.html">High Voltage Serial</a> and <a href="HVPP.html">High Voltage Parallel Programming</a> techniques require a +12V signal. It should be noted that the <em>current</em> drawn from this signal is quite small.</p>
 
 <p>Here are some ways to generate that 12V signal, depending on what components you have at hand.</p>
@@ -17,9 +22,9 @@
 
 <img src="img/external.png" alt="switching external 12V signal" class=circuit>
 
-<p>By far the simplest method is to use an external 12V power supply. Either bring the power directly to the bread board (connecting the ground to the Arduino ground), or plug it into the Arduino and use the Arduino <strong>Vin</strong> pin as the 12V source. To switch this signal on and off using the Slave Reset pin (<strong>D10</strong>), any NPN transistor with a reasonably large hFE should work in this circuit.</p>
+<p>By far the simplest method is to use an external 12V power supply. Either bring the power directly to the bread board (connecting the ground to the Arduino ground), or plug it into the Arduino and use the Arduino <strong>Vin</strong> pin as the 12V source. To switch this signal on and off using the Slave Reset pin <strong>D10</strong>, any NPN transistor with a reasonably large hFE should work in this circuit.</p>
 
-<p><strong>R3</strong> is a pull-up resistor ensuring that the 12V signal is turned off when <strong>D10</strong> is undefined (e.g. because the sketch is not running), while <strong>R1</strong> limits the current flowing through the transistor.</p>
+<p><strong>R3</strong> is a pull-up resistor ensuring that the 12V signal is turned off when <strong>D10</strong> is disconnected (e.g. because the sketch is not running), while <strong>R1</strong> limits the current flowing through the transistor.</p>
 
 <h4 style="clear:both">Using a Charge Pump IC</h4>
 
