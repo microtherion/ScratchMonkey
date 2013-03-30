@@ -4,11 +4,15 @@ vpath %.svg ../doc/img
 	../Tools/dipper $^ > ../doc/img/$@
 %_hvsp.svg: %.dip %.hvsp
 	../Tools/dipper $^ > ../doc/img/$@
+%_hvpp.svg: %.dip %.hvpp
+	../Tools/dipper $^ > ../doc/img/$@
 
-SERIALS	= attiny85 attiny84
-ISPS    = $(addsuffix _isp,$(SERIALS))
-HVSPS   = $(addsuffix _hvsp,$(SERIALS))
-SVGS    = $(addsuffix .svg,$(ISPS) $(HVSPS))
+SERIALS	    = attiny85 attiny84
+PARALLELS   = attiny861 attiny4313 atmega328 atmega1284
+ISPS        = $(addsuffix _isp,$(SERIALS) $(PARALLELS))
+HVSPS       = $(addsuffix _hvsp,$(SERIALS))
+HVPPS       = $(addsuffix _hvpp,$(PARALLELS))
+SVGS        = $(addsuffix .svg,$(ISPS) $(HVSPS) $(HVPPS))
 
 all: $(SVGS)
 

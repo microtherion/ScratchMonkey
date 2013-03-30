@@ -1,0 +1,23 @@
+%title	ATtiny4313
+
+1	PA2
+	PD0
+	PD1
+	PA1
+	PA0
+	PD2
+	PD3
+	PD4
+	PD5
+10	GND
+11	PD6
+	PB0
+	PB1
+	PB2
+	PB3
+	PB4
+	PB5
+	PB6
+	PB7
+20	VCC
+

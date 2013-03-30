@@ -1,0 +1,420 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 450.0 616.0">
+  <defs>
+  <style type="text/css"><![CDATA[
+     .thinline { fill:none; stroke:#000000; stroke-width:1.0 }
+     .thickline{ fill:none; stroke:#000000; stroke-width:2.0 }
+     .pinno    { font-family:"Courier"; font-size:12px }
+     .label    { font-family:"Helvetica"; font-size:18px }
+     .function { font-family:"Comic Sans MS"; font-size:24px }
+     .title    { font-family:"Helvetica-Bold"; font-size:20px; text-anchor:middle; writing-mode:tb; alignment-baseline:central }
+     ]]>
+  </style>
+  </defs>
+  <rect class="thickline" x="195.0" y="5" width="60.0" height="606.0"/>
+  <path class="thinline" d="M214.5,5 a10.5,10.5 0 0,0 21.0,0"/>
+    <text class="title" x="225.0" y="308.0">
+    ATmega1284
+  </text>
+
+    <rect class="thinline" x="180.0" y="15.5" width="15.0" height="15.0"/>
+  <text class="function" x="95.0" y="30.5" text-anchor="end">
+    DATA0
+  </text>
+  <text class="label" x="175.0" y="29.0" text-anchor="end">
+    PB0
+  </text>
+  <text class="pinno" x="198.0" y="26.5">
+    1
+  </text>
+  <rect class="thinline" x="180.0" y="45.5" width="15.0" height="15.0"/>
+  <text class="function" x="95.0" y="60.5" text-anchor="end">
+    DATA1
+  </text>
+  <text class="label" x="175.0" y="59.0" text-anchor="end">
+    PB1
+  </text>
+  <text class="pinno" x="198.0" y="56.5">
+    2
+  </text>
+  <rect class="thinline" x="180.0" y="75.5" width="15.0" height="15.0"/>
+  <text class="function" x="95.0" y="90.5" text-anchor="end">
+    DATA2
+  </text>
+  <text class="label" x="175.0" y="89.0" text-anchor="end">
+    PB2
+  </text>
+  <text class="pinno" x="198.0" y="86.5">
+    3
+  </text>
+  <rect class="thinline" x="180.0" y="105.5" width="15.0" height="15.0"/>
+  <text class="function" x="95.0" y="120.5" text-anchor="end">
+    DATA3
+  </text>
+  <text class="label" x="175.0" y="119.0" text-anchor="end">
+    PB3
+  </text>
+  <text class="pinno" x="198.0" y="116.5">
+    4
+  </text>
+  <rect class="thinline" x="180.0" y="135.5" width="15.0" height="15.0"/>
+  <text class="function" x="95.0" y="150.5" text-anchor="end">
+    DATA4
+  </text>
+  <text class="label" x="175.0" y="149.0" text-anchor="end">
+    PB4
+  </text>
+  <text class="pinno" x="198.0" y="146.5">
+    5
+  </text>
+  <rect class="thinline" x="180.0" y="165.5" width="15.0" height="15.0"/>
+  <text class="function" x="95.0" y="180.5" text-anchor="end">
+    DATA5
+  </text>
+  <text class="label" x="175.0" y="179.0" text-anchor="end">
+    PB5
+  </text>
+  <text class="pinno" x="198.0" y="176.5">
+    6
+  </text>
+  <rect class="thinline" x="180.0" y="195.5" width="15.0" height="15.0"/>
+  <text class="function" x="95.0" y="210.5" text-anchor="end">
+    DATA6
+  </text>
+  <text class="label" x="175.0" y="209.0" text-anchor="end">
+    PB6
+  </text>
+  <text class="pinno" x="198.0" y="206.5">
+    7
+  </text>
+  <rect class="thinline" x="180.0" y="225.5" width="15.0" height="15.0"/>
+  <text class="function" x="95.0" y="240.5" text-anchor="end">
+    
+  </text>
+  <text class="label" x="175.0" y="239.0" text-anchor="end">
+    PB7
+  </text>
+  <text class="pinno" x="198.0" y="236.5">
+    8
+  </text>
+  <rect class="thinline" x="180.0" y="255.5" width="15.0" height="15.0"/>
+  <text class="function" x="95.0" y="270.5" text-anchor="end">
+    RESET
+  </text>
+  <text class="label" x="175.0" y="269.0" text-anchor="end">
+    RESET
+  </text>
+  <text class="pinno" x="198.0" y="266.5">
+    9
+  </text>
+  <rect class="thinline" x="180.0" y="285.5" width="15.0" height="15.0"/>
+  <text class="function" x="95.0" y="300.5" text-anchor="end">
+    VCC
+  </text>
+  <text class="label" x="175.0" y="299.0" text-anchor="end">
+    VCC
+  </text>
+  <text class="pinno" x="198.0" y="296.5">
+    10
+  </text>
+  <rect class="thinline" x="180.0" y="315.5" width="15.0" height="15.0"/>
+  <text class="function" x="95.0" y="330.5" text-anchor="end">
+    GND
+  </text>
+  <text class="label" x="175.0" y="329.0" text-anchor="end">
+    GND
+  </text>
+  <text class="pinno" x="198.0" y="326.5">
+    11
+  </text>
+  <rect class="thinline" x="180.0" y="345.5" width="15.0" height="15.0"/>
+  <text class="function" x="95.0" y="360.5" text-anchor="end">
+    
+  </text>
+  <text class="label" x="175.0" y="359.0" text-anchor="end">
+    XTAL2
+  </text>
+  <text class="pinno" x="198.0" y="356.5">
+    12
+  </text>
+  <rect class="thinline" x="180.0" y="375.5" width="15.0" height="15.0"/>
+  <text class="function" x="95.0" y="390.5" text-anchor="end">
+    XTAL
+  </text>
+  <text class="label" x="175.0" y="389.0" text-anchor="end">
+    XTAL1
+  </text>
+  <text class="pinno" x="198.0" y="386.5">
+    13
+  </text>
+  <rect class="thinline" x="180.0" y="405.5" width="15.0" height="15.0"/>
+  <text class="function" x="95.0" y="420.5" text-anchor="end">
+    
+  </text>
+  <text class="label" x="175.0" y="419.0" text-anchor="end">
+    PD0
+  </text>
+  <text class="pinno" x="198.0" y="416.5">
+    14
+  </text>
+  <rect class="thinline" x="180.0" y="435.5" width="15.0" height="15.0"/>
+  <text class="function" x="95.0" y="450.5" text-anchor="end">
+    RDY
+  </text>
+  <text class="label" x="175.0" y="449.0" text-anchor="end">
+    PD1
+  </text>
+  <text class="pinno" x="198.0" y="446.5">
+    15
+  </text>
+  <rect class="thinline" x="180.0" y="465.5" width="15.0" height="15.0"/>
+  <text class="function" x="95.0" y="480.5" text-anchor="end">
+    CTRL2
+  </text>
+  <text class="label" x="175.0" y="479.0" text-anchor="end">
+    PD2
+  </text>
+  <text class="pinno" x="198.0" y="476.5">
+    16
+  </text>
+  <rect class="thinline" x="180.0" y="495.5" width="15.0" height="15.0"/>
+  <text class="function" x="95.0" y="510.5" text-anchor="end">
+    CTRL3
+  </text>
+  <text class="label" x="175.0" y="509.0" text-anchor="end">
+    PD3
+  </text>
+  <text class="pinno" x="198.0" y="506.5">
+    17
+  </text>
+  <rect class="thinline" x="180.0" y="525.5" width="15.0" height="15.0"/>
+  <text class="function" x="95.0" y="540.5" text-anchor="end">
+    CTRL4
+  </text>
+  <text class="label" x="175.0" y="539.0" text-anchor="end">
+    PD4
+  </text>
+  <text class="pinno" x="198.0" y="536.5">
+    18
+  </text>
+  <rect class="thinline" x="180.0" y="555.5" width="15.0" height="15.0"/>
+  <text class="function" x="95.0" y="570.5" text-anchor="end">
+    CTRL5
+  </text>
+  <text class="label" x="175.0" y="569.0" text-anchor="end">
+    PD5
+  </text>
+  <text class="pinno" x="198.0" y="566.5">
+    19
+  </text>
+  <rect class="thinline" x="180.0" y="585.5" width="15.0" height="15.0"/>
+  <text class="function" x="95.0" y="600.5" text-anchor="end">
+    CTRL6
+  </text>
+  <text class="label" x="175.0" y="599.0" text-anchor="end">
+    PD6
+  </text>
+  <text class="pinno" x="198.0" y="596.5">
+    20
+  </text>
+  <rect class="thinline" x="255.0" y="585.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="252.0" y="596.5" text-anchor="end">
+    21
+  </text>
+  <text class="label" x="275.0" y="599.0">
+    PD7
+  </text>
+  <text class="function" x="355.0" y="600.5">
+    CTRL7
+  </text>
+  <rect class="thinline" x="255.0" y="555.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="252.0" y="566.5" text-anchor="end">
+    22
+  </text>
+  <text class="label" x="275.0" y="569.0">
+    PC0
+  </text>
+  <text class="function" x="355.0" y="570.5">
+    
+  </text>
+  <rect class="thinline" x="255.0" y="525.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="252.0" y="536.5" text-anchor="end">
+    23
+  </text>
+  <text class="label" x="275.0" y="539.0">
+    PC1
+  </text>
+  <text class="function" x="355.0" y="540.5">
+    
+  </text>
+  <rect class="thinline" x="255.0" y="495.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="252.0" y="506.5" text-anchor="end">
+    24
+  </text>
+  <text class="label" x="275.0" y="509.0">
+    PC2
+  </text>
+  <text class="function" x="355.0" y="510.5">
+    
+  </text>
+  <rect class="thinline" x="255.0" y="465.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="252.0" y="476.5" text-anchor="end">
+    25
+  </text>
+  <text class="label" x="275.0" y="479.0">
+    PC3
+  </text>
+  <text class="function" x="355.0" y="480.5">
+    
+  </text>
+  <rect class="thinline" x="255.0" y="435.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="252.0" y="446.5" text-anchor="end">
+    26
+  </text>
+  <text class="label" x="275.0" y="449.0">
+    PC4
+  </text>
+  <text class="function" x="355.0" y="450.5">
+    
+  </text>
+  <rect class="thinline" x="255.0" y="405.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="252.0" y="416.5" text-anchor="end">
+    27
+  </text>
+  <text class="label" x="275.0" y="419.0">
+    PC5
+  </text>
+  <text class="function" x="355.0" y="420.5">
+    
+  </text>
+  <rect class="thinline" x="255.0" y="375.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="252.0" y="386.5" text-anchor="end">
+    28
+  </text>
+  <text class="label" x="275.0" y="389.0">
+    PC6
+  </text>
+  <text class="function" x="355.0" y="390.5">
+    
+  </text>
+  <rect class="thinline" x="255.0" y="345.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="252.0" y="356.5" text-anchor="end">
+    29
+  </text>
+  <text class="label" x="275.0" y="359.0">
+    PC7
+  </text>
+  <text class="function" x="355.0" y="360.5">
+    
+  </text>
+  <rect class="thinline" x="255.0" y="315.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="252.0" y="326.5" text-anchor="end">
+    30
+  </text>
+  <text class="label" x="275.0" y="329.0">
+    AVCC
+  </text>
+  <text class="function" x="355.0" y="330.5">
+    VCC
+  </text>
+  <rect class="thinline" x="255.0" y="285.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="252.0" y="296.5" text-anchor="end">
+    31
+  </text>
+  <text class="label" x="275.0" y="299.0">
+    GND2
+  </text>
+  <text class="function" x="355.0" y="300.5">
+    GND
+  </text>
+  <rect class="thinline" x="255.0" y="255.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="252.0" y="266.5" text-anchor="end">
+    32
+  </text>
+  <text class="label" x="275.0" y="269.0">
+    AREF
+  </text>
+  <text class="function" x="355.0" y="270.5">
+    
+  </text>
+  <rect class="thinline" x="255.0" y="225.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="252.0" y="236.5" text-anchor="end">
+    33
+  </text>
+  <text class="label" x="275.0" y="239.0">
+    PA7
+  </text>
+  <text class="function" x="355.0" y="240.5">
+    
+  </text>
+  <rect class="thinline" x="255.0" y="195.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="252.0" y="206.5" text-anchor="end">
+    34
+  </text>
+  <text class="label" x="275.0" y="209.0">
+    PA6
+  </text>
+  <text class="function" x="355.0" y="210.5">
+    
+  </text>
+  <rect class="thinline" x="255.0" y="165.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="252.0" y="176.5" text-anchor="end">
+    35
+  </text>
+  <text class="label" x="275.0" y="179.0">
+    PA5
+  </text>
+  <text class="function" x="355.0" y="180.5">
+    
+  </text>
+  <rect class="thinline" x="255.0" y="135.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="252.0" y="146.5" text-anchor="end">
+    36
+  </text>
+  <text class="label" x="275.0" y="149.0">
+    PA4
+  </text>
+  <text class="function" x="355.0" y="150.5">
+    
+  </text>
+  <rect class="thinline" x="255.0" y="105.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="252.0" y="116.5" text-anchor="end">
+    37
+  </text>
+  <text class="label" x="275.0" y="119.0">
+    PA3
+  </text>
+  <text class="function" x="355.0" y="120.5">
+    
+  </text>
+  <rect class="thinline" x="255.0" y="75.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="252.0" y="86.5" text-anchor="end">
+    38
+  </text>
+  <text class="label" x="275.0" y="89.0">
+    PA2
+  </text>
+  <text class="function" x="355.0" y="90.5">
+    
+  </text>
+  <rect class="thinline" x="255.0" y="45.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="252.0" y="56.5" text-anchor="end">
+    39
+  </text>
+  <text class="label" x="275.0" y="59.0">
+    PA1
+  </text>
+  <text class="function" x="355.0" y="60.5">
+    
+  </text>
+  <rect class="thinline" x="255.0" y="15.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="252.0" y="26.5" text-anchor="end">
+    40
+  </text>
+  <text class="label" x="275.0" y="29.0">
+    PA0
+  </text>
+  <text class="function" x="355.0" y="30.5">
+    CTRL0
+  </text>
+
+</svg>
