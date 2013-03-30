@@ -1,0 +1,8 @@
+PB5	= RESET
+PB3	= (XTAL)
+GND     = GND
+PB0     = MOSI
+PB1     = MISO
+PB2     = SCK
+VCC     = VCC
+

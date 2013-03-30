@@ -16,8 +16,20 @@ img.circuit {
 	float: right;
 	margin: 20px;
 }
-img.breadboard {
-	width: 50%;
+div.ispconn {
+	background-color: #f8f8f8;
+	width: 49%;
+	float: left;
+	padding-bottom: 5%;
+}
+div.hvspconn {
+	background-color: #f8f8f8;
+	width: 49%;
 	float: right;
-	margin: 20px;
+	padding-bottom: 5%;
+}
+p.conn {
+	font-family: Courier;
+	font-size: 25px;
+	text-align: center;
 }

@@ -1,0 +1,17 @@
+%title	ATtiny84
+
+1	VCC
+	PB0
+	PB1
+	PB3
+	PB2
+	PA7
+7	PA6
+8	PA5
+	PA4
+	PA3
+	PA2
+	PA1
+	PA0
+14	GND
+

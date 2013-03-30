@@ -1,0 +1,153 @@
+#!/usr/bin/ruby
+#
+
+require 'getoptlong'
+
+#
+# Parse input
+#
+DPI             = 300
+$PACKWIDTH      = 0.300*DPI
+$PINWIDTH       = 0.050*DPI
+$PACKEXCESS     = 0.035*DPI
+$PINPITCH       = 0.100*DPI
+$PINHEIGHT      = 0.050*DPI
+$CIRCRADIUS     = 0.035*DPI
+$LABELWIDTH     = 80
+$FUNCTIONWIDTH  = 100
+$TITLE          = nil
+
+PIN   = Array.new
+LABEL = Hash.new {|hash,key| hash[key] = [0, key, '']}
+pinNo = 0
+ARGF.each_line do |line|
+  pinNo   += 1
+  label    = nil
+  function = nil
+  line.gsub!(/#\s+.*/, '')
+  next if line =~ /^\s*$/
+  if line =~ /^\s*%title\s+(.*\S)/
+    $TITLE = $1
+    next
+  end
+  if line =~ /(.*)=\s*(.*\S)\s*/
+    line     = $1
+    function = $2
+  end
+  if line =~ /^\s*(\d+)\s+(.*\S)/
+    pinNo    = $1.to_i
+    label    = $2
+  elsif line =~ /^\s*(\d+)/
+    pinNo    = $1.to_i
+  elsif line =~ /^\s*(.*\S)/
+    label    = $1
+  end
+  pin = nil
+  if !label.nil?
+    pin = LABEL[label]
+    if pin[0] > 0
+      pinNo = pin[0]
+    else
+      pin[0] = pinNo
+    end
+    while pinNo-1 > PIN.size
+      PIN << [PIN.size+1, 'NC', '']
+    end    
+    if pinNo > PIN.size
+      PIN << pin
+    end
+  else 
+    while pinNo > PIN.size
+      PIN << [PIN.size+1, 'NC', '']
+    end
+    pin = PIN.last
+  end
+  pin[2] = function unless function.nil?
+end
+if (PIN.size % 2)==1
+  PIN << [PIN.size+1, 'NC', '']
+end
+
+#
+# Generate SVG
+#
+ROWS       = PIN.size / 2
+PACKLEFT   = $FUNCTIONWIDTH+$LABELWIDTH+$PINWIDTH
+PACKRIGHT  = PACKLEFT+$PACKWIDTH-2.0*$PINWIDTH
+PACKTOP    = 5
+PACKHEIGHT = (ROWS-1)*$PINPITCH+2.0*$PACKEXCESS+$PINHEIGHT
+TOTALWIDTH = 2*($FUNCTIONWIDTH+$LABELWIDTH)+$PACKWIDTH
+TOTALHEIGHT= 2*PACKTOP+PACKHEIGHT
+PINNOPAD   = 3
+PINNOBASE  = -4
+LABELPAD   = 5
+LABELBASE  = -1.5
+FUNBASE    = 0
+
+$PINDESC = ''
+PIN.each do |pin|
+  row  = pin[0]-1
+  left = true
+  if row >= ROWS
+    row = PIN.size-row-1
+    left= false
+  end
+  top  = PACKTOP+$PACKEXCESS+row*$PINPITCH
+  base = top+$PINHEIGHT
+  if left
+    $PINDESC += <<END_PIN
+  <rect class="thinline" x="#{PACKLEFT-$PINWIDTH}" y="#{top}" width="#{$PINWIDTH}" height="#{$PINHEIGHT}"/>
+  <text class="function" x="#{PACKLEFT-$PINWIDTH-$LABELWIDTH-LABELPAD}" y="#{base+FUNBASE}" text-anchor="end">
+    #{pin[2]}
+  </text>
+  <text class="label" x="#{PACKLEFT-$PINWIDTH-LABELPAD}" y="#{base+LABELBASE}" text-anchor="end">
+    #{pin[1]}
+  </text>
+  <text class="pinno" x="#{PACKLEFT+PINNOPAD}" y="#{base+PINNOBASE}">
+    #{pin[0]}
+  </text>
+END_PIN
+  else
+    $PINDESC += <<END_PIN
+  <rect class="thinline" x="#{PACKRIGHT}" y="#{top}" width="#{$PINWIDTH}" height="#{$PINHEIGHT}"/>
+  <text class="pinno" x="#{PACKRIGHT-PINNOPAD}" y="#{base+PINNOBASE}" text-anchor="end">
+    #{pin[0]}
+  </text>
+  <text class="label" x="#{PACKRIGHT+$PINWIDTH+LABELPAD}" y="#{base+LABELBASE}">
+    #{pin[1]}
+  </text>
+  <text class="function" x="#{PACKRIGHT+$PINWIDTH+$LABELWIDTH+LABELPAD}" y="#{base+FUNBASE}">
+    #{pin[2]}
+  </text>
+END_PIN
+  end
+end
+
+if $TITLE.nil?
+  $TITLE = ''
+else
+  $TITLE = <<END_TITLE
+  <text class="title" x="#{PACKLEFT+0.5*$PACKWIDTH-$PINWIDTH}" y="#{PACKTOP+0.5*PACKHEIGHT}">
+    #{$TITLE}
+  </text>
+END_TITLE
+end
+print <<END_SVG
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 #{TOTALWIDTH} #{TOTALHEIGHT}">
+  <defs>
+  <style type="text/css"><![CDATA[
+     .thinline { fill:none; stroke:#000000; stroke-width:1.0 }
+     .thickline{ fill:none; stroke:#000000; stroke-width:2.0 }
+     .pinno    { font-family:"Courier"; font-size:12px }
+     .label    { font-family:"Helvetica"; font-size:18px }
+     .function { font-family:"Comic Sans MS"; font-size:24px }
+     .title    { font-family:"Helvetica-Bold"; font-size:20px; text-anchor:middle; writing-mode:tb; alignment-baseline:central }
+     ]]>
+  </style>
+  </defs>
+  <rect class="thickline" x="#{PACKLEFT}" y="#{PACKTOP}" width="#{PACKRIGHT-PACKLEFT}" height="#{PACKHEIGHT}"/>
+  <path class="thinline" d="M#{PACKLEFT+$PACKWIDTH*0.5-$PINWIDTH-$CIRCRADIUS},#{PACKTOP} a#{$CIRCRADIUS},#{$CIRCRADIUS} 0 0,0 #{2*$CIRCRADIUS},0"/>
+  #{$TITLE}
+  #{$PINDESC}
+</svg>
+END_SVG

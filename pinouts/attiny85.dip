@@ -1,0 +1,10 @@
+%title ATtiny85
+
+1	PB5
+	PB3
+	PB4
+4	GND
+5	PB0
+	PB1
+	PB2
+8	VCC
