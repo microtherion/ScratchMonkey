@@ -20,16 +20,25 @@ div.ispconn {
 	background-color: #f8f8f8;
 	width: 49%;
 	float: left;
-	padding-bottom: 5%;
+	padding-bottom: 2%;
 }
-div.hvspconn {
+div.hvconn {
 	background-color: #f8f8f8;
 	width: 49%;
 	float: right;
-	padding-bottom: 5%;
+	padding-bottom: 2%;
 }
 p.conn {
 	font-family: Courier;
 	font-size: 25px;
 	text-align: center;
+}
+h4.mcu {
+	clear: both;
+	background-color: #e0e0e0;
+	font-size: 25px;
+	text-align: center;
+	width: 40%;
+	margin-left: 30%;
+	margin-right: 30%;
 }
