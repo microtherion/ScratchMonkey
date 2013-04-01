@@ -14,17 +14,17 @@
 
 <dl>
 <dt>ISP</dt>
-<dd><p><a href="ISP.html"><em>In-System Programming</em></a> uses the 4 pin SPI (Serial Peripheral Interface Bus) protocol to communicate with the target microcontroller. This is very simple to set up, requiring only 4 signals and no additional hardware, and is supported by nearly all AVR microcontrollers.</p>
+<dd><p><a href="ISP.html"><em>In-System Programming</em></a> uses the 4 pin SPI (Serial Peripheral Interface Bus) protocol to communicate with the target MCU. This is very simple to set up, requiring only 4 signals and no additional hardware, and is supported by nearly all AVR MCUs.</p>
 
-<p>The only drawback of ISP is that with certain fuse settings of the target microcontroller, ISP can be unusable (e.g. if the ISP feature or the RESET pin are disabled), or may be harder to implement (e.g. if an external clock is specified).</p>
+<p>The only drawback of ISP is that with certain fuse settings of the target MCU, ISP can be unusable (e.g. if the ISP feature or the RESET pin are disabled), or may be harder to implement (e.g. if an external clock is specified).</p>
 
-<p>In ISP mode, <span class=logo>ScratchMonkey</span> works fairly similar to the <tt>ArduinoISP</tt> sketch included with the Arduino IDE. In fact, the Arduino pins used are exactly the same. However, <span class=logo>ScratchMonkey</span> is a little bit more versatile, supporting microcontrollers with more than 128K of flash memory, and can deal with strange clock settings.</p>
+<p>In ISP mode, <span class=logo>ScratchMonkey</span> works fairly similar to the <tt>ArduinoISP</tt> sketch included with the Arduino IDE. In fact, the Arduino pins used are exactly the same. However, <span class=logo>ScratchMonkey</span> is a little bit more versatile, supporting MCUs with more than 128K of flash memory, and can deal with strange clock settings.</p>
 </dd>
 
 <dt>HVSP</dt>
-<dd><p><a href="HVSP.html"><em>High Voltage Serial Programming</em></a> applies a +12V signal to the <strong>RESET</strong> pin of the target microcontroller and then uses a 4 pin serial protocol to program the target. This is slightly more difficult to setup than ISP, as the <strong>VCC</strong> and <strong>RESET</strong> pins have to follow a certain timing protocol, and the 12V signal has to be generated, but doing this is not prohibitively difficult.</p>
+<dd><p><a href="HVSP.html"><em>High Voltage Serial Programming</em></a> applies a +12V signal to the <strong>RESET</strong> pin of the target MCU and then uses a 4 pin serial protocol to program the target. This is slightly more difficult to setup than ISP, as the <strong>VCC</strong> and <strong>RESET</strong> pins have to follow a certain timing protocol, and the 12V signal has to be generated, but doing this is not prohibitively difficult.</p>
 
-<p>The attraction of HVSP over ISP is that HVSP will always work, regardless of the fuse settings of the target microcontroller. HVSP is supported on all 8- and 14-pin AVR microcontrollers.</p>
+<p>The attraction of HVSP over ISP is that HVSP will always work, regardless of the fuse settings of the target MCU. HVSP is supported on all 8- and 14-pin AVR MCUs.</p>
 </dd>
 
 <dt>HVPP</dt>
@@ -32,7 +32,7 @@
 
 <p>While some High Voltage Parallel Programmers, notably the HV Rescue Shield (<a href="http://mightyohm.com/blog/products/hv-rescue-shield-2-x">http://mightyohm.com/blog/products/hv-rescue-shield-2-x</a>) solve this by reusing the TX/RX pins, <span class=logo>ScratchMonkey</span> takes the easy way out by delegating most of the control signals to a <tt>74HC595</tt> shift register (Feel free to explore the other approach if you want to save yourself the 50&cent; expense).</p>
 
-<p>Like HVSP, HVPP works regardless of the fuse settings. It is supported on all AVR microcontrollers with 20 pins or more.</p>
+<p>Like HVSP, HVPP works regardless of the fuse settings. It is supported on most AVR MCUs with 20 pins or more.</p>
 </dd>
 </dl>
 </body>

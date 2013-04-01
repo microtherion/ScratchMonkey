@@ -772,7 +772,7 @@ Source: http://download.siliconexpert.com/pdfs/2005/02/24/Semi_Ap/2/VSH/Resistor
 <label x="63.5" y="76.2" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="D10" class="0">
+<net name="HVRESET" class="0">
 <segment>
 <pinref part="R2" gate="G$1" pin="1"/>
 <label x="7.62" y="68.58" size="1.778" layer="95"/>

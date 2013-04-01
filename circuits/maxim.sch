@@ -4275,7 +4275,7 @@ Source: AVX .. aphvc.pdf</description>
 <part name="C1" library="rcl" deviceset="C-EU" device="025-024X044" value="0.22µ"/>
 <part name="C2" library="rcl" deviceset="C-EU" device="025-024X044" value="0.22µ"/>
 <part name="GND1" library="supply1" deviceset="GND" device=""/>
-<part name="5V" library="supply1" deviceset="VCC" device="" value="5V"/>
+<part name="5V" library="supply1" deviceset="VCC" device="" value="5V (SVCC)"/>
 <part name="C3" library="rcl" deviceset="C-US" device="025-024X044" value="4.7µ"/>
 <part name="C4" library="rcl" deviceset="C-US" device="025-024X044" value="4.7µ"/>
 <part name="GND2" library="supply1" deviceset="GND" device=""/>
@@ -4341,7 +4341,7 @@ Source: AVX .. aphvc.pdf</description>
 <junction x="68.58" y="73.66"/>
 </segment>
 </net>
-<net name="VCC" class="0">
+<net name="SVCC" class="0">
 <segment>
 <pinref part="IC1" gate="1" pin="VCC"/>
 <pinref part="5V" gate="VCC" pin="VCC"/>
@@ -4367,7 +4367,7 @@ Source: AVX .. aphvc.pdf</description>
 <wire x1="20.32" y1="58.42" x2="20.32" y2="53.34" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="D10" class="0">
+<net name="HVRESET" class="0">
 <segment>
 <pinref part="IC1" gate="1" pin="SHDN"/>
 <wire x1="40.64" y1="68.58" x2="12.7" y2="68.58" width="0.1524" layer="91"/>

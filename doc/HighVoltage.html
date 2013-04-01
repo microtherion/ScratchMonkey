@@ -9,9 +9,9 @@
 <body>
 <h2>High Voltage Programming</h2>
 
-<p>If your microcontroller has its fuse settings scrambled to an extent that ISP is no longer available to reprogram it, you have to resort to an alternative programming method: High Voltage Programming.</p>
+<p>If your MCU has its fuse settings scrambled to an extent that ISP is no longer available to reprogram it, you have to resort to an alternative programming method: High Voltage Programming.</p>
 
-<p>Depending on the microcontroller you have, you have to use <a href="HVSP.html">High Voltage Serial Programming</a> (for 8 and 14 pin ICs) or <a href="HVPP.html">High Voltage Parallel Programming</a> (for ICs with 20 pins or more). Connections for these methods are discussed in their respective sections, but both methods need a high voltage signal, controlled by the Slave Reset pin <strong>D10</strong>, for which you need a bit of external hardware.</p>
+<p>Depending on the MCU you have, you have to use <a href="HVSP.html">High Voltage Serial Programming</a> (for 8 and 14 pin ICs) or <a href="HVPP.html">High Voltage Parallel Programming</a> (for ICs with 20 pins or more). Connections for these methods are discussed in their respective sections, but both methods need a high voltage signal, controlled by the Slave Reset pin <strong>HVRESET</strong>, for which you need a bit of external hardware.</p>
 
 <h3>Generating High Voltage</h3>
 <p>As their name implies, the <a href="HVSP.html">High Voltage Serial</a> and <a href="HVPP.html">High Voltage Parallel Programming</a> techniques require a +12V signal. It should be noted that the <em>current</em> drawn from this signal is quite small.</p>
@@ -22,17 +22,19 @@
 
 <img src="img/external.png" alt="switching external 12V signal" class=circuit>
 
-<p>By far the simplest method is to use an external 12V power supply. Either bring the power directly to the bread board (connecting the ground to the Arduino ground), or plug it into the Arduino and use the Arduino <strong>Vin</strong> pin as the 12V source. To switch this signal on and off using the Slave Reset pin <strong>D10</strong>, any NPN transistor with a reasonably large hFE should work in this circuit.</p>
+<p>By far the simplest method is to use an external 12V power supply. Either bring the power directly to the bread board (connecting the ground to the Arduino ground), or plug it into the Arduino and use the Arduino <strong>Vin</strong> pin as the 12V source. To switch this signal on and off using the Slave Reset pin <strong>HVRESET</strong>, any NPN transistor with a reasonably large hFE should work in this circuit.</p>
 
-<p><strong>R3</strong> is a pull-up resistor ensuring that the 12V signal is turned off when <strong>D10</strong> is disconnected (e.g. because the sketch is not running), while <strong>R1</strong> limits the current flowing through the transistor.</p>
+<p><strong>R3</strong> is a pull-up resistor ensuring that the 12V signal is turned off when <strong>HVRESET</strong> is disconnected (e.g. because the sketch is not running), while <strong>R1</strong> limits the current flowing through the transistor.</p>
 
 <h4 style="clear:both">Using a Charge Pump IC</h4>
 
 <img src="img/maxim.png" alt="MAX662ACPA+ generating 12V signal" class=circuit>
 
-<p>The Maxim MAX662ACPA+ is an integrated circuit that, combined with some capacitors, can generate a 12V, 30mA signal from a 5V input. The Slave Reset pin <strong>D10</strong> is here connected to the <strong>SHDN</strong> pin, which will put the MAX662ACPA+ into <em>shutdown mode</em>.</p>
+<p>The Maxim MAX662ACPA+ is an integrated circuit that, combined with some capacitors, can generate a 12V, 30mA signal from a 5V input. The Slave Reset pin <strong>HVRESET</strong> is here connected to the <strong>SHDN</strong> pin, which will put the MAX662ACPA+ into <em>shutdown mode</em>.</p>
 
 <p>As opposed to the previous circuit, in shutdown mode, the RESET pin will be 5V instead of 0V, but for our purposes, this makes no difference.</p>
+
+<p>If the 5V input is connected to the <strong>SVCC</strong> (Slave VCC) pin of the programmer, instead of the raw VCC, it should not be necessary to have a pull-up resistor on <strong>HVRESET</strong></p>
 
 </body>
 </html>

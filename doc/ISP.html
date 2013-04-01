@@ -9,27 +9,27 @@
 <body>
 <h2>In-System Programming</h2>
 
-<p>ISP is the simplest programming method to set up, and in 99% of all cases, it's all you need.</p>
-
 <img class=circuit src="img/arduino_prog_isp.svg">
+
+<p>ISP is the simplest programming method to set up, and in 99% of all cases, it's all you need.</p>
 
 <h3>Connecting your Arduino</h3>
 
 <p>ISP requires 6 signals (including power and ground), as shown in this illustration. Do NOT use the ICSP headers, as the one at the right has the <strong>RESET</strong> pin connected to your own Arduino's <strong>RESET</strong> signal, and the one at the top left is connected to the signals for the Atmega16U2 USB slave processor.</p>
 
-<p>The <strong>XCLK</strong> signal can optionally be connected to your target's <strong>XTAL</strong> pin, as discussed below.</p>
+<p>The <strong>XTAL</strong> signal can optionally be connected to your target's <strong>XTAL1</strong> pin, as discussed below.</p>
  
-<h3 style="clear:both">Connecting your Target Microcontroller</h3>
+<h3>Connecting your Target Microcontroller</h3>
 
-<p>The ISP signals need to be connected to the corresponding signals on your target microcontroller / board. Details for each processor are discussed in the <a href="Connection.html">Connection Diagrams</a> chapter.</p>
+<p>The ISP signals need to be connected to the corresponding signals on your target microcontroller / board. Details for each target are discussed in the <a href="Connection.html">Connection Diagrams</a> chapter.</p>
 
 <p>Since <span class=logo>ScratchMonkey</span> is pin compatible with the ArduinoISP sketch, the circuits shown at <a href="http://arduino.cc/en/Tutorial/ArduinoISP">http://arduino.cc/en/Tutorial/ArduinoISP</a> for Arduino boards all should work with <span class=logo>ScratchMonkey</span> as well. You can disregard the circuit showing an external crystal — it should work as well, but is not needed, as <span class=logo>ScratchMonkey</span> generates its own clock signal.</p>
 
 <h3>Supplying an External Clock Signal</h3>
 
-<p>While all AVR microcontrollers are capable of running from internally generated clock signals, in many designs, they are instead set up to rely on an external clock signal — either for better timing accuracy, or because a particular operating frequency is desirable. If you try to program a microcontroller on a breadboard and its fuses have been (deliberately or accidentally) set to require an external clock signal, ISP will not work on that microcontroller without supplying a clock signal.</p>
+<p>While all AVR MCUs are capable of running from internally generated clock signals, in many designs, they are instead set up to rely on an external clock signal — either for better timing accuracy, or because a particular operating frequency is desirable. If you try to program a MCU on a breadboard and its fuses have been (deliberately or accidentally) set to require an external clock signal, ISP will not work on that MCU without supplying a clock signal.</p>
 
-<p>For this purpose, <span class=logo>ScratchMonkey</span> uses Arduino timer 2 to generate a clock signal <strong>XCLK</strong> on pin 3. If you get an upload error, try connecting this signal to the <strong>XTAL1</strong> pin of your microcontroller. Curiously, and somewhat inexplicably to me, I have found that when Low Frequency Crystal Oscillator mode (<tt>CKSEL[3:0] = 6</tt>) is selected, connecting the clock signal to <strong>XTAL1</strong> did not work, but connecting to <strong>XTAL2</strong> did work, so you may want to try this as well.</p>
+<p>For this purpose, <span class=logo>ScratchMonkey</span> uses Arduino timer 2 to generate a clock signal <strong>XTAL</strong> on pin 3. If you get an upload error, try connecting this signal to the <strong>XTAL1</strong> pin of your MCU. Curiously, and somewhat inexplicably to me, I have found that when Low Frequency Crystal Oscillator mode (<tt>CKSEL[3:0] = 6</tt>) is selected, connecting the clock signal to <strong>XTAL1</strong> did not work, but connecting to <strong>XTAL2</strong> did work, so you may want to try this as well.</p>
 
 <p>For robustness reasons, the generated clock signal is only 125kHz, so using this will operate in Limp Mode, as discussed below.</p>
 

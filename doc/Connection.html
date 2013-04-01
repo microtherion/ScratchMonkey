@@ -4,13 +4,28 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <link href="manual.css" rel="stylesheet" type="text/css">
-<title>Connection Diagrams</title>
+<title>Target Connection Diagrams</title>
 </head>
 
 <body>
-<h2>Connection Diagrams</h2>
+<h2>Target Connection Diagrams</h2>
 
 <h3>Development Boards</h3>
+
+<div>
+<h4 class=mcu>Arduino Uno/Diecimila/Duemilanove</h4>
+
+<div class=hvconn>
+	<p class=conn>ISP</p>
+	<img src="img/arduino_isp.svg" align=middle width="100%">
+</div>
+
+<p>An Arduino can be used to reprogram another Arduino.</p>
+
+<p>Since the Arduino's XTAL1 pin is connected to the oscillator, the only usable protocol is ISP. In desperate circumstances, it might be possible to remove the MCU from its socket (if your board has the socketed through-hole variant of the MCU) and program it on a breadboard.</p>
+  
+<p style="clear:both"/>
+</div>
 
 <div>
 <h4 class=mcu>Digispark</h4>
@@ -27,7 +42,7 @@
 <p style="clear:both"/>
 </div>
 
-<h3>ATtiny Microcontrollers</h4>
+<h3>ATtiny MCUs</h4>
 
 <div>
 <h4 class=mcu>ATtiny13/25/45/85</h4>
@@ -85,7 +100,7 @@
 <p style="clear:both"/>
 </div>
 
-<h3>ATmega Microcontrollers</h4>
+<h3>ATmega MCUs</h4>
 
 <div>
 <h4 class=mcu>ATmega48/88/168/328</h4>
