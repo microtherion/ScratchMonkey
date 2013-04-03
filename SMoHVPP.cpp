@@ -92,7 +92,7 @@ HVPPSetControlSignals(uint8_t signals)
 }
 
 inline void
-HVPPInitControls()
+HVPPInitControlSignals()
 {
     SPI.begin();
     SPI.setDataMode(SPI_MODE0);
@@ -100,7 +100,6 @@ HVPPInitControls()
     SPI.setClockDivider(SPI_CLOCK_DIV2);// Pedal to the metal
     digitalWrite(HVPP_RCLK, LOW);
     pinMode(HVPP_RCLK, OUTPUT);
-    HVPPSetControls(kInit);            // Set all control pins to zero
 }
 
 inline void
@@ -134,7 +133,7 @@ HVPPGetDataBits()
     // No need for masking
     return ((PINB << PORTB_SHIFT) | (PIND >> PORTD_SHIFT)) & 0xFF;
 }
-#if SMO_LAYOUT==SMO_LAYOUT_LEONARDO
+#elif SMO_LAYOUT==SMO_LAYOUT_LEONARDO
 //
 // Leonardos don't have 8 contiguous pins anywhere, so we split the 
 // control signals across two ports. The data signals are not as 
@@ -154,7 +153,7 @@ HVPPSetControlSignals(uint8_t signals)
 }
 
 inline void
-HVPPInitControls()
+HVPPInitControlSignals()
 {
     DDRF   |= PORTF_MASK;
     DDRD   |= PORTD_MASK;
@@ -202,7 +201,7 @@ HVPPSetControlSignals(uint8_t signals)
 }
 
 inline void
-HVPPInitControls()
+HVPPInitControlSignals()
 {
     DDRF    = 0xFF;
 }
@@ -255,6 +254,13 @@ HVPPSetControls(uint8_t controlIx, uint8_t byteSel)
 }
 
 inline void
+HVPPInitControls()
+{
+    HVPPInitControlSignals();
+    HVPPSetControls(kInit);            // Set all control pins to zero
+}
+
+inline void
 HVPPDataMode(uint8_t mode)
 {
 #ifdef DEBUG_HVPP
@@ -285,8 +291,6 @@ HVPPGetDataRaw()
 
     return dataIn;
 }
-
-#endif
 
 inline void
 HVPPWriteData(uint8_t controlIx, uint8_t dataOut)

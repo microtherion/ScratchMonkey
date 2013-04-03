@@ -13,36 +13,36 @@
 // Derived from Randall Bohn's ArduinoISP sketch
 //
 
-#define DEBUG_SPI
+#undef DEBUG_SPI
 
 #include <SPI.h>
 
 #include "SMoISP.h"
 #include "SMoGeneral.h"
 #include "SMoCommand.h"
+#include "SMoConfig.h"
 #ifdef DEBUG_SPI
+#ifndef SMO_WANT_DEBUG
+#error Please define SMO_WANT_DEBUG in SMoConfig.h to enable debugging
+#endif
 #include "SMoDebug.h"
 #endif
 
 //
 // Pin definitions
 //
+enum {
 #if SMO_LAYOUT==SMO_LAYOUT_TRADITIONAL
-enum {
-    RESET           = SS,
+    ISP_RESET       = SS,
     MCU_CLOCK       = 9,    // OC1A    
-};
 #elif SMO_LAYOUT==SMO_LAYOUT_LEONARDO
-enum {
-    RESET           = 10,
+    ISP_RESET       = 10,
     MCU_CLOCK       = 9,    // OC1A
-};
 #else
-enum {
-    RESET           = SS,
+    ISP_RESET       = SS,
     MCU_CLOCK       = 11,    // OC1A
-};
 #endif
+};
 
 //
 // If an MCU has been set to use the 125kHz internal oscillator, 
@@ -168,6 +168,10 @@ SMoISP::EnterProgmode()
 {
 #ifdef DEBUG_SPI
     SMoDebugInit();
+    SMoDebug.print("Pin layout ");
+    SMoDebug.print(SMO_LAYOUT);
+    SMoDebug.print(" RESET ");
+    SMoDebug.println(ISP_RESET);
 #endif
     // const uint8_t   timeOut     =   SMoCommand::gBody[1];
     // const uint8_t   stabDelay   =   SMoCommand::gBody[2];
@@ -183,6 +187,7 @@ SMoISP::EnterProgmode()
     //
     digitalWrite(MISO,      LOW);
     pinMode(MISO,           INPUT);
+    pinMode(ISP_RESET,      OUTPUT);
     SPI.begin();
     SPI.setDataMode(SPI_MODE0);
     SPI.setBitOrder(MSBFIRST);
@@ -196,9 +201,9 @@ SMoISP::EnterProgmode()
     //
     pinMode(MCU_CLOCK, OUTPUT);
     TCCR1A = _BV(COM1A0);              // CTC mode, toggle OC1A on comparison with OCR1A
-    OCR1A  = 0;                        // F(OC1A) = 16MHz / (2*64*(1+0) == 125kHz
+    OCR1A  = 0;                        // F(OC1A) = 16MHz / (2*8*(1+0) == 1MHz
     TIMSK1 = 0;
-    TCCR1B = _BV(WGM12) | _BV(CS11) | _BV(CS10);  // Prescale by 64
+    TCCR1B = _BV(WGM12) | _BV(CS11);   // Prescale by 8
     TCNT1  = 0;
     
     //
@@ -206,7 +211,7 @@ SMoISP::EnterProgmode()
     //
     digitalWrite(SCK, LOW);
     delay(50);
-    digitalWrite(RESET, LOW);
+    digitalWrite(ISP_RESET, LOW);
     delay(50);
     uint8_t response = SPITransaction(command, pollIndex-1);
     if (response != pollValue) {
@@ -221,13 +226,16 @@ SMoISP::EnterProgmode()
         
         do {
 #ifdef DEBUG_SPI
-            SMoDebug.println("Retrying in limp mode %d (%fkHz).\n", 
-                             sSPILimpMode, 1000.0 / (4 << sSPILimpMode));
+            SMoDebug.print("Retrying in limp mode ");
+            SMoDebug.print(sSPILimpMode);
+            SMoDebug.print("(");
+            SMoDebug.print(1000.0 / (4 << sSPILimpMode));
+            SMoDebug.println("kHz).");
 #endif
-            digitalWrite(RESET, HIGH);
+            digitalWrite(ISP_RESET, HIGH);
             digitalWrite(SCK, LOW);
             delay(50);
-            digitalWrite(RESET, LOW);
+            digitalWrite(ISP_RESET, LOW);
             delay(50);
             response     = SPITransaction(command, pollIndex-1);
         } while (response != pollValue && sSPILimpMode++ < kMaxLimp);
@@ -238,12 +246,12 @@ SMoISP::EnterProgmode()
 void
 SMoISP::LeaveProgmode()
 {
-    TCCR2B = 0;    // Stop clock generator
+    TCCR1B = 0;    // Stop clock generator
     if (sSPILimpMode)
         sSPILimpMode = false;
     else 
         SPI.end();     // Stop SPI
-    digitalWrite(RESET, HIGH);
+    digitalWrite(ISP_RESET, HIGH);
     SMoCommand::SendResponse();
 }
 

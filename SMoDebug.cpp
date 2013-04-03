@@ -17,7 +17,7 @@
 
 #ifdef SMO_WANT_DEBUG
 
-SoftwareSerial SMoDebug(-1,SMO_DEBUG_PIN);
+SoftwareSerial SMoDebug(-1,SMO_DEBUG);
 
 void SMoDebugInit()
 {

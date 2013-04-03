@@ -14,12 +14,12 @@
 // To use ScratchMonkey for HVPP programming, connect the following pins
 // of your arduino:
 //
-// PIN          Trad Arduino    Leonardo/Micro  Mega (1280 and 2560)
+// PIN          Standard        Leonardo/Micro  Mega (1280 and 2560)
 //
 // D0-7           2-9             2-9          A8-A15                              
 // HVRESET         10              10              10
-// RDY             12              12              12
 // SVCC            A0              11              11
+// RDY             12              12              12
 // XTAL            A2              13              13
 //
 // MOSI 74595      11                                          

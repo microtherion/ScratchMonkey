@@ -11,9 +11,9 @@
 // http://opensource.org/licenses/bsd-license.php
 //
 // To use ScratchMonkey for ISP programming, connect the following pins
-// of your arduino:
+// of your Arduino (On the Leonardo, some of these are on the ICSP header):
 //
-// PIN          Trad Arduino    Leonardo/Micro  Arduino Mega (1280 and 2560)
+// PIN          Standard        Leonardo/Micro  Mega (1280 and 2560)
 //
 // RESET            10             10              53 
 // MOSI             11           MOSI              51 

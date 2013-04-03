@@ -17,6 +17,7 @@
 #include "SMoHVSP.h"
 #include "SMoCommand.h"
 #include "SMoGeneral.h"
+#include "SMoConfig.h"
 
 #ifdef DEBUG_HVSP
 #include "SMoDebug.h"
@@ -27,8 +28,8 @@
 enum {
     HVSP_VCC   = SMO_SVCC,
     HVSP_RESET = SMO_HVRESET,
+    HVSP_SDI   =  8,
     HVSP_SII   =  9,
-    HVSP_SDI   = 11,
     HVSP_SDO   = 12,
     HVSP_SCI   = 13,
 };

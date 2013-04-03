@@ -14,17 +14,18 @@
 #ifndef _SMO_CONFIG_
 #define _SMO_CONFIG_
 
+#include "Arduino.h"
+
 //
 // We support a number of different pin layouts:
 //  - Traditional Arduino: SPI on pins 10-13, pins 0/1 used for Serial (ATmega168/328)
 //  - Leonardo/Micro:      SPI on dedicated pins, pins 0/1 available   (ATmega32u4)
 //  - Mega:                SPI on pins 50-53, pins 0/1 used for Serial (ATmega1280/2560)
 //
-enum {
-    SMO_LAYOUT_TRADITIONAL,
-    SMO_LAYOUT_LEONARDO,
-    SMO_LAYOUT_MEGA
-};
+
+#define    SMO_LAYOUT_TRADITIONAL     17
+#define    SMO_LAYOUT_LEONARDO        22
+#define    SMO_LAYOUT_MEGA            55
 
 #if defined(__AVR_ATmega32U4__)
 #define SMO_LAYOUT  SMO_LAYOUT_LEONARDO
@@ -44,25 +45,19 @@ enum {
 //
 // Some pins used in multiple modules
 //
-#if SMO_LAYOUT==SMO_LAYOUT_TRADITIONAL
 enum {
     SMO_HVRESET    = 10,
+#if SMO_LAYOUT==SMO_LAYOUT_TRADITIONAL
     SMO_SVCC       = A0,
     SMO_DEBUG      = A5
-};
 #elif SMO_LAYOUT==SMO_LAYOUT_LEONARDO
-enum {
-    SMO_HVRESET    = 10,
     SMO_SVCC       = 11,
     SMO_DEBUG      = A4
-};
 #else
-enum {
-    SMO_HVRESET    = 10,
     SMO_SVCC       = 11,
     SMO_DEBUG      = 18
-};
 #endif
+};
 
 #endif /* _SMO_CONFIG_ */
 
