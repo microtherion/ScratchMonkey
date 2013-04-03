@@ -2,7 +2,7 @@
 //
 // ScratchMonkey 0.1        - STK500v2 compatible programmer for Arduino
 //
-// File: SMoDebug.h         - Debug serial port
+// File: SMoConfig.h        - Configuration options
 //
 // Copyright (c) 2013 Matthias Neeracher <microtherion@gmail.com>
 // All rights reserved.
@@ -11,19 +11,60 @@
 // http://opensource.org/licenses/bsd-license.php
 //
 
-#ifndef _SMO_DEBUG_
-#define _SMO_DEBUG_
+#ifndef _SMO_CONFIG_
+#define _SMO_CONFIG_
 
-#include "SMoConfig.h"
+//
+// We support a number of different pin layouts:
+//  - Traditional Arduino: SPI on pins 10-13, pins 0/1 used for Serial (ATmega168/328)
+//  - Leonardo/Micro:      SPI on dedicated pins, pins 0/1 available   (ATmega32u4)
+//  - Mega:                SPI on pins 50-53, pins 0/1 used for Serial (ATmega1280/2560)
+//
+enum {
+    SMO_LAYOUT_TRADITIONAL,
+    SMO_LAYOUT_LEONARDO,
+    SMO_LAYOUT_MEGA
+};
 
-#ifdef SMO_WANT_DEBUG
-#include <SoftwareSerial.h>
-
-void SMoDebugInit();
-extern SoftwareSerial SMoDebug;
+#if defined(__AVR_ATmega32U4__)
+#define SMO_LAYOUT  SMO_LAYOUT_LEONARDO
+#elif defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__)
+#define SMO_LAYOUT  SMO_LAYOUT_MEGA
+#elif MOSI == 11
+#define SMO_LAYOUT  SMO_LAYOUT_TRADITIONAL
+#else
+#error Unknown Arduino platform, help me define the correct pin layout
 #endif
 
-#endif /* _SMO_DEBUG_ */
+//
+// Define to open a serial port for debugging
+//
+#undef SMO_WANT_DEBUG
+
+//
+// Some pins used in multiple modules
+//
+#if SMO_LAYOUT==SMO_LAYOUT_TRADITIONAL
+enum {
+    SMO_HVRESET    = 10,
+    SMO_SVCC       = A0,
+    SMO_DEBUG      = A5
+};
+#elif SMO_LAYOUT==SMO_LAYOUT_LEONARDO
+enum {
+    SMO_HVRESET    = 10,
+    SMO_SVCC       = 11,
+    SMO_DEBUG      = A4
+};
+#else
+enum {
+    SMO_HVRESET    = 10,
+    SMO_SVCC       = 11,
+    SMO_DEBUG      = 18
+};
+#endif
+
+#endif /* _SMO_CONFIG_ */
 
 //
 // LICENSE

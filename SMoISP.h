@@ -13,16 +13,15 @@
 // To use ScratchMonkey for ISP programming, connect the following pins
 // of your arduino:
 //
-// PIN          Non-Mega Arduino        Arduino Mega (1280 and 2560)
+// PIN          Trad Arduino    Leonardo/Micro  Arduino Mega (1280 and 2560)
 //
-// slave reset:     10                      53 
-// MOSI:            11                      51 
-// MISO:            12                      50 
-// SCK:             13                      52 
+// RESET            10             10              53 
+// MOSI             11           MOSI              51 
+// MISO             12           MISO              50 
+// SCK              13            SCK              52 
+// XTAL [optional]   9              9              11       
 //
-// 1MHz clock        3                      18 (?)          Optional
-//
-// The clock is available in case your chip's fuses are set to require an 
+// The XTAL clock is available in case your chip's fuses are set to require an 
 // external clock signal. If you want the clock, connect it to XTAL1 on 
 // your target chip.
 //

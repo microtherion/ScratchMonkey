@@ -13,7 +13,7 @@
 // Derived from Randall Bohn's ArduinoISP sketch
 //
 
-#undef DEBUG_SPI
+#define DEBUG_SPI
 
 #include <SPI.h>
 
@@ -27,17 +27,30 @@
 //
 // Pin definitions
 //
+#if SMO_LAYOUT==SMO_LAYOUT_TRADITIONAL
 enum {
     RESET           = SS,
-    MCU_CLOCK       = 3,    
+    MCU_CLOCK       = 9,    // OC1A    
 };
+#elif SMO_LAYOUT==SMO_LAYOUT_LEONARDO
+enum {
+    RESET           = 10,
+    MCU_CLOCK       = 9,    // OC1A
+};
+#else
+enum {
+    RESET           = SS,
+    MCU_CLOCK       = 11,    // OC1A
+};
+#endif
 
 //
 // If an MCU has been set to use the 125kHz internal oscillator, 
 // regular SPI speeds are much too fast, so we do a software 
 // emulation that's deliberately slow.
 //
-static bool sSPILimpMode    = false;
+static int sSPILimpMode    = 0;
+const int kMaxLimp         = 8; // Slowest we'll try is 256µs, ~1kHz bit clock
 
 static uint8_t 
 SPITransfer(uint8_t out)
@@ -45,7 +58,7 @@ SPITransfer(uint8_t out)
     if (!sSPILimpMode)
         return SPI.transfer(out); // Hardware SPI
         
-    const int kQuarterCycle = 75; // 75µS -> 3.3kHz bit clock
+    const int kQuarterCycle = 1<<sSPILimpMode; 
     uint8_t in = 0;
     for (int i=0; i<8; ++i) {
         digitalWrite(MOSI, (out & 0x80) != 0);
@@ -179,15 +192,14 @@ SMoISP::EnterProgmode()
                                         SPI_CLOCK_DIV128)); // 125kHz (Default)
 
     //
-    // Set up clock generator on OC2B
+    // Set up clock generator on OC1A
     //
     pinMode(MCU_CLOCK, OUTPUT);
-    TCCR2A = _BV(COM2B0) | _BV(WGM21); // CTC mode, toggle OC2B on comparison with OCR2A
-    OCR2A  = 0;                        // F(OC2A) = 16MHz / (2*64*(1+0) == 125kHz
-    TIMSK2 = 0;
-    ASSR   = 0;
-    TCCR2B = _BV(CS22);                // Prescale by 64
-    TCNT2  = 0;
+    TCCR1A = _BV(COM1A0);              // CTC mode, toggle OC1A on comparison with OCR1A
+    OCR1A  = 0;                        // F(OC1A) = 16MHz / (2*64*(1+0) == 125kHz
+    TIMSK1 = 0;
+    TCCR1B = _BV(WGM12) | _BV(CS11) | _BV(CS10);  // Prescale by 64
+    TCNT1  = 0;
     
     //
     // Now reset the chip and issue the programming mode instruction
@@ -202,20 +214,23 @@ SMoISP::EnterProgmode()
         // Ooops, that's bad. Try again in limp mode
         //
         SPI.end();
- #ifdef DEBUG_SPI
-        SMoDebug.println("Retrying in limp mode.\n");
- #endif
-        sSPILimpMode = true;
+        sSPILimpMode = 2;   // Start at 16µs, 60kHz bit clock
         pinMode(MOSI, OUTPUT);
         pinMode(SCK, OUTPUT);
         pinMode(MISO, INPUT);
         
-        digitalWrite(RESET, HIGH);
-        digitalWrite(SCK, LOW);
-        delay(50);
-        digitalWrite(RESET, LOW);
-        delay(50);
-        response     = SPITransaction(command, pollIndex-1);
+        do {
+#ifdef DEBUG_SPI
+            SMoDebug.println("Retrying in limp mode %d (%fkHz).\n", 
+                             sSPILimpMode, 1000.0 / (4 << sSPILimpMode));
+#endif
+            digitalWrite(RESET, HIGH);
+            digitalWrite(SCK, LOW);
+            delay(50);
+            digitalWrite(RESET, LOW);
+            delay(50);
+            response     = SPITransaction(command, pollIndex-1);
+        } while (response != pollValue && sSPILimpMode++ < kMaxLimp);
     }
     SMoCommand::SendResponse(response==pollValue ? STATUS_CMD_OK : STATUS_CMD_FAILED);
 }

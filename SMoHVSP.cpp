@@ -25,8 +25,8 @@
 #include <Arduino.h>
 
 enum {
-    HVSP_VCC   = A0,
-    HVSP_RESET = 10,
+    HVSP_VCC   = SMO_SVCC,
+    HVSP_RESET = SMO_HVRESET,
     HVSP_SII   =  9,
     HVSP_SDI   = 11,
     HVSP_SDO   = 12,

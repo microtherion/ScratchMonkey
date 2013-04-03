@@ -14,16 +14,16 @@
 // To use ScratchMonkey for HVSP programming, connect the following pins
 // of your arduino:
 //
-// PIN          All Arduinos
+// PIN          Trad Arduino    Leonardo/Micro  Mega (1280 and 2560)
 //
-// Slave VCC       A0
-// Slave Reset     10
-// SII              9      
-// SDI             11      
-// SDO             12      
-// SCI             13
+// SVCC            A0              11              11
+// HVRESET         10              10              10
+// SII              9               9               9
+// SDI             11              11              11
+// SDO             12              12              12
+// SCI             13              13              13
 //
-// The Slave Reset signal must then be used to generate a 12V signal to 
+// The HVRESET signal must then be used to generate a 12V signal to 
 // apply to the RESET pin of the target MCU. A few suitable arrangements 
 // are discussed in the manual, in the Generating High Voltage section.
 //
@@ -34,12 +34,12 @@
 // PIN      Tiny13/X5   TinyX4      
 //          (8 pin)     (14 pin)    
 //
-// RESET     1 (PB5)     4 (PB3)    From HV switch, NOT Slave Reset
+// RESET     1 (PB5)     4 (PB3)    From HV switch, NOT HVRESET
 // SCI       2 (PB3)     2 (PB0)    
 // SDI       5 (PB0)     7 (PA6)    
 // SII       6 (PB1)     8 (PA5)    
 // SDO       7 (PB2)     9 (PA4)
-// VCC       8           1          Slave VCC, NOT 12V
+// VCC       8           1          SVCC, NOT 12V
 // GND       4          14 
 //                      13 (PA2)         
 //                      12 (PA1)         

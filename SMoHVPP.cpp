@@ -17,6 +17,7 @@
 #include "SMoHVPP.h"
 #include "SMoCommand.h"
 #include "SMoGeneral.h"
+#include "SMoConfig.h"
 
 #ifdef DEBUG_HVPP
 #include "SMoDebug.h"
@@ -26,11 +27,15 @@
 #include <SPI.h>
 
 enum {
-    HVPP_RESET  = 10,
+    HVPP_RESET  = SMO_HVRESET,
     HVPP_RDY    = 12,
-    HVPP_VCC    = A0,
+    HVPP_VCC    = SMO_SVCC,
+#if SMO_LAYOUT==SMO_LAYOUT_TRADITIONAL
     HVPP_RCLK   = A1,
     HVPP_XTAL   = A2,
+#else
+    HVPP_XTAL   = 13
+#endif
 };
 
 //
@@ -62,26 +67,28 @@ enum {
     kExtByte        = 2,
     kExt2Byte       = 3,
 };
- 
-inline void
-HVPPSetControls(uint8_t controlIx)
-{
-#ifdef DEBUG_HVPP
-    SMoDebug.print("Ctrl ");
-    SMoDebug.print(controlIx, DEC);
-    SMoDebug.print(" / ");
-    SMoDebug.print(SMoGeneral::gControlStack[controlIx], HEX);
-    SMoDebug.println();
-#endif
-    digitalWrite(HVPP_RCLK, LOW);
-    SPI.transfer(SMoGeneral::gControlStack[controlIx]);
-    digitalWrite(HVPP_RCLK, HIGH);
-}
+
+//
+// Control/Data access
+//
+#if SMO_LAYOUT==SMO_LAYOUT_TRADITIONAL
+//
+// Delegate controls to auxiliary 74HC595 shift register, but
+// can transfer data pretty easily
+//
+enum {
+    PORTD_MASK = 0xFC,
+    PORTB_MASK = 0x03,
+    PORTD_SHIFT = 2,
+    PORTB_SHIFT = 6
+};
 
 inline void
-HVPPSetControls(uint8_t controlIx, uint8_t byteSel)
+HVPPSetControlSignals(uint8_t signals)
 {
-    HVPPSetControls(controlIx+byteSel);
+    digitalWrite(HVPP_RCLK, LOW);
+    SPI.transfer(signals);
+    digitalWrite(HVPP_RCLK, HIGH);
 }
 
 inline void
@@ -102,27 +109,158 @@ HVPPEndControls()
     SPI.end();
 }
 
+inline void
+HVPPSetDataMode(uint8_t mode)
+{
+   if (mode == OUTPUT) {
+        DDRD |= PORTD_MASK;
+        DDRB |= PORTB_MASK;
+    } else {
+        DDRD &= ~PORTD_MASK;
+        DDRB &- ~PORTB_MASK;
+    }
+}
+
+inline void
+HVPPSetDataBits(uint8_t dataOut)
+{
+    PORTD = (PORTD & ~PORTD_MASK) | ((dataOut << PORTD_SHIFT) & PORTD_MASK);
+    PORTB = (PORTB & ~PORTB_MASK) | ((dataOut >> PORTB_SHIFT) & PORTB_MASK);
+}
+
+inline uint8_t
+HVPPGetDataBits()
+{
+    // No need for masking
+    return ((PINB << PORTB_SHIFT) | (PIND >> PORTD_SHIFT)) & 0xFF;
+}
+#if SMO_LAYOUT==SMO_LAYOUT_LEONARDO
 //
-// Data goes on pins 2-9, because I didn't dare touch 0 and 1
+// Leonardos don't have 8 contiguous pins anywhere, so we split the 
+// control signals across two ports. The data signals are not as 
+// critical, so we just use digitalRead (we'd have to split them
+// across at least three ports).
 //
-#if MOSI==11
+enum {
+    PORTF_MASK = 0xF1,
+    PORTD_MASK = 0x0C,
+};
+
+inline void
+HVPPSetControlSignals(uint8_t signals)
+{
+    PORTF   = (PORTF & ~PORTF_MASK) | (signals & PORTF_MASK);
+    PORTD   = (PORTD & ~PORTD_MASK) | (signals & PORTD_MASK);
+}
+
+inline void
+HVPPInitControls()
+{
+    DDRF   |= PORTF_MASK;
+    DDRD   |= PORTD_MASK;
+}
+
+inline void
+HVPPEndControls()
+{
+}
+
+inline void
+HVPPSetDataMode(uint8_t mode)
+{
+    for (uint8_t pin=2; pin<10; ++pin)
+        pinMode(pin, mode);
+}
+
+inline void
+HVPPSetDataBits(uint8_t dataOut)
+{
+    for (uint8_t pin=2; pin<10; ++pin) {
+        digitalWrite(pin, dataOut & 1);
+        dataOut >>= 1;
+    }
+}
+
+inline uint8_t
+HVPPGetDataBits()
+{
+    uint8_t dataIn;
+
+    for (uint8_t pin=9; pin >= 2; --pin)
+        dataIn = (dataIn << 1) | digitalRead(pin);
+
+    return dataIn;
+}
+#else
 //
-// Fast implementation for ATmega168/328 based Arduinos 
-// (Uno, Duemilanove, Nano, Pro, Pro Mini, Diecimilia)
+// Megas have lots of contiguous pins, so we just use two full ports.
 //
+inline void
+HVPPSetControlSignals(uint8_t signals)
+{
+    PORTF   = signals;
+}
+
+inline void
+HVPPInitControls()
+{
+    DDRF    = 0xFF;
+}
+
+inline void
+HVPPEndControls()
+{
+}
+
+inline void
+HVPPSetDataMode(uint8_t mode)
+{
+   if (mode == OUTPUT) {
+       DDRK = 0xFF;
+    } else {
+       DDRK = 0x00;
+    }
+}
+
+inline void
+HVPPSetDataBits(uint8_t dataOut)
+{
+    PORTK = dataOut;
+}
+
+inline uint8_t
+HVPPGetDataBits()
+{
+    return PINK;
+}
+#endif
+
+inline void
+HVPPSetControls(uint8_t controlIx)
+{
+#ifdef DEBUG_HVPP
+    SMoDebug.print("Ctrl ");
+    SMoDebug.print(controlIx, DEC);
+    SMoDebug.print(" / ");
+    SMoDebug.print(SMoGeneral::gControlStack[controlIx], HEX);
+    SMoDebug.println();
+#endif
+    HVPPSetControlSignals(SMoGeneral::gControlStack[controlIx]);
+}
+
+inline void
+HVPPSetControls(uint8_t controlIx, uint8_t byteSel)
+{
+    HVPPSetControls(controlIx+byteSel);
+}
+
 inline void
 HVPPDataMode(uint8_t mode)
 {
 #ifdef DEBUG_HVPP
    SMoDebug.println(mode == output ? "Data OUT" : "Data IN");
 #endif
-   if (mode == OUTPUT) {
-        DDRD |= 0xFC;
-        DDRB |= 0x03;
-    } else {
-        DDRD &= 0x03;
-        DDRB &- 0xFC;
-    }
+   HVPPSetDataMode(mode);
 }
 
 inline void
@@ -132,14 +270,13 @@ HVPPSetDataRaw(uint8_t dataOut)
    SMoDebug.print("Data<");
    SMoDebug.println(dataOut, HEX);
 #endif
-    PORTD = (PORTD & 0x03) | ((dataOut << 2) & 0xFF);
-    PORTB = (PORTB & 0xFC) | (dataOut >> 6);
+   HVPPSetDataBits(dataOut);
 }
 
 inline uint8_t
 HVPPGetDataRaw()
 {
-    uint8_t dataIn = ((PINB << 6) | (PIND >> 2)) & 0xFF;
+    uint8_t dataIn = HVPPGetDataBits();
     
 #ifdef DEBUG_HVPP
     SMoDebug.print("Data>");
@@ -148,49 +285,7 @@ HVPPGetDataRaw()
 
     return dataIn;
 }
-#else
-//
-// Naïve implementation for other boards
-// (Leonardo, Mega2560, etc)
-//
-inline void
-HVPPDataMode(uint8_t mode)
-{
-#ifdef DEBUG_HVPP
-   SMoDebug.println(mode == OUTPUT ? "Data OUT" : "Data IN");
-#endif
-    for (uint8_t pin=2; pin<10; ++pin)
-        pinMode(pin, mode);
-}
 
-inline void
-HVPPSetDataRaw(uint8_t dataOut)
-{
-#ifdef DEBUG_HVPP
-   SMoDebug.print("Data<");
-   SMoDebug.println(dataOut, HEX);
-#endif
-    for (uint8_t pin=2; pin<10; ++pin) {
-        digitalWrite(pin, dataOut & 1);
-        dataOut >>= 1;
-    }
-}
-
-inline uint8_t
-HVPPGetDataRaw()
-{
-    uint8_t dataIn;
-
-    for (uint8_t pin=9; pin >= 2; --pin)
-        dataIn = (dataIn << 1) | digitalRead(pin);
-
-#ifdef DEBUG_HVPP
-    SMoDebug.print("Data>");
-    SMoDebug.println(dataIn, HEX);
-#endif
-
-    return dataIn;
-}
 #endif
 
 inline void

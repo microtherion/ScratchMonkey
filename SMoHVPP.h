@@ -14,24 +14,34 @@
 // To use ScratchMonkey for HVPP programming, connect the following pins
 // of your arduino:
 //
-// PIN          Non-Mega Arduino    Arduino Mega (1280 and 2560)
+// PIN          Trad Arduino    Leonardo/Micro  Mega (1280 and 2560)
 //
-// D0-7           2-9
-// Slave Reset     10
-// MOSI 74595      11                       51
-// RDY             12                       
-// SCK 74595       13                       52
-// Slave VCC       A0
+// D0-7           2-9             2-9          A8-A15                              
+// HVRESET         10              10              10
+// RDY             12              12              12
+// SVCC            A0              11              11
+// XTAL            A2              13              13
+//
+// MOSI 74595      11                                          
+// SCK 74595       13                                           
 // RCLK 74595      A1                       
-// Slave XTAL      A2
 //
-// The Slave Reset signal must then be used to generate a 12V signal to 
+// CTRL0                           A5              A0                              
+// CTRL2                           RX (1)          A2
+// CTRL3                           TX (0)          A3
+// CTRL4                           A3              A4
+// CTRL5                           A2              A5
+// CTRL6                           A1              A6
+// CTRL7                           A0              A7
+//
+// The HVRESET signal must then be used to generate a 12V signal to 
 // apply to the RESET pin of the target MCU. A few suitable arrangements 
 // are discussed in the manual, in the Generating High Voltage section.
 //
 // Since HVPP requires more signals than there are readily available pins
-// on an arduino, most of the signals are generated from a 74HC595 shift
-// register, programmed through the Arduino's SPI interface.
+// on a Traditional Arduino, most of the signals are generated from a 74HC595
+// shift register, programmed through the Arduino's SPI interface. Leonardo
+// and Mega Arduinos, in contrast, have a sufficient number of direct pins.
 //
 // The tinyX61 family has a different mapping for the control pins, so
 // their meaning is explained in the ALTMEANING column. All other MCUs 
@@ -58,31 +68,31 @@
 // On your target system, connect these pins, and power, to the following
 // pins of the DIP packages (for other packages, consult the data sheet):
 //
-// PIN      TinyX313    Tiny26/X61  Mega*8      Mega*4
+// PIN      Tiny26/X61  TinyX313    Mega*8      Mega*4
 //          (20 pin)    (20 pin)    (28 pin)    (40 pin)
 //                                  
-// RESET     1 (PA2)    10 (PB7)     1 (PC6)     9 (RESET)  From HV, NOT Slave Reset
-// XTAL      5 (PA0)     7 (PB4)     9 (PB6)    13 (XTAL1)
-// RDY       3 (PD1)     9 (PB6)     3 (PD1)    15 (PD1)
+// RESET    10 (PB7)     1 (PA2)     1 (PC6)     9 (RESET)  From HV, NOT HVRESET
+// XTAL      7 (PB4)     5 (PA0)     9 (PB6)    13 (XTAL1)
+// RDY       9 (PB6)     3 (PD1)     3 (PD1)    15 (PD1)
 // CTRL0     -           -          25 (PC2)    40 (PA0)
-// CTRL2     6 (PD2)     1 (PB0)     4 (PD2)    16 (PD2)
-// CTRL3     7 (PD3)     2 (PB1)     5 (PD3)    17 (PD3)
-// CTRL4     8 (PD4)     3 (PB2)     6 (PD4)    18 (PD4)
-// CTRL5     9 (PD5)     4 (PB3)    11 (PD5)    19 (PD5)
-// CTRL6    11 (PD6)     -          12 (PD6)    20 (PD6)
-// CTRL7     -           8 (PB5)    13 (PD7)    21 (PD7)
-// DATA0    12 (PB0)    20 (PA0)    14 (PB0)     1 (PB0)
-// DATA1    13 (PB1)    19 (PA1)    15 (PB1)     2 (PB1)
-// DATA2    14 (PB2)    18 (PA2)    16 (PB2)     3 (PB2)
-// DATA3    15 (PB3)    17 (PA3)    17 (PB3)     4 (PB3)
-// DATA4    16 (PB4)    14 (PA4)    18 (PB4)     5 (PB4)
-// DATA5    17 (PB5)    13 (PA5)    19 (PB5)     6 (PB5)
-// DATA6    18 (PB6)    12 (PA6)    23 (PC0)     7 (PB6)
-// DATA7    19 (PB7)    11 (PA6)    24 (PC1)     8 (PB7)
-// VCC      20 (VCC)     5 (VCC)     7 (VCC)    10 (VCC)    Slave VCC, NOT 12V
-//                      15 (AVCC)   20 (AVCC)   30 (AVCC)
-// GND      10 (GND)     6 (GND)    22 (GND)    11 (GND)
-//                      16 (AGND)               31 (GND)
+// CTRL2     1 (PB0)     6 (PD2)     4 (PD2)    16 (PD2)
+// CTRL3     2 (PB1)     7 (PD3)     5 (PD3)    17 (PD3)
+// CTRL4     3 (PB2)     8 (PD4)     6 (PD4)    18 (PD4)
+// CTRL5     4 (PB3)     9 (PD5)    11 (PD5)    19 (PD5)
+// CTRL6     -          11 (PD6)    12 (PD6)    20 (PD6)
+// CTRL7     8 (PB5)     -          13 (PD7)    21 (PD7)
+// DATA0    20 (PA0)    12 (PB0)    14 (PB0)     1 (PB0)
+// DATA1    19 (PA1)    13 (PB1)    15 (PB1)     2 (PB1)
+// DATA2    18 (PA2)    14 (PB2)    16 (PB2)     3 (PB2)
+// DATA3    17 (PA3)    15 (PB3)    17 (PB3)     4 (PB3)
+// DATA4    14 (PA4)    16 (PB4)    18 (PB4)     5 (PB4)
+// DATA5    13 (PA5)    17 (PB5)    19 (PB5)     6 (PB5)
+// DATA6    12 (PA6)    18 (PB6)    23 (PC0)     7 (PB6)
+// DATA7    11 (PA6)    19 (PB7)    24 (PC1)     8 (PB7)
+// SVCC      5 (VCC)    20 (VCC)     7 (VCC)    10 (VCC)    Slave VCC, NOT 12V
+//          15 (AVCC)               20 (AVCC)   30 (AVCC)
+// GND       6 (GND)    10 (GND)    22 (GND)    11 (GND)
+//          16 (AGND)                           31 (GND)
 //
 
 #ifndef _SMO_HVPP_
