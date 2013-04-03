@@ -14,7 +14,7 @@
 // To use ScratchMonkey for HVSP programming, connect the following pins
 // of your arduino:
 //
-// PIN          Trad Arduino    Leonardo/Micro  Mega (1280 and 2560)
+// PIN          Standard        Leonardo/Micro  Mega (1280 and 2560)
 //
 // SVCC            A0              11              11
 // HVRESET         10              10              10

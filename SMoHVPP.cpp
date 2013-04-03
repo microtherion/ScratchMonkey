@@ -30,7 +30,7 @@ enum {
     HVPP_RESET  = SMO_HVRESET,
     HVPP_RDY    = 12,
     HVPP_VCC    = SMO_SVCC,
-#if SMO_LAYOUT==SMO_LAYOUT_TRADITIONAL
+#if SMO_LAYOUT==SMO_LAYOUT_STANDARD
     HVPP_RCLK   = A1,
     HVPP_XTAL   = A2,
 #else
@@ -71,7 +71,7 @@ enum {
 //
 // Control/Data access
 //
-#if SMO_LAYOUT==SMO_LAYOUT_TRADITIONAL
+#if SMO_LAYOUT==SMO_LAYOUT_STANDARD
 //
 // Delegate controls to auxiliary 74HC595 shift register, but
 // can transfer data pretty easily

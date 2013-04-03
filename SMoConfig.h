@@ -18,21 +18,21 @@
 
 //
 // We support a number of different pin layouts:
-//  - Traditional Arduino: SPI on pins 10-13, pins 0/1 used for Serial (ATmega168/328)
-//  - Leonardo/Micro:      SPI on dedicated pins, pins 0/1 available   (ATmega32u4)
-//  - Mega:                SPI on pins 50-53, pins 0/1 used for Serial (ATmega1280/2560)
+//  - Standard Arduino: SPI on pins 10-13, pins 0/1 used for Serial (ATmega168/328)
+//  - Leonardo/Micro:   SPI on dedicated pins, pins 0/1 available   (ATmega32u4)
+//  - Mega:             SPI on pins 50-53, pins 0/1 used for Serial (ATmega1280/2560)
 //
 
-#define    SMO_LAYOUT_TRADITIONAL     17
-#define    SMO_LAYOUT_LEONARDO        22
-#define    SMO_LAYOUT_MEGA            55
+#define    SMO_LAYOUT_STANDARD     0
+#define    SMO_LAYOUT_LEONARDO     1
+#define    SMO_LAYOUT_MEGA         2
 
 #if defined(__AVR_ATmega32U4__)
 #define SMO_LAYOUT  SMO_LAYOUT_LEONARDO
 #elif defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__)
 #define SMO_LAYOUT  SMO_LAYOUT_MEGA
 #elif MOSI == 11
-#define SMO_LAYOUT  SMO_LAYOUT_TRADITIONAL
+#define SMO_LAYOUT  SMO_LAYOUT_STANDARD
 #else
 #error Unknown Arduino platform, help me define the correct pin layout
 #endif
@@ -47,7 +47,7 @@
 //
 enum {
     SMO_HVRESET    = 10,
-#if SMO_LAYOUT==SMO_LAYOUT_TRADITIONAL
+#if SMO_LAYOUT==SMO_LAYOUT_STANDARD
     SMO_SVCC       = A0,
     SMO_DEBUG      = A5
 #elif SMO_LAYOUT==SMO_LAYOUT_LEONARDO

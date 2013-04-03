@@ -32,7 +32,7 @@
 // Pin definitions
 //
 enum {
-#if SMO_LAYOUT==SMO_LAYOUT_TRADITIONAL
+#if SMO_LAYOUT==SMO_LAYOUT_STANDARD
     ISP_RESET       = SS,
     MCU_CLOCK       = 9,    // OC1A    
 #elif SMO_LAYOUT==SMO_LAYOUT_LEONARDO
@@ -40,7 +40,7 @@ enum {
     MCU_CLOCK       = 9,    // OC1A
 #else
     ISP_RESET       = SS,
-    MCU_CLOCK       = 11,    // OC1A
+    MCU_CLOCK       = 11,   // OC1A
 #endif
 };
 
