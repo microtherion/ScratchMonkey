@@ -13,12 +13,23 @@
 
 <p>ISP is the simplest programming method to set up, and in 99% of all cases, it's all you need.</p>
 
-<h3>Connecting your Arduino</h3>
+<h3>Connecting your Standard Arduino</h3>
 
 <p>ISP requires 6 signals (including power and ground), as shown in this illustration. Do NOT use the ICSP headers, as the one at the right has the <strong>RESET</strong> pin connected to your own Arduino's <strong>RESET</strong> signal, and the one at the top left is connected to the signals for the Atmega16U2 USB slave processor.</p>
 
 <p>The <strong>XTAL</strong> signal can optionally be connected to your target's <strong>XTAL1</strong> pin, as discussed below.</p>
- 
+
+<h3 style="clear:both">Connecting your Arduino Micro/Leonardo</h3>
+
+<img class=circuit src="img/micro_prog_isp.png">
+
+<p>The pin connections for an Arduino Micro are shown in this illustration, and for the Leonardo, the same pins would be used. Note that:</p>
+
+<ul>
+<li>On the Leonardo, the <strong>MOSI</strong>, <strong>MOSI</strong>, and <strong>SCK</strong> signals are only available on the ICSP header. For details on the pinout, see <a href="http://www.pighixxx.com/PghXxXcnt/Arduino/Leonardo/leonardov2.pdf">this beautiful diagram</a>.</li>
+<li>While the Micro has a dedicated <strong>SS</strong> pin available, this pin is not accessible on the Leonardo, so for compatibility reasons, we use pin 10 instead.</li>
+</ul>
+
 <h3>Connecting your Target Microcontroller</h3>
 
 <p>The ISP signals need to be connected to the corresponding signals on your target microcontroller / board. Details for each target are discussed in the <a href="Connection.html">Connection Diagrams</a> chapter.</p>
@@ -29,13 +40,11 @@
 
 <p>While all AVR MCUs are capable of running from internally generated clock signals, in many designs, they are instead set up to rely on an external clock signal — either for better timing accuracy, or because a particular operating frequency is desirable. If you try to program a MCU on a breadboard and its fuses have been (deliberately or accidentally) set to require an external clock signal, ISP will not work on that MCU without supplying a clock signal.</p>
 
-<p>For this purpose, <span class=logo>ScratchMonkey</span> uses Arduino timer 2 to generate a clock signal <strong>XTAL</strong> on pin 3. If you get an upload error, try connecting this signal to the <strong>XTAL1</strong> pin of your MCU. Curiously, and somewhat inexplicably to me, I have found that when Low Frequency Crystal Oscillator mode (<tt>CKSEL[3:0] = 6</tt>) is selected, connecting the clock signal to <strong>XTAL1</strong> did not work, but connecting to <strong>XTAL2</strong> did work, so you may want to try this as well.</p>
-
-<p>For robustness reasons, the generated clock signal is only 125kHz, so using this will operate in Limp Mode, as discussed below.</p>
+<p>For this purpose, <span class=logo>ScratchMonkey</span> uses Arduino timer 1 to generate a clock signal <strong>XTAL</strong>. If you get an upload error, try connecting this signal to the <strong>XTAL1</strong> pin of your MCU. Curiously, and somewhat inexplicably to me, I have found that when Low Frequency Crystal Oscillator mode (<tt>CKSEL[3:0] = 6</tt>) is selected, connecting the clock signal to <strong>XTAL1</strong> did not work, but connecting to <strong>XTAL2</strong> did work, so you may want to try this as well.</p>
 
 <h3>Limp Mode: Software SPI</h3>
 
-<p><span class=logo>ScratchMonkey</span> will normally operate its SPI connection at a 125kHz clock rate. With some clock settings (e.g. Internal 128kHz Oscillator) of the target microcontroller, or external clock signals wired to the board, this rate is too fast for the target microcontroller to keep up. For this case, <span class=logo>ScratchMonkey</span> will fall back to a software simulation of SPI, using the same pins, but operating deliberately at a very slow speed (3.3kHz).</p>
+<p><span class=logo>ScratchMonkey</span> will normally operate its SPI connection at a 125kHz clock rate. With some clock settings (e.g. Internal 128kHz Oscillator) of the target microcontroller, or external clock signals wired to the board, this rate is too fast for the target microcontroller to keep up. For this case, <span class=logo>ScratchMonkey</span> will fall back to a software simulation of SPI, using the same pins, but operating deliberately at slower speeds (Down to less than 1kHz, if necessary)</p>
 
 <p>With the combination of Limp Mode and the external clock signal, <span class=logo>ScratchMonkey</span> in ISP mode should be able to handle pretty much any setting of the clock fuses. Still, there are other fuses, e.g. <tt>RSTDISBL</tt> or <tt>SPIEN</tt>, that will prevent ISP mode from working when changed, so you will need to use High Voltage Programming to deal with those cases.</strong></p>
   

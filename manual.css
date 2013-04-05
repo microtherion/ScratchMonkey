@@ -42,3 +42,19 @@ h4.mcu {
 	margin-left: 30%;
 	margin-right: 30%;
 }
+table {
+	margin-left: 5%;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+td {
+	padding: 5px
+}
+th {
+	background-color: #d0d0d0
+}
+tr:nth-child(odd) {background: #f0f0f0}
+tr:nth-child(even) {background: #ffffff}
+td.result {
+	text-align: center;
+}

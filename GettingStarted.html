@@ -51,7 +51,7 @@ ln -sh \
 <li>Upload the <span class=logo>ScratchMonkey</span> sketch.</li>
 </ul>
 
-<p>Now that your Arduino is programmed, it's often helpful to temporarily disable its <strong>RESET</strong> pin. On an Arduino Uno, this can be done by connecting a 10µF capacitor between the <strong>RESET</strong> and <strong>GND</strong> pins (With the "-" side of the capacitor to <strong>GND</strong>). Doing this prevents the board from resetting when <tt>avrdude</tt> connects to it, which will at least speed up the target programming process.</p>
+<p>Now that your Arduino is programmed, it's often helpful to temporarily disable its <strong>RESET</strong> pin (This is not necessary on an Arduino Micro or Leonardo). On an Arduino Uno, this can be done by connecting a 10µF capacitor between the <strong>RESET</strong> and <strong>GND</strong> pins (With the "-" side of the capacitor to <strong>GND</strong>). Doing this prevents the board from resetting when <tt>avrdude</tt> connects to it, which will at least speed up the target programming process.</p>
  
 <h3>Burning a Bootloader</h3>
 
@@ -73,7 +73,7 @@ ln -sh \
 <p>To upload your actual program:</p>
 
 <ul>
-<li>Open your sketch in Arduino.</li>
+<li>Open your sketch in the Arduino IDE.</li>
 <li>Select your board and programmer as above.</li>
 <li>Upload your sketch.</li>
 </ul> 
