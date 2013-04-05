@@ -25,7 +25,7 @@
 
 <p>The details of HVPP control signal assignment are somewhat messy, primarily because on 20 pin MCUs, some of the control signals are multiplexed two to a single pin, and the ATtiny26/261/461/861 family does this in a somewhat different way from the ATtiny2313/4313 family of MCUs. The following table gives an mapping from <strong>CTRLn</strong> names to the names in the MCU datasheets:</p>
 
-<table border="1">
+<table>
 	<tr><th>Pin		<th>ATtiny861	<th>ATtiny4313	<th>Others</tr>
 	<tr><td>CTRL0	<td>-			<td>-			<td>BS2</tr>
 	<tr><td>CTRL2	<td>WR			<td>OE			<td>OE</tr>
@@ -36,6 +36,6 @@
 	<tr><td>CTRL7	<td>OE			<td>-			<td>PAGEL</tr>
 </table>
 
-<p>For 20 pin MCUs not listed here, you need to figure out whether <strong>pp_controlstack</strong> in the avrdude configuration looks like the ATtiny861 or like the ATtiny4313, and connect pins accordingly.</p>
+<p>For 20 pin MCUs not listed here, you need to figure out whether <strong>pp_controlstack</strong> in the avrdude configuration resembles the ATtiny861 or the ATtiny4313, and connect pins accordingly.</p>
 </body>
 </html>

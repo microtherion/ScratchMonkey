@@ -418,7 +418,7 @@
   </g>
  </g>
  <g partID="56450">
-  <g transform="translate(141.467,33.72)">
+  <g transform="translate(139.867,47.5867)">
    <g  id="breadboard">
     <text x="14.4" y="6.48" fill="#787878" font-family="DroidSans"  text-anchor="middle" xmlns:xml="http://www.w3.org/XML/1998/namespace" id="label" xml:space="preserve" stroke-width="0" font-size="7.2">SVCC</text>
    </g>
@@ -432,7 +432,7 @@
   </g>
  </g>
  <g partID="56510">
-  <g transform="translate(91.0672,3.32)">
+  <g transform="translate(134.267,31.5867)">
    <g  id="breadboard">
     <text x="10.8" y="6.48" fill="#787878" font-family="DroidSans"  text-anchor="middle" xmlns:xml="http://www.w3.org/XML/1998/namespace" id="label" xml:space="preserve" stroke-width="0" font-size="7.2">SDI</text>
    </g>
@@ -500,8 +500,8 @@
   </g>
  </g>
  <g partID="56110">
-  <line stroke="#1b5bb3" stroke-linecap="round" y1="4" x1="112.746" y2="76" stroke-width="3.2" x2="112.746"/>
-  <line stroke="#418dd9" stroke-linecap="round" y1="4" x1="112.746" y2="76" stroke-width="1.6" x2="112.746"/>
+  <line stroke="#1b5bb3" stroke-linecap="round" y1="34.1333" x1="134.279" y2="76" stroke-width="3.2" x2="134.279"/>
+  <line stroke="#418dd9" stroke-linecap="round" y1="34.1333" x1="134.279" y2="76" stroke-width="1.6" x2="134.279"/>
  </g>
  <g partID="56140">
   <line stroke="#999999" stroke-linecap="round" y1="18.4" x1="105.567" y2="76" stroke-width="3.2" x2="105.567"/>
@@ -516,8 +516,8 @@
   <line stroke="#ffe24d" stroke-linecap="round" y1="3.2" x1="119.921" y2="76" stroke-width="1.6" x2="119.921"/>
  </g>
  <g partID="56870">
-  <line stroke="#7a3a73" stroke-linecap="round" y1="17.6" x1="127.101" y2="76" stroke-width="3.2" x2="127.101"/>
-  <line stroke="#ab58a2" stroke-linecap="round" y1="17.6" x1="127.101" y2="76" stroke-width="1.6" x2="127.101"/>
+  <line stroke="#7a3a73" stroke-linecap="round" y1="19.2" x1="127.101" y2="76" stroke-width="3.2" x2="127.101"/>
+  <line stroke="#ab58a2" stroke-linecap="round" y1="19.2" x1="127.101" y2="76" stroke-width="1.6" x2="127.101"/>
  </g>
  <g partID="57350">
   <line stroke="#000000" stroke-linecap="round" y1="46.4" x1="91.2112" y2="76" stroke-width="3.2" x2="91.2112"/>
@@ -528,7 +528,7 @@
   <line stroke="#cc1414" stroke-linecap="round" y1="75.2" x1="142.267" y2="212.776" stroke-width="1.6" x2="163.221"/>
  </g>
  <g partID="57380">
-  <line stroke="#8c0000" stroke-linecap="round" y1="34.4" x1="142.267" y2="75.2" stroke-width="3.2" x2="142.267"/>
-  <line stroke="#cc1414" stroke-linecap="round" y1="34.4" x1="142.267" y2="75.2" stroke-width="1.6" x2="142.267"/>
+  <line stroke="#8c0000" stroke-linecap="round" y1="49.0667" x1="142.267" y2="75.2" stroke-width="3.2" x2="142.267"/>
+  <line stroke="#cc1414" stroke-linecap="round" y1="49.0667" x1="142.267" y2="75.2" stroke-width="1.6" x2="142.267"/>
  </g>
 </svg>
