@@ -8,7 +8,7 @@ vpath %.svg ../doc/img
 	../Tools/dipper $^ > ../doc/img/$@
 
 SERIALS	    = attiny85 attiny84
-PARALLELS   = attiny861 attiny4313 atmega328 atmega1284
+PARALLELS   = attiny861 attiny4313 attiny1634 atmega328 atmega1284 
 ISPS        = $(addsuffix _isp,$(SERIALS) $(PARALLELS))
 HVSPS       = $(addsuffix _hvsp,$(SERIALS))
 HVPPS       = $(addsuffix _hvpp,$(PARALLELS))
