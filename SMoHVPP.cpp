@@ -298,6 +298,7 @@ HVPPWriteData(uint8_t controlIx, uint8_t dataOut)
     HVPPSetControls(controlIx);
     HVPPSetDataRaw(dataOut);
     digitalWrite(HVPP_XTAL, HIGH);
+    delayMicroseconds(1);
     digitalWrite(HVPP_XTAL, LOW);
 }
 
@@ -307,6 +308,7 @@ HVPPWriteData(uint8_t controlIx, uint8_t byteSel, uint8_t dataOut)
     HVPPSetControls(controlIx, byteSel);
     HVPPSetDataRaw(dataOut);
     digitalWrite(HVPP_XTAL, HIGH);
+    delayMicroseconds(1);
     digitalWrite(HVPP_XTAL, LOW);
 }
 
