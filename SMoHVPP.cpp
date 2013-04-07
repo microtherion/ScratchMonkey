@@ -241,7 +241,7 @@ HVPPSetControls(uint8_t controlIx)
     SMoDebug.print("Ctrl ");
     SMoDebug.print(controlIx, DEC);
     SMoDebug.print(" / ");
-    SMoDebug.print(SMoGeneral::gControlStack[controlIx], HEX);
+    SMoDebug.print(SMoGeneral::gControlStack[controlIx], BIN);
     SMoDebug.println();
 #endif
     HVPPSetControlSignals(SMoGeneral::gControlStack[controlIx]);
@@ -264,7 +264,7 @@ inline void
 HVPPDataMode(uint8_t mode)
 {
 #ifdef DEBUG_HVPP
-   SMoDebug.println(mode == output ? "Data OUT" : "Data IN");
+   SMoDebug.println(mode == OUTPUT ? "Data OUT" : "Data IN");
 #endif
    HVPPSetDataMode(mode);
 }
