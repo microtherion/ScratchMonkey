@@ -13,10 +13,16 @@
 
 <p>HVSP is the high voltage protocol for 8- and 14-pin ATtiny MCUs.</p>
 
-<h3>Connecting your Arduino</h3>
+<h3>Connecting your Standard Arduino</h3>
 
 <p>HVSP requires 7 signals (including power and ground), as shown in this illustration. For High Voltage programming, the timing of the power pin matters, so it is software controlled through the <strong>SVCC</strong> pin, rather than simply through the <strong>5V</strong> pin of the Arduino. The <strong>HVRESET</strong> signal is used to control one of the circuits shown in the <a href="HighVoltage.html">High Voltage programming section</a> to generate the 12V signal to be applied to <strong>RESET</strong> pin of the target microcontroller. The other signals go directly to the target microcontroller.</p>
- 
+
+<h3 style="clear:both">Connecting your Arduino Micro/Leonardo</h3>
+
+<img class=circuit src="img/micro_prog_hvsp.png">
+
+<p>The pin connections for an Arduino Micro are shown in this illustration, and for the Leonardo, the same pins would be used. With the exception of the SVCC pin, the pin assignments are identical as for the standard Arduino</p>
+
 <h3>Connecting your Target Microcontroller</h3>
 
 <p>The HVSP signals need to be connected to the corresponding signals on your target microcontroller / board. Details for each target are discussed in the <a href="Connection.html">Connection Diagrams</a> chapter.</p>
