@@ -31,7 +31,7 @@
 #define SMO_LAYOUT  SMO_LAYOUT_LEONARDO
 #elif defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__)
 #define SMO_LAYOUT  SMO_LAYOUT_MEGA
-#elif MOSI == 11
+#elif defined(__AVR_ATmega328__) || defined(__AVR_ATmega328P__) || defined(__AVR_ATmega168__) || defined(__AVR_ATmega168P__)
 #define SMO_LAYOUT  SMO_LAYOUT_STANDARD
 #else
 #error Unknown Arduino platform, help me define the correct pin layout
@@ -40,7 +40,7 @@
 //
 // Define to open a serial port for debugging
 //
-#undef SMO_WANT_DEBUG
+#define SMO_WANT_DEBUG
 
 //
 // Some pins used in multiple modules
