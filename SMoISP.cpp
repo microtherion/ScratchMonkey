@@ -120,7 +120,7 @@ SPITransaction(uint8_t b1, uint8_t b2, uint8_t b3, uint8_t b4)
 #ifdef DEBUG_SPI
     uint8_t result = SPITransfer(b4);
     SMoDebug.print(" [");
-    SMoDebug.print(b4, HEX);
+    SMoDebug.print(result, HEX);
     SMoDebug.println("]");
   
     return result;  
@@ -154,12 +154,20 @@ ISPPollReady()
 static void
 LoadExtendedAddress()
 {
+#ifdef DEBUG_SPI
+        SMoDebug.print("Address was: ");
+        SMoDebug.println(SMoGeneral::gAddress, HEX);
+#endif
     uint16_t highBits = SMoGeneral::gAddress >> 16;
     if ((highBits >> 8) != (highBits & 0xFF)) {
         SPITransaction(0x4D, 0, highBits & 0x7F, 0);
         highBits    = 0x80 | (highBits & 0x7F);
         highBits   |= highBits << 8;
         SMoGeneral::gAddress = (SMoGeneral::gAddress & 0xFFFF) | (uint32_t(highBits) << 16);
+#ifdef DEBUG_SPI
+        SMoDebug.print("Address now: ");
+        SMoDebug.println(SMoGeneral::gAddress, HEX);
+#endif
     }
 }
 
@@ -228,7 +236,7 @@ SMoISP::EnterProgmode()
 #ifdef DEBUG_SPI
             SMoDebug.print("Retrying in limp mode ");
             SMoDebug.print(sSPILimpMode);
-            SMoDebug.print("(");
+            SMoDebug.print(" (");
             SMoDebug.print(1000.0 / (4 << sSPILimpMode));
             SMoDebug.println("kHz).");
 #endif
@@ -390,7 +398,7 @@ SMoISP::SPIMulti()
     uint8_t *       rxData  =  &SMoCommand::gBody[2];
 
 #ifdef DEBUG_SPI
-    SMoDebug.print("SPI");
+    SMoDebug.print("!SPI");
 #endif
     while (numTX) {
 #ifdef DEBUG_SPI
