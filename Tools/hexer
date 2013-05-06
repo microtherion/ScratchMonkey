@@ -1,0 +1,45 @@
+#!/usr/bin/ruby
+
+addr	= ARGV[0]
+len     = ARGV[1]
+high	= 0
+
+addr = (addr =~ /0x(.*)/) ? $1.to_i(16) : addr.to_i
+len  = (len  =~ /0x(.*)/) ? $1.to_i(16) : len.to_i
+high = 0
+$CKSUM = 0
+
+def printByte(byte)
+  printf("%02x", byte)
+  $CKSUM += byte
+end
+
+def printChecksum
+  printf("%02x\n", (0x100-$CKSUM) & 0xFF)
+  $CKSUM = 0
+end
+
+while len > 0
+  line_len = len > 16 ? 16 : len
+  if (addr >> 16) != high
+    high = addr >> 16
+    print ":"
+    printByte(2)
+    print "0000"
+    printByte(4)
+    printByte(high >> 8)
+    printByte(high & 0xFF)
+    printChecksum
+  end
+  print ":"
+  printByte(line_len)
+  printByte((addr >> 8) & 0xFF)
+  printByte(addr & 0xFF)
+  printByte(0)
+  line_len.times { printByte(rand(256)) }
+  printChecksum
+  addr += line_len
+  len  -= line_len
+end
+
+print ":00000001FF\n"
