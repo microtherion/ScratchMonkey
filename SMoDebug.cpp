@@ -11,9 +11,9 @@
 // http://opensource.org/licenses/bsd-license.php
 //
 
-#include "SMoDebug.h"
-
 #include <Arduino.h>
+
+#include "SMoDebug.h"
 
 #ifdef SMO_WANT_DEBUG
 
