@@ -349,7 +349,7 @@ HVPPCommitDataWithPulseWidth(uint8_t pulseWidth, uint8_t byteSel=kLowByte)
 inline uint8_t
 HVPPReadData(uint8_t byteSel)
 {
-    HVPPSetControls(kDone, byteSel);
+    HVPPSetControls(kLoadData, byteSel);
     HVPPSetControls(kEnableRead, byteSel);
     return HVPPGetDataRaw();
 }
@@ -629,6 +629,7 @@ ReadFuseLock(uint8_t byteSel)
     HVPPLoadCommand(0x04);
     HVPPDataMode(INPUT);
     *dataOut = HVPPReadData(byteSel);
+    HVPPSetControls(kDone);
     HVPPDataMode(OUTPUT);
 
     SMoCommand::SendResponse(STATUS_CMD_OK, 3);
@@ -671,6 +672,7 @@ ReadSignatureCal(uint8_t addr, uint8_t byteSel)
     HVPPLoadAddress(kLowByte, addr);
     HVPPDataMode(INPUT);
     *dataOut = HVPPReadData(byteSel);
+    HVPPSetControls(kDone);
     HVPPDataMode(OUTPUT);
 
     SMoCommand::SendResponse(STATUS_CMD_OK, 3);
