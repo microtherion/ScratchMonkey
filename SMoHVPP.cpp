@@ -404,6 +404,8 @@ SMoHVPP::EnterProgmode()
     delayMicroseconds(resetDelay2);
     
     SMoCommand::SendResponse();
+    
+    HVPPSetControls(kDone);
 }
 
 void
