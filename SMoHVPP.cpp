@@ -116,7 +116,7 @@ HVPPSetDataMode(uint8_t mode)
         DDRB |= PORTB_MASK;
     } else {
         DDRD &= ~PORTD_MASK;
-        DDRB &- ~PORTB_MASK;
+        DDRB &= ~PORTB_MASK;
     }
 }
 
