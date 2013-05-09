@@ -11,12 +11,12 @@
   </style>
   </defs>
   <rect class="thickline" x="195.0" y="5" width="60.0" height="426.0"/>
-  <path class="thinline" d="M214.5,5 a10.5,10.5 0 0,0 21.0,0"/>
+  <path class="thinline" d="M214.5,5 a10.500000000000002,10.500000000000002 0 0,0 21.000000000000004,0"/>
     <text class="title" x="225.0" y="218.0">
     ATmega328
   </text>
 
-    <rect class="thinline" x="180.0" y="15.5" width="15.0" height="15.0"/>
+    <rect class="thinline" x="180.0" y="15.500000000000002" width="15.0" height="15.0"/>
   <text class="function" x="95.0" y="30.5" text-anchor="end">
     RESET
   </text>
@@ -98,7 +98,7 @@
   </text>
   <rect class="thinline" x="180.0" y="255.5" width="15.0" height="15.0"/>
   <text class="function" x="95.0" y="270.5" text-anchor="end">
-    
+    XTAL
   </text>
   <text class="label" x="175.0" y="269.0" text-anchor="end">
     PB6
@@ -286,7 +286,7 @@
   <text class="function" x="355.0" y="60.5">
     
   </text>
-  <rect class="thinline" x="255.0" y="15.5" width="15.0" height="15.0"/>
+  <rect class="thinline" x="255.0" y="15.500000000000002" width="15.0" height="15.0"/>
   <text class="pinno" x="252.0" y="26.5" text-anchor="end">
     28
   </text>
