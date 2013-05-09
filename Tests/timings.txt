@@ -1,0 +1,8 @@
+HVPP	Uno    	Flash W	R	EEPROM	R	Micro	Flash W	R	EEPROM	W
+
+attiny4313	 1.3s  	 1.0s	0.8s	0.5s
+attiny861	 2.6s	 2.1s	1.6s	1.1s
+attiny1634	 8.4s	 6.3s	0.8s	0.5s
+atmega328	 6.4s	 5.5s	3.2s	2.1s
+atmega1284	23.6s	19.7s	6.3s	4.2s
+
