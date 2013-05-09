@@ -1,0 +1,21 @@
+#!/usr/bin/ruby
+
+(PART,PROG,FLASH,EEPROM,ofuse,nfuse) = ARGV
+
+AVRDUDE     = ENV['AVRDUDE'] or raise "$AVRDUDE not defined"
+SERIALPORT  = ENV['SERIALPORT'] or raise "$SERIALPORT not defined"
+AVRDUDECONF = ENV['AVRDUDECONF'] ? "-C '#{ENV['AVRDUDECONF']}'" : ''
+
+def loud_system(command)
+  $stderr.puts command
+  system command or raise
+end
+
+OFUSE = ofuse.split(':')
+NFUSE = nfuse.split(':')
+
+DUDE  = "'#{AVRDUDE}' #{AVRDUDECONF} -p #{PART} -c #{PROG} -P #{SERIALPORT}"
+
+loud_system "#{DUDE} -U flash:w:#{FLASH}:i -U eeprom:w:#{EEPROM}:i -U lfuse:w:0x#{NFUSE[0]}:m -U hfuse:w:0x#{NFUSE[1]}:m -U efuse:w:0x#{NFUSE[2]}:m"
+loud_system "#{DUDE} -U lfuse:w:0x#{OFUSE[0]}:m -U hfuse:w:0x#{OFUSE[1]}:m -U efuse:w:0x#{OFUSE[2]}:m"
+
