@@ -357,7 +357,7 @@ HVPPReadData(uint8_t byteSel)
 static bool
 HVPPPollWait(uint8_t pollTimeout)
 {
-    uint32_t target = millis()+pollTimeout;
+    uint32_t target = millis()+pollTimeout+5;
     while (millis() != target)
         if (digitalRead(HVPP_RDY)) 
             return true;
