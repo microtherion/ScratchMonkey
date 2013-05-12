@@ -7,15 +7,18 @@
 <title>High Voltage Parallel Programming</title>
 </head>
 <body>
+<div class="nav">
+<a href="index.html"><span class=logo>ScratchMonkey</span></a> &rarr; <a href="HighVoltage.html">High Voltage Programming</a> &rarr; HVPP
+</div>
 <h2>High Voltage Parallel Programming</h2>
 
 <img class=circuit src="img/arduino_prog_hvpp.svg">
 
-<p>HVSP is the high voltage protocol for ATtiny and ATmega MCUs with 20 pins or more.</p>
+<p>HVPP is the high voltage protocol for ATtiny and ATmega MCUs with 20 pins or more.</p>
 
 <h3>Connecting your Arduino</h3>
 
-<p>HVSP requires 19 signals (including power and ground), as shown in this illustration. For High Voltage programming, the timing of the power pin matters, so it is software controlled through the <strong>SVCC</strong> pin, rather than simply through the <strong>5V</strong> pin of the Arduino. The <strong>HVRESET</strong> signal is used to control one of the circuits shown in the <a href="HighVoltage.html">High Voltage programming section</a> to generate the 12V signal to be applied to <strong>RESET</strong> pin of the target microcontroller. The other signals go directly to the target microcontroller.</p>
+<p>HVPP requires 19 signals (including power and ground), as shown in this illustration. For High Voltage programming, the timing of the power pin matters, so it is software controlled through the <strong>SVCC</strong> pin, rather than simply through the <strong>5V</strong> pin of the Arduino. The <strong>HVRESET</strong> signal is used to control one of the circuits shown in the <a href="HighVoltage.html">High Voltage programming section</a> to generate the 12V signal to be applied to <strong>RESET</strong> pin of the target microcontroller. The other signals go directly to the target microcontroller.</p>
 
 <p>Since a regular Arduino has only 18 pins available (short of reusing pins 0 and 1, which I'm not confident I can do safely), we use a 74HC595 shift register to generate most output only control signals through a serial interface. The only exceptions are <strong>XTAL</strong>, which needs to be pulsed often, and <strong>VCC</strong> and <strong>HVRESET</strong>, which never change during the programming process.</p>
 
@@ -36,6 +39,10 @@
 	<tr><td>CTRL7	<td>OE			<td>-			<td>PAGEL</tr>
 </table>
 
-<p>For 20 pin MCUs not listed here, you need to figure out whether <strong>pp_controlstack</strong> in the avrdude configuration resembles the ATtiny861 or the ATtiny4313, and connect pins accordingly.</p>
+<p>For 20 pin MCUs not listed here, you need to figure out whether <strong>pp_controlstack</strong> in the avrdude configuration resembles the ATtiny861 or the ATtiny4313, and connect pins accordingly. As far as I can tell, the ATtiny26/261/461/861 is unique, and all other 20 pin MCUs use the ATtiny4313 scheme.</p>
+
+<div class="nav">
+<a href="index.html"><span class=logo>ScratchMonkey</span></a> &rarr; <a href="HighVoltage.html">High Voltage Programming</a> &rarr; HVPP
+</div>
 </body>
 </html>
