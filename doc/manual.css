@@ -16,6 +16,14 @@ img.circuit {
 	float: right;
 	margin: 20px;
 }
+div.nav {
+	padding-left: 3mm;
+	padding-bottom: 3mm;
+	padding-right: 10mm;
+	padding-top: 3mm;
+	background-color: #c7eeff;
+	width: 90%;
+}
 div.ispconn {
 	background-color: #f8f8f8;
 	width: 49%;
