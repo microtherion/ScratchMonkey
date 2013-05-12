@@ -340,6 +340,7 @@ HVPPCommitData(uint8_t byteSel=kLowByte)
 inline void
 HVPPCommitDataWithPulseWidth(uint8_t pulseWidth, uint8_t byteSel=kLowByte)
 {
+    HVPPSetControls(kDone, byteSel);
     HVPPSetControls(kCommitData, byteSel);
     if (pulseWidth)
         delay(pulseWidth);
