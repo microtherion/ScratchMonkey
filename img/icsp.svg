@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 450.0 136.0">
+  <defs>
+  <style type="text/css"><![CDATA[
+     .thinline { fill:none; stroke:#000000; stroke-width:1.0 }
+     .thickline{ fill:none; stroke:#000000; stroke-width:2.0 }
+     .pinno    { font-family:"Courier"; font-size:12px }
+     .label    { font-family:"Helvetica"; font-size:18px }
+     .function { font-family:"Comic Sans MS"; font-size:24px }
+     .title    { font-family:"Helvetica-Bold"; font-size:20px; text-anchor:middle; writing-mode:tb; alignment-baseline:central }
+     ]]>
+  </style>
+  </defs>
+  <rect class="thickline" x="105.0" y="5.0" width="60.0" height="90.0"/>
+  <rect class="thinline"  x="105.0" y="34.0" width="5.0" height="32.0"/>
+
+  <rect class="thinline" x="114.0" y="12.0" width="16.0" height="16.0"/>
+  <text class="pinno" x="122.0" y="23.0" text-anchor="middle">
+    1
+  </text>
+  <text class="function" x="95.0" y="30" text-anchor="end">
+    MISO
+  </text>
+
+  <circle class="thinline" cx="148.0" cy="20.0" r="8.0"/>
+  <text class="pinno" x="148.0" y="23.0" text-anchor="middle">
+    2
+  </text>
+  <text class="function" x="175.0" y="30.0">
+    VCC
+  </text>
+
+  <circle class="thinline" cx="122.0" cy="50" r="8.0"/>
+  <text class="pinno" x="122.0" y="53.0" text-anchor="middle">
+    3
+  </text>
+  <text class="function" x="95.0" y="60" text-anchor="end">
+    SCK
+  </text>
+
+  <circle class="thinline" cx="148.0" cy="50" r="8.0"/>
+  <text class="pinno" x="148.0" y="53.0" text-anchor="middle">
+    4
+  </text>
+  <text class="function" x="175.0" y="60">
+    MOSI
+  </text>
+
+  <circle class="thinline" cx="122.0" cy="80" r="8.0"/>
+  <text class="pinno" x="122.0" y="83.0" text-anchor="middle">
+    5
+  </text>
+  <text class="function" x="95.0" y="90" text-anchor="end">
+    RESET
+  </text>
+
+  <circle class="thinline" cx="148.0" cy="80" r="8.0"/>
+  <text class="pinno" x="148.0" y="83.0" text-anchor="middle">
+    6
+  </text>
+  <text class="function" x="175.0" y="90">
+    GND
+  </text>
+</svg>
