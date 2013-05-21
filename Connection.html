@@ -25,7 +25,20 @@
 
 <p>An Arduino can be used to reprogram another Arduino.</p>
 
-<p>Since the Arduino's XTAL1 pin is connected to the oscillator, the only usable protocol is ISP. In desperate circumstances, it might be possible to remove the MCU from its socket (if your board has the socketed through-hole variant of the MCU) and program it on a breadboard.</p>
+<p>Since the Arduino's XTAL1 pin is connected to an oscillator, the only usable protocol is ISP. In desperate circumstances, it might be possible to remove the MCU from its socket (if your board has the socketed through-hole variant of the MCU) and program it on a breadboard.</p>
+  
+<p style="clear:both"/>
+</div>
+
+<div>
+<h4 class=mcu>Arduino Micro</h4>
+
+<div class=hvconn>
+	<p class=conn>ISP</p>
+	<img src="img/micro_isp.png" align=middle width="100%">
+</div>
+
+<p>An Arduino Micro can be reprogrammed through its pins (for the Leonardo, the same signals are connected, but you'll have to use the ICSP header). Since the Micro's XTAL1 pin is connected to an oscillator, the only usable protocol is ISP. </p>
   
 <p style="clear:both"/>
 </div>
