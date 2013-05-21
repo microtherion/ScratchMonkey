@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <!-- Created with Fritzing (http://www.fritzing.org/) -->
-<svg xmlns="http://www.w3.org/2000/svg" width="3.01367in" x="0in" version="1.2" y="0in"  height="4.03619in" viewBox="0 0 216.984 290.606" baseProfile="tiny" xmlns:svg="http://www.w3.org/2000/svg">
+<svg xmlns="http://www.w3.org/2000/svg" width="3.01367in" x="0in" version="1.2" y="0in"  height="4.0362in" viewBox="0 0 216.984 290.606" baseProfile="tiny" xmlns:svg="http://www.w3.org/2000/svg">
  <g  id="watermark">
   <g >
    <path fill="#8C8C8C"  d="M109.167,288.278L107.242,282.714L107.207,282.714c0.017,0.214,0.032,0.427,0.044,0.64c0.012,0.183,0.021,0.375,0.028,0.574c0.007,0.203,0.011,0.385,0.011,0.551l0,3.8L106.542,288.279L106.542,281.923l1.199,0l1.791,5.181l0.025,0l1.8,-5.181L112.557,281.923l0,6.354L111.748,288.277l0,-3.854c0,-0.15,0.003,-0.324,0.009,-0.518s0.013,-0.38,0.021,-0.557c0.012,-0.207,0.021,-0.416,0.029,-0.625L111.775,282.723L109.831,288.278L109.167,288.278z"/>
@@ -411,7 +411,7 @@
   </g>
  </g>
  <g partID="62170">
-  <g transform="translate(71.88,53.2358)">
+  <g transform="translate(71.88,53.236)">
    <g transform="matrix(2.22045e-16,1,-1,2.22045e-16,0,0)">
     <g  id="breadboard">
      <rect width="2.16" x="2.52" y="18.949" fill="#8C8C8C"  height="4.811"/>
@@ -459,10 +459,10 @@
    </g>
   </g>
  </g>
- <path fill="none" stroke="#8c8c8c" stroke-linejoin="round" stroke-linecap="round" stroke-width="2.16" d="M85.2338,34.7515L85.2338,44.8315"/>
- <path fill="none" stroke="#8c8c8c" stroke-linejoin="round" stroke-linecap="round" stroke-width="2.16" d="M92.4338,34.7515L92.4338,44.8315"/>
+ <path fill="none" stroke="#8c8c8c" stroke-linejoin="round" stroke-linecap="round" stroke-width="2.16" d="M85.2336,34.7515L85.2336,44.8315"/>
+ <path fill="none" stroke="#8c8c8c" stroke-linejoin="round" stroke-linecap="round" stroke-width="2.16" d="M92.4336,34.7515L92.4336,44.8315"/>
  <g partID="63450">
-  <g transform="translate(81.713,0)">
+  <g transform="translate(81.7128,0)">
    <g  id="breadboard">
     <g >
      <rect width="2.16" x="9.6408" y="32.5368" fill="none"  height="0.72" id="connector1pin"/>
@@ -497,253 +497,253 @@
    </g>
   </g>
  </g>
- <g partID="65800">
-  <g transform="translate(0.4,81.4758)">
-   <g  id="breadboard">
-    <text x="18" y="6.48" fill="#787878" font-family="DroidSans"  text-anchor="middle" xmlns:xml="http://www.w3.org/XML/1998/namespace" id="label" xml:space="preserve" stroke-width="0" font-size="7.2">CTRL5</text>
-   </g>
-  </g>
- </g>
- <g partID="65820">
-  <g transform="translate(0.8,88.6758)">
-   <g  id="breadboard">
-    <text x="18" y="6.48" fill="#787878" font-family="DroidSans"  text-anchor="middle" xmlns:xml="http://www.w3.org/XML/1998/namespace" id="label" xml:space="preserve" stroke-width="0" font-size="7.2">CTRL6</text>
-   </g>
-  </g>
- </g>
- <g partID="65780">
-  <g transform="translate(0.4,74.6758)">
-   <g  id="breadboard">
-    <text x="18" y="6.48" fill="#787878" font-family="DroidSans"  text-anchor="middle" xmlns:xml="http://www.w3.org/XML/1998/namespace" id="label" xml:space="preserve" stroke-width="0" font-size="7.2">CTRL4</text>
-   </g>
-  </g>
- </g>
  <g partID="65840">
-  <g transform="translate(0.8,96.6758)">
+  <g transform="translate(0.8,96.676)">
    <g  id="breadboard">
     <text x="18" y="6.48" fill="#787878" font-family="DroidSans"  text-anchor="middle" xmlns:xml="http://www.w3.org/XML/1998/namespace" id="label" xml:space="preserve" stroke-width="0" font-size="7.2">CTRL7</text>
    </g>
   </g>
  </g>
- <g partID="65710">
-  <g transform="translate(0.8,41.0758)">
+ <g partID="65820">
+  <g transform="translate(0.8,88.676)">
    <g  id="breadboard">
-    <text x="18" y="6.48" fill="#787878" font-family="DroidSans"  text-anchor="middle" xmlns:xml="http://www.w3.org/XML/1998/namespace" id="label" xml:space="preserve" stroke-width="0" font-size="7.2">CTRL0</text>
+    <text x="18" y="6.48" fill="#787878" font-family="DroidSans"  text-anchor="middle" xmlns:xml="http://www.w3.org/XML/1998/namespace" id="label" xml:space="preserve" stroke-width="0" font-size="7.2">CTRL6</text>
+   </g>
+  </g>
+ </g>
+ <g partID="65800">
+  <g transform="translate(0.4,81.476)">
+   <g  id="breadboard">
+    <text x="18" y="6.48" fill="#787878" font-family="DroidSans"  text-anchor="middle" xmlns:xml="http://www.w3.org/XML/1998/namespace" id="label" xml:space="preserve" stroke-width="0" font-size="7.2">CTRL5</text>
+   </g>
+  </g>
+ </g>
+ <g partID="65780">
+  <g transform="translate(0.4,74.676)">
+   <g  id="breadboard">
+    <text x="18" y="6.48" fill="#787878" font-family="DroidSans"  text-anchor="middle" xmlns:xml="http://www.w3.org/XML/1998/namespace" id="label" xml:space="preserve" stroke-width="0" font-size="7.2">CTRL4</text>
    </g>
   </g>
  </g>
  <g partID="65760">
-  <g transform="translate(0,67.4758)">
+  <g transform="translate(0,67.476)">
    <g  id="breadboard">
     <text x="18" y="6.48" fill="#787878" font-family="DroidSans"  text-anchor="middle" xmlns:xml="http://www.w3.org/XML/1998/namespace" id="label" xml:space="preserve" stroke-width="0" font-size="7.2">CTRL3</text>
    </g>
   </g>
  </g>
  <g partID="65740">
-  <g transform="translate(0,59.8758)">
+  <g transform="translate(0,59.876)">
    <g  id="breadboard">
     <text x="18" y="6.48" fill="#787878" font-family="DroidSans"  text-anchor="middle" xmlns:xml="http://www.w3.org/XML/1998/namespace" id="label" xml:space="preserve" stroke-width="0" font-size="7.2">CTRL2</text>
    </g>
   </g>
  </g>
+ <g partID="65710">
+  <g transform="translate(0.8,41.076)">
+   <g  id="breadboard">
+    <text x="18" y="6.48" fill="#787878" font-family="DroidSans"  text-anchor="middle" xmlns:xml="http://www.w3.org/XML/1998/namespace" id="label" xml:space="preserve" stroke-width="0" font-size="7.2">CTRL0</text>
+   </g>
+  </g>
+ </g>
  <g partID="66030">
-  <g transform="translate(150,35.4758)">
+  <g transform="translate(150,35.476)">
    <g  id="breadboard">
     <text x="14.4" y="6.48" fill="#787878" font-family="DroidSans"  text-anchor="middle" xmlns:xml="http://www.w3.org/XML/1998/namespace" id="label" xml:space="preserve" stroke-width="0" font-size="7.2">D7:0</text>
    </g>
   </g>
  </g>
  <g partID="66090">
-  <g transform="translate(101.2,0.67576)">
+  <g transform="translate(101.2,0.676)">
    <g  id="breadboard">
     <text x="25.2" y="6.48" fill="#787878" font-family="DroidSans"  text-anchor="middle" xmlns:xml="http://www.w3.org/XML/1998/namespace" id="label" xml:space="preserve" stroke-width="0" font-size="7.2">HVRESET</text>
    </g>
   </g>
  </g>
  <g partID="66240">
-  <g transform="translate(135.6,12.6758)">
+  <g transform="translate(135.6,12.676)">
    <g  id="breadboard">
     <text x="14.4" y="6.48" fill="#787878" font-family="DroidSans"  text-anchor="middle" xmlns:xml="http://www.w3.org/XML/1998/namespace" id="label" xml:space="preserve" stroke-width="0" font-size="7.2">SVCC</text>
    </g>
   </g>
  </g>
  <g partID="66300">
-  <g transform="translate(100.8,27.0758)">
+  <g transform="translate(100.8,27.076)">
    <g  id="breadboard">
     <text x="10.8" y="6.48" fill="#787878" font-family="DroidSans"  text-anchor="middle" xmlns:xml="http://www.w3.org/XML/1998/namespace" id="label" xml:space="preserve" stroke-width="0" font-size="7.2">RDY</text>
    </g>
   </g>
  </g>
  <g partID="66390">
-  <g transform="translate(185.6,5.47576)">
+  <g transform="translate(185.6,5.476)">
    <g  id="breadboard">
     <text x="14.4" y="6.48" fill="#787878" font-family="DroidSans"  text-anchor="middle" xmlns:xml="http://www.w3.org/XML/1998/namespace" id="label" xml:space="preserve" stroke-width="0" font-size="7.2">XTAL</text>
    </g>
   </g>
  </g>
  <g partID="62270">
-  <line stroke="#e6ab00" stroke-linecap="round" y1="92.5558" x1="103.2" y2="131.652" stroke-width="3.2" x2="103.189"/>
-  <line stroke="#ffe24d" stroke-linecap="round" y1="92.5558" x1="103.2" y2="131.652" stroke-width="1.6" x2="103.189"/>
+  <line stroke="#e6ab00" stroke-linecap="round" y1="92.556" x1="103.2" y2="131.652" stroke-width="3.2" x2="103.189"/>
+  <line stroke="#ffe24d" stroke-linecap="round" y1="92.556" x1="103.2" y2="131.652" stroke-width="1.6" x2="103.189"/>
  </g>
  <g partID="62200">
-  <line stroke="#e6ab00" stroke-linecap="round" y1="92.8363" x1="70.8" y2="92.5558" stroke-width="3.2" x2="103.2"/>
-  <line stroke="#ffe24d" stroke-linecap="round" y1="92.8363" x1="70.8" y2="92.5558" stroke-width="1.6" x2="103.2"/>
+  <line stroke="#e6ab00" stroke-linecap="round" y1="92.8365" x1="70.8" y2="92.556" stroke-width="3.2" x2="103.2"/>
+  <line stroke="#ffe24d" stroke-linecap="round" y1="92.8365" x1="70.8" y2="92.556" stroke-width="1.6" x2="103.2"/>
  </g>
  <g partID="62410">
-  <line stroke="#1b5bb3" stroke-linecap="round" y1="70.1558" x1="117.6" y2="131.652" stroke-width="3.2" x2="117.545"/>
-  <line stroke="#418dd9" stroke-linecap="round" y1="70.1558" x1="117.6" y2="131.652" stroke-width="1.6" x2="117.545"/>
+  <line stroke="#1b5bb3" stroke-linecap="round" y1="70.156" x1="117.6" y2="131.652" stroke-width="3.2" x2="117.545"/>
+  <line stroke="#418dd9" stroke-linecap="round" y1="70.156" x1="117.6" y2="131.652" stroke-width="1.6" x2="117.545"/>
  </g>
  <g partID="62340">
-  <line stroke="#1b5bb3" stroke-linecap="round" y1="71.2353" x1="70.8" y2="70.1558" stroke-width="3.2" x2="117.6"/>
-  <line stroke="#418dd9" stroke-linecap="round" y1="71.2353" x1="70.8" y2="70.1558" stroke-width="1.6" x2="117.6"/>
+  <line stroke="#1b5bb3" stroke-linecap="round" y1="71.2355" x1="70.8" y2="70.156" stroke-width="3.2" x2="117.6"/>
+  <line stroke="#418dd9" stroke-linecap="round" y1="71.2355" x1="70.8" y2="70.156" stroke-width="1.6" x2="117.6"/>
  </g>
  <g partID="63630">
-  <line stroke="#8c0000" stroke-linecap="round" y1="56.1558" x1="92.4" y2="56.1558" stroke-width="3.2" x2="77.6"/>
-  <line stroke="#cc1414" stroke-linecap="round" y1="56.1558" x1="92.4" y2="56.1558" stroke-width="1.6" x2="77.6"/>
+  <line stroke="#8c0000" stroke-linecap="round" y1="56.156" x1="92.4" y2="56.156" stroke-width="3.2" x2="77.6"/>
+  <line stroke="#cc1414" stroke-linecap="round" y1="56.156" x1="92.4" y2="56.156" stroke-width="1.6" x2="77.6"/>
  </g>
  <g partID="63560">
-  <line stroke="#8c0000" stroke-linecap="round" y1="56.1558" x1="77.6" y2="99.3558" stroke-width="3.2" x2="76.8"/>
-  <line stroke="#cc1414" stroke-linecap="round" y1="56.1558" x1="77.6" y2="99.3558" stroke-width="1.6" x2="76.8"/>
+  <line stroke="#8c0000" stroke-linecap="round" y1="56.156" x1="77.6" y2="99.356" stroke-width="3.2" x2="76.8"/>
+  <line stroke="#cc1414" stroke-linecap="round" y1="56.156" x1="77.6" y2="99.356" stroke-width="1.6" x2="76.8"/>
  </g>
  <g partID="62510">
-  <line stroke="#8c0000" stroke-linecap="round" y1="99.3558" x1="76.8" y2="100.035" stroke-width="3.2" x2="70.8"/>
-  <line stroke="#cc1414" stroke-linecap="round" y1="99.3558" x1="76.8" y2="100.035" stroke-width="1.6" x2="70.8"/>
+  <line stroke="#8c0000" stroke-linecap="round" y1="99.356" x1="76.8" y2="100.035" stroke-width="3.2" x2="70.8"/>
+  <line stroke="#cc1414" stroke-linecap="round" y1="99.356" x1="76.8" y2="100.035" stroke-width="1.6" x2="70.8"/>
  </g>
  <g partID="62480">
-  <line stroke="#8c0000" stroke-linecap="round" y1="44.8315" x1="92.4338" y2="56.1558" stroke-width="3.2" x2="92.4"/>
-  <line stroke="#cc1414" stroke-linecap="round" y1="44.8315" x1="92.4338" y2="56.1558" stroke-width="1.6" x2="92.4"/>
+  <line stroke="#8c0000" stroke-linecap="round" y1="44.8315" x1="92.4336" y2="56.156" stroke-width="3.2" x2="92.4"/>
+  <line stroke="#cc1414" stroke-linecap="round" y1="44.8315" x1="92.4336" y2="56.156" stroke-width="1.6" x2="92.4"/>
+ </g>
+ <g partID="62850">
+  <line stroke="#d95821" stroke-linecap="round" y1="240.956" x1="174.8" y2="268.428" stroke-width="3.2" x2="175.198"/>
+  <line stroke="#ff7033" stroke-linecap="round" y1="240.956" x1="174.8" y2="268.428" stroke-width="1.6" x2="175.198"/>
  </g>
  <g partID="62780">
   <line stroke="#d95821" stroke-linecap="round" y1="215.756" x1="143.6" y2="240.956" stroke-width="3.2" x2="174.8"/>
   <line stroke="#ff7033" stroke-linecap="round" y1="215.756" x1="143.6" y2="240.956" stroke-width="1.6" x2="174.8"/>
  </g>
- <g partID="62850">
-  <line stroke="#d95821" stroke-linecap="round" y1="240.956" x1="174.8" y2="268.428" stroke-width="3.2" x2="175.199"/>
-  <line stroke="#ff7033" stroke-linecap="round" y1="240.956" x1="174.8" y2="268.428" stroke-width="1.6" x2="175.199"/>
- </g>
  <g partID="62640">
-  <line stroke="#d95821" stroke-linecap="round" y1="86.1558" x1="146" y2="215.756" stroke-width="3.2" x2="143.6"/>
-  <line stroke="#ff7033" stroke-linecap="round" y1="86.1558" x1="146" y2="215.756" stroke-width="1.6" x2="143.6"/>
+  <line stroke="#d95821" stroke-linecap="round" y1="86.156" x1="146" y2="215.756" stroke-width="3.2" x2="143.6"/>
+  <line stroke="#ff7033" stroke-linecap="round" y1="86.156" x1="146" y2="215.756" stroke-width="1.6" x2="143.6"/>
  </g>
  <g partID="62570">
-  <line stroke="#d95821" stroke-linecap="round" y1="85.6348" x1="70.8" y2="86.1558" stroke-width="3.2" x2="146"/>
-  <line stroke="#ff7033" stroke-linecap="round" y1="85.6348" x1="70.8" y2="86.1558" stroke-width="1.6" x2="146"/>
+  <line stroke="#d95821" stroke-linecap="round" y1="85.635" x1="70.8" y2="86.156" stroke-width="3.2" x2="146"/>
+  <line stroke="#ff7033" stroke-linecap="round" y1="85.635" x1="70.8" y2="86.156" stroke-width="1.6" x2="146"/>
  </g>
  <g partID="63200">
-  <line stroke="#000000" stroke-linecap="round" y1="79.3558" x1="84" y2="116.956" stroke-width="3.2" x2="83.6"/>
-  <line stroke="#404040" stroke-linecap="round" y1="79.3558" x1="84" y2="116.956" stroke-width="1.6" x2="83.6"/>
- </g>
- <g partID="63060">
-  <line stroke="#000000" stroke-linecap="round" y1="116.556" x1="41.2" y2="106.556" stroke-width="3.2" x2="41.6"/>
-  <line stroke="#404040" stroke-linecap="round" y1="116.556" x1="41.2" y2="106.556" stroke-width="1.6" x2="41.6"/>
+  <line stroke="#000000" stroke-linecap="round" y1="79.356" x1="84" y2="116.956" stroke-width="3.2" x2="83.6"/>
+  <line stroke="#404040" stroke-linecap="round" y1="79.356" x1="84" y2="116.956" stroke-width="1.6" x2="83.6"/>
  </g>
  <g partID="63130">
   <line stroke="#000000" stroke-linecap="round" y1="116.956" x1="83.6" y2="116.556" stroke-width="3.2" x2="41.2"/>
   <line stroke="#404040" stroke-linecap="round" y1="116.956" x1="83.6" y2="116.556" stroke-width="1.6" x2="41.2"/>
+ </g>
+ <g partID="63060">
+  <line stroke="#000000" stroke-linecap="round" y1="116.556" x1="41.2" y2="106.556" stroke-width="3.2" x2="41.6"/>
+  <line stroke="#404040" stroke-linecap="round" y1="116.556" x1="41.2" y2="106.556" stroke-width="1.6" x2="41.6"/>
  </g>
  <g partID="62990">
   <line stroke="#000000" stroke-linecap="round" y1="106.556" x1="41.6" y2="107.235" stroke-width="3.2" x2="49.1995"/>
   <line stroke="#404040" stroke-linecap="round" y1="106.556" x1="41.6" y2="107.235" stroke-width="1.6" x2="49.1995"/>
  </g>
  <g partID="62920">
-  <line stroke="#000000" stroke-linecap="round" y1="78.4348" x1="70.8" y2="79.3558" stroke-width="3.2" x2="84"/>
-  <line stroke="#404040" stroke-linecap="round" y1="78.4348" x1="70.8" y2="79.3558" stroke-width="1.6" x2="84"/>
- </g>
- <g partID="63420">
-  <line stroke="#6c2710" stroke-linecap="round" y1="44.9558" x1="34" y2="44.9558" stroke-width="3.2" x2="105.2"/>
-  <line stroke="#8c3b00" stroke-linecap="round" y1="44.9558" x1="34" y2="44.9558" stroke-width="1.6" x2="105.2"/>
- </g>
- <g partID="65470">
-  <line stroke="#6c2710" stroke-linecap="round" y1="63.7558" x1="104.8" y2="64.0358" stroke-width="3.2" x2="70.8"/>
-  <line stroke="#8c3b00" stroke-linecap="round" y1="63.7558" x1="104.8" y2="64.0358" stroke-width="1.6" x2="70.8"/>
+  <line stroke="#000000" stroke-linecap="round" y1="78.435" x1="70.8" y2="79.356" stroke-width="3.2" x2="84"/>
+  <line stroke="#404040" stroke-linecap="round" y1="78.435" x1="70.8" y2="79.356" stroke-width="1.6" x2="84"/>
  </g>
  <g partID="65500">
-  <line stroke="#6c2710" stroke-linecap="round" y1="44.9558" x1="105.2" y2="63.7558" stroke-width="3.2" x2="104.8"/>
-  <line stroke="#8c3b00" stroke-linecap="round" y1="44.9558" x1="105.2" y2="63.7558" stroke-width="1.6" x2="104.8"/>
+  <line stroke="#6c2710" stroke-linecap="round" y1="44.956" x1="105.2" y2="63.756" stroke-width="3.2" x2="104.8"/>
+  <line stroke="#8c3b00" stroke-linecap="round" y1="44.956" x1="105.2" y2="63.756" stroke-width="1.6" x2="104.8"/>
+ </g>
+ <g partID="65470">
+  <line stroke="#6c2710" stroke-linecap="round" y1="63.756" x1="104.8" y2="64.036" stroke-width="3.2" x2="70.8"/>
+  <line stroke="#8c3b00" stroke-linecap="round" y1="63.756" x1="104.8" y2="64.036" stroke-width="1.6" x2="70.8"/>
+ </g>
+ <g partID="63420">
+  <line stroke="#6c2710" stroke-linecap="round" y1="44.956" x1="34" y2="44.956" stroke-width="3.2" x2="105.2"/>
+  <line stroke="#8c3b00" stroke-linecap="round" y1="44.956" x1="34" y2="44.956" stroke-width="1.6" x2="105.2"/>
  </g>
  <g partID="65130">
-  <line stroke="#000000" stroke-linecap="round" y1="78.5558" x1="83.6" y2="44.8315" stroke-width="3.2" x2="85.2338"/>
-  <line stroke="#404040" stroke-linecap="round" y1="78.5558" x1="83.6" y2="44.8315" stroke-width="1.6" x2="85.2338"/>
+  <line stroke="#000000" stroke-linecap="round" y1="78.556" x1="83.6" y2="44.8315" stroke-width="3.2" x2="85.2336"/>
+  <line stroke="#404040" stroke-linecap="round" y1="78.556" x1="83.6" y2="44.8315" stroke-width="1.6" x2="85.2336"/>
  </g>
  <g partID="65140">
-  <line stroke="#000000" stroke-linecap="round" y1="78.4348" x1="70.8" y2="78.5558" stroke-width="3.2" x2="83.6"/>
-  <line stroke="#404040" stroke-linecap="round" y1="78.4348" x1="70.8" y2="78.5558" stroke-width="1.6" x2="83.6"/>
+  <line stroke="#000000" stroke-linecap="round" y1="78.435" x1="70.8" y2="78.556" stroke-width="3.2" x2="83.6"/>
+  <line stroke="#404040" stroke-linecap="round" y1="78.435" x1="70.8" y2="78.556" stroke-width="1.6" x2="83.6"/>
  </g>
  <g partID="65320">
-  <line stroke="#8c0000" stroke-linecap="round" y1="56.5558" x1="77.2" y2="56.8358" stroke-width="3.2" x2="70.8"/>
-  <line stroke="#cc1414" stroke-linecap="round" y1="56.5558" x1="77.2" y2="56.8358" stroke-width="1.6" x2="70.8"/>
- </g>
- <g partID="65330">
-  <line stroke="#8c0000" stroke-linecap="round" y1="44.8315" x1="92.4338" y2="55.7558" stroke-width="3.2" x2="92"/>
-  <line stroke="#cc1414" stroke-linecap="round" y1="44.8315" x1="92.4338" y2="55.7558" stroke-width="1.6" x2="92"/>
+  <line stroke="#8c0000" stroke-linecap="round" y1="56.556" x1="77.2" y2="56.836" stroke-width="3.2" x2="70.8"/>
+  <line stroke="#cc1414" stroke-linecap="round" y1="56.556" x1="77.2" y2="56.836" stroke-width="1.6" x2="70.8"/>
  </g>
  <g partID="65400">
-  <line stroke="#8c0000" stroke-linecap="round" y1="55.7558" x1="92" y2="56.5558" stroke-width="3.2" x2="77.2"/>
-  <line stroke="#cc1414" stroke-linecap="round" y1="55.7558" x1="92" y2="56.5558" stroke-width="1.6" x2="77.2"/>
+  <line stroke="#8c0000" stroke-linecap="round" y1="55.756" x1="92" y2="56.556" stroke-width="3.2" x2="77.2"/>
+  <line stroke="#cc1414" stroke-linecap="round" y1="55.756" x1="92" y2="56.556" stroke-width="1.6" x2="77.2"/>
+ </g>
+ <g partID="65330">
+  <line stroke="#8c0000" stroke-linecap="round" y1="44.8315" x1="92.4336" y2="55.756" stroke-width="3.2" x2="92"/>
+  <line stroke="#cc1414" stroke-linecap="round" y1="44.8315" x1="92.4336" y2="55.756" stroke-width="1.6" x2="92"/>
  </g>
  <g partID="65530">
-  <line stroke="#6c2710" stroke-linecap="round" y1="64.0358" x1="33.2" y2="64.0358" stroke-width="3.2" x2="49.1995"/>
-  <line stroke="#8c3b00" stroke-linecap="round" y1="64.0358" x1="33.2" y2="64.0358" stroke-width="1.6" x2="49.1995"/>
+  <line stroke="#6c2710" stroke-linecap="round" y1="64.036" x1="33.2" y2="64.036" stroke-width="3.2" x2="49.1995"/>
+  <line stroke="#8c3b00" stroke-linecap="round" y1="64.036" x1="33.2" y2="64.036" stroke-width="1.6" x2="49.1995"/>
  </g>
  <g partID="65560">
-  <line stroke="#6c2710" stroke-linecap="round" y1="71.2353" x1="32.8" y2="71.2353" stroke-width="3.2" x2="49.1995"/>
-  <line stroke="#8c3b00" stroke-linecap="round" y1="71.2353" x1="32.8" y2="71.2353" stroke-width="1.6" x2="49.1995"/>
+  <line stroke="#6c2710" stroke-linecap="round" y1="71.2355" x1="32.8" y2="71.2355" stroke-width="3.2" x2="49.1995"/>
+  <line stroke="#8c3b00" stroke-linecap="round" y1="71.2355" x1="32.8" y2="71.2355" stroke-width="1.6" x2="49.1995"/>
  </g>
  <g partID="65590">
-  <line stroke="#6c2710" stroke-linecap="round" y1="78.4348" x1="32.8" y2="78.4348" stroke-width="3.2" x2="49.1995"/>
-  <line stroke="#8c3b00" stroke-linecap="round" y1="78.4348" x1="32.8" y2="78.4348" stroke-width="1.6" x2="49.1995"/>
+  <line stroke="#6c2710" stroke-linecap="round" y1="78.435" x1="32.8" y2="78.435" stroke-width="3.2" x2="49.1995"/>
+  <line stroke="#8c3b00" stroke-linecap="round" y1="78.435" x1="32.8" y2="78.435" stroke-width="1.6" x2="49.1995"/>
  </g>
  <g partID="65620">
-  <line stroke="#6c2710" stroke-linecap="round" y1="85.6348" x1="33.6" y2="85.6348" stroke-width="3.2" x2="49.1995"/>
-  <line stroke="#8c3b00" stroke-linecap="round" y1="85.6348" x1="33.6" y2="85.6348" stroke-width="1.6" x2="49.1995"/>
+  <line stroke="#6c2710" stroke-linecap="round" y1="85.635" x1="33.6" y2="85.635" stroke-width="3.2" x2="49.1995"/>
+  <line stroke="#8c3b00" stroke-linecap="round" y1="85.635" x1="33.6" y2="85.635" stroke-width="1.6" x2="49.1995"/>
  </g>
  <g partID="65650">
-  <line stroke="#6c2710" stroke-linecap="round" y1="92.8363" x1="32.8" y2="92.8363" stroke-width="3.2" x2="49.1995"/>
-  <line stroke="#8c3b00" stroke-linecap="round" y1="92.8363" x1="32.8" y2="92.8363" stroke-width="1.6" x2="49.1995"/>
+  <line stroke="#6c2710" stroke-linecap="round" y1="92.8365" x1="32.8" y2="92.8365" stroke-width="3.2" x2="49.1995"/>
+  <line stroke="#8c3b00" stroke-linecap="round" y1="92.8365" x1="32.8" y2="92.8365" stroke-width="1.6" x2="49.1995"/>
  </g>
  <g partID="65680">
   <line stroke="#6c2710" stroke-linecap="round" y1="100.035" x1="33.6" y2="100.035" stroke-width="3.2" x2="49.1995"/>
   <line stroke="#8c3b00" stroke-linecap="round" y1="100.035" x1="33.6" y2="100.035" stroke-width="1.6" x2="49.1995"/>
  </g>
- <g partID="65970">
-  <line stroke="#999999" stroke-linecap="round" y1="48.055" x1="161.181" y2="131.652" stroke-width="3.2" x2="160.802"/>
-  <line stroke="#ffffff" stroke-linecap="round" y1="48.055" x1="161.181" y2="131.652" stroke-width="1.6" x2="160.802"/>
+ <g partID="66010">
+  <line stroke="#999999" stroke-linecap="round" y1="47.308" x1="133.955" y2="131.653" stroke-width="3.2" x2="131.9"/>
+  <line stroke="#ffffff" stroke-linecap="round" y1="47.308" x1="133.955" y2="131.653" stroke-width="1.6" x2="131.9"/>
  </g>
  <g partID="65990">
-  <line stroke="#999999" stroke-linecap="round" y1="47.557" x1="139.789" y2="131.652" stroke-width="3.2" x2="139.079"/>
-  <line stroke="#ffffff" stroke-linecap="round" y1="47.557" x1="139.789" y2="131.652" stroke-width="1.6" x2="139.079"/>
+  <line stroke="#999999" stroke-linecap="round" y1="47.5568" x1="139.79" y2="131.652" stroke-width="3.2" x2="139.079"/>
+  <line stroke="#ffffff" stroke-linecap="round" y1="47.5568" x1="139.79" y2="131.652" stroke-width="1.6" x2="139.079"/>
+ </g>
+ <g partID="65970">
+  <line stroke="#999999" stroke-linecap="round" y1="48.0552" x1="161.181" y2="131.653" stroke-width="3.2" x2="160.801"/>
+  <line stroke="#ffffff" stroke-linecap="round" y1="48.0552" x1="161.181" y2="131.653" stroke-width="1.6" x2="160.801"/>
  </g>
  <g partID="65950">
-  <line stroke="#999999" stroke-linecap="round" y1="47.4522" x1="154.386" y2="131.652" stroke-width="3.2" x2="153.624"/>
-  <line stroke="#ffffff" stroke-linecap="round" y1="47.4522" x1="154.386" y2="131.652" stroke-width="1.6" x2="153.624"/>
- </g>
- <g partID="66010">
-  <line stroke="#999999" stroke-linecap="round" y1="47.3078" x1="133.955" y2="131.652" stroke-width="3.2" x2="131.901"/>
-  <line stroke="#ffffff" stroke-linecap="round" y1="47.3078" x1="133.955" y2="131.652" stroke-width="1.6" x2="131.901"/>
- </g>
- <g partID="65890">
-  <line stroke="#999999" stroke-linecap="round" y1="46.2074" x1="183.645" y2="131.652" stroke-width="3.2" x2="182.334"/>
-  <line stroke="#ffffff" stroke-linecap="round" y1="46.2074" x1="183.645" y2="131.652" stroke-width="1.6" x2="182.334"/>
+  <line stroke="#999999" stroke-linecap="round" y1="47.452" x1="154.386" y2="131.652" stroke-width="3.2" x2="153.624"/>
+  <line stroke="#ffffff" stroke-linecap="round" y1="47.452" x1="154.386" y2="131.652" stroke-width="1.6" x2="153.624"/>
  </g>
  <g partID="65930">
-  <line stroke="#999999" stroke-linecap="round" y1="47.0466" x1="168.749" y2="131.652" stroke-width="3.2" x2="167.978"/>
-  <line stroke="#ffffff" stroke-linecap="round" y1="47.0466" x1="168.749" y2="131.652" stroke-width="1.6" x2="167.978"/>
+  <line stroke="#999999" stroke-linecap="round" y1="47.0464" x1="168.75" y2="131.652" stroke-width="3.2" x2="167.978"/>
+  <line stroke="#ffffff" stroke-linecap="round" y1="47.0464" x1="168.75" y2="131.652" stroke-width="1.6" x2="167.978"/>
  </g>
  <g partID="65910">
-  <line stroke="#999999" stroke-linecap="round" y1="46.2338" x1="176.656" y2="131.652" stroke-width="3.2" x2="175.156"/>
-  <line stroke="#ffffff" stroke-linecap="round" y1="46.2338" x1="176.656" y2="131.652" stroke-width="1.6" x2="175.156"/>
+  <line stroke="#999999" stroke-linecap="round" y1="46.2336" x1="176.655" y2="131.652" stroke-width="3.2" x2="175.156"/>
+  <line stroke="#ffffff" stroke-linecap="round" y1="46.2336" x1="176.655" y2="131.652" stroke-width="1.6" x2="175.156"/>
+ </g>
+ <g partID="65890">
+  <line stroke="#999999" stroke-linecap="round" y1="46.208" x1="183.645" y2="131.653" stroke-width="3.2" x2="182.334"/>
+  <line stroke="#ffffff" stroke-linecap="round" y1="46.208" x1="183.645" y2="131.653" stroke-width="1.6" x2="182.334"/>
  </g>
  <g partID="65860">
-  <line stroke="#999999" stroke-linecap="round" y1="46.9558" x1="190.4" y2="131.652" stroke-width="3.2" x2="189.51"/>
-  <line stroke="#ffffff" stroke-linecap="round" y1="46.9558" x1="190.4" y2="131.652" stroke-width="1.6" x2="189.51"/>
+  <line stroke="#999999" stroke-linecap="round" y1="46.956" x1="190.4" y2="131.653" stroke-width="3.2" x2="189.51"/>
+  <line stroke="#ffffff" stroke-linecap="round" y1="46.956" x1="190.4" y2="131.653" stroke-width="1.6" x2="189.51"/>
  </g>
  <g partID="66060">
-  <line stroke="#00a6d3" stroke-linecap="round" y1="11.7558" x1="126" y2="131.652" stroke-width="3.2" x2="124.721"/>
-  <line stroke="#47cc79" stroke-linecap="round" y1="11.7558" x1="126" y2="131.652" stroke-width="1.6" x2="124.721"/>
+  <line stroke="#e6ab00" stroke-linecap="round" y1="11.756" x1="126" y2="131.653" stroke-width="3.2" x2="124.721"/>
+  <line stroke="#ffe24d" stroke-linecap="round" y1="11.756" x1="126" y2="131.653" stroke-width="1.6" x2="124.721"/>
  </g>
  <g partID="66210">
-  <line stroke="#8c0000" stroke-linecap="round" y1="210.956" x1="168.8" y2="268.428" stroke-width="3.2" x2="168.021"/>
-  <line stroke="#cc1414" stroke-linecap="round" y1="210.956" x1="168.8" y2="268.428" stroke-width="1.6" x2="168.021"/>
+  <line stroke="#8c0000" stroke-linecap="round" y1="210.956" x1="168.8" y2="268.428" stroke-width="3.2" x2="168.02"/>
+  <line stroke="#cc1414" stroke-linecap="round" y1="210.956" x1="168.8" y2="268.428" stroke-width="1.6" x2="168.02"/>
  </g>
  <g partID="66180">
   <line stroke="#8c0000" stroke-linecap="round" y1="210.956" x1="148.4" y2="210.956" stroke-width="3.2" x2="168.8"/>
@@ -754,28 +754,24 @@
   <line stroke="#cc1414" stroke-linecap="round" y1="136.956" x1="149.6" y2="210.956" stroke-width="1.6" x2="148.4"/>
  </g>
  <g partID="66120">
-  <line stroke="#8c0000" stroke-linecap="round" y1="22.1558" x1="150" y2="136.956" stroke-width="3.2" x2="149.6"/>
-  <line stroke="#cc1414" stroke-linecap="round" y1="22.1558" x1="150" y2="136.956" stroke-width="1.6" x2="149.6"/>
+  <line stroke="#8c0000" stroke-linecap="round" y1="22.156" x1="150" y2="136.956" stroke-width="3.2" x2="149.6"/>
+  <line stroke="#cc1414" stroke-linecap="round" y1="22.156" x1="150" y2="136.956" stroke-width="1.6" x2="149.6"/>
  </g>
  <g partID="66270">
-  <line stroke="#666666" stroke-linecap="round" y1="38.1558" x1="111.2" y2="131.652" stroke-width="3.2" x2="110.367"/>
-  <line stroke="#999999" stroke-linecap="round" y1="38.1558" x1="111.2" y2="131.652" stroke-width="1.6" x2="110.367"/>
+  <line stroke="#666666" stroke-linecap="round" y1="38.156" x1="111.2" y2="131.653" stroke-width="3.2" x2="110.367"/>
+  <line stroke="#999999" stroke-linecap="round" y1="38.156" x1="111.2" y2="131.653" stroke-width="1.6" x2="110.367"/>
  </g>
  <g partID="66360">
-  <line stroke="#7a3a73" stroke-linecap="round" y1="124.556" x1="198.4" y2="268.428" stroke-width="3.2" x2="182.377"/>
-  <line stroke="#ab58a2" stroke-linecap="round" y1="124.556" x1="198.4" y2="268.428" stroke-width="1.6" x2="182.377"/>
+  <line stroke="#7a3a73" stroke-linecap="round" y1="124.556" x1="198.4" y2="268.429" stroke-width="3.2" x2="182.376"/>
+  <line stroke="#ab58a2" stroke-linecap="round" y1="124.556" x1="198.4" y2="268.429" stroke-width="1.6" x2="182.376"/>
  </g>
  <g partID="66330">
-  <line stroke="#7a3a73" stroke-linecap="round" y1="17.3558" x1="199.6" y2="124.556" stroke-width="3.2" x2="198.4"/>
-  <line stroke="#ab58a2" stroke-linecap="round" y1="17.3558" x1="199.6" y2="124.556" stroke-width="1.6" x2="198.4"/>
+  <line stroke="#7a3a73" stroke-linecap="round" y1="17.356" x1="199.6" y2="124.556" stroke-width="3.2" x2="198.4"/>
+  <line stroke="#ab58a2" stroke-linecap="round" y1="17.356" x1="199.6" y2="124.556" stroke-width="1.6" x2="198.4"/>
  </g>
  <g partID="66840">
   <line stroke="#000000" stroke-linecap="round" y1="116.956" x1="83.2" y2="131.652" stroke-width="3.2" x2="96.011"/>
   <line stroke="#404040" stroke-linecap="round" y1="116.956" x1="83.2" y2="131.652" stroke-width="1.6" x2="96.011"/>
- </g>
- <g partID="66850">
-  <line stroke="#000000" stroke-linecap="round" y1="107.235" x1="49.1995" y2="107.356" stroke-width="3.2" x2="41.2"/>
-  <line stroke="#404040" stroke-linecap="round" y1="107.235" x1="49.1995" y2="107.356" stroke-width="1.6" x2="41.2"/>
  </g>
  <g partID="67030">
   <line stroke="#000000" stroke-linecap="round" y1="107.356" x1="41.2" y2="116.556" stroke-width="3.2" x2="40.8"/>
@@ -785,20 +781,24 @@
   <line stroke="#000000" stroke-linecap="round" y1="116.556" x1="40.8" y2="116.956" stroke-width="3.2" x2="83.2"/>
   <line stroke="#404040" stroke-linecap="round" y1="116.556" x1="40.8" y2="116.956" stroke-width="1.6" x2="83.2"/>
  </g>
- <g partID="67140">
-  <line stroke="#8c0000" stroke-linecap="round" y1="215.356" x1="133.2" y2="268.428" stroke-width="3.2" x2="132.026"/>
-  <line stroke="#cc1414" stroke-linecap="round" y1="215.356" x1="133.2" y2="268.428" stroke-width="1.6" x2="132.026"/>
+ <g partID="66850">
+  <line stroke="#000000" stroke-linecap="round" y1="107.235" x1="49.1995" y2="107.356" stroke-width="3.2" x2="41.2"/>
+  <line stroke="#404040" stroke-linecap="round" y1="107.235" x1="49.1995" y2="107.356" stroke-width="1.6" x2="41.2"/>
  </g>
- <g partID="67150">
-  <line stroke="#8c0000" stroke-linecap="round" y1="100.035" x1="70.8" y2="100.156" stroke-width="3.2" x2="76.4"/>
-  <line stroke="#cc1414" stroke-linecap="round" y1="100.035" x1="70.8" y2="100.156" stroke-width="1.6" x2="76.4"/>
+ <g partID="67140">
+  <line stroke="#8c0000" stroke-linecap="round" y1="215.356" x1="133.2" y2="268.428" stroke-width="3.2" x2="132.027"/>
+  <line stroke="#cc1414" stroke-linecap="round" y1="215.356" x1="133.2" y2="268.428" stroke-width="1.6" x2="132.027"/>
+ </g>
+ <g partID="67470">
+  <line stroke="#8c0000" stroke-linecap="round" y1="100.156" x1="76.4" y2="215.356" stroke-width="3.2" x2="76.4"/>
+  <line stroke="#cc1414" stroke-linecap="round" y1="100.156" x1="76.4" y2="215.356" stroke-width="1.6" x2="76.4"/>
  </g>
  <g partID="67240">
   <line stroke="#8c0000" stroke-linecap="round" y1="215.356" x1="76.4" y2="215.356" stroke-width="3.2" x2="133.2"/>
   <line stroke="#cc1414" stroke-linecap="round" y1="215.356" x1="76.4" y2="215.356" stroke-width="1.6" x2="133.2"/>
  </g>
- <g partID="67470">
-  <line stroke="#8c0000" stroke-linecap="round" y1="100.156" x1="76.4" y2="215.356" stroke-width="3.2" x2="76.4"/>
-  <line stroke="#cc1414" stroke-linecap="round" y1="100.156" x1="76.4" y2="215.356" stroke-width="1.6" x2="76.4"/>
+ <g partID="67150">
+  <line stroke="#8c0000" stroke-linecap="round" y1="100.035" x1="70.8" y2="100.156" stroke-width="3.2" x2="76.4"/>
+  <line stroke="#cc1414" stroke-linecap="round" y1="100.035" x1="70.8" y2="100.156" stroke-width="1.6" x2="76.4"/>
  </g>
 </svg>

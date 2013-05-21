@@ -16,13 +16,19 @@
 
 <p>HVPP is the high voltage protocol for ATtiny and ATmega MCUs with 20 pins or more.</p>
 
-<h3>Connecting your Arduino</h3>
+<h3>Connecting your Standard Arduino</h3>
 
 <p>HVPP requires 19 signals (including power and ground), as shown in this illustration. For High Voltage programming, the timing of the power pin matters, so it is software controlled through the <strong>SVCC</strong> pin, rather than simply through the <strong>5V</strong> pin of the Arduino. The <strong>HVRESET</strong> signal is used to control one of the circuits shown in the <a href="HighVoltage.html">High Voltage programming section</a> to generate the 12V signal to be applied to <strong>RESET</strong> pin of the target microcontroller. The other signals go directly to the target microcontroller.</p>
 
 <p>Since a regular Arduino has only 18 pins available (short of reusing pins 0 and 1, which I'm not confident I can do safely), we use a 74HC595 shift register to generate most output only control signals through a serial interface. The only exceptions are <strong>XTAL</strong>, which needs to be pulsed often, and <strong>VCC</strong> and <strong>HVRESET</strong>, which never change during the programming process.</p>
 
-<h3>Connecting your Target Microcontroller</h3>
+<h3 style="clear:both">Connecting your Arduino Micro/Leonardo</h3>
+
+<img class=circuit src="img/micro_prog_hvpp.png">
+
+<p>The pin connections for an Arduino Micro are shown in this illustration, and for the Leonardo, the same pins would be used. The Micro/Leonardo has enough pins to generate the control signals without an auxiliary shift register.</p>
+
+<h3 style="clear:both">Connecting your Target Microcontroller</h3>
 
 <p>The HVSP signals need to be connected to the corresponding signals on your target microcontroller / board. Details for each target are discussed in the <a href="Connection.html">Connection Diagrams</a> chapter.</p>
 
