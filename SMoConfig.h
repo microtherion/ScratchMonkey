@@ -40,7 +40,13 @@
 //
 // Define to open a serial port for debugging
 //
+#undef DEBUG_ISP
+#undef DEBUG_HVSP
+#undef DEBUG_HVPP
+
+#if defined(DEBUG_ISP) || defined(DEBUG_HVSP) || defined(DEBUG_HVPP)
 #define SMO_WANT_DEBUG
+#endif
 
 //
 // Some pins used in multiple modules

@@ -13,18 +13,13 @@
 // Derived from Randall Bohn's ArduinoISP sketch
 //
 
-#undef DEBUG_SPI
-
 #include <SPI.h>
 
 #include "SMoISP.h"
 #include "SMoGeneral.h"
 #include "SMoCommand.h"
 #include "SMoConfig.h"
-#ifdef DEBUG_SPI
-#ifndef SMO_WANT_DEBUG
-#error Please define SMO_WANT_DEBUG in SMoConfig.h to enable debugging
-#endif
+#ifdef DEBUG_ISP
 #include "SMoDebug.h"
 #endif
 
@@ -79,15 +74,15 @@ SPITransaction(const uint8_t * sendData, int8_t responseIndex = 3)
 {
     uint8_t response;
 
-#ifdef DEBUG_SPI
+#ifdef DEBUG_ISP
     SMoDebug.print("SPI ");
 #endif
     for (int8_t ix=0; ix<4; ++ix) {
-#ifdef DEBUG_SPI
+#ifdef DEBUG_ISP
         SMoDebug.print(*sendData, HEX);
 #endif
         uint8_t recv = SPITransfer(*sendData++);
-#ifdef DEBUG_SPI
+#ifdef DEBUG_ISP
         SMoDebug.print(ix == responseIndex ? " ![" : " [");
         SMoDebug.print(recv, HEX);
         SMoDebug.print("] ");
@@ -95,7 +90,7 @@ SPITransaction(const uint8_t * sendData, int8_t responseIndex = 3)
         if (ix == responseIndex)
             response = recv;
     }
-#ifdef DEBUG_SPI
+#ifdef DEBUG_ISP
     SMoDebug.println();
 #endif
     return response;
@@ -104,7 +99,7 @@ SPITransaction(const uint8_t * sendData, int8_t responseIndex = 3)
 static uint8_t
 SPITransaction(uint8_t b1, uint8_t b2, uint8_t b3, uint8_t b4)
 {
-#ifdef DEBUG_SPI
+#ifdef DEBUG_ISP
     SMoDebug.print("SPI ");
     SMoDebug.print(b1, HEX);
     SMoDebug.print(" ");
@@ -117,7 +112,7 @@ SPITransaction(uint8_t b1, uint8_t b2, uint8_t b3, uint8_t b4)
     SPITransfer(b1);
     SPITransfer(b2);
     SPITransfer(b3);
-#ifdef DEBUG_SPI
+#ifdef DEBUG_ISP
     uint8_t result = SPITransfer(b4);
     SMoDebug.print(" [");
     SMoDebug.print(result, HEX);
@@ -154,7 +149,7 @@ ISPPollReady()
 static void
 LoadExtendedAddress()
 {
-#ifdef DEBUG_SPI
+#ifdef DEBUG_ISP
         SMoDebug.print("Address was: ");
         SMoDebug.println(SMoGeneral::gAddress, HEX);
 #endif
@@ -164,7 +159,7 @@ LoadExtendedAddress()
         highBits    = 0x80 | (highBits & 0x7F);
         highBits   |= highBits << 8;
         SMoGeneral::gAddress = (SMoGeneral::gAddress & 0xFFFF) | (uint32_t(highBits) << 16);
-#ifdef DEBUG_SPI
+#ifdef DEBUG_ISP
         SMoDebug.print("Address now: ");
         SMoDebug.println(SMoGeneral::gAddress, HEX);
 #endif
@@ -174,7 +169,7 @@ LoadExtendedAddress()
 void
 SMoISP::EnterProgmode()
 {
-#ifdef DEBUG_SPI
+#ifdef DEBUG_ISP
     SMoDebugInit();
     SMoDebug.print("Pin layout ");
     SMoDebug.print(SMO_LAYOUT);
@@ -233,7 +228,7 @@ SMoISP::EnterProgmode()
         pinMode(MISO, INPUT);
         
         do {
-#ifdef DEBUG_SPI
+#ifdef DEBUG_ISP
             SMoDebug.print("Retrying in limp mode ");
             SMoDebug.print(sSPILimpMode);
             SMoDebug.print(" (");
@@ -397,17 +392,17 @@ SMoISP::SPIMulti()
     const uint8_t * txData  =  &SMoCommand::gBody[4];
     uint8_t *       rxData  =  &SMoCommand::gBody[2];
 
-#ifdef DEBUG_SPI
+#ifdef DEBUG_ISP
     SMoDebug.print("!SPI");
 #endif
     while (numTX) {
-#ifdef DEBUG_SPI
+#ifdef DEBUG_ISP
         SMoDebug.print(" ");
         SMoDebug.print(*txData, HEX);
 #endif
         *rxData = SPITransfer(*txData++);
         --numTX;
-#ifdef DEBUG_SPI
+#ifdef DEBUG_ISP
         SMoDebug.print(rxStart ? " (" : " [");
         SMoDebug.print(*rxData, HEX);
         SMoDebug.print(rxStart ? ")" : "]");
@@ -421,7 +416,7 @@ SMoISP::SPIMulti()
     }
     while (numRX) {
         *rxData = SPITransfer(0);
-#ifdef DEBUG_SPI
+#ifdef DEBUG_ISP
         SMoDebug.print(rxStart ? " . (" : " . [");
         SMoDebug.print(*rxData, HEX);
         SMoDebug.print(rxStart ? ")" : "]");
@@ -435,7 +430,7 @@ SMoISP::SPIMulti()
     }
     *rxData++ = STATUS_CMD_OK;
     SMoCommand::SendResponse(STATUS_CMD_OK, rxData-&SMoCommand::gBody[0]);
-#ifdef DEBUG_SPI
+#ifdef DEBUG_ISP
     SMoDebug.println();
 #endif
 }

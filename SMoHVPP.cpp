@@ -12,8 +12,6 @@
 // http://opensource.org/licenses/bsd-license.php
 //
 
-#undef DEBUG_HVPP
-
 #include "SMoHVPP.h"
 #include "SMoCommand.h"
 #include "SMoGeneral.h"
