@@ -38,16 +38,17 @@ table.nav {
 	width: 90%;
 	padding: 2mm 2mm 2mm 2mm;
 	background-color: #dddeff;
+	font-family: sans-serif;
 }
-td.prevnav {
+table.nav td:nth-child(1) {
 	text-align: left;
 	width: 35%;
 }
-td.curnav {
+table.nav td:nth-child(2) {
 	text-align: center;
 	width: 30%;
 }
-td.nextnav {
+table.nav td:nth-child(3) {
 	text-align: right;
 	width: 35%;
 }
