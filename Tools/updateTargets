@@ -1,0 +1,40 @@
+#!/usr/bin/ruby
+
+NAME = {
+  'arduino' => 'Arduino',
+  'micro'   => 'Arduino Leonardo / Micro',
+  'digispark'=> 'Digispark',
+  'icsp'    => 'ICSP Header'
+}
+TARGET = {
+  'none' => []
+}
+
+ARGV.each do |arg|
+  if arg =~ %r|/([a-z0-9]+)_([a-z]+)\.|
+    TARGET[$2] ||= []
+    TARGET[$2] << $1
+  end
+end
+
+echo = true
+$stdin.each_line do |line|
+  if line =~ /\}/
+    echo = true
+  end
+  print line if echo
+  if line =~ /var\s+gTarget/
+    ['none', 'isp', 'hvsp', 'hvpp'].each do |proto|
+      puts "  \"#{proto}\": ["
+      TARGET[proto].each do |t|
+        n = t.sub(/^at/, 'AT')
+        if NAME[n]
+          n = NAME[n]
+        end
+        puts "    [\"#{n}\", \"#{t}\"],"
+      end
+      puts "  ],"
+    end
+    echo = false
+  end
+end

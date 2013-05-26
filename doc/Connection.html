@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <link href="manual.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="wizard.js"></script>
 <title>Target Connection Diagrams</title>
 </head>
 
@@ -21,12 +22,42 @@
 </table>
 <h2>Target Connection Diagrams</h2>
 
+<form name="connectionOptions">
+  <strong>Protocol:</strong><select name="protocol" onchange="selectProtocol()">
+    <option value="none"></option>
+    <option value="isp">ISP</option>
+    <option value="hvsp">HVSP</option>
+    <option value="hvpp">HVPP</option>
+  </select>
+  <strong>Programmer:</strong><select name="programmer" onchange="selectProgrammer()">
+    <option value="none"></option>
+    <option value="arduino">Standard Arduino</option>
+    <option value="micro">Leonardo / Micro</option>
+  </select>
+  <strong>Target:</strong><select name="target" onchange="selectTarget()">
+    <option value="none"></option>
+  </select>
+</form>
+
+<div class=conn style="float:left">
+<p class=conn>Programmer</p>
+<p style="height:5mm"></p>
+<img name="programmerDiagram" src="" onerror="imageFallback(this)">
+</div>
+<div class=conn>
+<p class=conn>Target</p>
+<p style="height:5mm"></p>
+<img name="targetDiagram" src="" onerror="imageFallback(this)">
+</div>
+
+<p style="clear:both; height:5mm"></p>
+
 <div>
 <h4 class=mcu>Arduino Uno/Diecimila/Duemilanove</h4>
 
-<div class=hvconn>
+<div class=conn>
 	<p class=conn>ISP</p>
-	<img src="img/arduino_isp.svg" align=middle width="100%">
+	<img src="img/arduino_isp.svg">
 </div>
 
 <p>An Arduino can be used to reprogram another Arduino.</p>
@@ -39,9 +70,9 @@
 <div>
 <h4 class=mcu>Arduino Micro</h4>
 
-<div class=hvconn>
+<div class=conn>
 	<p class=conn>ISP</p>
-	<img src="img/micro_isp.png" align=middle width="100%">
+	<img src="img/micro_isp.png">
 </div>
 
 <p>An Arduino Micro can be reprogrammed through its pins (for the Leonardo, the same signals are connected, but you'll have to use the ICSP header). Since the Micro's XTAL1 pin is connected to an oscillator, the only usable protocol is ISP. </p>
@@ -52,9 +83,9 @@
 <div>
 <h4 class=mcu>Digispark</h4>
 
-<div class=hvconn>
+<div class=conn>
 	<p class=conn>HVSP</p>
-	<img src="img/digispark_hvsp.svg" align=middle width="100%">
+	<img src="img/digispark_hvsp.svg">
 </div>
 
 <p>The <a href="http://digistump.com">Digispark</a> is a tiny, <tt>ATtiny85</tt> based board featuring bitbang style USB connectivity.</p>
@@ -68,9 +99,9 @@
 <div>
 <h4 class=mcu>6 Pin ICSP Header</h4>
 
-<div class=hvconn>
+<div class=conn>
 	<p class=conn>ISP</p>
-	<img src="img/icsp.svg" align=middle width="100%">
+	<img src="img/icsp_isp.svg" align=middle width="100%">
 </div>
 
 <p>Most Arduino boards feature one or several 6 pin ICSP headers, which can be used to program the Arduino through ISP. Be careful to:</p>
@@ -79,106 +110,6 @@
 <li>Identify the correct ICSP header: Many boards have two headers, one near the main processor, and one near the auxiliary USB interface processor. Pick the one that corresponds to your purpose.</li>
 <li>Identify pin 1 correctly. On official Arduino boards, there tends to be a small white dot next to pin 1. </li>
 </ul>
-<p style="clear:both"/>
-</div>
-
-<div>
-<h4 class=mcu>ATtiny13/25/45/85</h4>
-
-<div class=ispconn>
-	<p class=conn>ISP</p>
-	<img src="img/attiny85_isp.svg">
-</div>
-<div class=hvconn>
-	<p class=conn>HVSP</p>
-	<img src="img/attiny85_hvsp.svg">
-</div>
-<p style="clear:both"/>
-</div>
-
-<div class>
-<h4 class=mcu>ATtiny24/44/84</h4>
-
-<div class=ispconn>
-	<p class=conn>ISP</p>
-	<img src="img/attiny84_isp.svg">
-</div>
-<div class=hvconn>
-	<p class=conn>HVSP</p>
-	<img src="img/attiny84_hvsp.svg">
-</div>
-<p style="clear:both"/>
-</div>
-
-<div>
-<h4 class=mcu>ATtiny2313/4313</h4>
-
-<div class=ispconn>
-	<p class=conn>ISP</p>
-	<img src="img/attiny4313_isp.svg">
-</div>
-<div class=hvconn>
-	<p class=conn>HVPP</p>
-	<img src="img/attiny4313_hvpp.svg">
-</div>
-<p style="clear:both"/>
-</div>
-
-<div>
-<h4 class=mcu>ATtiny26/261/461/861</h4>
-
-<div class=ispconn>
-	<p class=conn>ISP</p>
-	<img src="img/attiny861_isp.svg">
-</div>
-<div class=hvconn>
-	<p class=conn>HVPP</p>
-	<img src="img/attiny861_hvpp.svg">
-</div>
-<p style="clear:both"/>
-</div>
-
-<div>
-<h4 class=mcu>ATtiny1634 (SOIC)</h4>
-
-<div class=ispconn>
-	<p class=conn>ISP</p>
-	<img src="img/attiny1634_isp.svg">
-</div>
-<div class=hvconn>
-	<p class=conn>HVPP</p>
-	<img src="img/attiny1634_hvpp.svg">
-</div>
-<p style="clear:both"/>
-</div>
-
-<h3>ATmega MCUs</h4>
-
-<div>
-<h4 class=mcu>ATmega48/88/168/328</h4>
-
-<div class=ispconn>
-	<p class=conn>ISP</p>
-	<img src="img/atmega328_isp.svg">
-</div>
-<div class=hvconn>
-	<p class=conn>HVPP</p>
-	<img src="img/atmega328_hvpp.svg">
-</div>
-<p style="clear:both"/>
-</div>
-
-<div>
-<h4 class=mcu>ATmega164/324/644/1284</h4>
-
-<div class=ispconn>
-	<p class=conn>ISP</p>
-	<img src="img/atmega1284_isp.svg">
-</div>
-<div class=hvconn>
-	<p class=conn>HVPP</p>
-	<img src="img/atmega1284_hvpp.svg">
-</div>
 <p style="clear:both"/>
 </div>
 

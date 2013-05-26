@@ -15,4 +15,4 @@ HVPPS       = $(addsuffix _hvpp,$(PARALLELS))
 SVGS        = $(addsuffix .svg,$(ISPS) $(HVSPS) $(HVPPS))
 
 all: $(SVGS)
-
+	../Tools/updateTargets ../doc/img/{arduino,micro,digispark,icsp}* $(addprefix /,$(SVGS)) < ../doc/wizard.js >w && mv w ../doc/wizard.js
