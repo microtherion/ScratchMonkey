@@ -37,13 +37,17 @@
 
 <p><strong>R3</strong> is a pull-up resistor ensuring that the 12V signal is turned off when <strong>HVRESET</strong> is disconnected (e.g. because the sketch is not running), while <strong>R1</strong> limits the current flowing through the transistor.</p>
 
+<p>A drawback of this circuit is that the <strong>RESET</strong> voltage drops as soon as a significant amount of current is drawn. This is not a problem in most programming situations, but can lead to problems if the <strong>RESET</strong> pin of the target MCU is programmed as an output.</p>
+
 <h4 style="clear:both">Using a Charge Pump IC</h4>
 
 <img src="img/maxim.png" alt="MAX662ACPA+ generating 12V signal" class=circuit style="width:60%">
 
 <p>The Maxim MAX662ACPA+ is an integrated circuit that, combined with some capacitors, can generate a 12V, 30mA signal from a 5V input. The Slave Reset pin <strong>HVRESET</strong> is here connected to the <strong>SHDN</strong> pin, which will put the MAX662ACPA+ into <em>shutdown mode</em>.</p>
 
-<p>Since in shutdown mode, the output of the MAX662ACPA+ is 5V instead of 0V, it is preferable to add a transistor as in the previous section to ensure that <strong>RESET</strong> is indeed 0V. Experimentally, omitting the transistor works on all MCUs tested except the ATtiny861 and the ATtiny1634, so if you don't plan on targeting these, you may get away with omitting the transistor.</p>
+<p>Since in shutdown mode, the output of the MAX662ACPA+ is 5V instead of 0V, it is preferable to add a transistor as in the previous section to ensure that <strong>RESET</strong> is indeed 0V. In the circuit shown here, the PNP transistor will only conduct if the emitter is higher than 5V.</p> 
+
+<p>Experimentally, omitting the transistor works on all MCUs tested except the ATtiny861 and the ATtiny1634, so if you don't plan on targeting these, you may get away with omitting the transistor.</p>
 
 <table class="nav">
 <td>
