@@ -59,9 +59,9 @@ div.conn {
 	float: right
 }
 div.conn img {
-	width: 90%;
+	max-width: 90%;
 	margin: 1mm 5% 1mm 5%;
-	max-height: 8cm;
+	max-height: 15cm;
 	text-align: center;
 }
 p.conn {

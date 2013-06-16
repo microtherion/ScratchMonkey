@@ -10,10 +10,13 @@ function selectProgrammer()
 	var proto = document.connectionOptions.protocol.value;
 	var prog  = document.connectionOptions.programmer.value;
 	if (proto != "none" && prog != "none") {
-		document.programmerDiagram.src = "img/" + prog + "_prog_" + proto + ".svg";
-		document.programmerDiagram.style.display = "inline";
+	document.programmerDiagram.style.display = "none";
+	setTimeout(function() {
+		 document.programmerDiagram.src = "img/" + prog + "_prog_" + proto + ".svg";
+		 document.programmerDiagram.style.display = "inline";
+	}, 10);
 	} else {
-		document.programmerDiagram.style.display = "none";
+	document.programmerDiagram.style.display = "none";
 	}
 }
 
@@ -28,28 +31,28 @@ var gTarget= {
   "none": [
   ],
   "isp": [
-    ["Arduino", "arduino"],
-    ["Arduino Leonardo / Micro", "micro"],
-    ["ICSP Header", "icsp"],
-    ["ATtiny85", "attiny85"],
-    ["ATtiny84", "attiny84"],
-    ["ATtiny861", "attiny861"],
-    ["ATtiny4313", "attiny4313"],
-    ["ATtiny1634", "attiny1634"],
-    ["ATmega328", "atmega328"],
-    ["ATmega1284", "atmega1284"],
+	["Arduino", "arduino"],
+	["Arduino Leonardo / Micro", "micro"],
+	["ICSP Header", "icsp"],
+	["ATtiny85", "attiny85"],
+	["ATtiny84", "attiny84"],
+	["ATtiny861", "attiny861"],
+	["ATtiny4313", "attiny4313"],
+	["ATtiny1634", "attiny1634"],
+	["ATmega328", "atmega328"],
+	["ATmega1284", "atmega1284"],
   ],
   "hvsp": [
-    ["Digispark", "digispark"],
-    ["ATtiny85", "attiny85"],
-    ["ATtiny84", "attiny84"],
+	["Digispark", "digispark"],
+	["ATtiny85", "attiny85"],
+	["ATtiny84", "attiny84"],
   ],
   "hvpp": [
-    ["ATtiny861", "attiny861"],
-    ["ATtiny4313", "attiny4313"],
-    ["ATtiny1634", "attiny1634"],
-    ["ATmega328", "atmega328"],
-    ["ATmega1284", "atmega1284"],
+	["ATtiny861", "attiny861"],
+	["ATtiny4313", "attiny4313"],
+	["ATtiny1634", "attiny1634"],
+	["ATmega328", "atmega328"],
+	["ATmega1284", "atmega1284"],
   ],
 }
 
@@ -79,9 +82,12 @@ function selectTarget()
 	var targ  = document.connectionOptions.target.value;
 
 	if (targ != "none") {
-		document.targetDiagram.src = "img/" + targ + "_" + proto + ".svg";
-		document.targetDiagram.style.display = "inline";
+	document.targetDiagram.style.display = "none";
+	setTimeout(function() {
+		 document.targetDiagram.src = "img/" + targ + "_" + proto + ".svg";
+		 document.targetDiagram.style.display = "inline";
+	}, 10);
 	} else {
-		document.targetDiagram.style.display = "none";
+	document.targetDiagram.style.display = "none";
 	}
 }
