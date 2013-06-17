@@ -21,14 +21,20 @@
 //  - Standard Arduino: SPI on pins 10-13, pins 0/1 used for Serial (ATmega168/328)
 //  - Leonardo/Micro:   SPI on dedicated pins, pins 0/1 available   (ATmega32u4)
 //  - Mega:             SPI on pins 50-53, pins 0/1 used for Serial (ATmega1280/2560)
+//  - MonkeyHeaven      SPI on dedicated pins, using SS             (ATmega32u4)
 //
 
 #define    SMO_LAYOUT_STANDARD     0
 #define    SMO_LAYOUT_LEONARDO     1
 #define    SMO_LAYOUT_MEGA         2
+#define    SMO_LAYOUT_MONKEYHEAVEN 3
 
 #if defined(__AVR_ATmega32U4__)
+#if defined(MONKEY_HEAVEN)
+#define SMO_LAYOUT  SMO_LAYOUT_MONKEYHEAVEN
+#else
 #define SMO_LAYOUT  SMO_LAYOUT_LEONARDO
+#endif
 #elif defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__)
 #define SMO_LAYOUT  SMO_LAYOUT_MEGA
 #elif defined(__AVR_ATmega328__) || defined(__AVR_ATmega328P__) || defined(__AVR_ATmega168__) || defined(__AVR_ATmega168P__)
@@ -52,14 +58,20 @@
 // Some pins used in multiple modules
 //
 enum {
-    SMO_HVRESET    = 10,
 #if SMO_LAYOUT==SMO_LAYOUT_STANDARD
+    SMO_HVRESET    = 10,
     SMO_SVCC       = A0,
     SMO_DEBUG      = A5
 #elif SMO_LAYOUT==SMO_LAYOUT_LEONARDO
+    SMO_HVRESET    = 10,
     SMO_SVCC       = 11,
     SMO_DEBUG      = A4
+#elif SMO_LAYOUT==SMO_LAYOUT_MONKEYHEAVEN
+    SMO_HVRESET    = 23,
+    SMO_SVCC       = 22,
+    SMO_DEBUG      = 20
 #else
+    SMO_HVRESET    = 10,
     SMO_SVCC       = 11,
     SMO_DEBUG      = 18
 #endif

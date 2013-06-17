@@ -23,13 +23,26 @@
 
 #include <Arduino.h>
 
+//
+// On most of our layouts, our primary concern is a predictable pin 
+// assignment. For MonkeyHeaven, our objective is to use the same 
+// 8 pin cable for ISP and HVSP.
+//
 enum {
-    HVSP_VCC   = SMO_SVCC,
     HVSP_RESET = SMO_HVRESET,
+#if SMO_LAYOUT==SMO_LAYOUT_MONKEYHEAVEN
+    HVSP_VCC   = 17, // SS
+    HVSP_SDI   = 16, // MOSI
+    HVSP_SII   =  9, // PB5 a.k.a ISP XTAL
+    HVSP_SDO   = 14, // MISO
+    HVSP_SCI   = 15, // SCK
+#else
+    HVSP_VCC   = SMO_SVCC,
     HVSP_SDI   =  8,
     HVSP_SII   =  9,
     HVSP_SDO   = 12,
     HVSP_SCI   = 13,
+#endif
 };
 
 inline bool

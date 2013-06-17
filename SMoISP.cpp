@@ -33,6 +33,9 @@ enum {
 #elif SMO_LAYOUT==SMO_LAYOUT_LEONARDO
     ISP_RESET       = 10,
     MCU_CLOCK       = 9,    // OC1A
+#elif SMO_LAYOUT==SMO_LAYOUT_MONKEYHEAVEN
+    ISP_RESET       = 17,   // SS
+    MCU_CLOCK       = 9,    // OC1A
 #else
     ISP_RESET       = SS,
     MCU_CLOCK       = 11,   // OC1A

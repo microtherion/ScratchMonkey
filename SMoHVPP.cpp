@@ -26,12 +26,23 @@
 
 enum {
     HVPP_RESET  = SMO_HVRESET,
-    HVPP_RDY    = 12,
     HVPP_VCC    = SMO_SVCC,
+#if SMO_LAYOUT==SMO_LAYOUT_MEGA
+#define HVPP_CONTROL_PORT(part) part##F
+#define HVPP_DATA_PORT(part)    part##K
+#elif SMO_LAYOUT==SMO_LAYOUT_MONKEYHEAVEN
+#define HVPP_CONTROL_PORT(part) part##B
+#define HVPP_DATA_PORT(part)    part##D
+#endif
 #if SMO_LAYOUT==SMO_LAYOUT_STANDARD
+    HVPP_RDY    = 12,
     HVPP_RCLK   = A1,
     HVPP_XTAL   = A2,
+#elif SMO_LAYOUT==SMO_LAYOUT_MONKEYHEAVEN
+    HVPP_RDY    = 15,
+    HVPP_XTAL   = 21
 #else
+    HVPP_RDY    = 12,
     HVPP_XTAL   = 13
 #endif
 };
@@ -190,18 +201,26 @@ HVPPGetDataBits()
 }
 #else
 //
-// Megas have lots of contiguous pins, so we just use two full ports.
+// Megas and Monkeyheaven have lots of contiguous pins, so we just use two full ports.
 //
+#define REG(part,port) part##port
+
+#define PORT_CTRL HVPP_CONTROL_PORT(PORT)
+#define DDR_CTRL  HVPP_CONTROL_PORT(DDR)
+#define PORT_DATA HVPP_DATA_PORT(PORT)
+#define DDR_DATA  HVPP_DATA_PORT(DDR)
+#define PIN_DATA  HVPP_DATA_PORT(PIN)
+
 inline void
 HVPPSetControlSignals(uint8_t signals)
 {
-    PORTF   = signals;
+    PORT_CTRL   = signals;
 }
 
 inline void
 HVPPInitControlSignals()
 {
-    DDRF    = 0xFF;
+    DDR_CTRL    = 0xFD;
 }
 
 inline void
@@ -213,22 +232,22 @@ inline void
 HVPPSetDataMode(uint8_t mode)
 {
    if (mode == OUTPUT) {
-       DDRK = 0xFF;
+       DDR_DATA = 0xFF;
     } else {
-       DDRK = 0x00;
+       DDR_DATA = 0x00;
     }
 }
 
 inline void
 HVPPSetDataBits(uint8_t dataOut)
 {
-    PORTK = dataOut;
+    PORT_DATA = dataOut;
 }
 
 inline uint8_t
 HVPPGetDataBits()
 {
-    return PINK;
+    return PIN_DATA;
 }
 #endif
 
