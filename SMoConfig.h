@@ -68,7 +68,7 @@ enum {
     SMO_DEBUG      = A4
 #elif SMO_LAYOUT==SMO_LAYOUT_MONKEYHEAVEN
     SMO_HVRESET    = 23,
-    SMO_SVCC       = 22,
+    SMO_SVCC       = 21,
     SMO_DEBUG      = 20
 #else
     SMO_HVRESET    = 10,

@@ -40,7 +40,7 @@ enum {
     HVPP_XTAL   = A2,
 #elif SMO_LAYOUT==SMO_LAYOUT_MONKEYHEAVEN
     HVPP_RDY    = 15,
-    HVPP_XTAL   = 21
+    HVPP_XTAL   = 22
 #else
     HVPP_RDY    = 12,
     HVPP_XTAL   = 13
@@ -201,7 +201,7 @@ HVPPGetDataBits()
 }
 #else
 //
-// Megas and Monkeyheaven have lots of contiguous pins, so we just use two full ports.
+// Megas and MonkeyHeaven have lots of contiguous pins, so we just use two full ports.
 //
 #define REG(part,port) part##port
 
@@ -214,7 +214,11 @@ HVPPGetDataBits()
 inline void
 HVPPSetControlSignals(uint8_t signals)
 {
-    PORT_CTRL   = signals;
+  PORT_CTRL   = signals & 0xFD;
+  // 
+  // We're a tiny bit too fast with our signals
+  //
+  delayMicroseconds(1);
 }
 
 inline void

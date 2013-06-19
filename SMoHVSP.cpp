@@ -146,8 +146,9 @@ SMoHVSP::EnterProgmode()
         digitalWrite(HVSP_SCI, LOW);
     }
     digitalWrite(HVSP_RESET, LOW);
-    delayMicroseconds(1);
+    delayMicroseconds(100);
     pinMode(HVSP_SDO, INPUT);
+    delayMicroseconds(200);
     
     SMoCommand::SendResponse();
 }
@@ -157,7 +158,11 @@ SMoHVSP::LeaveProgmode()
 {
     digitalWrite(HVSP_RESET, HIGH);
     digitalWrite(HVSP_VCC, LOW);
-
+#if SMO_LAYOUT==SMO_LAYOUT_MONKEYHEAVEN
+    delay(10);
+    digitalWrite(HVSP_VCC, HIGH);
+#endif
+    
     SMoCommand::SendResponse();
 }
 

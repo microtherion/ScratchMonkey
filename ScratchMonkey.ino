@@ -29,10 +29,15 @@
 #include "SMoISP.h"
 #include "SMoHVSP.h"
 #include "SMoHVPP.h"
+#include "SMoConfig.h"
 
 void
 setup()
 {
+    digitalWrite(SMO_HVRESET, HIGH);
+    pinMode(SMO_HVRESET, OUTPUT);
+    digitalWrite(SMO_SVCC, LOW);
+    pinMode(SMO_SVCC, OUTPUT);
     Serial.begin(115200);
 }
 
