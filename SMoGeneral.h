@@ -17,7 +17,7 @@
 #include <inttypes.h>
 
 namespace SMoGeneral {
-    extern uint8_t  gSCKDuration;
+    extern uint16_t gSCKDuration;
     extern uint32_t gAddress;
     extern uint8_t  gControlStack[];
 

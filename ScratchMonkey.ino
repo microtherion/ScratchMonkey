@@ -107,9 +107,11 @@ loop()
         // HVSP Commands
         //
     case CMD_ENTER_PROGMODE_HVSP:
+    case CMD_ENTER_PROGMODE_HVSP_STK600:
         SMoHVSP::EnterProgmode();
         break;
     case CMD_LEAVE_PROGMODE_HVSP:
+    case CMD_LEAVE_PROGMODE_HVSP_STK600:
         SMoHVSP::LeaveProgmode();
         break;
     case CMD_CHIP_ERASE_HVSP:

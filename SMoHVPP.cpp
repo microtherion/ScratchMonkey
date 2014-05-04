@@ -5,7 +5,7 @@
 // File: SMoHVPP.cpp        - High Voltage Parallel Programming
 //                            (for MCUs with 20 pins and more)
 //
-// Copyright (c) 2013 Matthias Neeracher <microtherion@gmail.com>
+// Copyright (c) 2013-2014 Matthias Neeracher <microtherion@gmail.com>
 // All rights reserved.
 //
 // See license at bottom of this file or at
@@ -442,6 +442,9 @@ void
 SMoHVPP::ProgramFlash()
 {
     int16_t         numBytes    =  (SMoCommand::gBody[1] << 8) | SMoCommand::gBody[2];
+    if (!SMoCommand::HasRequiredSize(5+numBytes))
+        return; // See you again later
+
     const uint8_t   mode        =   SMoCommand::gBody[3];
     const uint8_t   pollTimeout =   SMoCommand::gBody[4];
     const uint8_t * data        =  &SMoCommand::gBody[5];
@@ -523,7 +526,7 @@ SMoHVPP::ReadFlash()
         HVPPDataMode(OUTPUT);
         ++SMoGeneral::gAddress;
     }
-    *outData = STATUS_CMD_OK;
+    *outData++ = STATUS_CMD_OK;
     SMoCommand::SendResponse(STATUS_CMD_OK, outData-&SMoCommand::gBody[0]);
 }
 
@@ -531,6 +534,9 @@ void
 SMoHVPP::ProgramEEPROM()
 {
     int16_t         numBytes     =  (SMoCommand::gBody[1] << 8) | SMoCommand::gBody[2];
+    if (!SMoCommand::HasRequiredSize(5+numBytes))
+        return; // See you again later
+
     const uint8_t   mode        =   SMoCommand::gBody[3];
     const uint8_t   pollTimeout =   SMoCommand::gBody[4];
     const uint8_t * data        =  &SMoCommand::gBody[5];

@@ -17,13 +17,13 @@
 #include <string.h>
 
 uint32_t    SMoGeneral::gAddress;
-const uint8_t           kBuildNumberLow     = 0x01;
+const uint8_t           kBuildNumberLow     = 0x02;
 const uint8_t           kBuildNumberHigh    = 0x00;
 const uint8_t           kHardwareVersion    = 0x00;
-const uint8_t           kSoftwareMajor      = 0x00;
-const uint8_t           kSoftwareMinor      = 0x01;
+const uint8_t           kSoftwareMajor      = 0x02;
+const uint8_t           kSoftwareMinor      = 0x00;
 const uint8_t           kVoltage            =   50;
-uint8_t     SMoGeneral::gSCKDuration        = 2;    // 125kHz
+uint16_t     SMoGeneral::gSCKDuration       = 2;    // 125kHz
 static uint8_t          gControllerInit     = 0;
 static uint8_t          gPrescale           = 0;    // Settable
 static uint8_t          gClockMatch         = 0;    //  ... but ignored
@@ -32,14 +32,24 @@ uint8_t     SMoGeneral::gControlStack[32];
 void    
 SMoGeneral::SignOn()
 {
-    memcpy(&SMoCommand::gBody[2], "\010STK500_2", 9);
+    if (SMoCommand::gMode == SMoCommand::kSTK600Mode) {
+        memcpy(&SMoCommand::gBody[2], "\006STK600\000", 9);
+    } else {
+        memcpy(&SMoCommand::gBody[2], "\010STK500_2", 9);
+    }
     SMoCommand::SendResponse(STATUS_CMD_OK, 11);
 }
 
 void    
 SMoGeneral::SetParam()
 {
-    uint8_t value = SMoCommand::gBody[2];
+    bool twoByteParam = SMoCommand::gBody[1] >= 0xC0;
+    if (twoByteParam && !SMoCommand::HasRequiredSize(4)) 
+        return; // See you again later
+
+    uint16_t value = twoByteParam
+        ? ((SMoCommand::gBody[2] << 8) | SMoCommand::gBody[3]) 
+        : SMoCommand::gBody[2];
     switch (SMoCommand::gBody[1]) {
     case PARAM_VTARGET:
     case PARAM_VADJUST:
@@ -49,6 +59,7 @@ SMoGeneral::SetParam()
         SMoCommand::SendResponse(value==kVoltage ? STATUS_CMD_OK : STATUS_CMD_FAILED);    
         break;
     case PARAM_SCK_DURATION:
+    case PARAM2_SCK_DURATION:
         gSCKDuration    = value;
         break;
     case PARAM_RESET_POLARITY:

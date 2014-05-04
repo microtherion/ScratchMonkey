@@ -5,7 +5,7 @@
 // File: SMoHVSP.cpp        - High Voltage Serial Programming
 //                            (for MCUs with fewer than 20 pins)
 //
-// Copyright (c) 2013 Matthias Neeracher <microtherion@gmail.com>
+// Copyright (c) 2013-2014 Matthias Neeracher <microtherion@gmail.com>
 // All rights reserved.
 //
 // See license at bottom of this file or at
@@ -171,6 +171,9 @@ void
 SMoHVSP::ProgramFlash()
 {
     int16_t        numBytes     =  (SMoCommand::gBody[1] << 8) | SMoCommand::gBody[2];
+    if (!SMoCommand::HasRequiredSize(5+numBytes))
+        return; // See you again later
+
     const uint8_t   mode        =   SMoCommand::gBody[3];
     const uint8_t   pollTimeout =   SMoCommand::gBody[4];
     const uint8_t * data        =  &SMoCommand::gBody[5];
@@ -266,6 +269,9 @@ void
 SMoHVSP::ProgramEEPROM()
 {
     int16_t         numBytes     =  (SMoCommand::gBody[1] << 8) | SMoCommand::gBody[2];
+    if (!SMoCommand::HasRequiredSize(5+numBytes))
+        return; // See you again later
+
     const uint8_t   mode        =   SMoCommand::gBody[3];
     const uint8_t   pollTimeout =   SMoCommand::gBody[4];
     const uint8_t * data        =  &SMoCommand::gBody[5];

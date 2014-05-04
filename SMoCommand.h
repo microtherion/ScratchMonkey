@@ -1,10 +1,10 @@
 // -*- mode: c++; tab-width: 4; indent-tabs-mode: nil -*-
 //
-// ScratchMonkey 0.1        - STK500v2 compatible programmer for Arduino
+// ScratchMonkey 0.1        - STK500v2/STK600 compatible programmer for Arduino
 //
 // File: SMoCommand.h       - Command parser 
 //
-// Copyright (c) 2013 Matthias Neeracher <microtherion@gmail.com>
+// Copyright (c) 2013-2014 Matthias Neeracher <microtherion@gmail.com>
 // All rights reserved.
 //
 // See license at bottom of this file or at
@@ -16,7 +16,7 @@
 
 #include <inttypes.h>
 
-#include "stk500v2_proto.h"
+#include "stk_proto.h"
 
 namespace SMoCommand {
     //
@@ -29,12 +29,21 @@ namespace SMoCommand {
     };
     extern uint8_t  gBody[];
     extern uint16_t gSize;
+
+    enum Mode {
+        kUndeterminedMode,  // Don't know who I am yet
+        kSTK500v2Mode,      // Emulating STK500v2
+        kSTK600Mode,        // Emulating STK600
+    };               
+    extern Mode     gMode;
+
     //
     // Parse next command, return command code if command is fully read
     // and checksum matches. Handles timeouts and checksum errors 
     // autonomously.
     //
     int         GetNextCommand();
+    bool        HasRequiredSize(uint16_t bodySize);
     void        SendResponse(uint8_t status = STATUS_CMD_OK, uint16_t bodySize=2);
 } // namespace SMoCommand
 

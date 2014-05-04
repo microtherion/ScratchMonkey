@@ -4,7 +4,7 @@
 //
 // File: SMoISP.cpp         - In-System Programming commands
 //
-// Copyright (c) 2013 Matthias Neeracher <microtherion@gmail.com>
+// Copyright (c) 2013-2014 Matthias Neeracher <microtherion@gmail.com>
 // All rights reserved.
 //
 // See license at bottom of this file or at
@@ -278,6 +278,9 @@ static void
 ProgramMemory(bool wordBased)
 {
     uint16_t  numBytes          =  (SMoCommand::gBody[1]<<8)|SMoCommand::gBody[2];
+    if (!SMoCommand::HasRequiredSize(10+numBytes))
+        return; // See you again later
+
     uint8_t   mode              =   SMoCommand::gBody[3];
     const uint8_t   cmdDelay    =   SMoCommand::gBody[4];
     const uint8_t   cmd1        =   SMoCommand::gBody[5];
@@ -387,6 +390,9 @@ void
 SMoISP::SPIMulti()
 {
     uint8_t         numTX   =   SMoCommand::gBody[1];
+    if (!SMoCommand::HasRequiredSize(4+numTX))
+        return; // See you again later
+
     uint8_t         numRX   =   SMoCommand::gBody[2];
     uint8_t         rxStart =   SMoCommand::gBody[3];
     const uint8_t * txData  =  &SMoCommand::gBody[4];
