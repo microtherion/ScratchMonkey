@@ -12,6 +12,7 @@
 //
 
 #include <Arduino.h>
+#include <avr/pgmspace.h>
 
 #include "SMoCommand.h"
 
@@ -43,7 +44,7 @@ ResetToIdle()
     sCheckSum       = 0;
 }
 
-static prog_uchar 
+static const unsigned char 
 sCmdLength[] PROGMEM = {
     0,  1,  3,  2,  3,  1,  5, 11,  0,  0,  0,  0,  0,  1,  6,  5,
    12,  3,  7, 10,  4, 10,  4,  5,  6,  5,  6,  6,  6,  4,  0,  0, 
