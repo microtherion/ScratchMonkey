@@ -2,9 +2,9 @@
 
 (PART,PROG,FLASH,EEPROM,ofuse,nfuse) = ARGV
 
-AVRDUDE     = ENV['AVRDUDE'] or raise "$AVRDUDE not defined"
-SERIALPORT  = ENV['SERIALPORT'] or raise "$SERIALPORT not defined"
+AVRDUDE     = ENV['AVRDUDE'] || '/usr/local/CrossPack-AVR/bin/avrdude'
 AVRDUDECONF = ENV['AVRDUDECONF'] ? "-C '#{ENV['AVRDUDECONF']}'" : ''
+SERIALPORT  = ENV['SERIALPORT'] || %x{ls /dev/tty.usbmodem*}.chomp
 
 def loud_system(command)
   $stderr.puts command
