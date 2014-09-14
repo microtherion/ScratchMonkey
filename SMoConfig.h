@@ -43,8 +43,9 @@
 #undef DEBUG_ISP
 #undef DEBUG_HVSP
 #undef DEBUG_HVPP
+#undef DEBUG_COMM
 
-#if defined(DEBUG_ISP) || defined(DEBUG_HVSP) || defined(DEBUG_HVPP)
+#if defined(DEBUG_ISP) || defined(DEBUG_HVSP) || defined(DEBUG_HVPP) || defined(DEBUG_COMM)
 #define SMO_WANT_DEBUG
 #endif
 

@@ -1,6 +1,6 @@
 // -*- mode: c++; tab-width: 4; indent-tabs-mode: nil -*-
 //
-// ScratchMonkey 0.1            - STK500v2 compatible programmer for Arduino
+// ScratchMonkey 2.0            - STK500v2/STK600ish compatible programmer for Arduino
 //
 // File: ScratchMonkey.ino      - Main program of sketch
 //
@@ -29,11 +29,21 @@
 #include "SMoISP.h"
 #include "SMoHVSP.h"
 #include "SMoHVPP.h"
+#include "SMoTPI.h"
+#include "SMoConfig.h"
+
+#ifdef DEBUG_COMM
+#include "SMoDebug.h"
+#endif
 
 void
 setup()
 {
-    Serial.begin(115200);
+    Serial.begin(115200L);
+#ifdef DEBUG_COMM
+    SMoDebugInit();
+    SMoDebug.println("Yo!");
+#endif
 }
 
 void
@@ -188,13 +198,48 @@ loop()
         break;
     case CMD_READ_OSCCAL_PP:
         SMoHVPP::ReadOscCal();
-        break;     
+        break;  
+        // XPROG Commands
+    case CMD_XPROG_SETMODE:
+        SMoGeneral::SetXPROGMode();
+        break;
+    case CMD_XPROG:
+        switch (SMoGeneral::gXPROGMode) {
+        case XPRG_MODE_TPI:
+            switch (SMoCommand::gBody[1]) {
+            case XPRG_CMD_ENTER_PROGMODE:
+                SMoTPI::EnterProgmode();
+                break;
+            case XPRG_CMD_LEAVE_PROGMODE:
+                SMoTPI::LeaveProgmode();
+                break;
+            case XPRG_CMD_ERASE:
+                SMoTPI::Erase();
+                break;
+            case XPRG_CMD_WRITE_MEM:
+                SMoTPI::WriteMem();
+                break;
+            case XPRG_CMD_READ_MEM:
+                SMoTPI::ReadMem();
+                break;
+            case XPRG_CMD_SET_PARAM:
+                SMoTPI::SetParam();
+                break;
+            default:
+                goto unknownMode;
+            }
+            break;
+        default:
+            goto unknownMode;
+        }
+        break;
         // Pseudocommands   
     case SMoCommand::kHeaderError:
     case SMoCommand::kChecksumError:
     case SMoCommand::kIncomplete:
         break;  // Ignore
     default:
+    unknownMode:
         SMoCommand::SendResponse(STATUS_CMD_UNKNOWN);
         break;
     }

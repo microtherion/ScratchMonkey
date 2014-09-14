@@ -1,6 +1,6 @@
 // -*- mode: c++; tab-width: 4; indent-tabs-mode: nil -*-
 //
-// ScratchMonkey 2.0        - STK500v2/STK600 compatible programmer for Arduino
+// ScratchMonkey 2.0        - STK500v2/STK600ish compatible programmer for Arduino
 //
 // File: SMoCommand.cpp     - Command parser 
 //
@@ -15,6 +15,12 @@
 #include <avr/pgmspace.h>
 
 #include "SMoCommand.h"
+#include "SMoConfig.h"
+
+#ifdef DEBUG_COMM
+#include "SMoDebug.h"
+#endif
+
 
 const uint16_t  kHeaderSize         = 5;
 const uint16_t  kMaxBodySize        = 275;  // STK500 hardware limit
@@ -26,7 +32,6 @@ static uint8_t  sCheckSum           = 0;
 
 uint16_t         SMoCommand::gSize;
 uint8_t          SMoCommand::gBody[kMaxBodySize+1];
-SMoCommand::Mode SMoCommand::gMode          = kUndeterminedMode;
 
 static enum {
     kIdleState,         // Waiting for MESSAGE_START
@@ -44,14 +49,6 @@ ResetToIdle()
     sCheckSum       = 0;
 }
 
-static const unsigned char 
-sCmdLength[] PROGMEM = {
-    0,  1,  3,  2,  3,  1,  5, 11,  0,  0,  0,  0,  0,  1,  6,  5,
-   12,  3,  7, 10,  4, 10,  4,  5,  6,  5,  6,  6,  6,  4,  0,  0, 
-    8,  3,  3,  5,  3,  5,  3,  5,  2,  5,  2,  2,  2, 33,  0,  0,
-    9,  3,  3,  5,  3,  5,  3,  4,  2,  4,  2,  2,  2,  0,  0,  0,
-};
-
 //
 // Parse next command, return command code if command is fully read
 // and checksum matches. Handles timeouts and checksum errors 
@@ -63,58 +60,35 @@ SMoCommand::GetNextCommand()
     if (!Serial.available() || sState == kCompleteState)
         return kIncomplete;
     sCheckSum ^= (gBody[sNumBytesRead++] = Serial.read());
+#ifdef DEBUG_COMM
+    SMoDebug.print("Has "); SMoDebug.print(sNumBytesRead);
+    SMoDebug.print(" Want "); SMoDebug.println(sNumBytesWanted);
+#endif
     if (sNumBytesRead < sNumBytesWanted)
         return kIncomplete;
     switch (sState) {
     case kIdleState:
-        if (gMode == kUndeterminedMode) {
-            if (gBody[0] == CMD_SIGN_ON) {
-                gMode = kSTK600Mode;
-            } else if (gBody[0] == MESSAGE_START) {
-                gMode = kSTK500v2Mode;
-            } else {
-                ResetToIdle();
-                return kHeaderError;
-            }
-        } 
-        if (gMode == kSTK500v2Mode) {
-            if (gBody[0] != MESSAGE_START) {
-            reportHeaderError:
-                ResetToIdle();
-                return kHeaderError;
-            } else {                            // Start of message
-                sState          = kHeaderState;
-                sNumBytesWanted = kHeaderSize;
+        if (gBody[0] != MESSAGE_START) {
+        reportHeaderError:
+            ResetToIdle();
+            return kHeaderError;
+        } else {                            // Start of message
+            sState          = kHeaderState;
+            sNumBytesWanted = kHeaderSize;
 
-                return kIncomplete;
-            }
-        } else {    // STK600Mode
-            sState              = kBodyState;
-            if (gBody[0] < 0x40) {
-                sNumBytesWanted = sCmdLength[gBody[0]];
-            } else if (gBody[0] == CMD_XPROG) {
-                sNumBytesWanted = 2;
-            } else if (gBody[0] == CMD_XPROG_SETMODE) {
-                sNumBytesWanted = 2;
-            } else {
-                sNumBytesWanted = 0;
-            }
-            if (!sNumBytesWanted) 
-                goto reportHeaderError;
-            else if (sNumBytesWanted > 1)
-                return kIncomplete;
-            //
-            // Else fall through to kBodyState
-            //
-         }
+            return kIncomplete;
+        }
     case kBodyState:
-        if ((gMode == kSTK500v2Mode) && sCheckSum) {
+        if (sCheckSum) {
             gBody[0] = ANSWER_CKSUM_ERROR;
             SendResponse(ANSWER_CKSUM_ERROR);
             return kChecksumError;
         } else {
             sState  = kCompleteState;
             gSize   = sNumBytesRead-1;
+#ifdef DEBUG_COMM
+            SMoDebug.print("Command "); if (gBody[0] < 16) SMoDebug.print("0"); SMoDebug.println(gBody[0], HEX);
+#endif
             return gBody[0];   // Success!
         }
     case kHeaderState:
@@ -130,51 +104,40 @@ SMoCommand::GetNextCommand()
         
         return kIncomplete;
     default:
-      return kIncomplete;
+        return kIncomplete;
     }
 }
 
-bool
-SMoCommand::HasRequiredSize(uint16_t bodySize)
-{   
-    //
-    // Some commands are variable length, so we let the protocol
-    // specific code figure out how many bytes exactly are expected.
-    //
-    if (sNumBytesWanted >= bodySize) {
-        return true;
-    } else {
-        sNumBytesWanted = bodySize;
-        return false;
-    }
+void
+SMoCommand::SendResponse(uint8_t status, uint16_t bodySize, bool xprog)
+{
+#ifdef DEBUG_COMM
+    SMoDebug.print("Resp "); if (status < 16) SMoDebug.print("0"); SMoDebug.print(status, HEX); SMoDebug.print(" #"); SMoDebug.println(bodySize);
+#endif
+    gBody[xprog?2:1] = status;
+
+    sCheckSum  = MESSAGE_START ^ TOKEN ^ sSequenceNumber;
+    Serial.write(MESSAGE_START);
+    Serial.write(sSequenceNumber);
+    sCheckSum  ^= bodySize >> 8;
+    Serial.write(bodySize >> 8);
+    sCheckSum  ^= bodySize & 0xFF;
+    Serial.write(bodySize & 0xFF);
+    Serial.write(TOKEN);
+
+    for (uint16_t i=0; i<bodySize; ++i)
+        sCheckSum   ^= gBody[i];
+
+    Serial.write(&gBody[0], bodySize);
+    Serial.write(sCheckSum);
+
+    ResetToIdle();
 }
 
 void        
-SMoCommand::SendResponse(uint8_t status, uint16_t bodySize)
+SMoCommand::SendXPROGResponse(uint8_t status, uint16_t bodySize)
 {
-    gBody[1] = status;
-
-    if (gMode == kSTK500v2Mode) {
-        sCheckSum   = MESSAGE_START ^ TOKEN ^ sSequenceNumber;
-        Serial.write(MESSAGE_START);
-        Serial.write(sSequenceNumber);
-        sCheckSum  ^= bodySize >> 8;
-        Serial.write(bodySize >> 8);
-        sCheckSum  ^= bodySize & 0xFF;
-        Serial.write(bodySize & 0xFF);
-        Serial.write(TOKEN);
-
-        for (uint16_t i=0; i<bodySize; ++i)
-            sCheckSum   ^= gBody[i];
-    }
-
-    Serial.write(&gBody[0], bodySize);
-
-    if (gMode == kSTK500v2Mode) {
-        Serial.write(sCheckSum);
-    }
-
-    ResetToIdle();
+    SendResponse(status, bodySize, true);
 }
 
 //

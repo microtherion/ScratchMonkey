@@ -442,9 +442,6 @@ void
 SMoHVPP::ProgramFlash()
 {
     int16_t         numBytes    =  (SMoCommand::gBody[1] << 8) | SMoCommand::gBody[2];
-    if (!SMoCommand::HasRequiredSize(5+numBytes))
-        return; // See you again later
-
     const uint8_t   mode        =   SMoCommand::gBody[3];
     const uint8_t   pollTimeout =   SMoCommand::gBody[4];
     const uint8_t * data        =  &SMoCommand::gBody[5];
@@ -534,9 +531,6 @@ void
 SMoHVPP::ProgramEEPROM()
 {
     int16_t         numBytes     =  (SMoCommand::gBody[1] << 8) | SMoCommand::gBody[2];
-    if (!SMoCommand::HasRequiredSize(5+numBytes))
-        return; // See you again later
-
     const uint8_t   mode        =   SMoCommand::gBody[3];
     const uint8_t   pollTimeout =   SMoCommand::gBody[4];
     const uint8_t * data        =  &SMoCommand::gBody[5];

@@ -1,10 +1,10 @@
 // -*- mode: c++; tab-width: 4; indent-tabs-mode: nil -*-
 //
-// ScratchMonkey 0.1        - STK500v2 compatible programmer for Arduino
+// ScratchMonkey 2.0        - STK500v2/STK600ish compatible programmer for Arduino
 //
 // File: SMoGeneral.cpp     - Protocol independent global commands
 //
-// Copyright (c) 2013 Matthias Neeracher <microtherion@gmail.com>
+// Copyright (c) 2013-2014 Matthias Neeracher <microtherion@gmail.com>
 // All rights reserved.
 //
 // See license at bottom of this file or at
@@ -28,25 +28,19 @@ static uint8_t          gControllerInit     = 0;
 static uint8_t          gPrescale           = 0;    // Settable
 static uint8_t          gClockMatch         = 0;    //  ... but ignored
 uint8_t     SMoGeneral::gControlStack[32];
+uint8_t     SMoGeneral::gXPROGMode;
 
 void    
 SMoGeneral::SignOn()
 {
-    if (SMoCommand::gMode == SMoCommand::kSTK600Mode) {
-        memcpy(&SMoCommand::gBody[2], "\006STK600\000", 9);
-    } else {
-        memcpy(&SMoCommand::gBody[2], "\010STK500_2", 9);
-    }
-    SMoCommand::SendResponse(STATUS_CMD_OK, 11);
+    memcpy(&SMoCommand::gBody[2], "\015SCRATCHMONKEY", 15);
+    SMoCommand::SendResponse(STATUS_CMD_OK, 16);
 }
 
 void    
 SMoGeneral::SetParam()
 {
     bool twoByteParam = SMoCommand::gBody[1] >= 0xC0;
-    if (twoByteParam && !SMoCommand::HasRequiredSize(4)) 
-        return; // See you again later
-
     uint16_t value = twoByteParam
         ? ((SMoCommand::gBody[2] << 8) | SMoCommand::gBody[3]) 
         : SMoCommand::gBody[2];
@@ -73,6 +67,9 @@ SMoGeneral::SetParam()
         break;
     case PARAM_OSC_CMATCH:
         gClockMatch = value;
+        break;
+    case PARAM_DISCHARGEDELAY:
+        // Pretend we handled this, for TPI
         break;
     default:
         SMoCommand::SendResponse(STATUS_CMD_FAILED);
@@ -146,6 +143,13 @@ void
 SMoGeneral::SetControlStack()
 {
     memcpy(&SMoGeneral::gControlStack[0], &SMoCommand::gBody[1], 32);
+    SMoCommand::SendResponse();
+}
+
+void 
+SMoGeneral::SetXPROGMode()
+{
+    SMoGeneral::gXPROGMode = SMoCommand::gBody[1];
     SMoCommand::SendResponse();
 }
 

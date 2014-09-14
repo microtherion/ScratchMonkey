@@ -30,21 +30,14 @@ namespace SMoCommand {
     extern uint8_t  gBody[];
     extern uint16_t gSize;
 
-    enum Mode {
-        kUndeterminedMode,  // Don't know who I am yet
-        kSTK500v2Mode,      // Emulating STK500v2
-        kSTK600Mode,        // Emulating STK600
-    };               
-    extern Mode     gMode;
-
     //
     // Parse next command, return command code if command is fully read
     // and checksum matches. Handles timeouts and checksum errors 
     // autonomously.
     //
     int         GetNextCommand();
-    bool        HasRequiredSize(uint16_t bodySize);
-    void        SendResponse(uint8_t status = STATUS_CMD_OK, uint16_t bodySize=2);
+    void        SendResponse(uint8_t status = STATUS_CMD_OK, uint16_t bodySize=2, bool xprog=false);
+    void        SendXPROGResponse(uint8_t status = STATUS_CMD_OK, uint16_t bodySize=3);
 } // namespace SMoCommand
 
 #endif /* _SMO_COMMAND_ */

@@ -1,10 +1,10 @@
 // -*- mode: c++; tab-width: 4; indent-tabs-mode: nil -*-
 //
-// ScratchMonkey 0.1        - STK500v2 compatible programmer for Arduino
+// ScratchMonkey 2.0        - STK500v2/STK600ish compatible programmer for Arduino
 //
 // File: SMoGeneral.h       - Protocol independent global commands
 //
-// Copyright (c) 2013 Matthias Neeracher <microtherion@gmail.com>
+// Copyright (c) 2013-2014 Matthias Neeracher <microtherion@gmail.com>
 // All rights reserved.
 //
 // See license at bottom of this file or at
@@ -20,12 +20,14 @@ namespace SMoGeneral {
     extern uint16_t gSCKDuration;
     extern uint32_t gAddress;
     extern uint8_t  gControlStack[];
+    extern uint8_t  gXPROGMode;
 
     void    SignOn();
     void    SetParam();
     void    GetParam();
     void    LoadAddress();
     void    SetControlStack();
+    void    SetXPROGMode();
 } // namespace SMoGeneral
 
 #endif /* _SMO_GENERAL_ */
