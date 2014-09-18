@@ -1,12 +1,12 @@
 scratchmonkey.name=ScratchMonkey
 scratchmonkey.communication=serial
-scratchmonkey.protocol=stk500v2
+scratchmonkey.protocol=scratchmonkey
 
 scratchmonkey_hvsp.name=ScratchMonkey HVSP
 scratchmonkey_hvsp.communication=serial
-scratchmonkey_hvsp.protocol=stk500hvsp
+scratchmonkey_hvsp.protocol=scratchmonkey_hvsp
 
 scratchmonkey_hvpp.name=ScratchMonkey HVPP
 scratchmonkey_hvpp.communication=serial
-scratchmonkey_hvpp.protocol=stk500pp
+scratchmonkey_hvpp.protocol=sscratchmonkey_pp
 
