@@ -181,7 +181,7 @@ HVPPSetDataBits(uint8_t dataOut)
 inline uint8_t
 HVPPGetDataBits()
 {
-    uint8_t dataIn;
+    uint8_t dataIn = 0;
 
     for (uint8_t pin=9; pin >= 2; --pin)
         dataIn = (dataIn << 1) | digitalRead(pin);
