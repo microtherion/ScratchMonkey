@@ -71,7 +71,7 @@ inline bool HVRESET_SEPARATE() { return (int)SMO_HVRESET != (int)TPIRESET; }
 #define TPI_NVMCMD_SECTION_ERASE	0x14
 #define TPI_NVMCMD_WORD_WRITE		0x1D
 
-#define CLK_DELAY  delayMicroseconds(5)
+#define CLK_DELAY  delayMicroseconds(1)
 
 static void
 SendTPIBit(int bit)
