@@ -5,8 +5,4 @@ Arduino software programmer sketch, supporting ISP, HVSP, and HVPP
 
 For details, please consult the [User Manual](http://microtherion.github.com/ScratchMonkey/)
 
-I'm still putting the finishing touches on the release, so while all 
-three programming methods have been tested briefly, this has not
-been done in sufficient detail for me to be truly comfortable with
-letting others try it. But hey, this is open source, so go ahead if
-you like living dangerously!
+This branch adds experimental support for TPI programming (For ATtiny4/5/9/10). However, to actually use it, you will have to patch avrdude as well (since current STK600 support assumes the programmer runs over direct USB, as real STK600s do). I'm not quite ready to approach the avrdude developers with my patches until I've head the opportunity to flesh them out a bit more.
