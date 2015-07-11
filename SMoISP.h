@@ -1,6 +1,6 @@
 // -*- mode: c++; tab-width: 4; indent-tabs-mode: nil -*-
 //
-// ScratchMonkey 0.1        - STK500v2 compatible programmer for Arduino
+// ScratchMonkey 2.0       - STK500v2 compatible programmer for Arduino
 //
 // File: SMoISP.h           - In-System Programming commands
 //

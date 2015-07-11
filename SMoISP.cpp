@@ -1,10 +1,10 @@
 // -*- mode: c++; tab-width: 4; indent-tabs-mode: nil -*-
 //
-// ScratchMonkey 0.1        - STK500v2 compatible programmer for Arduino
+// ScratchMonkey 2.0        - STK500v2 compatible programmer for Arduino
 //
 // File: SMoISP.cpp         - In-System Programming commands
 //
-// Copyright (c) 2013-2014 Matthias Neeracher <microtherion@gmail.com>
+// Copyright (c) 2013-2015 Matthias Neeracher <microtherion@gmail.com>
 // All rights reserved.
 //
 // See license at bottom of this file or at
@@ -23,51 +23,9 @@
 #include "SMoDebug.h"
 #endif
 
-//
-// Pin definitions
-//
-enum {
-#if SMO_LAYOUT==SMO_LAYOUT_STANDARD
-    ISP_RESET       = SS,
-    MCU_CLOCK       = 9,    // OC1A    
-#elif SMO_LAYOUT==SMO_LAYOUT_LEONARDO
-    ISP_RESET       = 10,
-    MCU_CLOCK       = 9,    // OC1A
-#else
-    ISP_RESET       = SS,
-    MCU_CLOCK       = 11,   // OC1A
-#endif
-};
+#include "SMoHWIF.h"
 
-//
-// If an MCU has been set to use the 125kHz internal oscillator, 
-// regular SPI speeds are much too fast, so we do a software 
-// emulation that's deliberately slow.
-//
-static int sSPILimpMode    = 0;
-const int kMaxLimp         = 8; // Slowest we'll try is 256µs, ~1kHz bit clock
-
-static uint8_t 
-SPITransfer(uint8_t out)
-{
-    if (!sSPILimpMode)
-        return SPI.transfer(out); // Hardware SPI
-        
-    const int kQuarterCycle = 1<<sSPILimpMode; 
-    uint8_t in = 0;
-    for (int i=0; i<8; ++i) {
-        digitalWrite(MOSI, (out & 0x80) != 0);
-        out <<= 1;
-        delayMicroseconds(kQuarterCycle);
-        digitalWrite(SCK, HIGH);
-        delayMicroseconds(kQuarterCycle);
-        in = (in << 1) | digitalRead(MISO);
-        delayMicroseconds(kQuarterCycle);
-        digitalWrite(SCK, LOW);
-        delayMicroseconds(kQuarterCycle);        
-    }
-    return in;
-}
+const int ISP_RESET = SMoHWIF::ISP::RESET;
 
 static uint8_t 
 SPITransaction(const uint8_t * sendData, int8_t responseIndex = 3)
@@ -81,7 +39,7 @@ SPITransaction(const uint8_t * sendData, int8_t responseIndex = 3)
 #ifdef DEBUG_ISP
         SMoDebug.print(*sendData, HEX);
 #endif
-        uint8_t recv = SPITransfer(*sendData++);
+        uint8_t recv = SMoHWIF::ISP::Transfer(*sendData++);
 #ifdef DEBUG_ISP
         SMoDebug.print(ix == responseIndex ? " ![" : " [");
         SMoDebug.print(recv, HEX);
@@ -109,18 +67,18 @@ SPITransaction(uint8_t b1, uint8_t b2, uint8_t b3, uint8_t b4)
     SMoDebug.print(" ");
     SMoDebug.print(b4, HEX);
 #endif
-    SPITransfer(b1);
-    SPITransfer(b2);
-    SPITransfer(b3);
+    SMoHWIF::ISP::Transfer(b1);
+    SMoHWIF::ISP::Transfer(b2);
+    SMoHWIF::ISP::Transfer(b3);
 #ifdef DEBUG_ISP
-    uint8_t result = SPITransfer(b4);
+    uint8_t result = SMoHWIF::ISP::Transfer(b4);
     SMoDebug.print(" [");
     SMoDebug.print(result, HEX);
     SMoDebug.println("]");
   
     return result;  
 #else
-    return SPITransfer(b4);
+    return SMoHWIF::ISP::Transfer(b4);
 #endif
 }
 
@@ -185,29 +143,10 @@ SMoISP::EnterProgmode()
     const uint8_t   pollIndex   =   SMoCommand::gBody[7];
     const uint8_t * command     =  &SMoCommand::gBody[8];
 
-    //
-    // Set up SPI
-    //
-    digitalWrite(MISO,      LOW);
-    pinMode(MISO,           INPUT);
     pinMode(ISP_RESET,      OUTPUT);
-    SPI.begin();
-    SPI.setDataMode(SPI_MODE0);
-    SPI.setBitOrder(MSBFIRST);
-    SPI.setClockDivider(
-        SMoGeneral::gSCKDuration == 0 ? SPI_CLOCK_DIV8  :   // 2MHz
-       (SMoGeneral::gSCKDuration == 1 ? SPI_CLOCK_DIV32 :   // 500kHz  
-                                        SPI_CLOCK_DIV128)); // 125kHz (Default)
 
-    //
-    // Set up clock generator on OC1A
-    //
-    pinMode(MCU_CLOCK, OUTPUT);
-    TCCR1A = _BV(COM1A0);              // CTC mode, toggle OC1A on comparison with OCR1A
-    OCR1A  = 0;                        // F(OC1A) = 16MHz / (2*8*(1+0) == 1MHz
-    TIMSK1 = 0;
-    TCCR1B = _BV(WGM12) | _BV(CS11);   // Prescale by 8
-    TCNT1  = 0;
+    SMoHWIF::ISP::SetupHardwareSPI();
+    SMoHWIF::ISP::SetupClock();
     
     //
     // Now reset the chip and issue the programming mode instruction
@@ -221,27 +160,19 @@ SMoISP::EnterProgmode()
         //
         // Ooops, that's bad. Try again in limp mode
         //
-        SPI.end();
-        sSPILimpMode = 2;   // Start at 16µs, 60kHz bit clock
+        SMoHWIF::ISP::SetupSoftwareSPI();
         pinMode(MOSI, OUTPUT);
         pinMode(SCK, OUTPUT);
         pinMode(MISO, INPUT);
         
-        do {
-#ifdef DEBUG_ISP
-            SMoDebug.print("Retrying in limp mode ");
-            SMoDebug.print(sSPILimpMode);
-            SMoDebug.print(" (");
-            SMoDebug.print(1000.0 / (4 << sSPILimpMode));
-            SMoDebug.println("kHz).");
-#endif
+        while (response != pollValue && SMoHWIF::ISP::SlowdownSoftwareSPI()) {
             digitalWrite(ISP_RESET, HIGH);
             digitalWrite(SCK, LOW);
             delay(50);
             digitalWrite(ISP_RESET, LOW);
             delay(50);
             response     = SPITransaction(command, pollIndex-1);
-        } while (response != pollValue && sSPILimpMode++ < kMaxLimp);
+        } 
     }
     SMoCommand::SendResponse(response==pollValue ? STATUS_CMD_OK : STATUS_CMD_FAILED);
 }
@@ -249,11 +180,8 @@ SMoISP::EnterProgmode()
 void
 SMoISP::LeaveProgmode()
 {
-    TCCR1B = 0;    // Stop clock generator
-    if (sSPILimpMode)
-        sSPILimpMode = false;
-    else 
-        SPI.end();     // Stop SPI
+    SMoHWIF::ISP::StopClock();
+    SMoHWIF::ISP::StopSPI();
     digitalWrite(ISP_RESET, HIGH);
     SMoCommand::SendResponse();
 }
@@ -400,7 +328,7 @@ SMoISP::SPIMulti()
         SMoDebug.print(" ");
         SMoDebug.print(*txData, HEX);
 #endif
-        *rxData = SPITransfer(*txData++);
+        *rxData = SMoHWIF::ISP::Transfer(*txData++);
         --numTX;
 #ifdef DEBUG_ISP
         SMoDebug.print(rxStart ? " (" : " [");
@@ -415,7 +343,7 @@ SMoISP::SPIMulti()
         }
     }
     while (numRX) {
-        *rxData = SPITransfer(0);
+        *rxData = SMoHWIF::ISP::Transfer(0);
 #ifdef DEBUG_ISP
         SMoDebug.print(rxStart ? " . (" : " . [");
         SMoDebug.print(*rxData, HEX);
