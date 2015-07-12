@@ -168,6 +168,22 @@
 				<key>Type</key>
 				<string>File</string>
 			</dict>
+			<dict>
+				<key>Kind</key>
+				<string>source.h</string>
+				<key>Path</key>
+				<string>SMoHWIF_HV.h</string>
+				<key>Type</key>
+				<string>File</string>
+			</dict>
+			<dict>
+				<key>Kind</key>
+				<string>source.h</string>
+				<key>Path</key>
+				<string>SMoHWIF_HVSP.h</string>
+				<key>Type</key>
+				<string>File</string>
+			</dict>
 		</array>
 		<key>Expanded</key>
 		<true/>

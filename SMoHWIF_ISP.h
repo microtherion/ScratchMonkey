@@ -13,9 +13,13 @@
 // Hardware interface refactoring based on Leong Yu Siang's work.
 //
 
+#ifndef _SMO_HWIF_ISP_
+#define _SMO_HWIF_ISP_
+
 #include "SMoConfig.h"
 #include "SMoGeneral.h"
 #include "SMoDebug.h"
+#include "SPI.h"
 
 enum ISP_RESET_PIN {};
 enum ISP_CLOCK_PIN {};
@@ -105,3 +109,5 @@ public:
 
 template <ISP_RESET_PIN ISP_RESET, ISP_CLOCK_PIN MCU_CLOCK> bool SMoHWIF_ISP<ISP_RESET,MCU_CLOCK>::sUsingHardwareSPI;
 template <ISP_RESET_PIN ISP_RESET, ISP_CLOCK_PIN MCU_CLOCK> int8_t SMoHWIF_ISP<ISP_RESET,MCU_CLOCK>::sSoftwareSPIDelay;
+
+#endif /* _SMO_HWIF_ISP_ */
