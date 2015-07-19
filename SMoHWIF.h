@@ -20,14 +20,18 @@
 #include "SMoHWIF_HV.h"
 #include "SMoHWIF_HVSP.h"
 #include "SMoHWIF_HVPP.h"
+#include "SMoHWIF_TPI.h"
 #include "SMoConfig.h"
 
-template <typename ISP_Platform, typename HVSP_Platform, typename HVPP_Platform> 
+template <typename ISP_Platform, 
+    typename HVSP_Platform, typename HVPP_Platform,
+    typename TPI_Platform> 
 class SMoHWIF_Platform {
 public:
     typedef ISP_Platform    ISP;
     typedef HVSP_Platform   HVSP;
     typedef HVPP_Platform   HVPP;
+    typedef TPI_Platform    TPI;
 };
 
 #if SMO_LAYOUT==SMO_LAYOUT_STANDARD
@@ -46,6 +50,7 @@ public:
     typedef SMoHWIF_HVPP<SMoHWIF_HV_Platform,
                          SMoHWIF_HVPP_Control, SMoHWIF_HVPP_Data,
                          HVPP_XTAL_PIN(A2)>                     SMoHWIF_HVPP_Platform;
+    typedef SMoHWIF_TPI<SMoHWIF_HV_Platform>                    SMoHWIF_TPI_Platform;
 #elif SMO_LAYOUT==SMO_LAYOUT_LEONARDO
     typedef SMoHWIF_ISP<ISP_RESET_PIN(10), ISP_CLOCK_PIN(9)>    SMoHWIF_ISP_Platform;
     typedef SMoHWIF_HV<HV_RESET_PIN(10), HV_VCC_PIN(11)>        SMoHWIF_HV_Platform;
@@ -63,6 +68,7 @@ public:
     typedef SMoHWIF_Port_Slow<2>                                SMoHWIF_HVPP_Data;
     typedef SMoHWIF_HVPP<SMoHWIF_HV_Platform,
                 SMoHWIF_HVPP_Control, SMoHWIF_HVPP_Data>        SMoHWIF_HVPP_Platform;
+    typedef SMoHWIF_TPI<SMoHWIF_HV_Platform>                    SMoHWIF_TPI_Platform;
 #else
     typedef SMoHWIF_ISP<ISP_RESET_PIN(SS), ISP_CLOCK_PIN(11)>   SMoHWIF_ISP_Platform;
     typedef SMoHWIF_HV<HV_RESET_PIN(10), HV_VCC_PIN(11)>        SMoHWIF_HV_Platform;
@@ -76,12 +82,14 @@ public:
     typedef SMoHWIF_Port_Simple<SMoHWIF_PORT_K>                SMoHWIF_HVPP_Data;
     typedef SMoHWIF_HVPP<SMoHWIF_HV_Platform,
                 SMoHWIF_HVPP_Control, SMoHWIF_HVPP_Data>        SMoHWIF_HVPP_Platform;
+    typedef SMoHWIF_TPI<SMoHWIF_HV_Platform>                    SMoHWIF_TPI_Platform;
 #endif
 
 typedef SMoHWIF_Platform<
     SMoHWIF_ISP_Platform,
     SMoHWIF_HVSP_Platform,
-    SMoHWIF_HVPP_Platform
+    SMoHWIF_HVPP_Platform,
+    SMoHWIF_TPI_Platform
 >   SMoHWIF;
 
 #endif /* _SMO_HWIF_ */

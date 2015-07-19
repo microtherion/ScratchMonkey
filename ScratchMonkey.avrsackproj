@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Board</key>
-	<string>leonardo</string>
+	<string>uno</string>
 	<key>Files</key>
 	<dict>
 		<key>Children</key>
@@ -200,6 +200,14 @@
 				<key>Type</key>
 				<string>File</string>
 			</dict>
+			<dict>
+				<key>Kind</key>
+				<string>source.h</string>
+				<key>Path</key>
+				<string>SMoHWIF_TPI.h</string>
+				<key>Type</key>
+				<string>File</string>
+			</dict>
 		</array>
 		<key>Expanded</key>
 		<true/>
@@ -211,13 +219,13 @@
 	<key>FontSize</key>
 	<integer>12</integer>
 	<key>Port</key>
-	<string></string>
+	<string>usbmodem1421</string>
 	<key>Programmer</key>
 	<string></string>
 	<key>RecentBoards</key>
 	<array>
-		<string>leonardo</string>
 		<string>uno</string>
+		<string>leonardo</string>
 		<string>mega2560</string>
 		<string>attiny84at1</string>
 		<string>attiny43uat8</string>
