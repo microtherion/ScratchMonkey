@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Board</key>
-	<string>mega2560</string>
+	<string>leonardo</string>
 	<key>Files</key>
 	<dict>
 		<key>Children</key>
@@ -184,6 +184,22 @@
 				<key>Type</key>
 				<string>File</string>
 			</dict>
+			<dict>
+				<key>Kind</key>
+				<string>source.h</string>
+				<key>Path</key>
+				<string>SMoHWIF_Port.h</string>
+				<key>Type</key>
+				<string>File</string>
+			</dict>
+			<dict>
+				<key>Kind</key>
+				<string>source.h</string>
+				<key>Path</key>
+				<string>SMoHWIF_HVPP.h</string>
+				<key>Type</key>
+				<string>File</string>
+			</dict>
 		</array>
 		<key>Expanded</key>
 		<true/>
@@ -200,14 +216,14 @@
 	<string></string>
 	<key>RecentBoards</key>
 	<array>
+		<string>leonardo</string>
+		<string>uno</string>
 		<string>mega2560</string>
 		<string>attiny84at1</string>
 		<string>attiny43uat8</string>
 		<string>attiny43uat1</string>
 		<string>atmega328at1</string>
-		<string>uno</string>
 		<string>attiny85at8</string>
-		<string>attiny84at8</string>
 	</array>
 	<key>RecentProgrammers</key>
 	<array>

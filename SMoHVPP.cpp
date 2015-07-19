@@ -5,7 +5,7 @@
 // File: SMoHVPP.cpp        - High Voltage Parallel Programming
 //                            (for MCUs with 20 pins and more)
 //
-// Copyright (c) 2013-2014 Matthias Neeracher <microtherion@gmail.com>
+// Copyright (c) 2013-2015 Matthias Neeracher <microtherion@gmail.com>
 // All rights reserved.
 //
 // See license at bottom of this file or at
@@ -16,6 +16,7 @@
 #include "SMoCommand.h"
 #include "SMoGeneral.h"
 #include "SMoConfig.h"
+#include "SMoHWIF.h"
 
 #ifdef DEBUG_HVPP
 #include "SMoDebug.h"
@@ -25,15 +26,8 @@
 #include <SPI.h>
 
 enum {
-    HVPP_RESET  = SMO_HVRESET,
-    HVPP_RDY    = 12,
-    HVPP_VCC    = SMO_SVCC,
-#if SMO_LAYOUT==SMO_LAYOUT_STANDARD
-    HVPP_RCLK   = A1,
-    HVPP_XTAL   = A2,
-#else
-    HVPP_XTAL   = 13
-#endif
+    HVPP_RDY    = SMoHWIF::HVPP::RDY,
+    HVPP_XTAL   = SMoHWIF::HVPP::XTAL
 };
 
 //
@@ -41,11 +35,6 @@ enum {
 // signal. 20 pin MCUs multiplex some of the output signals, and they
 // don't do it all the same way. We rely on the control stack uploaded
 // by avrdude to tell us what signals to set, when. 
-//
-// This implementation uses a 74HV595 shift register for the output 
-// signal, but if you're using a board with more output pins, or are
-// willing to have the TX/RX pins do double duty, you may be able to 
-// dispense with that.
 //
 // Control patterns, expressed as index values for the control stack
 // (Adopted from Simon Quiang's AVRminiProg implementation)
@@ -66,172 +55,6 @@ enum {
     kExt2Byte       = 3,
 };
 
-//
-// Control/Data access
-//
-#if SMO_LAYOUT==SMO_LAYOUT_STANDARD
-//
-// Delegate controls to auxiliary 74HC595 shift register, but
-// can transfer data pretty easily
-//
-enum {
-    PORTD_MASK = 0xFC,
-    PORTB_MASK = 0x03,
-    PORTD_SHIFT = 2,
-    PORTB_SHIFT = 6
-};
-
-inline void
-HVPPSetControlSignals(uint8_t signals)
-{
-    digitalWrite(HVPP_RCLK, LOW);
-    SPI.transfer(signals);
-    digitalWrite(HVPP_RCLK, HIGH);
-}
-
-inline void
-HVPPInitControlSignals()
-{
-    SPI.begin();
-    SPI.setDataMode(SPI_MODE0);
-    SPI.setBitOrder(MSBFIRST);
-    SPI.setClockDivider(SPI_CLOCK_DIV2);// Pedal to the metal
-    digitalWrite(HVPP_RCLK, LOW);
-    pinMode(HVPP_RCLK, OUTPUT);
-}
-
-inline void
-HVPPEndControls()
-{
-    SPI.end();
-}
-
-inline void
-HVPPSetDataMode(uint8_t mode)
-{
-   if (mode == OUTPUT) {
-        DDRD |= PORTD_MASK;
-        DDRB |= PORTB_MASK;
-    } else {
-        DDRD &= ~PORTD_MASK;
-        DDRB &= ~PORTB_MASK;
-    }
-}
-
-inline void
-HVPPSetDataBits(uint8_t dataOut)
-{
-    PORTD = (PORTD & ~PORTD_MASK) | ((dataOut << PORTD_SHIFT) & PORTD_MASK);
-    PORTB = (PORTB & ~PORTB_MASK) | ((dataOut >> PORTB_SHIFT) & PORTB_MASK);
-}
-
-inline uint8_t
-HVPPGetDataBits()
-{
-    // No need for masking
-    return ((PINB << PORTB_SHIFT) | (PIND >> PORTD_SHIFT)) & 0xFF;
-}
-#elif SMO_LAYOUT==SMO_LAYOUT_LEONARDO
-//
-// Leonardos don't have 8 contiguous pins anywhere, so we split the 
-// control signals across two ports. The data signals are not as 
-// critical, so we just use digitalRead (we'd have to split them
-// across at least three ports).
-//
-enum {
-    PORTF_MASK = 0xF1,
-    PORTD_MASK = 0x0C,
-};
-
-inline void
-HVPPSetControlSignals(uint8_t signals)
-{
-    PORTF   = (PORTF & ~PORTF_MASK) | (signals & PORTF_MASK);
-    PORTD   = (PORTD & ~PORTD_MASK) | (signals & PORTD_MASK);
-}
-
-inline void
-HVPPInitControlSignals()
-{
-    DDRF   |= PORTF_MASK;
-    DDRD   |= PORTD_MASK;
-}
-
-inline void
-HVPPEndControls()
-{
-}
-
-inline void
-HVPPSetDataMode(uint8_t mode)
-{
-    for (uint8_t pin=2; pin<10; ++pin)
-        pinMode(pin, mode);
-}
-
-inline void
-HVPPSetDataBits(uint8_t dataOut)
-{
-    for (uint8_t pin=2; pin<10; ++pin) {
-        digitalWrite(pin, dataOut & 1);
-        dataOut >>= 1;
-    }
-}
-
-inline uint8_t
-HVPPGetDataBits()
-{
-    uint8_t dataIn = 0;
-
-    for (uint8_t pin=9; pin >= 2; --pin)
-        dataIn = (dataIn << 1) | digitalRead(pin);
-
-    return dataIn;
-}
-#else
-//
-// Megas have lots of contiguous pins, so we just use two full ports.
-//
-inline void
-HVPPSetControlSignals(uint8_t signals)
-{
-    PORTF   = signals;
-}
-
-inline void
-HVPPInitControlSignals()
-{
-    DDRF    = 0xFF;
-}
-
-inline void
-HVPPEndControls()
-{
-}
-
-inline void
-HVPPSetDataMode(uint8_t mode)
-{
-   if (mode == OUTPUT) {
-       DDRK = 0xFF;
-    } else {
-       DDRK = 0x00;
-    }
-}
-
-inline void
-HVPPSetDataBits(uint8_t dataOut)
-{
-    PORTK = dataOut;
-}
-
-inline uint8_t
-HVPPGetDataBits()
-{
-    return PINK;
-}
-#endif
-
 inline void
 HVPPSetControls(uint8_t controlIx)
 {
@@ -242,7 +65,7 @@ HVPPSetControls(uint8_t controlIx)
     SMoDebug.print(SMoGeneral::gControlStack[controlIx], BIN);
     SMoDebug.println();
 #endif
-    HVPPSetControlSignals(SMoGeneral::gControlStack[controlIx]);
+    SMoHWIF::HVPP::SetControlSignals(SMoGeneral::gControlStack[controlIx]);
 }
 
 inline void
@@ -252,19 +75,12 @@ HVPPSetControls(uint8_t controlIx, uint8_t byteSel)
 }
 
 inline void
-HVPPInitControls()
-{
-    HVPPInitControlSignals();
-    HVPPSetControls(kInit);            // Set all control pins to zero
-}
-
-inline void
 HVPPDataMode(uint8_t mode)
 {
 #ifdef DEBUG_HVPP
    SMoDebug.println(mode == OUTPUT ? "Data OUT" : "Data IN");
 #endif
-   HVPPSetDataMode(mode);
+   SMoHWIF::HVPP::DataMode(mode);
 }
 
 inline void
@@ -274,13 +90,13 @@ HVPPSetDataRaw(uint8_t dataOut)
    SMoDebug.print("Data<");
    SMoDebug.println(dataOut, HEX);
 #endif
-   HVPPSetDataBits(dataOut);
+   SMoHWIF::HVPP::SetData(dataOut);
 }
 
 inline uint8_t
 HVPPGetDataRaw()
 {
-    uint8_t dataIn = HVPPGetDataBits();
+    uint8_t dataIn = SMoHWIF::HVPP::GetData();
     
 #ifdef DEBUG_HVPP
     SMoDebug.print("Data>");
@@ -375,30 +191,11 @@ SMoHVPP::EnterProgmode()
     // const uint8_t   cmdexeDelay = SMoCommand::gBody[2];
     const uint8_t   latchCycles = SMoCommand::gBody[3];
     // const uint8_t   toggleVtg   = SMoCommand::gBody[4];
-    const uint8_t   powoffDelay = SMoCommand::gBody[5];
+    const uint8_t   powOffDelay = SMoCommand::gBody[5];
     const uint8_t   resetDelay1 = SMoCommand::gBody[6];
     const uint8_t   resetDelay2 = SMoCommand::gBody[7];
-    
-    pinMode(HVPP_VCC, OUTPUT);
-    digitalWrite(HVPP_VCC, LOW);
-    digitalWrite(HVPP_RESET, HIGH); // Set BEFORE pinMode, so we don't glitch LOW
-    pinMode(HVPP_RESET, OUTPUT);
-    pinMode(HVPP_RDY, INPUT);
-    digitalWrite(HVPP_RDY, LOW);
-    pinMode(HVPP_XTAL, OUTPUT);
-    digitalWrite(HVPP_XTAL, LOW);
-    HVPPDataMode(OUTPUT);
-    HVPPInitControls();
-
-    delay(powoffDelay);
-    digitalWrite(HVPP_VCC, HIGH);
-    delayMicroseconds(50);
-    for (uint8_t i=0; i<latchCycles; ++i) {
-        digitalWrite(HVPP_XTAL, HIGH);
-        delayMicroseconds(10);
-        digitalWrite(HVPP_XTAL, LOW);
-    }
-    digitalWrite(HVPP_RESET, LOW);
+   
+    SMoHWIF::HVPP::Setup(SMoGeneral::gControlStack[kInit], powOffDelay, latchCycles); 
     delay(resetDelay1);
     delayMicroseconds(resetDelay2);
     
@@ -413,8 +210,7 @@ SMoHVPP::LeaveProgmode()
     // const uint8_t   stabDelay   = SMoCommand::gBody[1];
     const uint8_t   resetDelay = SMoCommand::gBody[2];
 
-    digitalWrite(HVPP_RESET, HIGH);
-    digitalWrite(HVPP_VCC, LOW);
+    SMoHWIF::HVPP::Stop();
 
     delay(resetDelay);
 
