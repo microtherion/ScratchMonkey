@@ -56,11 +56,11 @@ class SMoHWIF_Port_Dual {
 public:
     static void Setup(uint8_t mode) {
         if (mode == OUTPUT) {
-            SMoDDR(SMoPORT(PORT_L)) |= MASK_L;
-            SMoDDR(SMoPORT(PORT_H)) |= MASK_H;
+            SMoDDR(PORT_L) |= MASK_L;
+            SMoDDR(PORT_H) |= MASK_H;
         } else {
-            SMoDDR(SMoPORT(PORT_L)) &= ~MASK_L;
-            SMoDDR(SMoPORT(PORT_H)) &= ~MASK_H;
+            SMoDDR(PORT_L) &= ~MASK_L;
+            SMoDDR(PORT_H) &= ~MASK_H;
         }
     }
     static void Stop() {
