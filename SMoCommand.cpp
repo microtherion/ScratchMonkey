@@ -29,6 +29,12 @@ static uint8_t  sSequenceNumber;
 static uint16_t sNumBytesRead       = 0;
 static uint16_t sNumBytesWanted     = 1;
 static uint8_t  sCheckSum           = 0;
+static bool     sSerialInUse        = false;
+#ifdef SMO_SHARE_SERIAL_PINS
+static bool     sShareSerialPins    = false;
+#else
+#define sShareSerialPins false
+#endif
 
 uint16_t         SMoCommand::gSize;
 uint8_t          SMoCommand::gBody[kMaxBodySize+1];
@@ -50,6 +56,34 @@ ResetToIdle()
 }
 
 //
+// For HVPP, we're short enough on pins in some models that we need to re-use the
+// serial port. Based on an idea by João Paulo Barraca <jpbarraca@ua.pt>
+//
+static void
+NeedSerial(bool needIt)
+{
+    if (needIt != sSerialInUse) {
+        if (needIt) {
+            Serial.begin(115200L);
+            sSerialInUse = true;
+        } else if (sShareSerialPins) {
+            delay(5);
+            Serial.end();
+            sSerialInUse = false;
+        }
+    }
+}
+
+void
+SMoCommand::ShareSerialPins(bool share)
+{
+#ifdef SMO_SHARE_SERIAL_PINS
+    sShareSerialPins = share;
+    NeedSerial(!share);
+#endif
+}
+
+//
 // Parse next command, return command code if command is fully read
 // and checksum matches. Handles timeouts and checksum errors 
 // autonomously.
@@ -57,6 +91,7 @@ ResetToIdle()
 int 
 SMoCommand::GetNextCommand()
 {
+    NeedSerial(true);
     if (!Serial.available() || sState == kCompleteState)
         return kIncomplete;
     sCheckSum ^= (gBody[sNumBytesRead++] = Serial.read());
@@ -89,6 +124,7 @@ SMoCommand::GetNextCommand()
 #ifdef DEBUG_COMM
             SMoDebug.print("Command "); if (gBody[0] < 16) SMoDebug.print("0"); SMoDebug.println(gBody[0], HEX);
 #endif
+            NeedSerial(false);
             return gBody[0];   // Success!
         }
     case kHeaderState:
@@ -111,6 +147,8 @@ SMoCommand::GetNextCommand()
 void
 SMoCommand::SendResponse(uint8_t status, uint16_t bodySize, bool xprog)
 {
+    NeedSerial(true);
+
 #ifdef DEBUG_COMM
     SMoDebug.print("Resp "); if (status < 16) SMoDebug.print("0"); SMoDebug.print(status, HEX); SMoDebug.print(" #"); SMoDebug.println(bodySize);
 #endif

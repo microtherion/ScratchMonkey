@@ -31,6 +31,12 @@ namespace SMoCommand {
     extern uint16_t gSize;
 
     //
+    // On regular Arduinos, we're low on pins for HVPP, so we need to share the serial
+    // port with HVPP signals. This slows down processing, so we only turn it on when
+    // needed. Based on an idea by João Paulo Barraca <jpbarraca@ua.pt>
+    //
+    void        ShareSerialPins(bool share);
+    //
     // Parse next command, return command code if command is fully read
     // and checksum matches. Handles timeouts and checksum errors 
     // autonomously.

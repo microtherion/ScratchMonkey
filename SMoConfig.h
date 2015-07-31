@@ -37,6 +37,10 @@
 #error Unknown Arduino platform, help me define the correct pin layout
 #endif
 
+#if SMO_LAYOUT==SMO_LAYOUT_STANDARD
+#define SMO_SHARE_SERIAL_PINS
+#endif
+
 //
 // Define to open a serial port for debugging
 //

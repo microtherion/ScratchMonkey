@@ -37,7 +37,7 @@ setup()
     SMoHWIF_HVPP_Data::Setup(INPUT);
     for (test = 0; test<sizeof(sTestPatterns); ++test) {
         SMoHWIF_HVPP_Control::Set(sTestPatterns[test]);
-        delayMicroseconds(1);
+        delayMicroseconds(5);
         read = SMoHWIF_HVPP_Data::Get() & kPortMask;
         if (read != sTestPatterns[test]) {
             uint8_t written = SMoHWIF_HVPP_Control::Get() & kPortMask;
@@ -62,7 +62,7 @@ setup()
     SMoHWIF_HVPP_Data::Setup(OUTPUT);
     for (test = 0; test<sizeof(sTestPatterns); ++test) {
         SMoHWIF_HVPP_Data::Set(sTestPatterns[test]);
-        delayMicroseconds(1);
+        delayMicroseconds(5);
         read = SMoHWIF_HVPP_Control::Get() & kPortMask;
         if (read != sTestPatterns[test]) {
             uint8_t written = SMoHWIF_HVPP_Data::Get() & kPortMask;

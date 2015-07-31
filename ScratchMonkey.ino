@@ -39,7 +39,6 @@
 void
 setup()
 {
-    Serial.begin(115200L);
 #ifdef DEBUG_COMM
     SMoDebugInit();
     SMoDebug.println("Yo!");
@@ -161,10 +160,12 @@ loop()
         // HVPP Commands
         //
     case CMD_ENTER_PROGMODE_PP:
+        SMoCommand::ShareSerialPins(true);
         SMoHVPP::EnterProgmode();
         break;
     case CMD_LEAVE_PROGMODE_PP:
         SMoHVPP::LeaveProgmode();
+        SMoCommand::ShareSerialPins(false);
         break;
     case CMD_CHIP_ERASE_PP:
         SMoHVPP::ChipErase();    
