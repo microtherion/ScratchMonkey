@@ -58,15 +58,11 @@
 // Some pins used in multiple modules
 //
 enum {
-    SMO_HVRESET    = 10,
 #if SMO_LAYOUT==SMO_LAYOUT_STANDARD
-    SMO_SVCC       = A0,
-    SMO_DEBUG      = A5
+    SMO_DEBUG      = A1
 #elif SMO_LAYOUT==SMO_LAYOUT_LEONARDO
-    SMO_SVCC       = 11,
     SMO_DEBUG      = A4
 #else
-    SMO_SVCC       = 11,
     SMO_DEBUG      = 18
 #endif
 };
