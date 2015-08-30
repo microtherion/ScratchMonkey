@@ -53,7 +53,6 @@ public:
         delayMicroseconds(50);
         for (uint8_t i=0; i<latchCycles; ++i) {
             digitalWrite(HVPP_XTAL, HIGH);
-            delayMicroseconds(10);
             digitalWrite(HVPP_XTAL, LOW);
         }
         digitalWrite(HVPP_RESET, LOW);

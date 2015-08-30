@@ -36,20 +36,20 @@ public:
 
 #if SMO_LAYOUT==SMO_LAYOUT_STANDARD
     typedef SMoHWIF_ISP<ISP_RESET_PIN(SS), ISP_CLOCK_PIN(9)>    SMoHWIF_ISP_Platform;
-    typedef SMoHWIF_HV<HV_RESET_PIN(10), HV_VCC_PIN(A0)>        SMoHWIF_HV_Platform;
+    typedef SMoHWIF_HV<HV_RESET_PIN(10), HV_VCC_PIN(11)>        SMoHWIF_HV_Platform;
     typedef SMoHWIF_HVSP<SMoHWIF_HV_Platform>                   SMoHWIF_HVSP_Platform;
     //
-    // Delegate controls to auxiliary 74HC595 shift register, but
-    // can transfer data pretty easily
+    // Data using port D (reusing the serial pins), control
+    // split across ports B and C.
     //
     const int   SMoHWIF_PORT_B  = 0x03;
+    const int   SMoHWIF_PORT_C  = 0x06;
     const int   SMoHWIF_PORT_D  = 0x09;
-    typedef SMoHWIF_Port_SPI<PORT_CS_PIN(A1)>                   SMoHWIF_HVPP_Control;
     typedef SMoHWIF_Port_Dual<SMoHWIF_PORT_B, 0x03, 6,
-                              SMoHWIF_PORT_D, 0xFC, 2>         SMoHWIF_HVPP_Data;
+                              SMoHWIF_PORT_C, 0x3D, 0>          SMoHWIF_HVPP_Control;
+    typedef SMoHWIF_Port_Simple<SMoHWIF_PORT_D>                 SMoHWIF_HVPP_Data;
     typedef SMoHWIF_HVPP<SMoHWIF_HV_Platform,
-                         SMoHWIF_HVPP_Control, SMoHWIF_HVPP_Data,
-                         HVPP_XTAL_PIN(A2)>                     SMoHWIF_HVPP_Platform;
+                SMoHWIF_HVPP_Control, SMoHWIF_HVPP_Data>        SMoHWIF_HVPP_Platform;
     typedef SMoHWIF_TPI<SMoHWIF_HV_Platform>                    SMoHWIF_TPI_Platform;
 #elif SMO_LAYOUT==SMO_LAYOUT_LEONARDO
     typedef SMoHWIF_ISP<ISP_RESET_PIN(10), ISP_CLOCK_PIN(9)>    SMoHWIF_ISP_Platform;
@@ -77,7 +77,7 @@ public:
     // Megas have lots of contiguous pins, so we just use two full ports.
     //
     const int   SMoHWIF_PORT_F  = 0x0F;
-    const int   SMoHWIF_PORT_K  = 0x106;
+    const int   SMoHWIF_PORT_K  = 0xE6;
     typedef SMoHWIF_Port_Simple<SMoHWIF_PORT_F>                SMoHWIF_HVPP_Control;
     typedef SMoHWIF_Port_Simple<SMoHWIF_PORT_K>                SMoHWIF_HVPP_Data;
     typedef SMoHWIF_HVPP<SMoHWIF_HV_Platform,

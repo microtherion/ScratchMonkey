@@ -66,6 +66,7 @@ HVPPSetControls(uint8_t controlIx)
     SMoDebug.println();
 #endif
     SMoHWIF::HVPP::SetControlSignals(SMoGeneral::gControlStack[controlIx]);
+    delayMicroseconds(1);
 }
 
 inline void

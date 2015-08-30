@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Board</key>
-	<string>uno</string>
+	<string>mega2560</string>
 	<key>Files</key>
 	<dict>
 		<key>Children</key>
@@ -219,14 +219,14 @@
 	<key>FontSize</key>
 	<integer>12</integer>
 	<key>Port</key>
-	<string>usbmodem1421</string>
+	<string>Repleo-CH341-00001014</string>
 	<key>Programmer</key>
 	<string></string>
 	<key>RecentBoards</key>
 	<array>
+		<string>mega2560</string>
 		<string>uno</string>
 		<string>leonardo</string>
-		<string>mega2560</string>
 		<string>attiny84at1</string>
 		<string>attiny43uat8</string>
 		<string>attiny43uat1</string>
