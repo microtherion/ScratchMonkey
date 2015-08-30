@@ -16,7 +16,7 @@ attiny861.isp : test8K.hex test512.hex
 attiny1634.isp : test16K.hex test256.hex
 	../Tools/RunTest attiny1634 $(PROTOCOL) test16K.hex test256.hex 62:DF:E7 72:DE:FF  
 atmega328.isp : test28K.hex test1K.hex
-	../Tools/RunTest atmega328 $(PROTOCOL) test28K.hex test1K.hex 62:D9:FF 72:D8:FE
+	../Tools/RunTest atmega328p $(PROTOCOL) test28K.hex test1K.hex 62:D9:FF 72:D8:FE
 arduino.isp : test28K.hex test1K.hex  
 	../Tools/RunTest atmega328p $(PROTOCOL) test28K.hex test1K.hex FF:D6:FD FE:DE:FE
 atmega1284.isp : test120K.hex test4K.hex
@@ -36,7 +36,7 @@ attiny861.hvpp : test8K.hex test512.hex
 attiny1634.hvpp : test16K.hex test256.hex
 	../Tools/RunTest attiny1634 $(PROTO_PP) test16K.hex test256.hex 62:DF:E7 72:DE:FF  
 atmega328.hvpp : test28K.hex test1K.hex
-	../Tools/RunTest atmega328 $(PROTO_PP) test28K.hex test1K.hex 62:D9:FF 72:D8:FE  
+	../Tools/RunTest atmega328p $(PROTO_PP) test28K.hex test1K.hex 62:D9:FF 72:D8:FE  
 atmega1284.hvpp : test120K.hex test4K.hex
 	../Tools/RunTest atmega1284p $(PROTO_PP) test120K.hex test4K.hex 62:99:FF 72:89:FD  
 
