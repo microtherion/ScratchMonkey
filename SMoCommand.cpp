@@ -67,7 +67,7 @@ NeedSerial(bool needIt)
             Serial.begin(115200L);
             sSerialInUse = true;
         } else if (sShareSerialPins) {
-            delay(5);
+            delay(1);
             Serial.end();
             sSerialInUse = false;
         }

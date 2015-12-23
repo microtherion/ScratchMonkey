@@ -39,15 +39,15 @@ public:
     typedef SMoHWIF_HV<HV_RESET_PIN(10), HV_VCC_PIN(11)>        SMoHWIF_HV_Platform;
     typedef SMoHWIF_HVSP<SMoHWIF_HV_Platform>                   SMoHWIF_HVSP_Platform;
     //
-    // Data using port D (reusing the serial pins), control
+    // Control using port D (reusing the RX pin), data
     // split across ports B and C.
     //
     const int   SMoHWIF_PORT_B  = 0x03;
     const int   SMoHWIF_PORT_C  = 0x06;
     const int   SMoHWIF_PORT_D  = 0x09;
     typedef SMoHWIF_Port_Dual<SMoHWIF_PORT_B, 0x03, 6,
-                              SMoHWIF_PORT_C, 0x3D, 0>          SMoHWIF_HVPP_Control;
-    typedef SMoHWIF_Port_Simple<SMoHWIF_PORT_D>                 SMoHWIF_HVPP_Data;
+                              SMoHWIF_PORT_C, 0x3F, 0>          SMoHWIF_HVPP_Data;
+    typedef SMoHWIF_Port_Simple<SMoHWIF_PORT_D>                 SMoHWIF_HVPP_Control;
     typedef SMoHWIF_HVPP<SMoHWIF_HV_Platform,
                 SMoHWIF_HVPP_Control, SMoHWIF_HVPP_Data>        SMoHWIF_HVPP_Platform;
     typedef SMoHWIF_TPI<SMoHWIF_HV_Platform>                    SMoHWIF_TPI_Platform;
