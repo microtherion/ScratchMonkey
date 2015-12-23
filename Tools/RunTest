@@ -4,7 +4,7 @@
 
 AVRDUDE     = ENV['AVRDUDE'] || '/usr/local/CrossPack-AVR/bin/avrdude'
 AVRDUDECONF = ENV['AVRDUDECONF'] ? "-C '#{ENV['AVRDUDECONF']}'" : ''
-SERIALPORT  = ENV['SERIALPORT'] || %x{ls /dev/tty.usbmodem*}.chomp
+SERIALPORT  = ENV['SERIALPORT'] || %x{ls /dev/cu.usbmodem*}.chomp
 
 def loud_system(command)
   $stderr.puts command
