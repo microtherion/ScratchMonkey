@@ -35,54 +35,11 @@ public:
 };
 
 #if SMO_LAYOUT==SMO_LAYOUT_STANDARD
-    typedef SMoHWIF_ISP<ISP_RESET_PIN(SS), ISP_CLOCK_PIN(9)>    SMoHWIF_ISP_Platform;
-    typedef SMoHWIF_HV<HV_RESET_PIN(10), HV_VCC_PIN(11)>        SMoHWIF_HV_Platform;
-    typedef SMoHWIF_HVSP<SMoHWIF_HV_Platform>                   SMoHWIF_HVSP_Platform;
-    //
-    // Control using port D (reusing the RX pin), data
-    // split across ports B and C.
-    //
-    const int   SMoHWIF_PORT_B  = 0x03;
-    const int   SMoHWIF_PORT_C  = 0x06;
-    const int   SMoHWIF_PORT_D  = 0x09;
-    typedef SMoHWIF_Port_Dual<SMoHWIF_PORT_B, 0x03, 6,
-                              SMoHWIF_PORT_C, 0x3F, 0>          SMoHWIF_HVPP_Data;
-    typedef SMoHWIF_Port_Simple<SMoHWIF_PORT_D>                 SMoHWIF_HVPP_Control;
-    typedef SMoHWIF_HVPP<SMoHWIF_HV_Platform,
-                SMoHWIF_HVPP_Control, SMoHWIF_HVPP_Data>        SMoHWIF_HVPP_Platform;
-    typedef SMoHWIF_TPI<SMoHWIF_HV_Platform>                    SMoHWIF_TPI_Platform;
+#include "SMoHWIF_Standard.h"
 #elif SMO_LAYOUT==SMO_LAYOUT_LEONARDO
-    typedef SMoHWIF_ISP<ISP_RESET_PIN(10), ISP_CLOCK_PIN(9)>    SMoHWIF_ISP_Platform;
-    typedef SMoHWIF_HV<HV_RESET_PIN(10), HV_VCC_PIN(11)>        SMoHWIF_HV_Platform;
-    typedef SMoHWIF_HVSP<SMoHWIF_HV_Platform>                   SMoHWIF_HVSP_Platform;
-    //
-    // Leonardos don't have 8 contiguous pins anywhere, so we split the 
-    // control signals across two ports. The data signals are not as 
-    // critical, so we just use digitalRead/Write (we'd have to split
-    // them across at least three ports).
-    //
-    const int   SMoHWIF_PORT_D  = 0x09;
-    const int   SMoHWIF_PORT_F  = 0x0F;
-    typedef SMoHWIF_Port_Dual<SMoHWIF_PORT_D, 0x0C, 0,
-                              SMoHWIF_PORT_F, 0xF1, 0>         SMoHWIF_HVPP_Control;
-    typedef SMoHWIF_Port_Slow<2>                                SMoHWIF_HVPP_Data;
-    typedef SMoHWIF_HVPP<SMoHWIF_HV_Platform,
-                SMoHWIF_HVPP_Control, SMoHWIF_HVPP_Data>        SMoHWIF_HVPP_Platform;
-    typedef SMoHWIF_TPI<SMoHWIF_HV_Platform>                    SMoHWIF_TPI_Platform;
+#include "SMoHWIF_Leonardo.h"
 #else
-    typedef SMoHWIF_ISP<ISP_RESET_PIN(SS), ISP_CLOCK_PIN(11)>   SMoHWIF_ISP_Platform;
-    typedef SMoHWIF_HV<HV_RESET_PIN(10), HV_VCC_PIN(11)>        SMoHWIF_HV_Platform;
-    typedef SMoHWIF_HVSP<SMoHWIF_HV_Platform>                   SMoHWIF_HVSP_Platform;
-    //
-    // Megas have lots of contiguous pins, so we just use two full ports.
-    //
-    const int   SMoHWIF_PORT_F  = 0x0F;
-    const int   SMoHWIF_PORT_K  = 0xE6;
-    typedef SMoHWIF_Port_Simple<SMoHWIF_PORT_F>                SMoHWIF_HVPP_Control;
-    typedef SMoHWIF_Port_Simple<SMoHWIF_PORT_K>                SMoHWIF_HVPP_Data;
-    typedef SMoHWIF_HVPP<SMoHWIF_HV_Platform,
-                SMoHWIF_HVPP_Control, SMoHWIF_HVPP_Data>        SMoHWIF_HVPP_Platform;
-    typedef SMoHWIF_TPI<SMoHWIF_HV_Platform>                    SMoHWIF_TPI_Platform;
+#include "SMoHWIF_Mega.h"
 #endif
 
 typedef SMoHWIF_Platform<

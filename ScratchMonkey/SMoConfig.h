@@ -18,9 +18,9 @@
 
 //
 // We support a number of different pin layouts:
-//  - Standard Arduino: SPI on pins 10-13, pins 0/1 used for Serial (ATmega168/328)
-//  - Leonardo/Micro:   SPI on dedicated pins, pins 0/1 available   (ATmega32u4)
-//  - Mega:             SPI on pins 50-53, pins 0/1 used for Serial (ATmega1280/2560)
+//  - Standard Arduino (ATmega168/328)
+//  - Leonardo/Micro   (ATmega32u4)
+//  - Mega             (ATmega1280/2560)
 //
 
 #define    SMO_LAYOUT_STANDARD     0
