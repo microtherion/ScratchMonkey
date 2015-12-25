@@ -26,49 +26,9 @@
 			</dict>
 			<dict>
 				<key>Kind</key>
-				<string>source.c++</string>
-				<key>Path</key>
-				<string>ScratchMonkey/SMoCommand.cpp</string>
-				<key>Type</key>
-				<string>File</string>
-			</dict>
-			<dict>
-				<key>Kind</key>
-				<string>source.h</string>
-				<key>Path</key>
-				<string>ScratchMonkey/SMoCommand.h</string>
-				<key>Type</key>
-				<string>File</string>
-			</dict>
-			<dict>
-				<key>Kind</key>
 				<string>source.h</string>
 				<key>Path</key>
 				<string>ScratchMonkey/SMoConfig.h</string>
-				<key>Type</key>
-				<string>File</string>
-			</dict>
-			<dict>
-				<key>Kind</key>
-				<string>source.c++</string>
-				<key>Path</key>
-				<string>ScratchMonkey/SMoDebug.cpp</string>
-				<key>Type</key>
-				<string>File</string>
-			</dict>
-			<dict>
-				<key>Kind</key>
-				<string>source.h</string>
-				<key>Path</key>
-				<string>ScratchMonkey/SMoDebug.h</string>
-				<key>Type</key>
-				<string>File</string>
-			</dict>
-			<dict>
-				<key>Kind</key>
-				<string>source.c++</string>
-				<key>Path</key>
-				<string>ScratchMonkey/SMoGeneral.cpp</string>
 				<key>Type</key>
 				<string>File</string>
 			</dict>
@@ -84,7 +44,7 @@
 				<key>Kind</key>
 				<string>source.c++</string>
 				<key>Path</key>
-				<string>ScratchMonkey/SMoHVPP.cpp</string>
+				<string>ScratchMonkey/SMoGeneral.cpp</string>
 				<key>Type</key>
 				<string>File</string>
 			</dict>
@@ -92,7 +52,7 @@
 				<key>Kind</key>
 				<string>source.h</string>
 				<key>Path</key>
-				<string>ScratchMonkey/SMoHVPP.h</string>
+				<string>ScratchMonkey/SMoCommand.h</string>
 				<key>Type</key>
 				<string>File</string>
 			</dict>
@@ -100,7 +60,7 @@
 				<key>Kind</key>
 				<string>source.c++</string>
 				<key>Path</key>
-				<string>ScratchMonkey/SMoHVSP.cpp</string>
+				<string>ScratchMonkey/SMoCommand.cpp</string>
 				<key>Type</key>
 				<string>File</string>
 			</dict>
@@ -108,63 +68,7 @@
 				<key>Kind</key>
 				<string>source.h</string>
 				<key>Path</key>
-				<string>ScratchMonkey/SMoHVSP.h</string>
-				<key>Type</key>
-				<string>File</string>
-			</dict>
-			<dict>
-				<key>Kind</key>
-				<string>source.h</string>
-				<key>Path</key>
-				<string>ScratchMonkey/SMoHWIF_HV.h</string>
-				<key>Type</key>
-				<string>File</string>
-			</dict>
-			<dict>
-				<key>Kind</key>
-				<string>source.h</string>
-				<key>Path</key>
-				<string>ScratchMonkey/SMoHWIF_HVPP.h</string>
-				<key>Type</key>
-				<string>File</string>
-			</dict>
-			<dict>
-				<key>Kind</key>
-				<string>source.h</string>
-				<key>Path</key>
-				<string>ScratchMonkey/SMoHWIF_HVSP.h</string>
-				<key>Type</key>
-				<string>File</string>
-			</dict>
-			<dict>
-				<key>Kind</key>
-				<string>source.h</string>
-				<key>Path</key>
-				<string>ScratchMonkey/SMoHWIF_ISP.h</string>
-				<key>Type</key>
-				<string>File</string>
-			</dict>
-			<dict>
-				<key>Kind</key>
-				<string>source.h</string>
-				<key>Path</key>
-				<string>ScratchMonkey/SMoHWIF_Port.h</string>
-				<key>Type</key>
-				<string>File</string>
-			</dict>
-			<dict>
-				<key>Kind</key>
-				<string>source.h</string>
-				<key>Path</key>
-				<string>ScratchMonkey/SMoHWIF_TPI.h</string>
-				<key>Type</key>
-				<string>File</string>
-			</dict>
-			<dict>
-				<key>Kind</key>
-				<string>source.h</string>
-				<key>Path</key>
-				<string>ScratchMonkey/SMoHWIF.h</string>
+				<string>ScratchMonkey/SMoDebug.h</string>
 				<key>Type</key>
 				<string>File</string>
 			</dict>
@@ -172,7 +76,7 @@
 				<key>Kind</key>
 				<string>source.c++</string>
 				<key>Path</key>
-				<string>ScratchMonkey/SMoISP.cpp</string>
+				<string>ScratchMonkey/SMoDebug.cpp</string>
 				<key>Type</key>
 				<string>File</string>
 			</dict>
@@ -188,7 +92,39 @@
 				<key>Kind</key>
 				<string>source.c++</string>
 				<key>Path</key>
-				<string>ScratchMonkey/SMoTPI.cpp</string>
+				<string>ScratchMonkey/SMoISP.cpp</string>
+				<key>Type</key>
+				<string>File</string>
+			</dict>
+			<dict>
+				<key>Kind</key>
+				<string>source.h</string>
+				<key>Path</key>
+				<string>ScratchMonkey/SMoHVSP.h</string>
+				<key>Type</key>
+				<string>File</string>
+			</dict>
+			<dict>
+				<key>Kind</key>
+				<string>source.c++</string>
+				<key>Path</key>
+				<string>ScratchMonkey/SMoHVSP.cpp</string>
+				<key>Type</key>
+				<string>File</string>
+			</dict>
+			<dict>
+				<key>Kind</key>
+				<string>source.h</string>
+				<key>Path</key>
+				<string>ScratchMonkey/SMoHVPP.h</string>
+				<key>Type</key>
+				<string>File</string>
+			</dict>
+			<dict>
+				<key>Kind</key>
+				<string>source.c++</string>
+				<key>Path</key>
+				<string>ScratchMonkey/SMoHVPP.cpp</string>
 				<key>Type</key>
 				<string>File</string>
 			</dict>
@@ -202,9 +138,65 @@
 			</dict>
 			<dict>
 				<key>Kind</key>
+				<string>source.c++</string>
+				<key>Path</key>
+				<string>ScratchMonkey/SMoTPI.cpp</string>
+				<key>Type</key>
+				<string>File</string>
+			</dict>
+			<dict>
+				<key>Kind</key>
 				<string>source.h</string>
 				<key>Path</key>
-				<string>ScratchMonkey/stk_proto.h</string>
+				<string>ScratchMonkey/SMoHWIF.h</string>
+				<key>Type</key>
+				<string>File</string>
+			</dict>
+			<dict>
+				<key>Kind</key>
+				<string>source.h</string>
+				<key>Path</key>
+				<string>ScratchMonkey/SMoHWIF_Port.h</string>
+				<key>Type</key>
+				<string>File</string>
+			</dict>
+			<dict>
+				<key>Kind</key>
+				<string>source.h</string>
+				<key>Path</key>
+				<string>ScratchMonkey/SMoHWIF_ISP.h</string>
+				<key>Type</key>
+				<string>File</string>
+			</dict>
+			<dict>
+				<key>Kind</key>
+				<string>source.h</string>
+				<key>Path</key>
+				<string>ScratchMonkey/SMoHWIF_HV.h</string>
+				<key>Type</key>
+				<string>File</string>
+			</dict>
+			<dict>
+				<key>Kind</key>
+				<string>source.h</string>
+				<key>Path</key>
+				<string>ScratchMonkey/SMoHWIF_HVSP.h</string>
+				<key>Type</key>
+				<string>File</string>
+			</dict>
+			<dict>
+				<key>Kind</key>
+				<string>source.h</string>
+				<key>Path</key>
+				<string>ScratchMonkey/SMoHWIF_HVPP.h</string>
+				<key>Type</key>
+				<string>File</string>
+			</dict>
+			<dict>
+				<key>Kind</key>
+				<string>source.h</string>
+				<key>Path</key>
+				<string>ScratchMonkey/SMoHWIF_TPI.h</string>
 				<key>Type</key>
 				<string>File</string>
 			</dict>
@@ -229,6 +221,14 @@
 				<string>source.h</string>
 				<key>Path</key>
 				<string>ScratchMonkey/SMoHWIF_Mega.h</string>
+				<key>Type</key>
+				<string>File</string>
+			</dict>
+			<dict>
+				<key>Kind</key>
+				<string>source.h</string>
+				<key>Path</key>
+				<string>ScratchMonkey/stk_proto.h</string>
 				<key>Type</key>
 				<string>File</string>
 			</dict>
