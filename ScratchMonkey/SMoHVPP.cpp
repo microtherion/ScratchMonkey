@@ -26,7 +26,6 @@
 #include <SPI.h>
 
 enum {
-    HVPP_RDY    = SMoHWIF::HVPP::RDY,
     HVPP_XTAL   = SMoHWIF::HVPP::XTAL
 };
 
@@ -173,9 +172,9 @@ HVPPReadData(uint8_t byteSel)
 static bool
 HVPPPollWait(uint8_t pollTimeout)
 {
-    uint32_t target = millis()+pollTimeout+5;
+    uint32_t target = millis()+pollTimeout+10;
     while (millis() != target)
-        if (digitalRead(HVPP_RDY)) 
+        if (SMoHWIF::HVPP::GetReady()) 
             return true;
     SMoCommand::SendResponse(STATUS_RDY_BSY_TOUT);
     return false;

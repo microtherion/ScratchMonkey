@@ -23,8 +23,8 @@
 enum HVPP_RDY_PIN {};
 enum HVPP_XTAL_PIN {};
 
-template <typename HV_Platform, typename Control_Port, typename Data_Port, 
-    HVPP_XTAL_PIN HVPP_XTAL = HVPP_XTAL_PIN(13), HVPP_RDY_PIN HVPP_RDY = HVPP_RDY_PIN(12)> class SMoHWIF_HVPP {
+template <typename HV_Platform, typename Control_Port, typename Data_Port, typename Ready_Pin,
+    HVPP_XTAL_PIN HVPP_XTAL = HVPP_XTAL_PIN(13)> class SMoHWIF_HVPP {
 private:
     enum {
         HVPP_RESET = HV_Platform::RESET,
@@ -32,7 +32,6 @@ private:
     };
 public:
     enum {
-        RDY = HVPP_RDY,
         XTAL= HVPP_XTAL,
     };
     static void Setup(uint8_t initSignals, uint8_t powOffDelay, uint8_t latchCycles) {
@@ -40,12 +39,11 @@ public:
         digitalWrite(HVPP_VCC, LOW);
         digitalWrite(HVPP_RESET, HIGH); // Set BEFORE pinMode, so we don't glitch LOW
         pinMode(HVPP_RESET, OUTPUT);
-        pinMode(HVPP_RDY, INPUT);
-        digitalWrite(HVPP_RDY, LOW);
         pinMode(HVPP_XTAL, OUTPUT);
         digitalWrite(HVPP_XTAL, LOW);
         DataMode(OUTPUT);
         InitControlSignals();
+        Ready_Pin::Setup();
         SetControlSignals(initSignals);
     
         delay(powOffDelay);
@@ -78,6 +76,9 @@ public:
     }
     static uint8_t GetData() {
         return Data_Port::Get();
+    }
+    static bool GetReady() {
+        return Ready_Pin::Get();
     }
 };
 

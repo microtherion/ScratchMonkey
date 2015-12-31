@@ -24,10 +24,12 @@ typedef SMoHWIF_HVSP<SMoHWIF_HV_Platform>                   SMoHWIF_HVSP_Platfor
 //
 const int   SMoHWIF_PORT_F  = 0x0F;
 const int   SMoHWIF_PORT_K  = 0xE6;
-typedef SMoHWIF_Port_Simple<SMoHWIF_PORT_F>                SMoHWIF_HVPP_Control;
-typedef SMoHWIF_Port_Simple<SMoHWIF_PORT_K>                SMoHWIF_HVPP_Data;
+typedef SMoHWIF_Port_Simple<SMoHWIF_PORT_F>                 SMoHWIF_HVPP_Control;
+typedef SMoHWIF_Port_Simple<SMoHWIF_PORT_K>                 SMoHWIF_HVPP_Data;
+typedef SMoHWIF_Input_Pin_Digital<12>                       SMoHWIF_HVPP_Ready;
 typedef SMoHWIF_HVPP<SMoHWIF_HV_Platform,
-            SMoHWIF_HVPP_Control, SMoHWIF_HVPP_Data>        SMoHWIF_HVPP_Platform;
+            SMoHWIF_HVPP_Control, SMoHWIF_HVPP_Data,
+            SMoHWIF_HVPP_Ready>                             SMoHWIF_HVPP_Platform;
 typedef SMoHWIF_TPI<SMoHWIF_HV_Platform>                    SMoHWIF_TPI_Platform;
 
 #endif /* _SMO_HWIF_MEGA_ */

@@ -33,8 +33,21 @@ typedef SMoHWIF_Port_Dual<SMoHWIF_PORT_B, 0x03, 6,
                           SMoHWIF_PORT_C, 0x3F, 0>          SMoHWIF_HVPP_Data;
 typedef SMoHWIF_Port_Simple<SMoHWIF_PORT_D>                 SMoHWIF_HVPP_Control;
 
+#if NUM_ANALOG_INPUTS==8
+//
+// Arduino Pro Mini et al, SMD MCU, 8 analog inputs
+//
+typedef SMoHWIF_Input_Pin_Analog<7>                         SMoHWIF_HVPP_Ready;
+#else
+//
+// Arduino Uno, usually DIP MCU, 6 analog inputs
+//
+typedef SMoHWIF_Input_Pin_Digital<12>                       SMoHWIF_HVPP_Ready;
+#endif
+
 typedef SMoHWIF_HVPP<SMoHWIF_HV_Platform,
-            SMoHWIF_HVPP_Control, SMoHWIF_HVPP_Data>        SMoHWIF_HVPP_Platform;
+            SMoHWIF_HVPP_Control, SMoHWIF_HVPP_Data,
+            SMoHWIF_HVPP_Ready>                             SMoHWIF_HVPP_Platform;
             
 typedef SMoHWIF_TPI<SMoHWIF_HV_Platform>                    SMoHWIF_TPI_Platform;
 

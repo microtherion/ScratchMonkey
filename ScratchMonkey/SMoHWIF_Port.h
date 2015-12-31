@@ -128,4 +128,40 @@ public:
     }
 };
 
+//
+// Digital input pin
+//
+template <int PIN> class SMoHWIF_Input_Pin_Digital {
+public:
+    static void Setup() {
+        pinMode(PIN, INPUT);
+    }
+    static void Stop() {
+    }
+    static bool Get() {
+        return digitalRead(PIN);
+    }
+};
+
+//
+// Analog input pin, using the analog comparator. This is useful for 
+// the Arduino variants with 8 analog input, where ADC6 and ADC7 cannot 
+// be read as digital signals. Based on Leong Yu Siang's work.
+//
+template <int AIN> class SMoHWIF_Input_Pin_Analog {
+    static void Setup() {
+        ADCSRA = 0x00;                          // Turn off ADC
+        ADMUX  = _BV(REFS1) | _BV(REFS0) | AIN; // 1.1V vs ADC pin
+        ADCSRB = _BV(ACME);                     // Use MUX as negative input
+        ACSR   = _BV(ACBG);                     // Use 1.1V as positive input
+        delay(1);                               // Let 1.1V stabilize
+    }
+    static void Stop() {
+        ACSR   = _BV(ACD);                      // Disable comparator
+    }
+    static bool Get() {
+        return !(ACSR & _BV(ACO));              // ACO -> input voltage < 1.1V
+    }
+};
+
 #endif
