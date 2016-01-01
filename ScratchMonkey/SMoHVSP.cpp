@@ -29,7 +29,7 @@ HVSPPollWait(uint8_t pollTimeout)
 {
     uint32_t target = millis()+pollTimeout;
     while (millis() != target)
-        if (digitalRead(SMoHWIF::HVSP::SDO)) 
+        if (SMoHWIF::HVSP::GetReady()) 
             return true;
     SMoCommand::SendResponse(STATUS_RDY_BSY_TOUT);
     return false;

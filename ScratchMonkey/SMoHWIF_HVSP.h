@@ -108,6 +108,9 @@ public:
     #endif
         return dataOut;
     }
+    static bool GetReady() {
+        return digitalRead(HVSP_SDO);
+    }
 private:
     static bool HVSPBit(bool instrInBit, bool dataInBit) {
         digitalWrite(HVSP_SII, instrInBit);

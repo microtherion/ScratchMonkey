@@ -144,8 +144,8 @@ public:
 };
 
 //
-// Analog input pin, using the analog comparator. This is useful for 
-// the Arduino variants with 8 analog input, where ADC6 and ADC7 cannot 
+// Analog input pin, using the analog comparator. This is useful for
+// the Arduino variants with 8 analog input, where ADC6 and ADC7 cannot
 // be read as digital signals. Based on Leong Yu Siang's work.
 //
 template <int AIN> class SMoHWIF_Input_Pin_Analog {
