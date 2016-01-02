@@ -1,6 +1,7 @@
 PROTOCOL 	:= stk500
 PROTO_HVSP 	:= stk500hvsp
 PROTO_PP 	:= stk500pp
+PROTO_TPI	:= scratchmonkey
 
 undef :
 	echo Please specify the chip to test
@@ -43,6 +44,9 @@ atmega328p.hvpp : test28K.hex test1K.hex
 	../Tools/RunTest atmega328p $(PROTO_PP) test28K.hex test1K.hex 62:D9:FF 72:D8:FE  
 atmega1284.hvpp : test120K.hex test4K.hex
 	../Tools/RunTest atmega1284p $(PROTO_PP) test120K.hex test4K.hex 62:99:FF 72:89:FD  
+
+attiny10 : test1K.hex
+	../Tools/RunTest attiny10 $(PROTO_TPI) test1K.hex FF FB
 
 test256.hex :
 	../Tools/hexer 0 256 > $@
