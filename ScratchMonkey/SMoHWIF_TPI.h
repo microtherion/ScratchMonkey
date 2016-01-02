@@ -17,17 +17,15 @@
 #define _SMO_HWIF_TPI_
 
 #include "SMoHWIF_HV.h"
+#include "SMoHWIF_Port.h"
 #include "SMoConfig.h"
 
-#define TPI_CLK_DELAY  delayMicroseconds(1)
+enum TPI_DATA_BIT {};
+enum TPI_CLK_BIT {};
 
-enum TPI_RESET_PIN {};
-enum TPI_DATA_PIN {};
-enum TPI_CLK_PIN {};
-
-template <typename HV_Platform, 
-    TPI_DATA_PIN  TPI_DATA  = TPI_DATA_PIN(12), 
-    TPI_CLK_PIN   TPI_CLK   = TPI_CLK_PIN(13)> class SMoHWIF_TPI {
+template <typename HV_Platform, int PORT,
+    TPI_DATA_BIT  TPI_DATA,
+    TPI_CLK_BIT   TPI_CLK> class SMoHWIF_TPI {
 private:
     enum {
         TPI_RESET = HV_Platform::RESET,
@@ -37,17 +35,15 @@ public:
     static void Setup() {
         pinMode(TPI_SVCC, OUTPUT);
         digitalWrite(TPI_SVCC, LOW);
+        delay(150);
         pinMode(TPI_RESET, OUTPUT);
-        pinMode(TPI_DATA, OUTPUT);
-        digitalWrite(TPI_DATA, LOW);
-        pinMode(TPI_CLK, OUTPUT);
-        digitalWrite(TPI_CLK, LOW);
-    
+        SMoDDR(PORT)  |= _BV(TPI_DATA) | _BV(TPI_CLK);
+        SMoPORT(PORT) &= ~_BV(TPI_DATA);
+        SMoPORT(PORT) &= ~_BV(TPI_CLK);
+
         digitalWrite(TPI_RESET, HIGH);
 
         // Turn on supply voltage
-        digitalWrite(TPI_SVCC, LOW);
-        delay(150);
         digitalWrite(TPI_SVCC, HIGH);
         delay(150);
     
@@ -61,9 +57,8 @@ public:
     }
     static void Stop() {
         digitalWrite(TPI_RESET, HIGH);
-        digitalWrite(TPI_SVCC, LOW);
-        pinMode(TPI_DATA, INPUT);
-        pinMode(TPI_CLK, INPUT);
+        SMoDDR(PORT) &= ~_BV(TPI_DATA);
+        SMoDDR(PORT) &= ~_BV(TPI_CLK);
     }
     static void SendByte(uint8_t byte)
     {
@@ -73,9 +68,9 @@ public:
         SMoDebug.print("TPI W ");
         SMoDebug.println((uint8_t)byte, HEX);
     #endif
-    
-        pinMode(TPI_DATA, OUTPUT);
-    
+
+        pinMode(12, OUTPUT);
+
         // Start bit
         SendBit(LOW);
     
@@ -93,7 +88,9 @@ public:
         // Stop bits
         SendBit(HIGH);
         SendBit(HIGH);
-        pinMode(TPI_DATA, INPUT_PULLUP);
+        // Switch TPI_DATA to pullup input
+        SMoDDR(PORT)  &= ~_BV(TPI_DATA);
+        SMoPORT(PORT) |= _BV(TPI_DATA);
     }
     static int
     ReadByte()
@@ -138,21 +135,28 @@ public:
         return -1;
     }
 private:
-    static void SendBit(int bit) {
-        digitalWrite(TPI_DATA, bit);
-        digitalWrite(TPI_CLK, HIGH);
-        TPI_CLK_DELAY;
-        digitalWrite(TPI_CLK, LOW);
-        TPI_CLK_DELAY;
+    static void SendBit(bool bit) {
+        SMoPORT(PORT) = (SMoPIN(PORT) & ~_BV(TPI_DATA)) | (bit << TPI_DATA);
+        SMoDelay50ns(); // Respect setup time for TPI_CLK
+        SMoPORT(PORT) |= _BV(TPI_CLK);
+        SMoDelay50ns(); // Clock high pulse width >= 200ns
+        SMoDelay50ns();
+        SMoDelay50ns();
+        SMoDelay50ns();
+        SMoPORT(PORT) &= ~_BV(TPI_CLK);
     }
-    static int ReadBit()
+    static bool ReadBit()
     {
-        digitalWrite(TPI_CLK, HIGH);
-        TPI_CLK_DELAY;
-        int bit = digitalRead(TPI_DATA);
-        digitalWrite(TPI_CLK, LOW);
-        TPI_CLK_DELAY;
-        
+        SMoPORT(PORT) |= _BV(TPI_CLK);
+        SMoDelay50ns(); // Clock high pulse width >= 200ns
+        SMoDelay50ns();
+        SMoDelay50ns();
+        SMoDelay50ns();
+        bool bit = (SMoPIN(PORT) & _BV(TPI_DATA)) != 0;
+        SMoPORT(PORT) &= ~_BV(TPI_CLK);
+        SMoDelay50ns();
+        SMoDelay50ns();
+
         return bit;
     }
 };

@@ -81,7 +81,8 @@ typedef SMoHWIF_HVPP<SMoHWIF_HV_Platform,
             SMoHWIF_HVPP_Control, SMoHWIF_HVPP_Data,
             SMoHWIF_HVPP_Ready>                             SMoHWIF_HVPP_Platform;
             
-typedef SMoHWIF_TPI<SMoHWIF_HV_Platform>                    SMoHWIF_TPI_Platform;
+typedef SMoHWIF_TPI<SMoHWIF_HV_Platform, SMoHWIF_PORT_B,
+                    TPI_DATA_BIT(4), TPI_CLK_BIT(5)>      SMoHWIF_TPI_Platform;
 
 #endif /* _SMO_HWIF_STANDARD_ */
 
