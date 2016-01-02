@@ -26,12 +26,11 @@ enum TPI_DATA_PIN {};
 enum TPI_CLK_PIN {};
 
 template <typename HV_Platform, 
-    TPI_RESET_PIN TPI_RESET = TPI_RESET_PIN(10), 
     TPI_DATA_PIN  TPI_DATA  = TPI_DATA_PIN(12), 
     TPI_CLK_PIN   TPI_CLK   = TPI_CLK_PIN(13)> class SMoHWIF_TPI {
 private:
     enum {
-        HV_RESET  = HV_Platform::RESET,
+        TPI_RESET = HV_Platform::RESET,
         TPI_SVCC  = HV_Platform::VCC
     };
 public:
@@ -45,15 +44,15 @@ public:
         digitalWrite(TPI_CLK, LOW);
     
         digitalWrite(TPI_RESET, HIGH);
-        digitalWrite(HV_RESET, HIGH);
-        
+
         // Turn on supply voltage
+        digitalWrite(TPI_SVCC, LOW);
+        delay(150);
         digitalWrite(TPI_SVCC, HIGH);
         delay(150);
     
         // Reset
         digitalWrite(TPI_RESET, LOW);
-        digitalWrite(HV_RESET, LOW);
         delay(10);
     
         // Keep TPIDATA high for 16 clock cycles
@@ -62,7 +61,6 @@ public:
     }
     static void Stop() {
         digitalWrite(TPI_RESET, HIGH);
-        digitalWrite(HV_RESET, HIGH);
         digitalWrite(TPI_SVCC, LOW);
         pinMode(TPI_DATA, INPUT);
         pinMode(TPI_CLK, INPUT);
