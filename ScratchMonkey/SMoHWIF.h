@@ -16,6 +16,10 @@
 #ifndef _SMO_HWIF_
 #define _SMO_HWIF_
 
+inline void SMoDelay50ns() {
+    __asm__ __volatile__("nop");
+}
+
 #include "SMoHWIF_ISP.h"
 #include "SMoHWIF_HV.h"
 #include "SMoHWIF_HVSP.h"

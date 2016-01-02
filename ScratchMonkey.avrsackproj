@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Board</key>
-	<string>pro5v328</string>
+	<string>uno</string>
 	<key>Files</key>
 	<dict>
 		<key>Children</key>
@@ -243,14 +243,14 @@
 	<key>FontSize</key>
 	<integer>12</integer>
 	<key>Port</key>
-	<string>usbserial-DA00EMMM</string>
+	<string>usbmodem1421</string>
 	<key>Programmer</key>
 	<string></string>
 	<key>RecentBoards</key>
 	<array>
+		<string>uno</string>
 		<string>pro5v328</string>
 		<string>mega2560</string>
-		<string>uno</string>
 		<string>leonardo</string>
 		<string>attiny84at1</string>
 		<string>attiny43uat8</string>

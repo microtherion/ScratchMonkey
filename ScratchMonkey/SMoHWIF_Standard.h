@@ -16,19 +16,51 @@
 #ifndef _SMO_HWIF_STANDARD_
 #define _SMO_HWIF_STANDARD_
 
+//
+// ISP Pin Assignment
+//
+//      Signal      Pin         Comment
+//
+//      RESET       10
+//      MOSI        11
+//      MISO        12
+//      SCK         13
+//      XTAL         9          Optional Slave Clock
+//
 typedef SMoHWIF_ISP<ISP_RESET_PIN(SS), ISP_CLOCK_PIN(9)>    SMoHWIF_ISP_Platform;
 
+//
+// High voltage protocols
+//
+//      Signal      Pin         Comment
+//
+//      HVRESET     10
+//      SVCC        11
+//
 typedef SMoHWIF_HV<HV_RESET_PIN(10), HV_VCC_PIN(11)>        SMoHWIF_HV_Platform;
-typedef SMoHWIF_HVSP<SMoHWIF_HV_Platform>                   SMoHWIF_HVSP_Platform;
 
-//
-// Control using port D (reusing the RX pin), data
-// split across ports B and C.
-//
 const int   SMoHWIF_PORT_B  = 0x03;
 const int   SMoHWIF_PORT_C  = 0x06;
 const int   SMoHWIF_PORT_D  = 0x09;
 
+//
+// HVSP Pin Assignment (Signals are specified by bit position)
+//
+//      Signal      Pin         Comment
+//
+//      SDI          8
+//      SII          9
+//      SDO         12
+//      SCI         13
+//
+typedef SMoHWIF_HVSP<SMoHWIF_HV_Platform, SMoHWIF_PORT_B,
+    HVSP_SDI_BIT(0), HVSP_SII_BIT(1),
+    HVSP_SDO_BIT(4), HVSP_SCI_BIT(5)>                       SMoHWIF_HVSP_Platform;
+
+//
+// HVPP control using port D (reusing the RX pin), data
+// split across ports B and C.
+//
 typedef SMoHWIF_Port_Dual<SMoHWIF_PORT_B, 0x03, 6,
                           SMoHWIF_PORT_C, 0x3F, 0>          SMoHWIF_HVPP_Data;
 typedef SMoHWIF_Port_Simple<SMoHWIF_PORT_D>                 SMoHWIF_HVPP_Control;

@@ -27,7 +27,7 @@
 static bool
 HVSPPollWait(uint8_t pollTimeout)
 {
-    uint32_t target = millis()+pollTimeout;
+    uint32_t target = millis()+pollTimeout+10;
     while (millis() != target)
         if (SMoHWIF::HVSP::GetReady()) 
             return true;
@@ -181,7 +181,7 @@ SMoHVSP::ReadFlash()
 void
 SMoHVSP::ProgramEEPROM()
 {
-    int16_t         numBytes     =  (SMoCommand::gBody[1] << 8) | SMoCommand::gBody[2];
+    int16_t         numBytes    =  (SMoCommand::gBody[1] << 8) | SMoCommand::gBody[2];
     const uint8_t   mode        =   SMoCommand::gBody[3];
     const uint8_t   pollTimeout =   SMoCommand::gBody[4];
     const uint8_t * data        =  &SMoCommand::gBody[5];

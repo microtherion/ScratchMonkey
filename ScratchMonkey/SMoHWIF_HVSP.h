@@ -17,18 +17,19 @@
 #define _SMO_HWIF_HVSP_
 
 #include "SMoHWIF_HV.h"
+#include "SMoHWIF_Port.h"
 #include "SMoConfig.h"
 
-enum HVSP_SDI_PIN {};
-enum HVSP_SII_PIN {};
-enum HVSP_SDO_PIN {};
-enum HVSP_SCI_PIN {};
+enum HVSP_SDI_BIT {};
+enum HVSP_SII_BIT {};
+enum HVSP_SDO_BIT {};
+enum HVSP_SCI_BIT {};
 
-template <typename HV_Platform, 
-    HVSP_SDI_PIN HVSP_SDI = HVSP_SDI_PIN(8), 
-    HVSP_SII_PIN HVSP_SII = HVSP_SII_PIN(9),
-    HVSP_SDO_PIN HVSP_SDO = HVSP_SDO_PIN(12), 
-    HVSP_SCI_PIN HVSP_SCI = HVSP_SCI_PIN(13)> class SMoHWIF_HVSP {
+template <typename HV_Platform, int PORT, 
+    HVSP_SDI_BIT HVSP_SDI, 
+    HVSP_SII_BIT HVSP_SII,
+    HVSP_SDO_BIT HVSP_SDO, 
+    HVSP_SCI_BIT HVSP_SCI> class SMoHWIF_HVSP {
 private:
     enum {
         HVSP_RESET = HV_Platform::RESET,
@@ -43,15 +44,13 @@ public:
         digitalWrite(HVSP_VCC, LOW);
         digitalWrite(HVSP_RESET, HIGH); // Set BEFORE pinMode, so we don't glitch LOW
         pinMode(HVSP_RESET, OUTPUT);
-        pinMode(HVSP_SCI, OUTPUT);
-        digitalWrite(HVSP_SCI, LOW);
-        pinMode(HVSP_SDI, OUTPUT);
-        digitalWrite(HVSP_SDI, LOW);
-        pinMode(HVSP_SII, OUTPUT);
-        digitalWrite(HVSP_SII, LOW);
-        pinMode(HVSP_SDO, OUTPUT);       // progEnable[2] on tinyX5
-        digitalWrite(HVSP_SDO, LOW);
-    
+        //
+        // Set ALL other protocol pins to OUTPUT / LOW (SDO is progEnable[2] on ATtinyX5)
+        //
+        const int mask = _BV(HVSP_SCI) | _BV(HVSP_SDI) | _BV(HVSP_SII) | _BV(HVSP_SDO);
+        SMoDDR(PORT) |= mask;
+        SMoPORT(PORT) = SMoPIN(PORT) & ~mask;
+
         delay(powOffDelay);
         digitalWrite(HVSP_VCC, HIGH);
         delayMicroseconds(80);
@@ -62,14 +61,14 @@ public:
         }
         digitalWrite(HVSP_RESET, LOW);
         delayMicroseconds(1);
-        pinMode(HVSP_SDO, INPUT);
+        // 
+        // Now make SDO an INPUT again
+        //
+        SMoDDR(PORT) &= ~_BV(HVSP_SDO);
     }
     static void Stop() {
         digitalWrite(HVSP_RESET, HIGH);
-        digitalWrite(HVSP_VCC, LOW);
-        pinMode(HVSP_SDI, INPUT);
-        pinMode(HVSP_SII, INPUT);
-        pinMode(HVSP_SCI, INPUT);
+        SMoDDR(PORT) &= ~(_BV(HVSP_SDI) | _BV(HVSP_SII) | _BV(HVSP_SCI));
     }
     static uint8_t Transfer(uint8_t instrIn, uint8_t dataIn) {
     #ifdef DEBUG_HVSP
@@ -109,15 +108,18 @@ public:
         return dataOut;
     }
     static bool GetReady() {
-        return digitalRead(HVSP_SDO);
+        return digitalRead(12); // (SMoPIN(PORT) & _BV(HVSP_SDO)) != 0;
     }
 private:
     static bool HVSPBit(bool instrInBit, bool dataInBit) {
-        digitalWrite(HVSP_SII, instrInBit);
-        digitalWrite(HVSP_SDI, dataInBit);
-        digitalWrite(HVSP_SCI, HIGH);
-        digitalWrite(HVSP_SCI, LOW);
-        uint8_t dataOutBit = digitalRead(HVSP_SDO);
+        SMoPORT(PORT) = (SMoPIN(PORT) & ~(_BV(HVSP_SII)|_BV(HVSP_SDI))) 
+            | (dataInBit << HVSP_SDI) | (instrInBit << HVSP_SII);
+        SMoDelay50ns(); // Respect setup time for SCI
+        SMoPORT(PORT) |= _BV(HVSP_SCI);
+        SMoDelay50ns(); // Respect setup time for SDO
+        bool dataOutBit = (SMoPIN(PORT) & _BV(HVSP_SDO)) != 0;
+        SMoDelay50ns(); // Respect SCI high time
+        SMoPORT(PORT) &= ~_BV(HVSP_SCI);
 
         return dataOutBit;
     }

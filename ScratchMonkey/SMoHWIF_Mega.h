@@ -16,14 +16,50 @@
 #ifndef _SMO_HWIF_MEGA_
 #define _SMO_HWIF_MEGA_
 
+//
+// ISP Pin Assignment
+//
+//      Signal      Pin         Comment
+//
+//      RESET       53
+//      MOSI        51
+//      MISO        50
+//      SCK         52
+//      XTAL        11          Optional slave clock
+//
 typedef SMoHWIF_ISP<ISP_RESET_PIN(SS), ISP_CLOCK_PIN(11)>   SMoHWIF_ISP_Platform;
+
+//
+// High voltage protocols
+//
+//      Signal      Pin         Comment
+//
+//      HVRESET     10
+//      SVCC        11
+//
 typedef SMoHWIF_HV<HV_RESET_PIN(10), HV_VCC_PIN(11)>        SMoHWIF_HV_Platform;
-typedef SMoHWIF_HVSP<SMoHWIF_HV_Platform>                   SMoHWIF_HVSP_Platform;
+
+const int   SMoHWIF_PORT_F  = 0x0F;
+const int   SMoHWIF_PORT_H  = 0xE0;
+const int   SMoHWIF_PORT_K  = 0xE6;
+
+//
+// HVSP Pin Assignment (Signals are specified by bit position)
+//
+//      Signal      Pin         Comment
+//
+//      SDI          6
+//      SII          7
+//      SDO          8
+//      SCI          9
+//
+typedef SMoHWIF_HVSP<SMoHWIF_HV_Platform, SMoHWIF_PORT_H,
+    HVSP_SDI_BIT(3), HVSP_SII_BIT(4),
+    HVSP_SDO_BIT(5), HVSP_SCI_BIT(6)>                       SMoHWIF_HVSP_Platform;
+
 //
 // Megas have lots of contiguous pins, so we just use two full ports.
 //
-const int   SMoHWIF_PORT_F  = 0x0F;
-const int   SMoHWIF_PORT_K  = 0xE6;
 typedef SMoHWIF_Port_Simple<SMoHWIF_PORT_F>                 SMoHWIF_HVPP_Control;
 typedef SMoHWIF_Port_Simple<SMoHWIF_PORT_K>                 SMoHWIF_HVPP_Data;
 typedef SMoHWIF_Input_Pin_Digital<12>                       SMoHWIF_HVPP_Ready;
