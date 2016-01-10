@@ -1,0 +1,7 @@
+%color	GND	black	white
+%color 	VCC	red	white
+%color	RESET	green	white
+%color	MOSI	blue	white
+%color 	MISO	white	black
+%color	SCK	gold	black
+%color	(XTAL)	orchid	black

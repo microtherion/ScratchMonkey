@@ -13,12 +13,13 @@ $PACKEXCESS     = 0.035*DPI
 $PINPITCH       = 0.100*DPI
 $PINHEIGHT      = 0.050*DPI
 $CIRCRADIUS     = 0.035*DPI
-$LABELWIDTH     = 80
+$LABELWIDTH     = 70
 $FUNCTIONWIDTH  = 100
 $TITLE          = nil
 
 PIN   = Array.new
 LABEL = Hash.new {|hash,key| hash[key] = [0, key, '']}
+COLOR = Hash.new {|hash,key| hash[key] = ['white', 'black']}
 pinNo = 0
 ARGF.each_line do |line|
   pinNo   += 1
@@ -28,6 +29,10 @@ ARGF.each_line do |line|
   next if line =~ /^\s*$/
   if line =~ /^\s*%title\s+(.*\S)/
     $TITLE = $1
+    next
+  end
+  if line =~ /^\s*%color\s+(.*?\S)\s+(\S+)\s+(\S+)/
+    COLOR[$1] = [$2, $3]
     next
   end
   if line =~ /(.*)=\s*(.*\S)\s*/
@@ -52,11 +57,11 @@ ARGF.each_line do |line|
     end
     while pinNo-1 > PIN.size
       PIN << [PIN.size+1, 'NC', '']
-    end    
+    end
     if pinNo > PIN.size
       PIN << pin
     end
-  else 
+  else
     while pinNo > PIN.size
       PIN << [PIN.size+1, 'NC', '']
     end
@@ -73,6 +78,7 @@ end
 #
 ROWS       = PIN.size / 2
 PACKLEFT   = $FUNCTIONWIDTH+$LABELWIDTH+$PINWIDTH
+FUNHALF    = $FUNCTIONWIDTH / 2
 PACKRIGHT  = PACKLEFT+$PACKWIDTH-2.0*$PINWIDTH
 PACKTOP    = 5
 PACKHEIGHT = (ROWS-1)*$PINPITCH+2.0*$PACKEXCESS+$PINHEIGHT
@@ -80,9 +86,12 @@ TOTALWIDTH = 2*($FUNCTIONWIDTH+$LABELWIDTH)+$PACKWIDTH
 TOTALHEIGHT= 2*PACKTOP+PACKHEIGHT
 PINNOPAD   = 3
 PINNOBASE  = -4
-LABELPAD   = 5
 LABELBASE  = -1.5
+LABELPAD   = 5
 FUNBASE    = 0
+FUNBOXTOP  = 5
+FUNBOXHEIGHT  = $PINHEIGHT+FUNBOXTOP+5
+FUNBOXROUND   = 3
 
 $PINDESC = ''
 PIN.each do |pin|
@@ -96,10 +105,7 @@ PIN.each do |pin|
   base = top+$PINHEIGHT
   if left
     $PINDESC += <<END_PIN
-  <rect class="thinline" x="#{PACKLEFT-$PINWIDTH}" y="#{top}" width="#{$PINWIDTH}" height="#{$PINHEIGHT}"/>
-  <text class="function" x="#{PACKLEFT-$PINWIDTH-$LABELWIDTH-LABELPAD}" y="#{base+FUNBASE}" text-anchor="end">
-    #{pin[2]}
-  </text>
+  <rect class="pin" x="#{PACKLEFT-$PINWIDTH}" y="#{top}" width="#{$PINWIDTH}" height="#{$PINHEIGHT}"/>
   <text class="label" x="#{PACKLEFT-$PINWIDTH-LABELPAD}" y="#{base+LABELBASE}" text-anchor="end">
     #{pin[1]}
   </text>
@@ -107,19 +113,38 @@ PIN.each do |pin|
     #{pin[0]}
   </text>
 END_PIN
+    if pin[2] != ''
+      $PINDESC += <<END_FUNCTION
+  <rect class="funbox" x="0" y="#{top-FUNBOXTOP}"
+        width="#{$FUNCTIONWIDTH}" height="#{FUNBOXHEIGHT}" rx="#{FUNBOXROUND}"
+        style="fill:#{COLOR[pin[2]][0]}"/>
+  <text class="function" x="#{FUNHALF}" y="#{base+LABELBASE}"
+        style="fill:#{COLOR[pin[2]][1]}">
+    #{pin[2]}
+  </text>
+END_FUNCTION
+    end
   else
     $PINDESC += <<END_PIN
-  <rect class="thinline" x="#{PACKRIGHT}" y="#{top}" width="#{$PINWIDTH}" height="#{$PINHEIGHT}"/>
+  <rect class="pin" x="#{PACKRIGHT}" y="#{top}" width="#{$PINWIDTH}" height="#{$PINHEIGHT}"/>
   <text class="pinno" x="#{PACKRIGHT-PINNOPAD}" y="#{base+PINNOBASE}" text-anchor="end">
     #{pin[0]}
   </text>
   <text class="label" x="#{PACKRIGHT+$PINWIDTH+LABELPAD}" y="#{base+LABELBASE}">
     #{pin[1]}
   </text>
-  <text class="function" x="#{PACKRIGHT+$PINWIDTH+$LABELWIDTH+LABELPAD}" y="#{base+FUNBASE}">
+END_PIN
+    if pin[2] != ''
+      $PINDESC += <<END_FUNCTION
+  <rect class="funbox" x="#{PACKRIGHT+$PINWIDTH+$LABELWIDTH}" y="#{top-FUNBOXTOP}"
+        width="#{$FUNCTIONWIDTH}" height="#{FUNBOXHEIGHT}" rx="#{FUNBOXROUND}"
+        style="fill:#{COLOR[pin[2]][0]}"/>
+  <text class="function" x="#{PACKRIGHT+$PINWIDTH+$LABELWIDTH+LABELPAD+FUNHALF}" y="#{base+LABELBASE}"
+        style="fill:#{COLOR[pin[2]][1]}">
     #{pin[2]}
   </text>
-END_PIN
+END_FUNCTION
+    end
   end
 end
 
@@ -136,17 +161,19 @@ print <<END_SVG
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 #{TOTALWIDTH} #{TOTALHEIGHT}">
   <defs>
   <style type="text/css"><![CDATA[
-     .thinline { fill:none; stroke:#000000; stroke-width:1.0 }
-     .thickline{ fill:none; stroke:#000000; stroke-width:2.0 }
+     .ic       { fill:#909090; stroke:#000000; stroke-width:2.0 }
+     .notch    { fill:#a0a0a0; stroke:#000000; stroke-width:1.0 }
+     .pin      { fill:#d0d0d0; stroke:#000000; stroke-width:1.0 }
      .pinno    { font-family:"Courier"; font-size:12px }
      .label    { font-family:"Helvetica"; font-size:18px }
-     .function { font-family:"Comic Sans MS"; font-size:24px }
+     .funbox   { stroke:black }
+     .function { font-family:"Helvetica"; font-size:18px; text-anchor:middle }
      .title    { font-family:"Helvetica-Bold"; font-size:20px; text-anchor:middle; writing-mode:tb; alignment-baseline:central }
      ]]>
   </style>
   </defs>
-  <rect class="thickline" x="#{PACKLEFT}" y="#{PACKTOP}" width="#{PACKRIGHT-PACKLEFT}" height="#{PACKHEIGHT}"/>
-  <path class="thinline" d="M#{PACKLEFT+$PACKWIDTH*0.5-$PINWIDTH-$CIRCRADIUS},#{PACKTOP} a#{$CIRCRADIUS},#{$CIRCRADIUS} 0 0,0 #{2*$CIRCRADIUS},0"/>
+  <rect class="ic" x="#{PACKLEFT}" y="#{PACKTOP}" width="#{PACKRIGHT-PACKLEFT}" height="#{PACKHEIGHT}"/>
+  <path class="notch" d="M#{PACKLEFT+$PACKWIDTH*0.5-$PINWIDTH-$CIRCRADIUS},#{PACKTOP} a#{$CIRCRADIUS},#{$CIRCRADIUS} 0 0,0 #{2*$CIRCRADIUS},0"/>
   #{$TITLE}
   #{$PINDESC}
 </svg>

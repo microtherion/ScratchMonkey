@@ -1,0 +1,7 @@
+%color	GND	black	white
+%color 	VCC	red	white
+%color	RESET	green	white
+%color	SDI	blue	white
+%color	SII	orchid	black
+%color 	SDO	white	black
+%color	SCI	gold	black

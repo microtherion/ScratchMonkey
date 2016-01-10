@@ -83,4 +83,5 @@ form {
 	margin-bottom: 3mm;
 	padding: 2mm;
 	background-color: #99cc00;
+	min-width: 600px;
 }

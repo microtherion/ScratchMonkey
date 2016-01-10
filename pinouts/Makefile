@@ -1,10 +1,10 @@
 vpath %.svg ../doc/img
 
-%_isp.svg: %.dip %.isp
+%_isp.svg: %.dip %.isp isp.proto
 	../Tools/dipper $^ > ../doc/img/$@
-%_hvsp.svg: %.dip %.hvsp
+%_hvsp.svg: %.dip %.hvsp hvsp.proto
 	../Tools/dipper $^ > ../doc/img/$@
-%_hvpp.svg: %.dip %.hvpp
+%_hvpp.svg: %.dip %.hvpp hvpp.proto
 	../Tools/dipper $^ > ../doc/img/$@
 
 SERIALS	    = attiny85 attiny84
