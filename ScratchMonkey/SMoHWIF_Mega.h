@@ -4,7 +4,7 @@
 //
 // File: SMoHWIF_Mega.h - Hardware interface for Arduino Mega 2560
 //
-// Copyright (c) 2013-2015 Matthias Neeracher <microtherion@gmail.com>
+// Copyright (c) 2013-2016 Matthias Neeracher <microtherion@gmail.com>
 // All rights reserved.
 //
 // See license at bottom of this file or at
@@ -15,6 +15,24 @@
 
 #ifndef _SMO_HWIF_MEGA_
 #define _SMO_HWIF_MEGA_
+
+//
+// Status LED Assignment (PGM/ERR same pin as ArduinoISP)
+// Currently this is the only platform under which status is
+// displayed while HVPP programming.
+//
+//      Signal      Pin Color   Comment
+//      RDY          5  Green   Programmer is ready
+//      VFY          6  Yellow  Programmer is verifying data
+//      PGM          7  Orange  Programmer is writing
+//      ERR          8  Red     Error occurred while programming
+//
+typedef SMoHWIF_Status<
+    STATUS_RDY_PIN(5),
+    STATUS_PGM_PIN(7),
+    STATUS_VFY_PIN(6),
+    STATUS_ERR_PIN(8),
+    false>                      SMoHWIF_Status_Platform;
 
 //
 // ISP Pin Assignment

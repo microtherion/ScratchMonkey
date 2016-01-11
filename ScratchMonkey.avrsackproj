@@ -164,6 +164,14 @@
 				<key>Kind</key>
 				<string>source.h</string>
 				<key>Path</key>
+				<string>ScratchMonkey/SMoHWIF_Status.h</string>
+				<key>Type</key>
+				<string>File</string>
+			</dict>
+			<dict>
+				<key>Kind</key>
+				<string>source.h</string>
+				<key>Path</key>
 				<string>ScratchMonkey/SMoHWIF_ISP.h</string>
 				<key>Type</key>
 				<string>File</string>
@@ -243,7 +251,7 @@
 	<key>FontSize</key>
 	<integer>12</integer>
 	<key>Port</key>
-	<string>usbmodem1421</string>
+	<string>usbmodem1411</string>
 	<key>Programmer</key>
 	<string></string>
 	<key>RecentBoards</key>

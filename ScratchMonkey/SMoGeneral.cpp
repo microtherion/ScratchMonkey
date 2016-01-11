@@ -4,7 +4,7 @@
 //
 // File: SMoGeneral.cpp     - Protocol independent global commands
 //
-// Copyright (c) 2013-2014 Matthias Neeracher <microtherion@gmail.com>
+// Copyright (c) 2013-2016 Matthias Neeracher <microtherion@gmail.com>
 // All rights reserved.
 //
 // See license at bottom of this file or at
@@ -13,6 +13,7 @@
 
 #include "SMoGeneral.h"
 #include "SMoCommand.h"
+#include "SMoHWIF.h"
 
 #include <string.h>
 
@@ -70,6 +71,9 @@ SMoGeneral::SetParam()
         break;
     case PARAM_DISCHARGEDELAY:
         // Pretend we handled this, for TPI
+        break;
+    case PARAM_SCRATCHMONKEY_STATUS_LEDS:
+        SMoHWIF::Status::Set(value);
         break;
     default:
         SMoCommand::SendResponse(STATUS_CMD_FAILED);

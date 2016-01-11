@@ -16,6 +16,7 @@
 
 #include "SMoCommand.h"
 #include "SMoConfig.h"
+#include "SMoHWIF.h"
 
 #ifdef DEBUG_COMM
 #include "SMoDebug.h"
@@ -77,6 +78,8 @@ NeedSerial(bool needIt)
 void
 SMoCommand::ShareSerialPins(bool share)
 {
+    if (share)
+        SMoHWIF::Status::StopIfPinsAreNeeded();
 #ifdef SMO_SHARE_SERIAL_PINS
     sShareSerialPins = share;
     NeedSerial(!share);

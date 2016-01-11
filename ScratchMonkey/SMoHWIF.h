@@ -16,27 +16,19 @@
 #ifndef _SMO_HWIF_
 #define _SMO_HWIF_
 
+#include "Arduino.h"
+
 inline void SMoDelay50ns() {
     __asm__ __volatile__("nop");
 }
 
+#include "SMoHWIF_Status.h"
 #include "SMoHWIF_ISP.h"
 #include "SMoHWIF_HV.h"
 #include "SMoHWIF_HVSP.h"
 #include "SMoHWIF_HVPP.h"
 #include "SMoHWIF_TPI.h"
 #include "SMoConfig.h"
-
-template <typename ISP_Platform, 
-    typename HVSP_Platform, typename HVPP_Platform,
-    typename TPI_Platform> 
-class SMoHWIF_Platform {
-public:
-    typedef ISP_Platform    ISP;
-    typedef HVSP_Platform   HVSP;
-    typedef HVPP_Platform   HVPP;
-    typedef TPI_Platform    TPI;
-};
 
 #if SMO_LAYOUT==SMO_LAYOUT_STANDARD
 #include "SMoHWIF_Standard.h"
@@ -46,7 +38,20 @@ public:
 #include "SMoHWIF_Mega.h"
 #endif
 
+template <typename Status_Platform, typename ISP_Platform,
+    typename HVSP_Platform, typename HVPP_Platform,
+    typename TPI_Platform> 
+class SMoHWIF_Platform {
+public:
+    typedef Status_Platform Status;
+    typedef ISP_Platform    ISP;
+    typedef HVSP_Platform   HVSP;
+    typedef HVPP_Platform   HVPP;
+    typedef TPI_Platform    TPI;
+};
+
 typedef SMoHWIF_Platform<
+    SMoHWIF_Status_Platform,
     SMoHWIF_ISP_Platform,
     SMoHWIF_HVSP_Platform,
     SMoHWIF_HVPP_Platform,

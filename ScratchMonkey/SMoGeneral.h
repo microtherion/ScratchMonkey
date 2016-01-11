@@ -4,7 +4,7 @@
 //
 // File: SMoGeneral.h       - Protocol independent global commands
 //
-// Copyright (c) 2013-2014 Matthias Neeracher <microtherion@gmail.com>
+// Copyright (c) 2013-2016 Matthias Neeracher <microtherion@gmail.com>
 // All rights reserved.
 //
 // See license at bottom of this file or at

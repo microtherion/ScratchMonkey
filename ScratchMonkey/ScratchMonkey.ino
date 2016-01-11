@@ -31,6 +31,7 @@
 #include "SMoHVPP.h"
 #include "SMoTPI.h"
 #include "SMoConfig.h"
+#include "SMoHWIF.h"
 
 #ifdef DEBUG_COMM
 #include "SMoDebug.h"
@@ -43,6 +44,7 @@ setup()
     SMoDebugInit();
     SMoDebug.println("Yo!");
 #endif
+    SMoHWIF::Status::Setup();
 }
 
 void

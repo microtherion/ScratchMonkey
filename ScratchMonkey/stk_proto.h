@@ -59,7 +59,7 @@
 #define CMD_PROGRAM_LOCK_PP                 0x29
 #define CMD_READ_LOCK_PP                    0x2A
 #define CMD_READ_SIGNATURE_PP               0x2B
-#define CMD_READ_OSCCAL_PP                  0x2C    
+#define CMD_READ_OSCCAL_PP                  0x2C
 
 #define CMD_SET_CONTROL_STACK               0x2D
 
@@ -136,6 +136,17 @@
 #define STATUS_CMD_UNKNOWN                  0xC9
 
 // *****************[ STK parameter constants ]***************************
+
+/* ScratchMonkey parameter */
+#define PARAM_SCRATCHMONKEY_STATUS_LEDS     0x2A
+enum {
+    SCRATCHMONKEY_RDY_LED   = (1<<0),
+    SCRATCHMONKEY_PGM_LED   = (1<<1),
+    SCRATCHMONKEY_VFY_LED   = (1<<2),
+    SCRATCHMONKEY_ERR_LED   = (1<<3)
+};
+
+/* STK500v2 parameters */
 #define PARAM_BUILD_NUMBER_LOW              0x80
 #define PARAM_BUILD_NUMBER_HIGH             0x81
 #define PARAM_HW_VER                        0x90
@@ -247,4 +258,3 @@
 // *****************[ STK answer constants ]***************************
 
 #define ANSWER_CKSUM_ERROR                  0xB0
-
