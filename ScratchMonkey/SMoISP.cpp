@@ -4,7 +4,7 @@
 //
 // File: SMoISP.cpp         - In-System Programming commands
 //
-// Copyright (c) 2013-2015 Matthias Neeracher <microtherion@gmail.com>
+// Copyright (c) 2013-2016 Matthias Neeracher <microtherion@gmail.com>
 // All rights reserved.
 //
 // See license at bottom of this file or at
@@ -305,10 +305,10 @@ SMoISP::ProgramFuse()
 void
 SMoISP::ReadFuse()
 {
-    uint8_t pollIndex   = SMoCommand::gBody[1];
-    SMoCommand::gBody[2]= SPITransaction(&SMoCommand::gBody[2], pollIndex);
-    SMoCommand::gBody[2] = STATUS_CMD_OK;
-    SMoCommand::SendResponse();
+    uint8_t pollIndex    = SMoCommand::gBody[1];
+    SMoCommand::gBody[2] = SPITransaction(&SMoCommand::gBody[2], pollIndex-1);
+    SMoCommand::gBody[3] = STATUS_CMD_OK;
+    SMoCommand::SendResponse(STATUS_CMD_OK, 4);
 }
 
 void
