@@ -1,0 +1,34 @@
+%image fritzing/svg/core/breadboard/arduino_Uno_Rev3_breadboard.svg 424.744 302.4 90
+
+14.25  IOREF
+       RESET
+       VCC33
+       VCC5
+       GND
+       GND2
+20.25  VIN
+
+22.25  A0
+       A1
+       A2
+       A3
+       A4
+27.25  A5
+
+-27.25 D0
+       D1
+       D2
+       D3
+       D4
+       D5
+       D6
+-20.25 D7
+
+-18.65 D8
+       D9
+       D10
+       D11
+       D12
+       D13
+       GND3
+-11.65 AREF

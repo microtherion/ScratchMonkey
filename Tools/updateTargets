@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 
 NAME = {
-  'arduino' => 'Arduino',
+  'uno' => 'Arduino Uno',
   'micro'   => 'Arduino Leonardo / Micro',
   'digispark'=> 'Digispark',
   'icsp'    => 'ICSP Header'
