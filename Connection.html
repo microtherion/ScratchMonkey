@@ -29,8 +29,8 @@
     <option value="hvpp">HVPP</option>
   </select>
   <strong>Programmer:</strong><select name="programmer" onchange="selectProgrammer()">
-    <option value="arduino">Standard Arduino</option>
-    <option value="micro">Leonardo / Micro</option>
+    <option value="uno">Arduino Uno</option>
+    <option value="micro">Arduino Leonardo / Micro</option>
   </select>
   <span style="float:right">
   <strong>Target:</strong><select name="target" onchange="selectTarget()">
@@ -42,12 +42,12 @@
 <div class=conn style="float:left">
 <p class=conn>Programmer</p>
 <p style="height:5mm"></p>
-<img name="programmerDiagram" src="" onerror="imageFallback(this)">
+<object id="programmerDiagram" type="image/svg+xml" data=""></object>
 </div>
 <div class=conn>
 <p class=conn>Target</p>
 <p style="height:5mm"></p>
-<img name="targetDiagram" src="" onerror="imageFallback(this)">
+<object id="targetDiagram" type="image/svg+xml" data=""></object>
 </div>
 
 <p style="clear:both; height:5mm"></p>
@@ -56,8 +56,8 @@
 <h4 class=mcu>Arduino Uno/Diecimila/Duemilanove</h4>
 
 <div class=conn>
-	<p class=conn>ISP</p>
-	<img src="img/arduino_isp.svg">
+  <p class=conn>ISP</p>
+  <object type="image/svg+xml" data="img/uno_isp.svg"></object>
 </div>
 
 <p>An Arduino can be used to reprogram another Arduino.</p>

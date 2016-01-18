@@ -58,7 +58,7 @@ div.conn {
 	padding-bottom: 2%;
 	float: right
 }
-div.conn img {
+div.conn object {
 	width: 90%;
 	margin: 1mm 5% 1mm 5%;
 	max-height: 8cm;
