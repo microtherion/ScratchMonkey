@@ -1,4 +1,5 @@
 #!/usr/bin/ruby
+# coding: utf-8
 #
 
 require 'getoptlong'
@@ -47,7 +48,7 @@ ARGF.each_line do |line|
       $PACKHEIGHT   = $BOARDWIDTH.to_f
       $PACKWIDTH  = $BOARDHEIGHT.to_f
     end
-    $FUNCTIONWIDTH = 65
+    $FUNCTIONWIDTH = 69
     $LABELWIDTH    = 0
     $PINWIDTH      = 0
     $PINPITCH      = 14.4
@@ -156,7 +157,7 @@ END_PIN
         style="fill:#{COLOR[pin[2]][0]}"/>
   <text class="function" x="#{FUNHALF}" y="#{base+LABELBASE}"
         style="fill:#{COLOR[pin[2]][1]}">
-    #{pin[2]}
+    #{pin[2].sub("HVRESET", "⚡️RESET⚡️")}
   </text>
 END_FUNCTION
     end
@@ -177,7 +178,7 @@ END_PIN
         style="fill:#{COLOR[pin[2]][0]}"/>
   <text class="function" x="#{PACKRIGHT+$PINWIDTH+$LABELWIDTH+LABELPAD+FUNHALF}" y="#{base+LABELBASE}"
         style="fill:#{COLOR[pin[2]][1]}">
-    #{pin[2]}
+    #{pin[2].sub("HVRESET", "⚡️RESET⚡️")}
   </text>
 END_FUNCTION
     end
