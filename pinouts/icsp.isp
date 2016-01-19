@@ -1,0 +1,6 @@
+MISO	=  MISO
+SCK    	=  SCK
+RESET	=  RESET
+GND	=  GND
+MOSI	=  MOSI
+VCC	=  VCC

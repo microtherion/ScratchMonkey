@@ -129,7 +129,7 @@ PIN.each do |pin|
   row  = pin[0]-1
   left = true
   if $BOARD
-    if row < 0
+    if row < -0.99
       row  = -2.0-row
       left = false
     end

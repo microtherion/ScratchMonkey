@@ -31,6 +31,7 @@
   <strong>Programmer:</strong><select name="programmer" onchange="selectProgrammer()">
     <option value="uno">Arduino Uno</option>
     <option value="micro">Arduino Leonardo / Micro</option>
+    <option value="nano">Arduino Nano</option>
   </select>
   <span style="float:right">
   <strong>Target:</strong><select name="target" onchange="selectTarget()">
@@ -55,11 +56,6 @@
 <div>
 <h4 class=mcu>Arduino Uno/Diecimila/Duemilanove</h4>
 
-<div class=conn>
-  <p class=conn>ISP</p>
-  <object type="image/svg+xml" data="img/uno_isp.svg"></object>
-</div>
-
 <p>An Arduino can be used to reprogram another Arduino.</p>
 
 <p>Since the Arduino's XTAL1 pin is connected to an oscillator, the only usable protocol is ISP. In desperate circumstances, it might be possible to remove the MCU from its socket (if your board has the socketed through-hole variant of the MCU) and program it on a breadboard.</p>
@@ -70,11 +66,6 @@
 <div>
 <h4 class=mcu>Arduino Micro</h4>
 
-<div class=conn>
-	<p class=conn>ISP</p>
-	<img src="img/micro_isp.png">
-</div>
-
 <p>An Arduino Micro can be reprogrammed through its pins (for the Leonardo, the same signals are connected, but you'll have to use the ICSP header). Since the Micro's XTAL1 pin is connected to an oscillator, the only usable protocol is ISP. </p>
 
 <p style="clear:both"/>
@@ -82,11 +73,6 @@
 
 <div>
 <h4 class=mcu>Digispark</h4>
-
-<div class=conn>
-	<p class=conn>HVSP</p>
-	<img src="img/digispark_hvsp.svg">
-</div>
 
 <p>The <a href="http://digistump.com">Digispark</a> is a tiny, <tt>ATtiny85</tt> based board featuring bitbang style USB connectivity.</p>
 
@@ -98,11 +84,6 @@
 
 <div>
 <h4 class=mcu>6 Pin ICSP Header</h4>
-
-<div class=conn>
-	<p class=conn>ISP</p>
-	<img src="img/icsp_isp.svg" align=middle width="100%">
-</div>
 
 <p>Most Arduino boards feature one or several 6 pin ICSP headers, which can be used to program the Arduino through ISP. Be careful to:</p>
 
