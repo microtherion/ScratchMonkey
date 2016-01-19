@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0 0 240.8 295.648">
+  <defs>
+  <style type="text/css"><![CDATA[
+     .ic       { fill:#909090; stroke:#000000; stroke-width:2.0 }
+     .notch    { fill:#a0a0a0; stroke:#000000; stroke-width:1.0 }
+     .pin      { fill:#d0d0d0; stroke:#000000; stroke-width:1.0 }
+     .function { font-family:"Helvetica"; font-size:13px; text-anchor:middle }
+     .funbox   { stroke:black }
+     ]]>
+  </style>
+  </defs>
+  <image xlink:href="fritzing/svg/core/breadboard/Arduino_Micro_Rev03_breadboard.svg"
+      x="-215.64800000000002" y="5" width="285.648" height="100.8"         transform="rotate(-90, 70, 5)"
+/>
+  
+    <rect class="funbox" x="0" y="49.18000000000001"
+        width="65" height="13" rx="3"
+        style="fill:silver"/>
+  <text class="function" x="32" y="60.68000000000001"
+        style="fill:orange">
+    CTRL3
+  </text>
+  <rect class="funbox" x="0" y="63.580000000000005"
+        width="65" height="13" rx="3"
+        style="fill:silver"/>
+  <text class="function" x="32" y="75.08000000000001"
+        style="fill:red">
+    CTRL2
+  </text>
+  <rect class="funbox" x="0" y="92.38000000000001"
+        width="65" height="13" rx="3"
+        style="fill:black"/>
+  <text class="function" x="32" y="103.88000000000001"
+        style="fill:white">
+    GND
+  </text>
+  <rect class="funbox" x="0" y="106.78"
+        width="65" height="13" rx="3"
+        style="fill:white"/>
+  <text class="function" x="32" y="118.28"
+        style="fill:black">
+    DATA0
+  </text>
+  <rect class="funbox" x="0" y="121.17999999999999"
+        width="65" height="13" rx="3"
+        style="fill:white"/>
+  <text class="function" x="32" y="132.68"
+        style="fill:brown">
+    DATA1
+  </text>
+  <rect class="funbox" x="0" y="135.58"
+        width="65" height="13" rx="3"
+        style="fill:white"/>
+  <text class="function" x="32" y="147.08"
+        style="fill:red">
+    DATA2
+  </text>
+  <rect class="funbox" x="0" y="149.98"
+        width="65" height="13" rx="3"
+        style="fill:white"/>
+  <text class="function" x="32" y="161.48"
+        style="fill:orange">
+    DATA3
+  </text>
+  <rect class="funbox" x="0" y="164.38"
+        width="65" height="13" rx="3"
+        style="fill:white"/>
+  <text class="function" x="32" y="175.88"
+        style="fill:gold">
+    DATA4
+  </text>
+  <rect class="funbox" x="0" y="178.78"
+        width="65" height="13" rx="3"
+        style="fill:white"/>
+  <text class="function" x="32" y="190.28"
+        style="fill:green">
+    DATA5
+  </text>
+  <rect class="funbox" x="0" y="193.18"
+        width="65" height="13" rx="3"
+        style="fill:white"/>
+  <text class="function" x="32" y="204.68"
+        style="fill:blue">
+    DATA6
+  </text>
+  <rect class="funbox" x="0" y="207.57999999999998"
+        width="65" height="13" rx="3"
+        style="fill:white"/>
+  <text class="function" x="32" y="219.07999999999998"
+        style="fill:orchid">
+    DATA7
+  </text>
+  <rect class="funbox" x="0" y="221.98"
+        width="65" height="13" rx="3"
+        style="fill:white"/>
+  <text class="function" x="32" y="233.48"
+        style="fill:black">
+    HVRESET
+  </text>
+  <rect class="funbox" x="0" y="236.38"
+        width="65" height="13" rx="3"
+        style="fill:red"/>
+  <text class="function" x="32" y="247.88"
+        style="fill:white">
+    VCC
+  </text>
+  <rect class="funbox" x="0" y="250.78"
+        width="65" height="13" rx="3"
+        style="fill:sienna"/>
+  <text class="function" x="32" y="262.28"
+        style="fill:white">
+    RDY
+  </text>
+  <rect class="funbox" x="175.8" y="250.78"
+        width="65" height="13" rx="3"
+        style="fill:orchid"/>
+  <text class="function" x="207.8" y="262.28"
+        style="fill:black">
+    XTAL
+  </text>
+  <rect class="funbox" x="175.8" y="207.57999999999998"
+        width="65" height="13" rx="3"
+        style="fill:silver"/>
+  <text class="function" x="207.8" y="219.07999999999998"
+        style="fill:orchid">
+    CTRL7
+  </text>
+  <rect class="funbox" x="175.8" y="193.18"
+        width="65" height="13" rx="3"
+        style="fill:silver"/>
+  <text class="function" x="207.8" y="204.68"
+        style="fill:blue">
+    CTRL6
+  </text>
+  <rect class="funbox" x="175.8" y="178.78"
+        width="65" height="13" rx="3"
+        style="fill:silver"/>
+  <text class="function" x="207.8" y="190.28"
+        style="fill:green">
+    CTRL5
+  </text>
+  <rect class="funbox" x="175.8" y="164.38"
+        width="65" height="13" rx="3"
+        style="fill:silver"/>
+  <text class="function" x="207.8" y="175.88"
+        style="fill:gold">
+    CTRL4
+  </text>
+  <rect class="funbox" x="175.8" y="135.58"
+        width="65" height="13" rx="3"
+        style="fill:silver"/>
+  <text class="function" x="207.8" y="147.08"
+        style="fill:black">
+    CTRL0
+  </text>
+
+</svg>
