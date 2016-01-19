@@ -10,8 +10,11 @@ TARGET = {
   'none' => []
 }
 
+SEEN = {}
 ARGV.each do |arg|
-  if arg =~ %r|/([a-z0-9]+)_([a-z]+)\.|
+  if !(arg =~ /_prog_/) && arg =~ %r|/([a-z0-9]+)_([a-z]+)\.|
+    next if SEEN[$1+"_"+$2]
+    SEEN[$1+"_"+$2] = true
     TARGET[$2] ||= []
     TARGET[$2] << $1
   end

@@ -33,7 +33,6 @@ var gTarget= {
     ["ATtiny1634", "attiny1634"],
     ["ATmega328", "atmega328"],
     ["ATmega1284", "atmega1284"],
-    ["Arduino Uno", "uno"],
   ],
   "hvsp": [
     ["Digispark", "digispark"],

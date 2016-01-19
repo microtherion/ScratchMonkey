@@ -43,7 +43,7 @@ ARGF.each_line do |line|
     if $BOARDROTATION=="0"
       $PACKWIDTH   = $BOARDWIDTH.to_f
       $PACKHEIGHT  = $BOARDHEIGHT.to_f
-    elsif $BOARDROTATION=="90"
+    elsif $BOARDROTATION =~ /90/
       $PACKHEIGHT   = $BOARDWIDTH.to_f
       $PACKWIDTH  = $BOARDHEIGHT.to_f
     end
@@ -231,6 +231,11 @@ if $BOARD
     trans   = <<END_ROT_90
     transform="rotate(90, #{boardx}, #{PACKTOP})"
 END_ROT_90
+  elsif $BOARDROTATION=="-90"
+    trans   = <<END_ROT_MINUS_90
+        transform="rotate(-90, #{boardx}, #{PACKTOP})"
+END_ROT_MINUS_90
+    boardx -= $BOARDWIDTH.to_f
   end
   print <<END_SVG_BOARD
   <image xlink:href="#{$BOARD}"

@@ -1,0 +1,37 @@
+%image fritzing/svg/core/breadboard/Arduino_Micro_Rev03_breadboard.svg 285.648 100.8 -90
+
+ 1.20  MOSI
+       SS
+       TX
+       RX
+       RST
+       GND
+       D2
+       D3
+       D4
+       D5
+       D6
+       D7
+       D8
+       D9
+       D10
+       D11
+17.20  D12
+
+-17.20 D13
+       VCC33
+       AREF
+       A0
+       A1
+       A2
+       A3
+       A4
+       A5
+       NC
+       NC2
+       VCC5
+       RST2
+       GND2
+       VIN
+       MISO
+-1.20  SCK
