@@ -25,6 +25,7 @@ var gTarget= {
   "isp": [
     ["Arduino Uno", "uno"],
     ["Arduino Leonardo / Micro", "micro"],
+    ["Arduino Nano", "nano"],
     ["ICSP Header", "icsp"],
     ["ATtiny85", "attiny85"],
     ["ATtiny84", "attiny84"],

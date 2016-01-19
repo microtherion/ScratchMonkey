@@ -1,63 +1,60 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 270.0 136.0">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0 0 183.2 55.0">
   <defs>
   <style type="text/css"><![CDATA[
-     .thinline { fill:none; stroke:#000000; stroke-width:1.0 }
-     .thickline{ fill:none; stroke:#000000; stroke-width:2.0 }
-     .pinno    { font-family:"Courier"; font-size:12px }
-     .label    { font-family:"Helvetica"; font-size:18px }
-     .function { font-family:"Comic Sans MS"; font-size:24px }
-     .title    { font-family:"Helvetica-Bold"; font-size:20px; text-anchor:middle; writing-mode:tb; alignment-baseline:central }
+     .ic       { fill:#909090; stroke:#000000; stroke-width:2.0 }
+     .notch    { fill:#a0a0a0; stroke:#000000; stroke-width:1.0 }
+     .pin      { fill:#d0d0d0; stroke:#000000; stroke-width:1.0 }
+     .function { font-family:"Helvetica"; font-size:13px; text-anchor:middle }
+     .funbox   { stroke:black }
      ]]>
   </style>
   </defs>
-  <rect class="thickline" x="105.0" y="5.0" width="60.0" height="90.0"/>
-  <rect class="thinline"  x="105.0" y="34.0" width="5.0" height="32.0"/>
-
-  <rect class="thinline" x="114.0" y="12.0" width="16.0" height="16.0"/>
-  <text class="pinno" x="122.0" y="23.0" text-anchor="middle">
-    1
-  </text>
-  <text class="function" x="95.0" y="30" text-anchor="end">
+  <image xlink:href="icsp.svg"
+      x="70" y="5" width="43.2" height="45.0" />
+  
+    <rect class="funbox" x="0" y="6.700000000000001"
+        width="65" height="13" rx="3"
+        style="fill:white"/>
+  <text class="function" x="32" y="18.200000000000003"
+        style="fill:black">
     MISO
   </text>
-
-  <circle class="thinline" cx="148.0" cy="20.0" r="8.0"/>
-  <text class="pinno" x="148.0" y="23.0" text-anchor="middle">
-    2
+  <rect class="funbox" x="0" y="21.1"
+        width="65" height="13" rx="3"
+        style="fill:gold"/>
+  <text class="function" x="32" y="32.6"
+        style="fill:black">
+    SCK
   </text>
-  <text class="function" x="175.0" y="30.0">
+  <rect class="funbox" x="0" y="35.5"
+        width="65" height="13" rx="3"
+        style="fill:green"/>
+  <text class="function" x="32" y="47.0"
+        style="fill:white">
+    RESET
+  </text>
+  <rect class="funbox" x="118.2" y="35.5"
+        width="65" height="13" rx="3"
+        style="fill:black"/>
+  <text class="function" x="150.2" y="47.0"
+        style="fill:white">
+    GND
+  </text>
+  <rect class="funbox" x="118.2" y="21.1"
+        width="65" height="13" rx="3"
+        style="fill:blue"/>
+  <text class="function" x="150.2" y="32.6"
+        style="fill:white">
+    MOSI
+  </text>
+  <rect class="funbox" x="118.2" y="6.700000000000001"
+        width="65" height="13" rx="3"
+        style="fill:red"/>
+  <text class="function" x="150.2" y="18.200000000000003"
+        style="fill:white">
     VCC
   </text>
 
-  <circle class="thinline" cx="122.0" cy="50" r="8.0"/>
-  <text class="pinno" x="122.0" y="53.0" text-anchor="middle">
-    3
-  </text>
-  <text class="function" x="95.0" y="60" text-anchor="end">
-    SCK
-  </text>
-
-  <circle class="thinline" cx="148.0" cy="50" r="8.0"/>
-  <text class="pinno" x="148.0" y="53.0" text-anchor="middle">
-    4
-  </text>
-  <text class="function" x="175.0" y="60">
-    MOSI
-  </text>
-
-  <circle class="thinline" cx="122.0" cy="80" r="8.0"/>
-  <text class="pinno" x="122.0" y="83.0" text-anchor="middle">
-    5
-  </text>
-  <text class="function" x="95.0" y="90" text-anchor="end">
-    RESET
-  </text>
-
-  <circle class="thinline" cx="148.0" cy="80" r="8.0"/>
-  <text class="pinno" x="148.0" y="83.0" text-anchor="middle">
-    6
-  </text>
-  <text class="function" x="175.0" y="90">
-    GND
-  </text>
 </svg>
