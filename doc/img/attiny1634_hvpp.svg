@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
      xmlns:xlink="http://www.w3.org/1999/xlink"
-     viewBox="0 0 440.0 316.0">
+     viewBox="0 0 438.0 316.0">
   <defs>
   <style type="text/css"><![CDATA[
      .ic       { fill:#909090; stroke:#000000; stroke-width:2.0 }
@@ -14,275 +14,275 @@
      ]]>
   </style>
   </defs>
-  <rect class="ic" x="190.0" y="5" width="60.0" height="306.0"/>
-  <path class="notch" d="M209.5,5 a10.500000000000002,10.500000000000002 0 0,0 21.000000000000004,0"/>
-    <text class="title" x="220.0" y="158.0">
+  <rect class="ic" x="189.0" y="5" width="60.0" height="306.0"/>
+  <path class="notch" d="M208.5,5 a10.500000000000002,10.500000000000002 0 0,0 21.000000000000004,0"/>
+    <text class="title" x="219.0" y="158.0">
     ATtiny1634
   </text>
 
-    <rect class="pin" x="175.0" y="15.500000000000002" width="15.0" height="15.0"/>
-  <text class="label" x="170.0" y="29.0" text-anchor="end">
+    <rect class="pin" x="174.0" y="15.500000000000002" width="15.0" height="15.0"/>
+  <text class="label" x="169.0" y="29.0" text-anchor="end">
     PB0
   </text>
-  <text class="pinno" x="193.0" y="26.5">
+  <text class="pinno" x="192.0" y="26.5">
     1
   </text>
-  <rect class="pin" x="175.0" y="45.5" width="15.0" height="15.0"/>
-  <text class="label" x="170.0" y="59.0" text-anchor="end">
+  <rect class="pin" x="174.0" y="45.5" width="15.0" height="15.0"/>
+  <text class="label" x="169.0" y="59.0" text-anchor="end">
     PA7
   </text>
-  <text class="pinno" x="193.0" y="56.5">
+  <text class="pinno" x="192.0" y="56.5">
     2
   </text>
-  <rect class="funbox" x="0" y="40.5"
-        width="100" height="25.0" rx="3"
+  <rect class="funbox" x="1" y="40.5"
+        width="99" height="25.0" rx="3"
         style="fill:white"/>
-  <text class="function" x="50" y="59.0"
+  <text class="function" x="49" y="59.0"
         style="fill:orchid">
     DATA7
   </text>
-  <rect class="pin" x="175.0" y="75.5" width="15.0" height="15.0"/>
-  <text class="label" x="170.0" y="89.0" text-anchor="end">
+  <rect class="pin" x="174.0" y="75.5" width="15.0" height="15.0"/>
+  <text class="label" x="169.0" y="89.0" text-anchor="end">
     PA6
   </text>
-  <text class="pinno" x="193.0" y="86.5">
+  <text class="pinno" x="192.0" y="86.5">
     3
   </text>
-  <rect class="funbox" x="0" y="70.5"
-        width="100" height="25.0" rx="3"
+  <rect class="funbox" x="1" y="70.5"
+        width="99" height="25.0" rx="3"
         style="fill:white"/>
-  <text class="function" x="50" y="89.0"
+  <text class="function" x="49" y="89.0"
         style="fill:blue">
     DATA6
   </text>
-  <rect class="pin" x="175.0" y="105.5" width="15.0" height="15.0"/>
-  <text class="label" x="170.0" y="119.0" text-anchor="end">
+  <rect class="pin" x="174.0" y="105.5" width="15.0" height="15.0"/>
+  <text class="label" x="169.0" y="119.0" text-anchor="end">
     PA5
   </text>
-  <text class="pinno" x="193.0" y="116.5">
+  <text class="pinno" x="192.0" y="116.5">
     4
   </text>
-  <rect class="funbox" x="0" y="100.5"
-        width="100" height="25.0" rx="3"
+  <rect class="funbox" x="1" y="100.5"
+        width="99" height="25.0" rx="3"
         style="fill:white"/>
-  <text class="function" x="50" y="119.0"
+  <text class="function" x="49" y="119.0"
         style="fill:green">
     DATA5
   </text>
-  <rect class="pin" x="175.0" y="135.5" width="15.0" height="15.0"/>
-  <text class="label" x="170.0" y="149.0" text-anchor="end">
+  <rect class="pin" x="174.0" y="135.5" width="15.0" height="15.0"/>
+  <text class="label" x="169.0" y="149.0" text-anchor="end">
     PA4
   </text>
-  <text class="pinno" x="193.0" y="146.5">
+  <text class="pinno" x="192.0" y="146.5">
     5
   </text>
-  <rect class="funbox" x="0" y="130.5"
-        width="100" height="25.0" rx="3"
+  <rect class="funbox" x="1" y="130.5"
+        width="99" height="25.0" rx="3"
         style="fill:white"/>
-  <text class="function" x="50" y="149.0"
+  <text class="function" x="49" y="149.0"
         style="fill:gold">
     DATA4
   </text>
-  <rect class="pin" x="175.0" y="165.5" width="15.0" height="15.0"/>
-  <text class="label" x="170.0" y="179.0" text-anchor="end">
+  <rect class="pin" x="174.0" y="165.5" width="15.0" height="15.0"/>
+  <text class="label" x="169.0" y="179.0" text-anchor="end">
     PA3
   </text>
-  <text class="pinno" x="193.0" y="176.5">
+  <text class="pinno" x="192.0" y="176.5">
     6
   </text>
-  <rect class="funbox" x="0" y="160.5"
-        width="100" height="25.0" rx="3"
+  <rect class="funbox" x="1" y="160.5"
+        width="99" height="25.0" rx="3"
         style="fill:white"/>
-  <text class="function" x="50" y="179.0"
+  <text class="function" x="49" y="179.0"
         style="fill:orange">
     DATA3
   </text>
-  <rect class="pin" x="175.0" y="195.5" width="15.0" height="15.0"/>
-  <text class="label" x="170.0" y="209.0" text-anchor="end">
+  <rect class="pin" x="174.0" y="195.5" width="15.0" height="15.0"/>
+  <text class="label" x="169.0" y="209.0" text-anchor="end">
     PA2
   </text>
-  <text class="pinno" x="193.0" y="206.5">
+  <text class="pinno" x="192.0" y="206.5">
     7
   </text>
-  <rect class="funbox" x="0" y="190.5"
-        width="100" height="25.0" rx="3"
+  <rect class="funbox" x="1" y="190.5"
+        width="99" height="25.0" rx="3"
         style="fill:white"/>
-  <text class="function" x="50" y="209.0"
+  <text class="function" x="49" y="209.0"
         style="fill:red">
     DATA2
   </text>
-  <rect class="pin" x="175.0" y="225.5" width="15.0" height="15.0"/>
-  <text class="label" x="170.0" y="239.0" text-anchor="end">
+  <rect class="pin" x="174.0" y="225.5" width="15.0" height="15.0"/>
+  <text class="label" x="169.0" y="239.0" text-anchor="end">
     PA1
   </text>
-  <text class="pinno" x="193.0" y="236.5">
+  <text class="pinno" x="192.0" y="236.5">
     8
   </text>
-  <rect class="funbox" x="0" y="220.5"
-        width="100" height="25.0" rx="3"
+  <rect class="funbox" x="1" y="220.5"
+        width="99" height="25.0" rx="3"
         style="fill:white"/>
-  <text class="function" x="50" y="239.0"
+  <text class="function" x="49" y="239.0"
         style="fill:brown">
     DATA1
   </text>
-  <rect class="pin" x="175.0" y="255.5" width="15.0" height="15.0"/>
-  <text class="label" x="170.0" y="269.0" text-anchor="end">
+  <rect class="pin" x="174.0" y="255.5" width="15.0" height="15.0"/>
+  <text class="label" x="169.0" y="269.0" text-anchor="end">
     PA0
   </text>
-  <text class="pinno" x="193.0" y="266.5">
+  <text class="pinno" x="192.0" y="266.5">
     9
   </text>
-  <rect class="funbox" x="0" y="250.5"
-        width="100" height="25.0" rx="3"
+  <rect class="funbox" x="1" y="250.5"
+        width="99" height="25.0" rx="3"
         style="fill:white"/>
-  <text class="function" x="50" y="269.0"
+  <text class="function" x="49" y="269.0"
         style="fill:black">
     DATA0
   </text>
-  <rect class="pin" x="175.0" y="285.5" width="15.0" height="15.0"/>
-  <text class="label" x="170.0" y="299.0" text-anchor="end">
+  <rect class="pin" x="174.0" y="285.5" width="15.0" height="15.0"/>
+  <text class="label" x="169.0" y="299.0" text-anchor="end">
     GND
   </text>
-  <text class="pinno" x="193.0" y="296.5">
+  <text class="pinno" x="192.0" y="296.5">
     10
   </text>
-  <rect class="funbox" x="0" y="280.5"
-        width="100" height="25.0" rx="3"
+  <rect class="funbox" x="1" y="280.5"
+        width="99" height="25.0" rx="3"
         style="fill:black"/>
-  <text class="function" x="50" y="299.0"
+  <text class="function" x="49" y="299.0"
         style="fill:white">
     GND
   </text>
-  <rect class="pin" x="250.0" y="285.5" width="15.0" height="15.0"/>
-  <text class="pinno" x="247.0" y="296.5" text-anchor="end">
+  <rect class="pin" x="249.0" y="285.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="246.0" y="296.5" text-anchor="end">
     11
   </text>
-  <text class="label" x="270.0" y="299.0">
+  <text class="label" x="269.0" y="299.0">
     VCC
   </text>
-  <rect class="funbox" x="340.0" y="280.5"
-        width="100" height="25.0" rx="3"
+  <rect class="funbox" x="338.0" y="280.5"
+        width="99" height="25.0" rx="3"
         style="fill:red"/>
-  <text class="function" x="390.0" y="299.0"
+  <text class="function" x="388.0" y="299.0"
         style="fill:white">
     VCC
   </text>
-  <rect class="pin" x="250.0" y="255.5" width="15.0" height="15.0"/>
-  <text class="pinno" x="247.0" y="266.5" text-anchor="end">
+  <rect class="pin" x="249.0" y="255.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="246.0" y="266.5" text-anchor="end">
     12
   </text>
-  <text class="label" x="270.0" y="269.0">
+  <text class="label" x="269.0" y="269.0">
     PC5
   </text>
-  <rect class="funbox" x="340.0" y="250.5"
-        width="100" height="25.0" rx="3"
+  <rect class="funbox" x="338.0" y="250.5"
+        width="99" height="25.0" rx="3"
         style="fill:orchid"/>
-  <text class="function" x="390.0" y="269.0"
+  <text class="function" x="388.0" y="269.0"
         style="fill:black">
     XTAL
   </text>
-  <rect class="pin" x="250.0" y="225.5" width="15.0" height="15.0"/>
-  <text class="pinno" x="247.0" y="236.5" text-anchor="end">
+  <rect class="pin" x="249.0" y="225.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="246.0" y="236.5" text-anchor="end">
     13
   </text>
-  <text class="label" x="270.0" y="239.0">
+  <text class="label" x="269.0" y="239.0">
     PC4
   </text>
-  <rect class="pin" x="250.0" y="195.5" width="15.0" height="15.0"/>
-  <text class="pinno" x="247.0" y="206.5" text-anchor="end">
+  <rect class="pin" x="249.0" y="195.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="246.0" y="206.5" text-anchor="end">
     14
   </text>
-  <text class="label" x="270.0" y="209.0">
+  <text class="label" x="269.0" y="209.0">
     PC3
   </text>
-  <rect class="funbox" x="340.0" y="190.5"
-        width="100" height="25.0" rx="3"
+  <rect class="funbox" x="338.0" y="190.5"
+        width="99" height="25.0" rx="3"
         style="fill:green"/>
-  <text class="function" x="390.0" y="209.0"
+  <text class="function" x="388.0" y="209.0"
         style="fill:white">
     RESET
   </text>
-  <rect class="pin" x="250.0" y="165.5" width="15.0" height="15.0"/>
-  <text class="pinno" x="247.0" y="176.5" text-anchor="end">
+  <rect class="pin" x="249.0" y="165.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="246.0" y="176.5" text-anchor="end">
     15
   </text>
-  <text class="label" x="270.0" y="179.0">
+  <text class="label" x="269.0" y="179.0">
     PC2
   </text>
-  <rect class="funbox" x="340.0" y="160.5"
-        width="100" height="25.0" rx="3"
+  <rect class="funbox" x="338.0" y="160.5"
+        width="99" height="25.0" rx="3"
         style="fill:sienna"/>
-  <text class="function" x="390.0" y="179.0"
+  <text class="function" x="388.0" y="179.0"
         style="fill:white">
     RDY
   </text>
-  <rect class="pin" x="250.0" y="135.5" width="15.0" height="15.0"/>
-  <text class="pinno" x="247.0" y="146.5" text-anchor="end">
+  <rect class="pin" x="249.0" y="135.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="246.0" y="146.5" text-anchor="end">
     16
   </text>
-  <text class="label" x="270.0" y="149.0">
+  <text class="label" x="269.0" y="149.0">
     PC1
   </text>
-  <rect class="funbox" x="340.0" y="130.5"
-        width="100" height="25.0" rx="3"
+  <rect class="funbox" x="338.0" y="130.5"
+        width="99" height="25.0" rx="3"
         style="fill:silver"/>
-  <text class="function" x="390.0" y="149.0"
+  <text class="function" x="388.0" y="149.0"
         style="fill:red">
     CTRL2
   </text>
-  <rect class="pin" x="250.0" y="105.5" width="15.0" height="15.0"/>
-  <text class="pinno" x="247.0" y="116.5" text-anchor="end">
+  <rect class="pin" x="249.0" y="105.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="246.0" y="116.5" text-anchor="end">
     17
   </text>
-  <text class="label" x="270.0" y="119.0">
+  <text class="label" x="269.0" y="119.0">
     PC0
   </text>
-  <rect class="funbox" x="340.0" y="100.5"
-        width="100" height="25.0" rx="3"
+  <rect class="funbox" x="338.0" y="100.5"
+        width="99" height="25.0" rx="3"
         style="fill:silver"/>
-  <text class="function" x="390.0" y="119.0"
+  <text class="function" x="388.0" y="119.0"
         style="fill:orange">
     CTRL3
   </text>
-  <rect class="pin" x="250.0" y="75.5" width="15.0" height="15.0"/>
-  <text class="pinno" x="247.0" y="86.5" text-anchor="end">
+  <rect class="pin" x="249.0" y="75.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="246.0" y="86.5" text-anchor="end">
     18
   </text>
-  <text class="label" x="270.0" y="89.0">
+  <text class="label" x="269.0" y="89.0">
     PB3
   </text>
-  <rect class="funbox" x="340.0" y="70.5"
-        width="100" height="25.0" rx="3"
+  <rect class="funbox" x="338.0" y="70.5"
+        width="99" height="25.0" rx="3"
         style="fill:silver"/>
-  <text class="function" x="390.0" y="89.0"
+  <text class="function" x="388.0" y="89.0"
         style="fill:gold">
     CTRL4
   </text>
-  <rect class="pin" x="250.0" y="45.5" width="15.0" height="15.0"/>
-  <text class="pinno" x="247.0" y="56.5" text-anchor="end">
+  <rect class="pin" x="249.0" y="45.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="246.0" y="56.5" text-anchor="end">
     19
   </text>
-  <text class="label" x="270.0" y="59.0">
+  <text class="label" x="269.0" y="59.0">
     PB2
   </text>
-  <rect class="funbox" x="340.0" y="40.5"
-        width="100" height="25.0" rx="3"
+  <rect class="funbox" x="338.0" y="40.5"
+        width="99" height="25.0" rx="3"
         style="fill:silver"/>
-  <text class="function" x="390.0" y="59.0"
+  <text class="function" x="388.0" y="59.0"
         style="fill:green">
     CTRL5
   </text>
-  <rect class="pin" x="250.0" y="15.500000000000002" width="15.0" height="15.0"/>
-  <text class="pinno" x="247.0" y="26.5" text-anchor="end">
+  <rect class="pin" x="249.0" y="15.500000000000002" width="15.0" height="15.0"/>
+  <text class="pinno" x="246.0" y="26.5" text-anchor="end">
     20
   </text>
-  <text class="label" x="270.0" y="29.0">
+  <text class="label" x="269.0" y="29.0">
     PB1
   </text>
-  <rect class="funbox" x="340.0" y="10.500000000000002"
-        width="100" height="25.0" rx="3"
+  <rect class="funbox" x="338.0" y="10.500000000000002"
+        width="99" height="25.0" rx="3"
         style="fill:silver"/>
-  <text class="function" x="390.0" y="29.0"
+  <text class="function" x="388.0" y="29.0"
         style="fill:blue">
     CTRL6
   </text>

@@ -42,57 +42,45 @@
 
 <div class=conn style="float:left">
 <p class=conn>Programmer</p>
-<p style="height:5mm"></p>
 <object id="programmerDiagram" type="image/svg+xml" data=""></object>
 </div>
 <div class=conn>
 <p class=conn>Target</p>
-<p style="height:5mm"></p>
 <object id="targetDiagram" type="image/svg+xml" data=""></object>
-</div>
 
-<p style="clear:both; height:5mm"></p>
-
-<div>
-<h4 class=mcu>Arduino Uno/Diecimila/Duemilanove</h4>
-
+<div class="note_hidden" id="uno">
 <p>An Arduino can be used to reprogram another Arduino.</p>
 
 <p>Since the Arduino's XTAL1 pin is connected to an oscillator, the only usable protocol is ISP. In desperate circumstances, it might be possible to remove the MCU from its socket (if your board has the socketed through-hole variant of the MCU) and program it on a breadboard.</p>
-
-<p style="clear:both"/>
 </div>
 
-<div>
-<h4 class=mcu>Arduino Micro</h4>
-
+<div class="note_hidden" id="micro">
 <p>An Arduino Micro can be reprogrammed through its pins (for the Leonardo, the same signals are connected, but you'll have to use the ICSP header). Since the Micro's XTAL1 pin is connected to an oscillator, the only usable protocol is ISP. </p>
-
-<p style="clear:both"/>
 </div>
 
-<div>
-<h4 class=mcu>Digispark</h4>
+<div class="note_hidden" id="nano">
+<p>Since the Nano's XTAL1 pin is connected to an oscillator, the only usable protocol is ISP.</p>
+</div>
 
+<div class="note_hidden" id="digispark">
 <p>The <a href="http://digistump.com">Digispark</a> is a tiny, <tt>ATtiny85</tt> based board featuring bitbang style USB connectivity.</p>
 
 <p>Since the Digispark has the RESET pin disabled to obtain another I/O pin, it cannot be programmed through ISP. It needs to be programmed either through Digistump's variant of the Arduino IDE, or through HVSP.</p>
-
-<p style="clear:both"/>
 </div>
 
 
-<div>
-<h4 class=mcu>6 Pin ICSP Header</h4>
-
+<div class="note_hidden" id="icsp">
 <p>Most Arduino boards feature one or several 6 pin ICSP headers, which can be used to program the Arduino through ISP. Be careful to:</p>
 
 <ul>
 <li>Identify the correct ICSP header: Many boards have two headers, one near the main processor, and one near the auxiliary USB interface processor. Pick the one that corresponds to your purpose.</li>
 <li>Identify pin 1 correctly. On official Arduino boards, there tends to be a small white dot next to pin 1. </li>
 </ul>
-<p style="clear:both"/>
 </div>
+
+</div>
+
+<p style="clear:both; height:5mm"></p>
 
 <table class="nav">
 <td>

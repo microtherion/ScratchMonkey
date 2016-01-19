@@ -14,7 +14,7 @@ $PINPITCH       = 0.100*DPI
 $PINHEIGHT      = 0.050*DPI
 $CIRCRADIUS     = 0.035*DPI
 $LABELWIDTH     = 70
-$FUNCTIONWIDTH  = 100
+$FUNCTIONWIDTH  = 99
 $TITLE          = nil
 $BOARD          = nil
 $BOARDWIDTH     = 0
@@ -151,7 +151,7 @@ PIN.each do |pin|
 END_PIN
     if pin[2] != ''
       $PINDESC += <<END_FUNCTION
-  <rect class="funbox" x="0" y="#{top-FUNBOXTOP}"
+  <rect class="funbox" x="1" y="#{top-FUNBOXTOP}"
         width="#{$FUNCTIONWIDTH}" height="#{FUNBOXHEIGHT}" rx="#{FUNBOXROUND}"
         style="fill:#{COLOR[pin[2]][0]}"/>
   <text class="function" x="#{FUNHALF}" y="#{base+LABELBASE}"
@@ -172,7 +172,7 @@ END_FUNCTION
 END_PIN
     if pin[2] != ''
       $PINDESC += <<END_FUNCTION
-  <rect class="funbox" x="#{PACKRIGHT+$PINWIDTH+$LABELWIDTH+LABELPAD}" y="#{top-FUNBOXTOP}"
+  <rect class="funbox" x="#{PACKRIGHT+$PINWIDTH+$LABELWIDTH+LABELPAD-1}" y="#{top-FUNBOXTOP}"
         width="#{$FUNCTIONWIDTH}" height="#{FUNBOXHEIGHT}" rx="#{FUNBOXROUND}"
         style="fill:#{COLOR[pin[2]][0]}"/>
   <text class="function" x="#{PACKRIGHT+$PINWIDTH+$LABELWIDTH+LABELPAD+FUNHALF}" y="#{base+LABELBASE}"
