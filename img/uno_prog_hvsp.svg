@@ -15,49 +15,49 @@
       x="70" y="-297.4" width="424.744" height="302.4"     transform="rotate(90, 70, 5)"
 />
   
-    <rect class="funbox" x="0" y="265.90000000000003"
+    <rect class="funbox" x="1" y="265.90000000000003"
         width="65" height="13" rx="3"
         style="fill:black"/>
   <text class="function" x="32" y="277.40000000000003"
         style="fill:white">
     GND
   </text>
-  <rect class="funbox" x="377.4" y="271.66"
+  <rect class="funbox" x="376.4" y="271.66"
         width="65" height="13" rx="3"
         style="fill:blue"/>
   <text class="function" x="409.4" y="283.16"
         style="fill:white">
     SDI
   </text>
-  <rect class="funbox" x="377.4" y="257.26"
+  <rect class="funbox" x="376.4" y="257.26"
         width="65" height="13" rx="3"
         style="fill:orchid"/>
   <text class="function" x="409.4" y="268.76"
         style="fill:black">
     SII
   </text>
-  <rect class="funbox" x="377.4" y="242.85999999999999"
+  <rect class="funbox" x="376.4" y="242.85999999999999"
         width="65" height="13" rx="3"
         style="fill:white"/>
   <text class="function" x="409.4" y="254.35999999999999"
         style="fill:black">
     HVRESET
   </text>
-  <rect class="funbox" x="377.4" y="228.45999999999998"
+  <rect class="funbox" x="376.4" y="228.45999999999998"
         width="65" height="13" rx="3"
         style="fill:red"/>
   <text class="function" x="409.4" y="239.95999999999998"
         style="fill:white">
     VCC
   </text>
-  <rect class="funbox" x="377.4" y="214.05999999999997"
+  <rect class="funbox" x="376.4" y="214.05999999999997"
         width="65" height="13" rx="3"
         style="fill:white"/>
   <text class="function" x="409.4" y="225.55999999999997"
         style="fill:black">
     SDO
   </text>
-  <rect class="funbox" x="377.4" y="199.66"
+  <rect class="funbox" x="376.4" y="199.66"
         width="65" height="13" rx="3"
         style="fill:gold"/>
   <text class="function" x="409.4" y="211.16"

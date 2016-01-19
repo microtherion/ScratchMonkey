@@ -73,10 +73,18 @@ function selectTarget()
 {
     var proto = document.connectionOptions.protocol.value;
     var targ  = document.connectionOptions.target.value;
+    Array.prototype.filter.call(document.getElementsByClassName("note"), function(elt) {
+	elt.className = "note_hidden";
+    });
     targetDiagram = document.getElementById("targetDiagram")
     if (targ != "none") {
 	targetDiagram.data = "img/" + targ + "_" + proto + ".svg";
 	targetDiagram.style.display = "inline";
+	Array.prototype.filter.call(document.getElementsByClassName("note_hidden"), function(elt) {
+	    if (elt.id == targ) {
+		elt.className = "note";
+	    }
+	});
     } else {
 	targetDiagram.style.display = "none";
     }
