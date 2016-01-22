@@ -9,7 +9,7 @@
      .callout  { fill:none; stroke-width:3.0; stroke-linecap:round }
      .calloutb { stroke:white; fill:none;
                  stroke-width:5.0; stroke:opacity:75%; stroke-linecap:round }
-     .function { font-family:"Helvetica"; font-size:13px; text-anchor:middle }
+     .function { font-family:"Courier"; font-size:13px; text-anchor:middle }
      .funbox   { stroke:black }
      ]]>
   </style>

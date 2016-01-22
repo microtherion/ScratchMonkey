@@ -9,7 +9,7 @@
      .callout  { fill:none; stroke-width:3.0; stroke-linecap:round }
      .calloutb { stroke:white; fill:none;
                  stroke-width:5.0; stroke:opacity:75%; stroke-linecap:round }
-     .function { font-family:"Helvetica"; font-size:13px; text-anchor:middle }
+     .function { font-family:"Courier"; font-size:13px; text-anchor:middle }
      .funbox   { stroke:black }
      ]]>
   </style>
@@ -25,12 +25,33 @@
         style="fill:white">
     GND
   </text>
+  <rect class="funbox" x="380.4" y="323.5"
+        width="69" height="13" rx="3"
+        style="fill:green"/>
+  <text class="function" x="415.4" y="335.0"
+        style="fill:white">
+    ⚪️ (RDY)
+  </text>
+  <rect class="funbox" x="380.4" y="309.1"
+        width="69" height="13" rx="3"
+        style="fill:gold"/>
+  <text class="function" x="415.4" y="320.6"
+        style="fill:black">
+    ⚪️ (VFY)
+  </text>
+  <rect class="funbox" x="380.4" y="294.7"
+        width="69" height="13" rx="3"
+        style="fill:orange"/>
+  <text class="function" x="415.4" y="306.2"
+        style="fill:black">
+    ⚪️ (PGM)
+  </text>
   <rect class="funbox" x="380.4" y="271.66"
         width="69" height="13" rx="3"
-        style="fill:blue"/>
+        style="fill:red"/>
   <text class="function" x="415.4" y="283.16"
         style="fill:white">
-    SDI
+    ⚪️ (ERR)
   </text>
   <rect class="funbox" x="380.4" y="257.26"
         width="69" height="13" rx="3"
