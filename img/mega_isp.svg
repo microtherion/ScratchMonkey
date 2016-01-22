@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
      xmlns:xlink="http://www.w3.org/1999/xlink"
-     viewBox="0 0 450.4 434.744">
+     viewBox="0 0 450.4 621.946">
   <defs>
   <style type="text/css"><![CDATA[
      .ic       { fill:#909090; stroke:#000000; stroke-width:2.0 }
@@ -14,8 +14,8 @@
      ]]>
   </style>
   </defs>
-  <image xlink:href="fritzing/svg/core/breadboard/arduino_Uno_Rev3_breadboard.svg"
-      x="74" y="-297.4" width="424.744" height="302.4"     transform="rotate(90, 74, 5)"
+  <image xlink:href="fritzing/svg/core/breadboard/Arduino_MEGA_2560-Rev3_breadboard.svg"
+      x="74" y="-297.4" width="611.946" height="302.4"     transform="rotate(90, 74, 5)"
 />
   
     <rect class="funbox" x="1" y="222.70000000000002"
@@ -39,26 +39,41 @@
         style="fill:white">
     GND
   </text>
-  <rect class="funbox" x="380.4" y="228.45999999999998"
-        width="69" height="13" rx="3"
-        style="fill:blue"/>
-  <text class="function" x="415.4" y="239.95999999999998"
-        style="fill:white">
-    MOSI
-  </text>
-  <rect class="funbox" x="380.4" y="214.05999999999997"
+  <rect class="funbox" x="1" y="496.15600000000006"
         width="69" height="13" rx="3"
         style="fill:white"/>
-  <text class="function" x="415.4" y="225.55999999999997"
+  <text class="function" x="34" y="507.65600000000006"
         style="fill:black">
     MISO
   </text>
-  <rect class="funbox" x="380.4" y="199.66"
+  <polyline class="calloutb"
+            points="70,502.65600000000006 75.15600000000006,502.65600000000006 146.0,573.5"/>
+  <polyline class="callout"
+            points="70,502.65600000000006 75.15600000000006,502.65600000000006 146.0,573.5"
+            style="stroke:white"/>
+  <rect class="funbox" x="1" y="510.55600000000004"
         width="69" height="13" rx="3"
         style="fill:gold"/>
-  <text class="function" x="415.4" y="211.16"
+  <text class="function" x="34" y="522.056"
         style="fill:black">
     SCK
   </text>
+  <polyline class="calloutb"
+            points="70,517.056 75.15600000000003,517.056 131.6,573.5"/>
+  <polyline class="callout"
+            points="70,517.056 75.15600000000003,517.056 131.6,573.5"
+            style="stroke:gold"/>
+  <rect class="funbox" x="1" y="596.3800000000001"
+        width="69" height="13" rx="3"
+        style="fill:blue"/>
+  <text class="function" x="34" y="607.8800000000001"
+        style="fill:white">
+    MOSI
+  </text>
+  <polyline class="calloutb"
+            points="70,602.8800000000001 131.01999999999987,602.8800000000001 146.0,587.9"/>
+  <polyline class="callout"
+            points="70,602.8800000000001 131.01999999999987,602.8800000000001 146.0,587.9"
+            style="stroke:blue"/>
 
 </svg>

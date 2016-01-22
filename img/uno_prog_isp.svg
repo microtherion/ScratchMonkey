@@ -1,66 +1,69 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
      xmlns:xlink="http://www.w3.org/1999/xlink"
-     viewBox="0 0 442.4 434.744">
+     viewBox="0 0 450.4 434.744">
   <defs>
   <style type="text/css"><![CDATA[
      .ic       { fill:#909090; stroke:#000000; stroke-width:2.0 }
      .notch    { fill:#a0a0a0; stroke:#000000; stroke-width:1.0 }
      .pin      { fill:#d0d0d0; stroke:#000000; stroke-width:1.0 }
+     .callout  { fill:none; stroke-width:3.0; stroke-linecap:round }
+     .calloutb { stroke:white; fill:none;
+                 stroke-width:5.0; stroke:opacity:75%; stroke-linecap:round }
      .function { font-family:"Helvetica"; font-size:13px; text-anchor:middle }
      .funbox   { stroke:black }
      ]]>
   </style>
   </defs>
   <image xlink:href="fritzing/svg/core/breadboard/arduino_Uno_Rev3_breadboard.svg"
-      x="70" y="-297.4" width="424.744" height="302.4"     transform="rotate(90, 70, 5)"
+      x="74" y="-297.4" width="424.744" height="302.4"     transform="rotate(90, 74, 5)"
 />
   
     <rect class="funbox" x="1" y="251.5"
-        width="65" height="13" rx="3"
+        width="69" height="13" rx="3"
         style="fill:red"/>
-  <text class="function" x="32" y="263.0"
+  <text class="function" x="34" y="263.0"
         style="fill:white">
     VCC
   </text>
   <rect class="funbox" x="1" y="265.90000000000003"
-        width="65" height="13" rx="3"
+        width="69" height="13" rx="3"
         style="fill:black"/>
-  <text class="function" x="32" y="277.40000000000003"
+  <text class="function" x="34" y="277.40000000000003"
         style="fill:white">
     GND
   </text>
-  <rect class="funbox" x="376.4" y="257.26"
-        width="65" height="13" rx="3"
+  <rect class="funbox" x="380.4" y="257.26"
+        width="69" height="13" rx="3"
         style="fill:orchid"/>
-  <text class="function" x="409.4" y="268.76"
+  <text class="function" x="415.4" y="268.76"
         style="fill:black">
     (XTAL)
   </text>
-  <rect class="funbox" x="376.4" y="242.85999999999999"
-        width="65" height="13" rx="3"
+  <rect class="funbox" x="380.4" y="242.85999999999999"
+        width="69" height="13" rx="3"
         style="fill:green"/>
-  <text class="function" x="409.4" y="254.35999999999999"
+  <text class="function" x="415.4" y="254.35999999999999"
         style="fill:white">
     RESET
   </text>
-  <rect class="funbox" x="376.4" y="228.45999999999998"
-        width="65" height="13" rx="3"
+  <rect class="funbox" x="380.4" y="228.45999999999998"
+        width="69" height="13" rx="3"
         style="fill:blue"/>
-  <text class="function" x="409.4" y="239.95999999999998"
+  <text class="function" x="415.4" y="239.95999999999998"
         style="fill:white">
     MOSI
   </text>
-  <rect class="funbox" x="376.4" y="214.05999999999997"
-        width="65" height="13" rx="3"
+  <rect class="funbox" x="380.4" y="214.05999999999997"
+        width="69" height="13" rx="3"
         style="fill:white"/>
-  <text class="function" x="409.4" y="225.55999999999997"
+  <text class="function" x="415.4" y="225.55999999999997"
         style="fill:black">
     MISO
   </text>
-  <rect class="funbox" x="376.4" y="199.66"
-        width="65" height="13" rx="3"
+  <rect class="funbox" x="380.4" y="199.66"
+        width="69" height="13" rx="3"
         style="fill:gold"/>
-  <text class="function" x="409.4" y="211.16"
+  <text class="function" x="415.4" y="211.16"
         style="fill:black">
     SCK
   </text>
