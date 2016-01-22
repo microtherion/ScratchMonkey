@@ -32,6 +32,7 @@
     <option value="uno">Arduino Uno</option>
     <option value="micro">Arduino Leonardo / Micro</option>
     <option value="nano">Arduino Nano</option>
+    <option value="mega">Arduino Mega</option>
   </select>
   <span style="float:right">
   <strong>Target:</strong><select name="target" onchange="selectTarget()">
@@ -60,6 +61,10 @@
 
 <div class="note_hidden" id="nano">
 <p>Since the Nano's XTAL1 pin is connected to an oscillator, the only usable protocol is ISP.</p>
+</div>
+
+<div class="note_hidden" id="mega">
+<p>Since the Mega's XTAL1 pin is connected to an oscillator, the only usable protocol is ISP.</p>
 </div>
 
 <div class="note_hidden" id="digispark">

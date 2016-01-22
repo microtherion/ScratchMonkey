@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
      xmlns:xlink="http://www.w3.org/1999/xlink"
-     viewBox="0 0 450.4 434.744">
+     viewBox="0 0 450.4 621.946">
   <defs>
   <style type="text/css"><![CDATA[
      .ic       { fill:#909090; stroke:#000000; stroke-width:2.0 }
@@ -14,8 +14,8 @@
      ]]>
   </style>
   </defs>
-  <image xlink:href="fritzing/svg/core/breadboard/arduino_Uno_Rev3_breadboard.svg"
-      x="74" y="-297.4" width="424.744" height="302.4"     transform="rotate(90, 74, 5)"
+  <image xlink:href="fritzing/svg/core/breadboard/Arduino_MEGA_2560-Rev3_breadboard.svg"
+      x="74" y="-297.4" width="611.946" height="302.4"     transform="rotate(90, 74, 5)"
 />
   
     <rect class="funbox" x="1" y="265.90000000000003"
@@ -27,106 +27,106 @@
   </text>
   <rect class="funbox" x="1" y="323.5"
         width="69" height="13" rx="3"
-        style="fill:white"/>
-  <text class="function" x="34" y="335.0"
-        style="fill:black">
-    DATA0
-  </text>
-  <rect class="funbox" x="1" y="337.90000000000003"
-        width="69" height="13" rx="3"
-        style="fill:white"/>
-  <text class="function" x="34" y="349.40000000000003"
-        style="fill:brown">
-    DATA1
-  </text>
-  <rect class="funbox" x="1" y="352.3"
-        width="69" height="13" rx="3"
-        style="fill:white"/>
-  <text class="function" x="34" y="363.8"
-        style="fill:red">
-    DATA2
-  </text>
-  <rect class="funbox" x="1" y="366.7"
-        width="69" height="13" rx="3"
-        style="fill:white"/>
-  <text class="function" x="34" y="378.2"
-        style="fill:orange">
-    DATA3
-  </text>
-  <rect class="funbox" x="1" y="381.1"
-        width="69" height="13" rx="3"
-        style="fill:white"/>
-  <text class="function" x="34" y="392.6"
-        style="fill:gold">
-    DATA4
-  </text>
-  <rect class="funbox" x="1" y="395.5"
-        width="69" height="13" rx="3"
-        style="fill:white"/>
-  <text class="function" x="34" y="407.0"
-        style="fill:green">
-    DATA5
-  </text>
-  <rect class="funbox" x="380.4" y="395.5"
-        width="69" height="13" rx="3"
         style="fill:silver"/>
-  <text class="function" x="415.4" y="407.0"
+  <text class="function" x="34" y="335.0"
         style="fill:black">
     CTRL0
   </text>
-  <rect class="funbox" x="380.4" y="366.7"
+  <rect class="funbox" x="1" y="352.3"
         width="69" height="13" rx="3"
         style="fill:silver"/>
-  <text class="function" x="415.4" y="378.2"
+  <text class="function" x="34" y="363.8"
         style="fill:red">
     CTRL2
   </text>
-  <rect class="funbox" x="380.4" y="352.3"
+  <rect class="funbox" x="1" y="366.7"
         width="69" height="13" rx="3"
         style="fill:silver"/>
-  <text class="function" x="415.4" y="363.8"
+  <text class="function" x="34" y="378.2"
         style="fill:orange">
     CTRL3
   </text>
-  <rect class="funbox" x="380.4" y="337.90000000000003"
+  <rect class="funbox" x="1" y="381.1"
         width="69" height="13" rx="3"
         style="fill:silver"/>
-  <text class="function" x="415.4" y="349.40000000000003"
+  <text class="function" x="34" y="392.6"
         style="fill:gold">
     CTRL4
   </text>
-  <rect class="funbox" x="380.4" y="323.5"
+  <rect class="funbox" x="1" y="395.5"
         width="69" height="13" rx="3"
         style="fill:silver"/>
-  <text class="function" x="415.4" y="335.0"
+  <text class="function" x="34" y="407.0"
         style="fill:green">
     CTRL5
   </text>
-  <rect class="funbox" x="380.4" y="309.1"
+  <rect class="funbox" x="1" y="409.90000000000003"
         width="69" height="13" rx="3"
         style="fill:silver"/>
-  <text class="function" x="415.4" y="320.6"
+  <text class="function" x="34" y="421.40000000000003"
         style="fill:blue">
     CTRL6
   </text>
-  <rect class="funbox" x="380.4" y="294.7"
+  <rect class="funbox" x="1" y="424.3"
         width="69" height="13" rx="3"
         style="fill:silver"/>
-  <text class="function" x="415.4" y="306.2"
+  <text class="function" x="34" y="435.8"
         style="fill:orchid">
     CTRL7
   </text>
-  <rect class="funbox" x="380.4" y="271.66"
+  <rect class="funbox" x="1" y="453.1"
         width="69" height="13" rx="3"
         style="fill:white"/>
-  <text class="function" x="415.4" y="283.16"
+  <text class="function" x="34" y="464.6"
+        style="fill:black">
+    DATA0
+  </text>
+  <rect class="funbox" x="1" y="467.5"
+        width="69" height="13" rx="3"
+        style="fill:white"/>
+  <text class="function" x="34" y="479.0"
+        style="fill:brown">
+    DATA1
+  </text>
+  <rect class="funbox" x="1" y="481.90000000000003"
+        width="69" height="13" rx="3"
+        style="fill:white"/>
+  <text class="function" x="34" y="493.40000000000003"
+        style="fill:red">
+    DATA2
+  </text>
+  <rect class="funbox" x="1" y="496.3"
+        width="69" height="13" rx="3"
+        style="fill:white"/>
+  <text class="function" x="34" y="507.8"
+        style="fill:orange">
+    DATA3
+  </text>
+  <rect class="funbox" x="1" y="510.7"
+        width="69" height="13" rx="3"
+        style="fill:white"/>
+  <text class="function" x="34" y="522.2"
+        style="fill:gold">
+    DATA4
+  </text>
+  <rect class="funbox" x="1" y="525.1"
+        width="69" height="13" rx="3"
+        style="fill:white"/>
+  <text class="function" x="34" y="536.6"
+        style="fill:green">
+    DATA5
+  </text>
+  <rect class="funbox" x="1" y="539.5"
+        width="69" height="13" rx="3"
+        style="fill:white"/>
+  <text class="function" x="34" y="551.0"
         style="fill:blue">
     DATA6
   </text>
-  <rect class="funbox" x="380.4" y="257.26"
+  <rect class="funbox" x="1" y="553.9"
         width="69" height="13" rx="3"
         style="fill:white"/>
-  <text class="function" x="415.4" y="268.76"
+  <text class="function" x="34" y="565.4"
         style="fill:orchid">
     DATA7
   </text>

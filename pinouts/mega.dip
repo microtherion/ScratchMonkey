@@ -1,0 +1,59 @@
+%image fritzing/svg/core/breadboard/Arduino_MEGA_2560-Rev3_breadboard.svg 611.946 302.4 90
+
+14.25  IOREF
+       RESET
+       VCC33
+       VCC5
+       GND
+       GND2
+20.25  VIN
+
+22.25  A0
+       A1
+       A2
+       A3
+       A4
+       A5
+       A6
+29.25  A7
+
+31.25  A8
+       A9
+       A10
+       A11
+       A12
+       A13
+       A14
+38.25  A15
+
+34.24  D50	-> 5.0 39.25
+       D52	-> 4.0 39.25
+40.20  D53	-> 4.0 40.25
+       D51	-> 5.0 40.25
+
+-32.25 D21
+       D20
+       D19
+       D18
+       D17
+       D16
+       D15
+-25.25 D14
+
+-27.25 D0
+       D1
+       D2
+       D3
+       D4
+       D5
+       D6
+-20.25 D7
+
+-18.65 D8
+       D9
+       D10
+       D11
+       D12
+       D13
+       GND3
+-11.65 AREF

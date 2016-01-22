@@ -1,0 +1,7 @@
+D10	= HVRESET
+D11	= VCC
+D6	= SDI
+D7	= SII
+D8	= SDO
+D9	= SCI
+GND3	= GND

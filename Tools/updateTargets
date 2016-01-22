@@ -4,6 +4,7 @@ NAME = {
   'uno' => 'Arduino Uno',
   'micro'   => 'Arduino Leonardo / Micro',
   'nano' => 'Arduino Nano',
+  'mega' => 'Arduino Mega',
   'digispark'=> 'Digispark',
   'icsp'    => 'ICSP Header'
 }

@@ -15,11 +15,11 @@ vpath %.svg ../doc/img
 
 SERIALS	    = attiny85 attiny84
 PARALLELS   = attiny861 attiny4313 attiny1634 atmega328 atmega1284
-BOARDS	    = uno micro nano
+BOARDS	    = uno micro nano mega
 ISPS        = $(addsuffix _isp,$(SERIALS) $(PARALLELS) $(BOARDS) $(addsuffix _prog,$(BOARDS)) icsp)
 HVSPS       = $(addsuffix _hvsp,$(SERIALS) $(addsuffix _prog,$(BOARDS)) digispark)
 HVPPS       = $(addsuffix _hvpp,$(PARALLELS) $(addsuffix _prog,$(BOARDS)))
 SVGS        = $(addsuffix .svg,$(ISPS) $(HVSPS) $(HVPPS))
 
 all: $(SVGS)
-	../Tools/updateTargets ../doc/img/{uno,micro,nano,digispark,icsp}* $(addprefix /,$(SVGS)) < ../doc/wizard.js >w && mv w ../doc/wizard.js
+	../Tools/updateTargets ../doc/img/{uno,micro,nano,mega,digispark,icsp}* $(addprefix /,$(SVGS)) < ../doc/wizard.js >w && mv w ../doc/wizard.js
