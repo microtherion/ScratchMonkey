@@ -1,7 +1,11 @@
-%color	GND	black	white
-%color 	VCC	red	white
-%color	RESET	green	white
-%color	MOSI	blue	white
-%color 	MISO	white	black
-%color	SCK	gold	black
-%color	(XTAL)	orchid	black
+%color	GND		black	white
+%color 	VCC		red	white
+%color	RESET		green	white
+%color	MOSI		blue	white
+%color 	MISO		white	black
+%color	SCK		gold	black
+%color	(XTAL)		orchid	black
+%color  (RDY_LED)	green	white	"⚪️ (RDY)"
+%color  (VFY_LED)	gold	black	"⚪️ (VFY)"
+%color  (PGM_LED)	orange	black	"⚪️ (PGM)"
+%color  (ERR_LED)	red	white	"⚪️ (ERR)"

@@ -5,3 +5,7 @@ A1	= SII
 A2	= SDO
 A3	= SCI
 GND	= GND
+D5	= (RDY_LED)
+D6	= (VFY_LED)
+D7	= (PGM_LED)
+D8	= (ERR_LED)

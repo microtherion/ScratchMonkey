@@ -1,24 +1,28 @@
-%color	GND	black		white
-%color 	VCC	red		white
-%color	HVRESET	darkgreen	white
-%color	RESET	green		white
-%color	MOSI	blue		white
-%color	SCK	gold		black
-%color	XTAL	orchid		black
-%color  RDY	sienna		white
-%color 	DATA0	white		black
-%color 	DATA1	white		brown
-%color 	DATA2	white		red
-%color 	DATA3	white		orange
-%color 	DATA4	white		gold
-%color 	DATA5	white		green
-%color 	DATA6	white		blue
-%color 	DATA7	white		orchid
-%color 	CTRL0	silver  	black
-%color 	CTRL1	silver  	brown
-%color 	CTRL2	silver  	red
-%color 	CTRL3	silver  	orange
-%color 	CTRL4	silver  	gold
-%color 	CTRL5	silver  	green
-%color 	CTRL6	silver  	blue
-%color 	CTRL7	silver  	orchid
+%color	GND		black		white
+%color 	VCC		red		white
+%color	HVRESET		darkgreen	white	"⚡️RESET⚡️"
+%color	RESET		green		white
+%color	MOSI		blue		white
+%color	SCK		gold		black
+%color	XTAL		orchid		black
+%color  RDY		sienna		white
+%color 	DATA0		white		black
+%color 	DATA1		white		brown
+%color 	DATA2		white		red
+%color 	DATA3		white		orange
+%color 	DATA4		white		gold
+%color 	DATA5		white		green
+%color 	DATA6		white		blue
+%color 	DATA7		white		orchid
+%color 	CTRL0		silver  	black
+%color 	CTRL1		silver  	brown
+%color 	CTRL2		silver  	red
+%color 	CTRL3		silver  	orange
+%color 	CTRL4		silver  	gold
+%color 	CTRL5		silver  	green
+%color 	CTRL6		silver  	blue
+%color 	CTRL7		silver  	orchid
+%color  (RDY_LED)	green		white	"⚪️ (RDY)"
+%color  (VFY_LED)	gold		black	"⚪️ (VFY)"
+%color  (PGM_LED)	orange		black	"⚪️ (PGM)"
+%color  (ERR_LED)	red		white	"⚪️ (ERR)"

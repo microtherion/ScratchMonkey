@@ -17,21 +17,21 @@
 #define _SMO_HWIF_MEGA_
 
 //
-// Status LED Assignment (PGM/ERR same pin as ArduinoISP)
+// Status LED Assignment 
 // Currently this is the only platform under which status is
 // displayed while HVPP programming.
 //
 //      Signal      Pin Color   Comment
-//      RDY          5  Green   Programmer is ready
-//      VFY          6  Yellow  Programmer is verifying data
-//      PGM          7  Orange  Programmer is writing
-//      ERR          8  Red     Error occurred while programming
+//      RDY          2  Green   Programmer is ready
+//      VFY          3  Yellow  Programmer is verifying data
+//      PGM          4  Orange  Programmer is writing
+//      ERR          5  Red     Error occurred while programming
 //
 typedef SMoHWIF_Status<
-    STATUS_RDY_PIN(5),
-    STATUS_PGM_PIN(7),
-    STATUS_VFY_PIN(6),
-    STATUS_ERR_PIN(8),
+    STATUS_RDY_PIN(2),
+    STATUS_PGM_PIN(4),
+    STATUS_VFY_PIN(3),
+    STATUS_ERR_PIN(5),
     false>                      SMoHWIF_Status_Platform;
 
 //

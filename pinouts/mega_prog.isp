@@ -4,3 +4,7 @@ D52	= SCK
 D53	= RESET
 VCC5	= VCC
 GND	= GND
+D2	= (RDY_LED)
+D3	= (VFY_LED)
+D4	= (PGM_LED)
+D5	= (ERR_LED)

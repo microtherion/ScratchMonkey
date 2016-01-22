@@ -9,7 +9,7 @@
      .callout  { fill:none; stroke-width:3.0; stroke-linecap:round }
      .calloutb { stroke:white; fill:none;
                  stroke-width:5.0; stroke:opacity:75%; stroke-linecap:round }
-     .function { font-family:"Helvetica"; font-size:13px; text-anchor:middle }
+     .function { font-family:"Courier"; font-size:13px; text-anchor:middle }
      .funbox   { stroke:black }
      ]]>
   </style>
@@ -80,5 +80,33 @@
   <polyline class="callout"
             points="70,602.8800000000001 131.01999999999987,602.8800000000001 146.0,587.9"
             style="stroke:blue"/>
+  <rect class="funbox" x="380.4" y="366.7"
+        width="69" height="13" rx="3"
+        style="fill:green"/>
+  <text class="function" x="415.4" y="378.2"
+        style="fill:white">
+    ⚪️ (RDY)
+  </text>
+  <rect class="funbox" x="380.4" y="352.3"
+        width="69" height="13" rx="3"
+        style="fill:gold"/>
+  <text class="function" x="415.4" y="363.8"
+        style="fill:black">
+    ⚪️ (VFY)
+  </text>
+  <rect class="funbox" x="380.4" y="337.90000000000003"
+        width="69" height="13" rx="3"
+        style="fill:orange"/>
+  <text class="function" x="415.4" y="349.40000000000003"
+        style="fill:black">
+    ⚪️ (PGM)
+  </text>
+  <rect class="funbox" x="380.4" y="323.5"
+        width="69" height="13" rx="3"
+        style="fill:red"/>
+  <text class="function" x="415.4" y="335.0"
+        style="fill:white">
+    ⚪️ (ERR)
+  </text>
 
 </svg>

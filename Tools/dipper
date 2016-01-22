@@ -24,7 +24,7 @@ $BOARDROTATION  = 0
 
 PIN   = Array.new
 LABEL = Hash.new {|hash,key| hash[key] = [0, key, '', nil]}
-COLOR = Hash.new {|hash,key| hash[key] = ['white', 'black']}
+COLOR = Hash.new {|hash,key| hash[key] = ['white', 'black', nil]}
 pinNo = 0
 ARGF.each_line do |line|
   pinNo   += 1
@@ -55,8 +55,13 @@ ARGF.each_line do |line|
     $PINPITCH      = 14.4
     next
   end
-  if line =~ /^\s*%color\s+(.*?\S)\s+(\S+)\s+(\S+)/
-    COLOR[$1] = [$2, $3]
+  if line =~ /^\s*%color\s+(.*?\S)\s+(\S+)\s+(\S+)(.*)/
+    func = $1
+    COLOR[func] = [$2, $3, nil]
+    subst = $4
+    if subst =~ /^\s*"(.*)"/
+      COLOR[func][2] = $1
+    end
     next
   end
   if line =~ /(.*)=\s*(.*\S)\s*/
@@ -157,13 +162,14 @@ PIN.each do |pin|
   </text>
 END_PIN
     if pin[2] != ''
+      name = COLOR[pin[2]][2] || pin[2]
       $PINDESC += <<END_FUNCTION
   <rect class="funbox" x="1" y="#{top-FUNBOXTOP}"
         width="#{$FUNCTIONWIDTH}" height="#{FUNBOXHEIGHT}" rx="#{FUNBOXROUND}"
         style="fill:#{COLOR[pin[2]][0]}"/>
   <text class="function" x="#{FUNHALF}" y="#{base+LABELBASE}"
         style="fill:#{COLOR[pin[2]][1]}">
-    #{pin[2].sub("HVRESET", "⚡️RESET⚡️")}
+    #{name}
   </text>
 END_FUNCTION
       if pin[3]
@@ -192,13 +198,14 @@ END_CALLOUT
   </text>
 END_PIN
     if pin[2] != ''
+      name = COLOR[pin[2]][2] || pin[2]
       $PINDESC += <<END_FUNCTION
   <rect class="funbox" x="#{PACKRIGHT+$PINWIDTH+$LABELWIDTH+LABELPAD-1}" y="#{top-FUNBOXTOP}"
         width="#{$FUNCTIONWIDTH}" height="#{FUNBOXHEIGHT}" rx="#{FUNBOXROUND}"
         style="fill:#{COLOR[pin[2]][0]}"/>
   <text class="function" x="#{PACKRIGHT+$PINWIDTH+$LABELWIDTH+LABELPAD+FUNHALF}" y="#{base+LABELBASE}"
         style="fill:#{COLOR[pin[2]][1]}">
-    #{pin[2].sub("HVRESET", "⚡️RESET⚡️")}
+    #{name}
   </text>
 END_FUNCTION
     end
@@ -217,13 +224,13 @@ end
 
 if $BOARD
   $FONTS = <<END_BOARD_FONTS
-     .function { font-family:"Helvetica"; font-size:13px; text-anchor:middle }
+     .function { font-family:"Courier"; font-size:13px; text-anchor:middle }
 END_BOARD_FONTS
 else
   $FONTS = <<END_IC_FONTS
      .pinno    { font-family:"Courier"; font-size:12px }
      .label    { font-family:"Helvetica"; font-size:18px }
-     .function { font-family:"Helvetica"; font-size:18px; text-anchor:middle }
+     .function { font-family:"Courier"; font-size:18px; text-anchor:middle }
      .title    { font-family:"Helvetica-Bold"; font-size:20px; text-anchor:middle; writing-mode:tb; alignment-baseline:central }
 END_IC_FONTS
 end
