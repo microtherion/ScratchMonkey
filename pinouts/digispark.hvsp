@@ -1,0 +1,7 @@
+P5	= RESET
+GND     = GND
+P3     	= SCI
+P0     	= SDI
+P1     	= SII
+P2     	= SDO
+VCC     = VCC

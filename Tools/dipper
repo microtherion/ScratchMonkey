@@ -23,13 +23,14 @@ $BOARDHEIGHT    = 0
 $BOARDROTATION  = 0
 
 PIN   = Array.new
-LABEL = Hash.new {|hash,key| hash[key] = [0, key, '']}
+LABEL = Hash.new {|hash,key| hash[key] = [0, key, '', nil]}
 COLOR = Hash.new {|hash,key| hash[key] = ['white', 'black']}
 pinNo = 0
 ARGF.each_line do |line|
   pinNo   += 1
   label    = nil
   function = nil
+  callout  = nil
   line.gsub!(/#\s+.*/, '')
   next if line =~ /^\s*$/
   if line =~ /^\s*%title\s+(.*\S)/
@@ -61,6 +62,10 @@ ARGF.each_line do |line|
   if line =~ /(.*)=\s*(.*\S)\s*/
     line     = $1
     function = $2
+  end
+  if line =~ /^(.*)->\s*(\S+)\s+(\S+)/
+    callout  = [$2.to_f, $3.to_f]
+    line     = $1
   end
   if line =~ /^\s*(-?\d+)\s+(.*\S)/
     pinNo    = $1.to_i
@@ -95,11 +100,12 @@ ARGF.each_line do |line|
     end
   elsif !$BOARD
     while pinNo > PIN.size
-      PIN << [PIN.size+1, 'NC', '']
+      PIN << [PIN.size+1, 'NC', '', nil]
     end
     pin = PIN.last
   end
   pin[2] = function unless function.nil?
+  pin[3] = callout unless callout.nil?
 end
 if (PIN.size % 2)==1
   PIN << [PIN.size+1, 'NC', '']
@@ -160,6 +166,20 @@ END_PIN
     #{pin[2].sub("HVRESET", "⚡️RESET⚡️")}
   </text>
 END_FUNCTION
+      if pin[3]
+        startx = $FUNCTIONWIDTH+1
+        starty = top-FUNBOXTOP+0.5*FUNBOXHEIGHT
+        endx   = PACKLEFT+pin[3][0]*$PINPITCH
+        endy   = PACKTOP+$PACKEXCESS+(pin[3][1]-0.5)*$PINPITCH
+        bendx  = endx-(endy-starty).abs
+        $PINDESC += <<END_CALLOUT
+  <polyline class="calloutb"
+            points="#{startx},#{starty} #{bendx},#{starty} #{endx},#{endy}"/>
+  <polyline class="callout"
+            points="#{startx},#{starty} #{bendx},#{starty} #{endx},#{endy}"
+            style="stroke:#{COLOR[pin[2]][0]}"/>
+END_CALLOUT
+      end
     end
   else
     $PINDESC += <<END_PIN unless $BOARD
@@ -217,6 +237,9 @@ print <<END_SVG_HEADER
      .ic       { fill:#909090; stroke:#000000; stroke-width:2.0 }
      .notch    { fill:#a0a0a0; stroke:#000000; stroke-width:1.0 }
      .pin      { fill:#d0d0d0; stroke:#000000; stroke-width:1.0 }
+     .callout  { fill:none; stroke-width:3.0; stroke-linecap:round }
+     .calloutb { stroke:white; fill:none;
+                 stroke-width:5.0; stroke:opacity:75%; stroke-linecap:round }
 #{$FONTS}     .funbox   { stroke:black }
      ]]>
   </style>
