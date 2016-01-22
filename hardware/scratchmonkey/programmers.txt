@@ -8,5 +8,17 @@ scratchmonkey_hvsp.protocol=scratchmonkey_hvsp
 
 scratchmonkey_hvpp.name=ScratchMonkey HVPP
 scratchmonkey_hvpp.communication=serial
-scratchmonkey_hvpp.protocol=sscratchmonkey_pp
+scratchmonkey_hvpp.protocol=scratchmonkey_pp
+
+scratchmonkey_stk500v2.name=ScratchMonkey (STK500 Mode)
+scratchmonkey_stk500v2.communication=serial
+scratchmonkey_stk500v2.protocol=stk500v2
+
+scratchmonkey_stk500v2_hvsp.name=ScratchMonkey HVSP (STK500 Mode)
+scratchmonkey_stk500v2_hvsp.communication=serial
+scratchmonkey_stk500v2_hvsp.protocol=stk500hvsp
+
+scratchmonkey_stk500v2_hvpp.name=ScratchMonkey HVPP (STK500 Mode)
+scratchmonkey_stk500v2_hvpp.communication=serial
+scratchmonkey_stk500v2_hvpp.protocol=stk500pp
 
