@@ -48,6 +48,9 @@ var gTarget= {
     ["ATmega328", "atmega328"],
     ["ATmega1284", "atmega1284"],
   ],
+  "tpi": [
+    ["ATtiny10", "attiny10"],
+  ],
 }
 
 function rebuildTargets()

@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0 0 450.4 621.946">
+  <defs>
+  <style type="text/css"><![CDATA[
+     .ic       { fill:#909090; stroke:#000000; stroke-width:2.0 }
+     .notch    { fill:#a0a0a0; stroke:#000000; stroke-width:1.0 }
+     .pin      { fill:#d0d0d0; stroke:#000000; stroke-width:1.0 }
+     .callout  { fill:none; stroke-width:3.0; stroke-linecap:round }
+     .calloutb { stroke:white; fill:none;
+                 stroke-width:5.0; stroke:opacity:75%; stroke-linecap:round }
+     .function { font-family:"Courier"; font-size:13px; text-anchor:middle }
+     .funbox   { stroke:black }
+     ]]>
+  </style>
+  </defs>
+  <image xlink:href="fritzing/svg/core/breadboard/Arduino_MEGA_2560-Rev3_breadboard.svg"
+      x="74" y="-297.4" width="611.946" height="302.4"     transform="rotate(90, 74, 5)"
+/>
+  
+    <rect class="funbox" x="380.4" y="366.7"
+        width="69" height="13" rx="3"
+        style="fill:green"/>
+  <text class="function" x="415.4" y="378.2"
+        style="fill:white">
+    ⚪️ (RDY)
+  </text>
+  <rect class="funbox" x="380.4" y="352.3"
+        width="69" height="13" rx="3"
+        style="fill:gold"/>
+  <text class="function" x="415.4" y="363.8"
+        style="fill:black">
+    ⚪️ (VFY)
+  </text>
+  <rect class="funbox" x="380.4" y="337.90000000000003"
+        width="69" height="13" rx="3"
+        style="fill:orange"/>
+  <text class="function" x="415.4" y="349.40000000000003"
+        style="fill:black">
+    ⚪️ (PGM)
+  </text>
+  <rect class="funbox" x="380.4" y="323.5"
+        width="69" height="13" rx="3"
+        style="fill:red"/>
+  <text class="function" x="415.4" y="335.0"
+        style="fill:white">
+    ⚪️ (ERR)
+  </text>
+  <rect class="funbox" x="380.4" y="271.66"
+        width="69" height="13" rx="3"
+        style="fill:blue"/>
+  <text class="function" x="415.4" y="283.16"
+        style="fill:white">
+    TPIDATA
+  </text>
+  <rect class="funbox" x="380.4" y="257.26"
+        width="69" height="13" rx="3"
+        style="fill:gold"/>
+  <text class="function" x="415.4" y="268.76"
+        style="fill:black">
+    TPICLK
+  </text>
+  <rect class="funbox" x="380.4" y="242.85999999999999"
+        width="69" height="13" rx="3"
+        style="fill:darkgreen"/>
+  <text class="function" x="415.4" y="254.35999999999999"
+        style="fill:white">
+    ⚡️RESET⚡️
+  </text>
+  <rect class="funbox" x="380.4" y="228.45999999999998"
+        width="69" height="13" rx="3"
+        style="fill:red"/>
+  <text class="function" x="415.4" y="239.95999999999998"
+        style="fill:white">
+    VCC
+  </text>
+  <rect class="funbox" x="380.4" y="185.26"
+        width="69" height="13" rx="3"
+        style="fill:black"/>
+  <text class="function" x="415.4" y="196.76"
+        style="fill:white">
+    GND
+  </text>
+
+</svg>
