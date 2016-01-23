@@ -1,0 +1,5 @@
+PB3	= RESET
+GND     = GND
+PB0     = TPIDATA
+PB1     = TPICLK
+VCC     = VCC

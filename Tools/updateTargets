@@ -29,7 +29,7 @@ $stdin.each_line do |line|
   end
   print line if echo
   if line =~ /var\s+gTarget/
-    ['none', 'isp', 'hvsp', 'hvpp'].each do |proto|
+    ['none', 'isp', 'hvsp', 'hvpp', 'tpi'].each do |proto|
       puts "  \"#{proto}\": ["
       TARGET[proto].each do |t|
         n = t.sub(/^at/, 'AT')

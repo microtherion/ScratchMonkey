@@ -1,0 +1,8 @@
+%title ATtiny10
+
+1	PB0
+	GND
+3	PB1
+4	PB2
+	VCC
+6	PB3

@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0 0 438.0 106.0">
+  <defs>
+  <style type="text/css"><![CDATA[
+     .ic       { fill:#909090; stroke:#000000; stroke-width:2.0 }
+     .notch    { fill:#a0a0a0; stroke:#000000; stroke-width:1.0 }
+     .pin      { fill:#d0d0d0; stroke:#000000; stroke-width:1.0 }
+     .callout  { fill:none; stroke-width:3.0; stroke-linecap:round }
+     .calloutb { stroke:white; fill:none;
+                 stroke-width:5.0; stroke:opacity:75%; stroke-linecap:round }
+     .pinno    { font-family:"Courier"; font-size:12px }
+     .label    { font-family:"Helvetica"; font-size:18px }
+     .function { font-family:"Courier"; font-size:18px; text-anchor:middle }
+     .title    { font-family:"Helvetica-Bold"; font-size:20px; text-anchor:middle; writing-mode:tb; alignment-baseline:central }
+     .funbox   { stroke:black }
+     ]]>
+  </style>
+  </defs>
+  <rect class="ic" x="189.0" y="5" width="60.0" height="96.0"/>
+  <path class="notch" d="M208.5,5 a10.500000000000002,10.500000000000002 0 0,0 21.000000000000004,0"/>
+    <text class="title" x="219.0" y="53.0">
+    ATtiny10
+  </text>
+
+    <rect class="pin" x="174.0" y="15.500000000000002" width="15.0" height="15.0"/>
+  <text class="label" x="169.0" y="29.0" text-anchor="end">
+    PB0
+  </text>
+  <text class="pinno" x="192.0" y="26.5">
+    1
+  </text>
+  <rect class="funbox" x="1" y="10.500000000000002"
+        width="99" height="25.0" rx="3"
+        style="fill:blue"/>
+  <text class="function" x="49" y="29.0"
+        style="fill:white">
+    TPIDATA
+  </text>
+  <rect class="pin" x="174.0" y="45.5" width="15.0" height="15.0"/>
+  <text class="label" x="169.0" y="59.0" text-anchor="end">
+    GND
+  </text>
+  <text class="pinno" x="192.0" y="56.5">
+    2
+  </text>
+  <rect class="funbox" x="1" y="40.5"
+        width="99" height="25.0" rx="3"
+        style="fill:black"/>
+  <text class="function" x="49" y="59.0"
+        style="fill:white">
+    GND
+  </text>
+  <rect class="pin" x="174.0" y="75.5" width="15.0" height="15.0"/>
+  <text class="label" x="169.0" y="89.0" text-anchor="end">
+    PB1
+  </text>
+  <text class="pinno" x="192.0" y="86.5">
+    3
+  </text>
+  <rect class="funbox" x="1" y="70.5"
+        width="99" height="25.0" rx="3"
+        style="fill:gold"/>
+  <text class="function" x="49" y="89.0"
+        style="fill:black">
+    TPICLK
+  </text>
+  <rect class="pin" x="249.0" y="75.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="246.0" y="86.5" text-anchor="end">
+    4
+  </text>
+  <text class="label" x="269.0" y="89.0">
+    PB2
+  </text>
+  <rect class="pin" x="249.0" y="45.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="246.0" y="56.5" text-anchor="end">
+    5
+  </text>
+  <text class="label" x="269.0" y="59.0">
+    VCC
+  </text>
+  <rect class="funbox" x="338.0" y="40.5"
+        width="99" height="25.0" rx="3"
+        style="fill:red"/>
+  <text class="function" x="388.0" y="59.0"
+        style="fill:white">
+    VCC
+  </text>
+  <rect class="pin" x="249.0" y="15.500000000000002" width="15.0" height="15.0"/>
+  <text class="pinno" x="246.0" y="26.5" text-anchor="end">
+    6
+  </text>
+  <text class="label" x="269.0" y="29.0">
+    PB3
+  </text>
+  <rect class="funbox" x="338.0" y="10.500000000000002"
+        width="99" height="25.0" rx="3"
+        style="fill:green"/>
+  <text class="function" x="388.0" y="29.0"
+        style="fill:white">
+    RESET
+  </text>
+
+</svg>
