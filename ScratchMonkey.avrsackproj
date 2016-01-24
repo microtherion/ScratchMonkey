@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Board</key>
-	<string>uno</string>
+	<string>mega2560</string>
 	<key>Files</key>
 	<dict>
 		<key>Children</key>
@@ -156,6 +156,14 @@
 				<key>Kind</key>
 				<string>source.h</string>
 				<key>Path</key>
+				<string>ScratchMonkey/SMoHWIF_Debug.h</string>
+				<key>Type</key>
+				<string>File</string>
+			</dict>
+			<dict>
+				<key>Kind</key>
+				<string>source.h</string>
+				<key>Path</key>
 				<string>ScratchMonkey/SMoHWIF_Port.h</string>
 				<key>Type</key>
 				<string>File</string>
@@ -256,10 +264,10 @@
 	<string></string>
 	<key>RecentBoards</key>
 	<array>
-		<string>uno</string>
-		<string>pro5v328</string>
 		<string>mega2560</string>
+		<string>uno</string>
 		<string>leonardo</string>
+		<string>pro5v328</string>
 		<string>attiny84at1</string>
 		<string>attiny43uat8</string>
 		<string>attiny43uat1</string>

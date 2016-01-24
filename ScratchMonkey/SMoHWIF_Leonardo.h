@@ -17,6 +17,13 @@
 #define _SMO_HWIF_LEONARDO_
 
 //
+// Debug Pin Assignment
+//
+// DEBUG    A4  Always available
+//
+typedef SMoHWIF_Debug_Soft<DEBUG_PIN(A4), false> SMoHWIF_Debug_Platform;
+
+//
 // Status LED Assignment (PGM/ERR same pin as ArduinoISP)
 //
 //      Signal      Pin Color   Comment

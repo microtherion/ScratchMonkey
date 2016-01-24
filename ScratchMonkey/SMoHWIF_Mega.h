@@ -17,6 +17,13 @@
 #define _SMO_HWIF_MEGA_
 
 //
+// Debug Pin Assignment
+//
+// DEBUG    TX1  Disabled for HVPP
+//
+typedef SMoHWIF_Debug_Hard<Serial1> SMoHWIF_Debug_Platform;
+
+//
 // Status LED Assignment 
 // Currently this is the only platform under which status is
 // displayed while HVPP programming.

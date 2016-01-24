@@ -17,16 +17,9 @@
 
 #ifdef SMO_WANT_DEBUG
 
-SoftwareSerial SMoDebug(-1,SMO_DEBUG);
-
 void SMoDebugInit()
 {
-	static bool sNeedsInit = true;
-
-	if (sNeedsInit) {
-		SMoDebug.begin(19200);
-		sNeedsInit = false;
-	}
+	SMoHWIF::Debug::Setup();
 }
 #endif
 

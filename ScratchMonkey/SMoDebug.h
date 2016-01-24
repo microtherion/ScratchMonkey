@@ -15,12 +15,11 @@
 #define _SMO_DEBUG_
 
 #include "SMoConfig.h"
+#include "SMoHWIF.h"
 
 #ifdef SMO_WANT_DEBUG
-#include <SoftwareSerial.h>
-
 void SMoDebugInit();
-extern SoftwareSerial SMoDebug;
+#define SMoDebug    SMoHWIF::Debug::Port()
 #endif
 
 #endif /* _SMO_DEBUG_ */

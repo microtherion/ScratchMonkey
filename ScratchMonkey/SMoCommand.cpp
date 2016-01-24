@@ -78,8 +78,10 @@ NeedSerial(bool needIt)
 void
 SMoCommand::ShareSerialPins(bool share)
 {
-    if (share)
+    if (share) {
         SMoHWIF::Status::StopIfPinsAreNeeded();
+        SMoHWIF::Debug::StopIfPinsAreNeeded();
+    }
 #ifdef SMO_SHARE_SERIAL_PINS
     sShareSerialPins = share;
     NeedSerial(!share);

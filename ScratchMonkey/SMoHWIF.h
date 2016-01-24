@@ -22,6 +22,7 @@ inline void SMoDelay50ns() {
     __asm__ __volatile__("nop");
 }
 
+#include "SMoHWIF_Debug.h"
 #include "SMoHWIF_Status.h"
 #include "SMoHWIF_ISP.h"
 #include "SMoHWIF_HV.h"
@@ -38,11 +39,12 @@ inline void SMoDelay50ns() {
 #include "SMoHWIF_Mega.h"
 #endif
 
-template <typename Status_Platform, typename ISP_Platform,
-    typename HVSP_Platform, typename HVPP_Platform,
-    typename TPI_Platform> 
+template <typename Debug_Platform, typename Status_Platform, 
+    typename ISP_Platform, typename TPI_Platform,
+    typename HVSP_Platform, typename HVPP_Platform> 
 class SMoHWIF_Platform {
 public:
+    typedef Debug_Platform  Debug;
     typedef Status_Platform Status;
     typedef ISP_Platform    ISP;
     typedef HVSP_Platform   HVSP;
@@ -51,11 +53,12 @@ public:
 };
 
 typedef SMoHWIF_Platform<
+    SMoHWIF_Debug_Platform,
     SMoHWIF_Status_Platform,
     SMoHWIF_ISP_Platform,
+    SMoHWIF_TPI_Platform,
     SMoHWIF_HVSP_Platform,
-    SMoHWIF_HVPP_Platform,
-    SMoHWIF_TPI_Platform
+    SMoHWIF_HVPP_Platform
 >   SMoHWIF;
 
 #endif /* _SMO_HWIF_ */
