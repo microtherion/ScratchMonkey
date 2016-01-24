@@ -15,26 +15,18 @@
 &uarr; <a href="index.html"><span class=logo>ScratchMonkey</span></a><br><a href="HighVoltage.html">High Voltage Programming</a>
 </td>
 <td>
-&rarr; <a href="Troubleshooting.html">Troubleshooting</a>
+&rarr; <a href="TPI.html">Tiny Programming Interface</a>
 </td>
 </table>
 <h2>High Voltage Parallel Programming</h2>
 
-<img class=circuit src="img/arduino_prog_hvpp.svg">
+<object class=circuit type="image/svg+xml" data="img/uno_prog_hvpp.svg"></object>
 
 <p>HVPP is the high voltage protocol for ATtiny and ATmega MCUs with 20 pins or more.</p>
 
 <h3>Connecting your Standard Arduino</h3>
 
-<p>HVPP requires 19 signals (including power and ground), as shown in this illustration. For High Voltage programming, the timing of the power pin matters, so it is software controlled through the <strong>SVCC</strong> pin, rather than simply through the <strong>5V</strong> pin of the Arduino. The <strong>HVRESET</strong> signal is used to control one of the circuits shown in the <a href="HighVoltage.html">High Voltage programming section</a> to generate the 12V signal to be applied to <strong>RESET</strong> pin of the target microcontroller. The other signals go directly to the target microcontroller.</p>
-
-<p>Since a regular Arduino has only 18 pins available (short of reusing pins 0 and 1, which I'm not confident I can do safely), we use a 74HC595 shift register to generate most output only control signals through a serial interface. The only exceptions are <strong>XTAL</strong>, which needs to be pulsed often, and <strong>VCC</strong> and <strong>HVRESET</strong>, which never change during the programming process.</p>
-
-<h3 style="clear:both">Connecting your Arduino Micro/Leonardo</h3>
-
-<img class=circuit src="img/micro_prog_hvpp.png">
-
-<p>The pin connections for an Arduino Micro are shown in this illustration, and for the Leonardo, the same pins would be used. The Micro/Leonardo has enough pins to generate the control signals without an auxiliary shift register.</p>
+<p>HVPP requires 19 signals (including power and ground), as shown in this illustration. For High Voltage programming, the timing of the power pin matters, so it is software controlled through the <strong>SVCC</strong> pin, rather than simply through the <strong>5V</strong> pin of the Arduino. The <strong>HVRESET</strong> a.k.a. <span style="background:darkgreen;color:white">⚡️RESET⚡️</span> signal is used to control one of the circuits shown in the <a href="HighVoltage.html">High Voltage programming section</a> to generate the 12V signal to be applied to <strong>RESET</strong> pin of the target microcontroller. The other signals go directly to the target microcontroller.</p>
 
 <h3 style="clear:both">Connecting your Target Microcontroller</h3>
 
@@ -42,7 +34,7 @@
 
 <p>The details of HVPP control signal assignment are somewhat messy, primarily because on 20 pin MCUs, some of the control signals are multiplexed two to a single pin, and the ATtiny26/261/461/861 family does this in a somewhat different way from the ATtiny2313/4313 family of MCUs. The following table gives an mapping from <strong>CTRLn</strong> names to the names in the MCU datasheets:</p>
 
-<table>
+<table class="striped">
 	<tr><th>Pin		<th>ATtiny861	<th>ATtiny4313	<th>Others</tr>
 	<tr><td>CTRL0	<td>-			<td>-			<td>BS2</tr>
 	<tr><td>CTRL2	<td>WR			<td>OE			<td>OE</tr>
@@ -63,7 +55,7 @@
 &uarr; <a href="index.html"><span class=logo>ScratchMonkey</span></a><br><a href="HighVoltage.html">High Voltage Programming</a>
 </td>
 <td>
-&rarr; <a href="Troubleshooting.html">Troubleshooting</a>
+&rarr; <a href="TPI.html">Tiny Programming Interface</a>
 </td>
 </table>
 </body>

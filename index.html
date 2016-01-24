@@ -15,10 +15,23 @@
 <p align=right><a href="http://edp.org/monkey.htm">http://edp.org/monkey.htm</a></p>
 </div>
 
-<p style="font-size: smaller">Version 1.0<br>
-June 1, 2013</p>
+<p style="font-size: smaller">Version 2.0<br>
+January 24, 2016</p>
 
 <p style="clear:both"><span class=logo>ScratchMonkey</span> is a sketch that turns your Arduino into a versatile programmer to burn programs onto a wide variety of AVR microcontrollers (MCUs).</p>
+
+<h2>What's New in Version 2.0</h2>
+
+<span class=logo>ScratchMonkey</span> 2.0 features some fairly significant technical and architectural changes, notably:
+
+<ul>
+<li>Thanks to the experimentation of João Paulo Barraca &lt;jpbarraca@ua.pt&gt;, HVPP on standard Arduinos now reuses a serial port pin, so we no longer need an external shift register.</li>
+<li>Building on Leong Yu Siang's architectural idea, the code is now reorganized to separate the protocols from their concrete realization on the various boards used as programmers.</li>
+<li>Added support for programming the ATtiny4/5/9/10 family through the Tiny Programming Interface (TPI).</li>
+<li>Added support for status LEDs.</li>
+<li>Extended the STK500v2 protocol. <tt>avrdude</tt> will still be able to interface with <span class=logo>ScratchMonkey</span> through the regular stk500v2 protocol, but if it's patched to handle the extended protocol, <span class=logo>ScratchMonkey</span> will support status LEDs and TPI.</li>
+<li>Changed several of the pinouts. Please check the appropriate connection diagrams for details.</li>
+</ul>
 
 <h2>Table of Contents</h2>
 
@@ -31,6 +44,7 @@ June 1, 2013</p>
 	<li><a href="HVSP.html">High Voltage Serial Programming</a></li>
 	<li><a href="HVPP.html">High Voltage Parallel Programming</a></li>
 	</ul></li>
+<li><a href="TPI.html">Tiny Programming Interface</a></li>
 <li><a href="Troubleshooting.html">Troubleshooting</a></li>
 <li><a href="Connection.html">Target Connection Diagrams</a></li>
 <li><a href="Tested.html">Tested Configurations</a></li>
@@ -40,7 +54,7 @@ June 1, 2013</p>
 
 <p><span class=logo>ScratchMonkey</span> is open source software, available under the terms of the BSD two clause license:</p>
 
-<p>Copyright &copy; 2013 Matthias Neeracher &lt;microtherion@gmail.com&gt;</p>
+<p>Copyright &copy; 2013-2016 Matthias Neeracher &lt;microtherion@gmail.com&gt;</p>
 
 <p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</p>
 <ul>  

@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link href="manual.css" rel="stylesheet" type="text/css">
+<title>Tiny Programming Interface</title>
+</head>
+<body>
+<table class="nav">
+<td>
+<a href="HVPP.html">High Voltage Parallel Programming</a> &larr; 
+</td>
+<td>
+&uarr; <a href="index.html"><span class=logo>ScratchMonkey</span></a>
+</td>
+<td>
+&rarr; <a href="Troubleshooting.html">Troubleshooting</a>
+</td>
+</table>
+<h2>Tiny Programming Interface</h2>
+
+<object class=circuit type="image/svg+xml" data="img/uno_prog_tpi.svg"></object>
+
+<p>If you're ever interested in programming the ATtiny4/5/9/10 family of MCUs, you'll need to use the Tiny Programming Interface (TPI).</p>
+
+<h3>Connecting your Arduino</h3>
+
+<p>The illustration on the right shows connections for an Arduino Uno, see the <a href="Connection.html">Connection Diagrams</a> chapter for other boards.</p>
+ 
+<p>TPI requires 5 signals (including power and ground), as shown in this illustration. One convenient feature of TPI is that it can equally be used as a low voltage protocol, with the <strong>RESET</strong> pin connected directly to the MCU, or as a high voltage protocol, with <strong>RESET</strong> generating a +12V signal to apply to the MCU (as usual, refer to the <a href="HighVoltage.html">High Voltage Programming</a> section for suitable arrangements to generate a +12V signal).</p>
+
+<h3 style="clear:both">Connecting your Target Microcontroller</h3>
+
+<object class=circuit type="image/svg+xml" data="img/attiny10_tpi.svg"></object>
+
+<p>The pin arrangement for your MCU is shown on the right. Wrangling a SOT-23 part is left as an exercise to the reader.</p>
+  
+<table class="nav">
+<td>
+<a href="HVPP.html">High Voltage Parallel Programming</a> &larr; 
+</td>
+<td>
+&uarr; <a href="index.html"><span class=logo>ScratchMonkey</span></a>
+</td>
+<td>
+&rarr; <a href="Troubleshooting.html">Troubleshooting</a>
+</td>
+</table>
+</body>
+</html>

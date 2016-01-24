@@ -21,7 +21,7 @@
 </table>
 <h2>Overview</h2>
 
-<p><span class=logo>ScratchMonkey</span> uses the Arduino serial port to communicate with the Arduino IDE (or the <tt>avrdude</tt> command line tool used internally by the Arduino IDE) using the STK500v2 protocol. It implements the following programming methods:</p>
+<p><span class=logo>ScratchMonkey</span> uses the Arduino serial port to communicate with the Arduino IDE (or the <tt>avrdude</tt> command line tool used internally by the Arduino IDE) using an extended version of the STK500v2 protocol. It implements the following programming methods:</p>
 
 <dl>
 <dt>ISP</dt>
@@ -29,7 +29,7 @@
 
 <p>The only drawback of ISP is that with certain fuse settings of the target MCU, ISP can be unusable (e.g. if the ISP feature or the RESET pin are disabled), or may be harder to implement (e.g. if an external clock is specified).</p>
 
-<p>In ISP mode, <span class=logo>ScratchMonkey</span> works fairly similar to the <tt>ArduinoISP</tt> sketch included with the Arduino IDE. In fact, the Arduino pins used are exactly the same. However, <span class=logo>ScratchMonkey</span> is a little bit more versatile, supporting MCUs with more than 128K of flash memory, and can deal with strange clock settings.</p>
+<p>In ISP mode, <span class=logo>ScratchMonkey</span> works fairly similar to the <tt>ArduinoISP</tt> sketch included with the Arduino IDE. In fact, the Arduino pins used are almost exactly the same. However, <span class=logo>ScratchMonkey</span> is a little bit more versatile, supporting MCUs with more than 128K of flash memory, and can deal with strange clock settings.</p>
 </dd>
 
 <dt>HVSP</dt>
@@ -39,12 +39,13 @@
 </dd>
 
 <dt>HVPP</dt>
-<dd><p><a href="HVPP.html"><em>High Voltage Parallel Programming</em></a> uses the same +12V signal protocol on the <strong>RESET</strong> pin as HVSP, but employs a parallel, not a serial protocol. This requires up to 17 signals, which, combined with the pins needed to control <strong>VCC</strong> and <strong>RESET</strong>, takes more pins than the Arduino has available!</p>
-
-<p>While some High Voltage Parallel Programmers, notably the HV Rescue Shield (<a href="http://mightyohm.com/blog/products/hv-rescue-shield-2-x">http://mightyohm.com/blog/products/hv-rescue-shield-2-x</a>) solve this by reusing the TX/RX pins, <span class=logo>ScratchMonkey</span> takes the easy way out by delegating most of the control signals to a <tt>74HC595</tt> shift register (Feel free to explore the other approach if you want to save yourself the 50&cent; expense).</p>
+<dd><p><a href="HVPP.html"><em>High Voltage Parallel Programming</em></a> uses the same +12V signal protocol on the <strong>RESET</strong> pin as HVSP, but employs a parallel, not a serial protocol.</p>
 
 <p>Like HVSP, HVPP works regardless of the fuse settings. It is supported on most AVR MCUs with 20 pins or more.</p>
 </dd>
+
+<dt>TPI</dt>
+<dd><p>The <a href="TPI.html">Tiny Programming Interface</a> is a protocol employed by the ATtiny4/5/9/10 family of minuscule MCUs (typically sold in a SOT23-6 package). TPI uses only 3 pins, and can be run either in low voltage mode (dedicated RESET pin pulled LOW) or high voltage mode (RESET pin usable as a regular I/O pin, set to +12V for programming).</p></dd>
 </dl>
 <table class="nav">
 <td>
