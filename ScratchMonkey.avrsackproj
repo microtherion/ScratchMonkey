@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Board</key>
-	<string>mega2560</string>
+	<string>uno</string>
 	<key>Files</key>
 	<dict>
 		<key>Children</key>
@@ -264,14 +264,14 @@
 	<string></string>
 	<key>RecentBoards</key>
 	<array>
-		<string>mega2560</string>
 		<string>uno</string>
+		<string>micro</string>
 		<string>leonardo</string>
+		<string>mega2560</string>
 		<string>pro5v328</string>
 		<string>attiny84at1</string>
 		<string>attiny43uat8</string>
 		<string>attiny43uat1</string>
-		<string>atmega328at1</string>
 	</array>
 	<key>RecentProgrammers</key>
 	<array>

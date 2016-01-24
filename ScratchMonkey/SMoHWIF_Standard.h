@@ -81,9 +81,44 @@ typedef SMoHWIF_HVSP<SMoHWIF_HV_Platform, SMoHWIF_PORT_B,
     HVSP_SDO_BIT(4), HVSP_SCI_BIT(5)>                       SMoHWIF_HVSP_Platform;
 
 //
-// HVPP control using port D (reusing the RX pin), data
-// split across ports B and C.
+// TPI Pin Assignment (Signals are specified by bit position)
 //
+//      Signal      Pin         Comment
+//
+//      TPI_DATA    12
+//      TPI_CLK     13
+//
+typedef SMoHWIF_TPI<SMoHWIF_HV_Platform, SMoHWIF_PORT_B,
+                    TPI_DATA_BIT(4), TPI_CLK_BIT(5)>      SMoHWIF_TPI_Platform;
+
+//
+// HVPP Pin Assignment
+//
+// Control using port D (reusing the RX pin)
+// Data split across ports B and C.
+//
+//      Signal      Pin         Comment
+//      CTRL0        0
+//      CTRL2        2
+//      CTRL3        3
+//      CTRL4        4
+//      CTRL5        5
+//      CTRL6        6
+//      CTRL7        7
+//      DATA0       A0
+//      DATA1       A1
+//      DATA2       A2
+//      DATA3       A3
+//      DATA4       A4
+//      DATA5       A5
+//      DATA6        8
+//      DATA7        9
+//      RDY         12          Arduino Uno (DIP MCU)
+//      RDY         A7          Arduino Pro Mini etc (SMD MCU)
+//      XTAL        13
+//
+#define SMO_SHARE_SERIAL_PINS
+
 typedef SMoHWIF_Port_Dual<SMoHWIF_PORT_B, 0x03, 6,
                           SMoHWIF_PORT_C, 0x3F, 0>          SMoHWIF_HVPP_Data;
 typedef SMoHWIF_Port_Simple<SMoHWIF_PORT_D>                 SMoHWIF_HVPP_Control;
@@ -103,9 +138,6 @@ typedef SMoHWIF_Input_Pin_Digital<12>                       SMoHWIF_HVPP_Ready;
 typedef SMoHWIF_HVPP<SMoHWIF_HV_Platform,
             SMoHWIF_HVPP_Control, SMoHWIF_HVPP_Data,
             SMoHWIF_HVPP_Ready>                             SMoHWIF_HVPP_Platform;
-            
-typedef SMoHWIF_TPI<SMoHWIF_HV_Platform, SMoHWIF_PORT_B,
-                    TPI_DATA_BIT(4), TPI_CLK_BIT(5)>      SMoHWIF_TPI_Platform;
 
 #endif /* _SMO_HWIF_STANDARD_ */
 

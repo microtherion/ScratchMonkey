@@ -14,9 +14,9 @@
 #ifndef _SMO_COMMAND_
 #define _SMO_COMMAND_
 
-#include <inttypes.h>
+#include "SMoHWIF.h"
 
-#include "stk_proto.h"
+#include <inttypes.h>
 
 namespace SMoCommand {
     //

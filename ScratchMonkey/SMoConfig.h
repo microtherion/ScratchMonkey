@@ -17,31 +17,6 @@
 #include "Arduino.h"
 
 //
-// We support a number of different pin layouts:
-//  - Standard Arduino (ATmega168/328)
-//  - Leonardo/Micro   (ATmega32u4)
-//  - Mega             (ATmega1280/2560)
-//
-
-#define    SMO_LAYOUT_STANDARD     0
-#define    SMO_LAYOUT_LEONARDO     1
-#define    SMO_LAYOUT_MEGA         2
-
-#if defined(__AVR_ATmega32U4__)
-#define SMO_LAYOUT  SMO_LAYOUT_LEONARDO
-#elif defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__)
-#define SMO_LAYOUT  SMO_LAYOUT_MEGA
-#elif defined(__AVR_ATmega328__) || defined(__AVR_ATmega328P__) || defined(__AVR_ATmega168__) || defined(__AVR_ATmega168P__)
-#define SMO_LAYOUT  SMO_LAYOUT_STANDARD
-#else
-#error Unknown Arduino platform, help me define the correct pin layout
-#endif
-
-#if SMO_LAYOUT==SMO_LAYOUT_STANDARD
-#define SMO_SHARE_SERIAL_PINS
-#endif
-
-//
 // Define to open a serial port for debugging
 //
 #undef DEBUG_ISP
@@ -53,19 +28,6 @@
 #if defined(DEBUG_ISP) || defined(DEBUG_HVSP) || defined(DEBUG_HVPP) || defined(DEBUG_COMM) || defined(DEBUG_TPI)
 #define SMO_WANT_DEBUG
 #endif
-
-//
-// Some pins used in multiple modules
-//
-enum {
-#if SMO_LAYOUT==SMO_LAYOUT_STANDARD
-    SMO_DEBUG      = A1
-#elif SMO_LAYOUT==SMO_LAYOUT_LEONARDO
-    SMO_DEBUG      = A4
-#else
-    SMO_DEBUG      = 18
-#endif
-};
 
 #endif /* _SMO_CONFIG_ */
 

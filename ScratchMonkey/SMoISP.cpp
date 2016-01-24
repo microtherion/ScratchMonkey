@@ -129,10 +129,6 @@ SMoISP::EnterProgmode()
 {
 #ifdef DEBUG_ISP
     SMoDebugInit();
-    SMoDebug.print("Pin layout ");
-    SMoDebug.print(SMO_LAYOUT);
-    SMoDebug.print(" RESET ");
-    SMoDebug.println(ISP_RESET);
 #endif
     // const uint8_t   timeOut     =   SMoCommand::gBody[1];
     // const uint8_t   stabDelay   =   SMoCommand::gBody[2];

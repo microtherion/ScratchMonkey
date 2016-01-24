@@ -17,11 +17,13 @@
 #define _SMO_HWIF_
 
 #include "Arduino.h"
+#include "stk_proto.h"
 
 inline void SMoDelay50ns() {
     __asm__ __volatile__("nop");
 }
 
+#include "SMoConfig.h"
 #include "SMoHWIF_Debug.h"
 #include "SMoHWIF_Status.h"
 #include "SMoHWIF_ISP.h"
@@ -29,7 +31,27 @@ inline void SMoDelay50ns() {
 #include "SMoHWIF_HVSP.h"
 #include "SMoHWIF_HVPP.h"
 #include "SMoHWIF_TPI.h"
-#include "SMoConfig.h"
+
+//
+// We support a number of different pin layouts:
+//  - Standard Arduino (ATmega168/328)
+//  - Leonardo/Micro   (ATmega32u4)
+//  - Mega             (ATmega1280/2560)
+//
+
+#define    SMO_LAYOUT_STANDARD     0
+#define    SMO_LAYOUT_LEONARDO     1
+#define    SMO_LAYOUT_MEGA         2
+
+#if defined(__AVR_ATmega32U4__)
+#define SMO_LAYOUT  SMO_LAYOUT_LEONARDO
+#elif defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__)
+#define SMO_LAYOUT  SMO_LAYOUT_MEGA
+#elif defined(__AVR_ATmega328__) || defined(__AVR_ATmega328P__) || defined(__AVR_ATmega168__) || defined(__AVR_ATmega168P__)
+#define SMO_LAYOUT  SMO_LAYOUT_STANDARD
+#else
+#error Unknown Arduino platform, help me define the correct pin layout
+#endif
 
 #if SMO_LAYOUT==SMO_LAYOUT_STANDARD
 #include "SMoHWIF_Standard.h"
