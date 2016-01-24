@@ -16,6 +16,11 @@ img.circuit {
     float: right;
     margin: 20px;
 }
+object.circuit {
+    width: 35%;
+    float: right;
+    margin: 20px;
+}
 table.striped {
     margin-left: 5%;
     border: 1px solid black;

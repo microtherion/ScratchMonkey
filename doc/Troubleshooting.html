@@ -10,7 +10,7 @@
 <body>
 <table class="nav">
 <td>
-<a href="HVPP.html">High Voltage Parallel Programming</a> &larr; 
+<a href="TPI.html">Tiny Programming Interface</a> &larr; 
 </td>
 <td>
 &uarr; <a href="index.html"><span class=logo>ScratchMonkey</span></a>
@@ -26,20 +26,15 @@ diagnostic info. <span class=logo>ScratchMonkey</span> optionally prints a diagn
 on a separate serial port. To use this:
 
 <ul>
-<li>Connect the RX pin of some serial adapter to 
-	<ul>
-	<li><strong>A5</strong> on a standard Arduino</li>
-	<li><strong>A4</strong> on a Leonardo/Micro</li>
-	<li>Pin <strong>18</strong> on an Arduino Mega</li>
-	</ul></li>
-<li>In <code>SMoConfig.h</code>, find the define for the protocol you want to debug (<strong>DEBUG_ISP</strong>, <strong>DEBUG_HVSP</strong>, or <strong>DEBUG_HVPP</strong>), and change the <code>#undef</code> to <code>#define</code></li>
+<li>Connect the RX pin of some serial adapter to the pin labelled <strong>(Debug)</strong> in your connection diagram.
+<li>In <code>SMoConfig.h</code>, find the define for the protocol you want to debug (<strong>DEBUG_ISP</strong>, <strong>DEBUG_HVSP</strong>, <strong>DEBUG_HVPP</strong>, or <strong>DEBUG_TPI</strong>), and change the <code>#undef</code> to <code>#define</code></li>
 <li>Upload <span class=logo>ScratchMonkey</span> to your Arduino again.</li>
 </ul>
 
 Note that this will drastically lower the programming speed you can achieve.
 <table class="nav">
 <td>
-<a href="HVPP.html">High Voltage Parallel Programming</a> &larr; 
+<a href="TPI.html">Tiny Programming Interface</a> &larr; 
 </td>
 <td>
 &uarr; <a href="index.html"><span class=logo>ScratchMonkey</span></a>

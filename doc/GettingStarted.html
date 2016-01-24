@@ -46,9 +46,17 @@ ln -sh \
 </li>
 </ul>
 
-<p>If your installation was successful, the <tt>Tools</tt> &rarr; <tt>Programmer</tt> menu in your Arduino IDE should look like the picture on the right after your next restart.</p>
+<p>If your installation was successful, the <tt>Tools</tt> &rarr; <tt>Programmer</tt> menu in your Arduino IDE should look like the picture on the right after your next restart. If that looks too crowded for your taste, feel free to edit <tt>hardware/scratchmonkey/programmers.txt</tt> to trim down the selection of protocols offered (See the next section for the <tt style="background:#eee">(STK500 Mode)</tt> distinction).</p>
 
-<h3 style="clear:both">Connecting With The Target</h3>
+<h3 style="clear:both">Optional: Patch avrdude</h3>
+
+<p></p><span class=logo>ScratchMonkey</span> communicates using the STK500v2 protocol, which is supported by default in <tt>avrdude</tt>, the communication program that the Arduino IDE uses to connect to its targets. However, the standard protocol cannot support some <span class=logo>ScratchMonkey</span> features, such as TPI programming and status LEDs.</p>
+
+<p>For most uses, these features are no great loss, and you can simply use the <tt style="background:#eee">(STK500 Mode)</tt> programmer entries to use the standard protocol. However, if you're interested in these features, and comfortable with <tt>avrdude</tt> development, you can apply the file <tt>avrdude.patch</tt> to your copy of the <tt>avrdude</tt> source code, recompile avrdude, and reinstall it, along with the updated configuration file.</p>
+
+<p>While I will attempt to get the patch incorporated into the standard distribution of <tt>avrdude</tt>, the Arduino IDE tends to rarely pick up new version of <tt>avrdude</tt>, so it might take years for this to show up in an Arduino IDE by default.</p>
+
+<h3>Connecting With The Target</h3>
 
 <p>Now it's time to connect your Arduino to your target MCU. The details for this vary between the different programming methods, and will be discussed in the individual sections.</p>
 
@@ -72,10 +80,11 @@ ln -sh \
 <li>From the <tt>Tools</tt> &rarr; <tt>Board</tt> menu, select your target processor or board.</li>
 <li>From the <tt>Tools</tt> &rarr; <tt>Programmer</tt> menu, select:
 <ul>
-<li><tt>ScratchMonkey</tt> for In-System Programming</li>
+<li><tt>ScratchMonkey</tt> for In-System Programming (or Tiny Programming Interface, in native mode)</li>
 <li><tt>ScratchMonkey HVSP</tt> for High Voltage Serial Programming</li>
 <li><tt>ScratchMonkey HVPP</tt> for High Voltage Parallel Programming</li>
 </ul></li>
+Each of these menu entries comes in two flavors, one for native mode (no suffix), one for STK500v2 compatibility (suffix "STK500 Mode"). Unless you're using a patched version of avrdude, you need to use the latter.
 <li>Select <tt>Tools</tt> &rarr; <tt>Burn Bootloader</tt>.</li>
 </ul>
 
