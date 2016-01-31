@@ -71,25 +71,25 @@ const int   SMoHWIF_PORT_D  = 0x09;
 //
 //      Signal      Pin         Comment
 //
-//      SDI          8
-//      SII          9
-//      SDO         12
-//      SCI         13
+//      SDI         A0
+//      SII         A1
+//      SDO         A2
+//      SCI         A3
 //
-typedef SMoHWIF_HVSP<SMoHWIF_HV_Platform, SMoHWIF_PORT_B,
+typedef SMoHWIF_HVSP<SMoHWIF_HV_Platform, SMoHWIF_PORT_C,
     HVSP_SDI_BIT(0), HVSP_SII_BIT(1),
-    HVSP_SDO_BIT(4), HVSP_SCI_BIT(5)>                       SMoHWIF_HVSP_Platform;
+    HVSP_SDO_BIT(2), HVSP_SCI_BIT(3)>                       SMoHWIF_HVSP_Platform;
 
 //
 // TPI Pin Assignment (Signals are specified by bit position)
 //
 //      Signal      Pin         Comment
 //
-//      TPI_DATA    12
-//      TPI_CLK     13
+//      TPI_DATA    A2
+//      TPI_CLK     A3
 //
-typedef SMoHWIF_TPI<SMoHWIF_HV_Platform, SMoHWIF_PORT_B,
-                    TPI_DATA_BIT(4), TPI_CLK_BIT(5)>      SMoHWIF_TPI_Platform;
+typedef SMoHWIF_TPI<SMoHWIF_HV_Platform, SMoHWIF_PORT_C,
+                    TPI_DATA_BIT(2), TPI_CLK_BIT(3)>      SMoHWIF_TPI_Platform;
 
 //
 // HVPP Pin Assignment
