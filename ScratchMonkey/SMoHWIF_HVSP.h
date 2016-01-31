@@ -55,9 +55,10 @@ public:
         digitalWrite(HVSP_VCC, HIGH);
         delayMicroseconds(80);
         for (uint8_t i=0; i<syncCycles; ++i) {
-            digitalWrite(HVSP_SCI, HIGH);
+            SMoPIN(PORT) = _BV(HVSP_SCI);
             delayMicroseconds(10);
-            digitalWrite(HVSP_SCI, LOW);
+            SMoPIN(PORT) = _BV(HVSP_SCI);
+            delayMicroseconds(10);
         }
         digitalWrite(HVSP_RESET, LOW);
         delayMicroseconds(1);
@@ -108,18 +109,18 @@ public:
         return dataOut;
     }
     static bool GetReady() {
-        return digitalRead(12); // (SMoPIN(PORT) & _BV(HVSP_SDO)) != 0;
+        return (SMoPIN(PORT) & _BV(HVSP_SDO)) != 0;
     }
 private:
     static bool HVSPBit(bool instrInBit, bool dataInBit) {
         SMoPORT(PORT) = (SMoPIN(PORT) & ~(_BV(HVSP_SII)|_BV(HVSP_SDI))) 
             | (dataInBit << HVSP_SDI) | (instrInBit << HVSP_SII);
         SMoDelay50ns(); // Respect setup time for SCI
-        SMoPORT(PORT) |= _BV(HVSP_SCI);
+        SMoPIN(PORT) = _BV(HVSP_SCI);
         SMoDelay50ns(); // Respect setup time for SDO
         bool dataOutBit = (SMoPIN(PORT) & _BV(HVSP_SDO)) != 0;
         SMoDelay50ns(); // Respect SCI high time
-        SMoPORT(PORT) &= ~_BV(HVSP_SCI);
+        SMoPIN(PORT) = _BV(HVSP_SCI);
 
         return dataOutBit;
     }
