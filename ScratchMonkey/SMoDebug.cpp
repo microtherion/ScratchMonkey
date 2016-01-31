@@ -14,12 +14,18 @@
 #include <Arduino.h>
 
 #include "SMoDebug.h"
+#include "SMoHWIF.h"
 
 #ifdef SMO_WANT_DEBUG
 
 void SMoDebugInit()
 {
 	SMoHWIF::Debug::Setup();
+}
+
+Stream & SMoDebugPort()
+{
+    return SMoHWIF::Debug::Port();
 }
 #endif
 

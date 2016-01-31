@@ -15,11 +15,11 @@
 #define _SMO_DEBUG_
 
 #include "SMoConfig.h"
-#include "SMoHWIF.h"
 
 #ifdef SMO_WANT_DEBUG
 void SMoDebugInit();
-#define SMoDebug    SMoHWIF::Debug::Port()
+Stream & SMoDebugPort();
+#define SMoDebug    SMoDebugPort()
 #endif
 
 #endif /* _SMO_DEBUG_ */
