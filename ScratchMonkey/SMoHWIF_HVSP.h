@@ -113,7 +113,7 @@ public:
     }
 private:
     static bool HVSPBit(bool instrInBit, bool dataInBit) {
-        SMoPORT(PORT) = (SMoPIN(PORT) & ~(_BV(HVSP_SII)|_BV(HVSP_SDI))) 
+        SMoPORT(PORT) = (SMoPIN(PORT) & ~(_BV(HVSP_SII)|_BV(HVSP_SDI)|_BV(HVSP_SCI)|_BV(HVSP_SDO))) 
             | (dataInBit << HVSP_SDI) | (instrInBit << HVSP_SII);
         SMoDelay50ns(); // Respect setup time for SCI
         SMoPIN(PORT) = _BV(HVSP_SCI);
