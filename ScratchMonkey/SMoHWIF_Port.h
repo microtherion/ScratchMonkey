@@ -149,6 +149,7 @@ public:
 // be read as digital signals. Based on Leong Yu Siang's work.
 //
 template <int AIN> class SMoHWIF_Input_Pin_Analog {
+public:
     static void Setup() {
         ADCSRA = 0x00;                          // Turn off ADC
         ADMUX  = _BV(REFS1) | _BV(REFS0) | AIN; // 1.1V vs ADC pin

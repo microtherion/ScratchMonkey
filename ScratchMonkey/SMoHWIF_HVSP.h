@@ -36,9 +36,6 @@ private:
         HVSP_VCC   = HV_Platform::VCC
     };
 public:
-    enum {
-        SDO = HVSP_SDO
-    };
     static void Setup(uint8_t powOffDelay, uint8_t syncCycles) {
         pinMode(HVSP_VCC, OUTPUT);
         digitalWrite(HVSP_VCC, LOW);
@@ -115,11 +112,11 @@ private:
     static bool HVSPBit(bool instrInBit, bool dataInBit) {
         SMoPORT(PORT) = (SMoPIN(PORT) & ~(_BV(HVSP_SII)|_BV(HVSP_SDI)|_BV(HVSP_SCI)|_BV(HVSP_SDO))) 
             | (dataInBit << HVSP_SDI) | (instrInBit << HVSP_SII);
-        SMoDelay50ns(); // Respect setup time for SCI
+        SMoDelay50ns(); // Enforce setup time for SCI
         SMoPIN(PORT) = _BV(HVSP_SCI);
-        SMoDelay50ns(); // Respect setup time for SDO
+        SMoDelay50ns(); // Enforce setup time for SDO
         bool dataOutBit = (SMoPIN(PORT) & _BV(HVSP_SDO)) != 0;
-        SMoDelay50ns(); // Respect SCI high time
+        SMoDelay50ns(); // Enforce SCI high time
         SMoPIN(PORT) = _BV(HVSP_SCI);
 
         return dataOutBit;

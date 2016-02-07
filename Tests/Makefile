@@ -1,4 +1,4 @@
-PROTOCOL 	:= stk500
+PROTOCOL 	:= stk500v2
 PROTO_HVSP 	:= stk500hvsp
 PROTO_PP 	:= stk500pp
 PROTO_TPI	:= scratchmonkey

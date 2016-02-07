@@ -34,8 +34,13 @@ uint8_t     SMoGeneral::gXPROGMode;
 void    
 SMoGeneral::SignOn()
 {
+#if 0
+    memcpy(&SMoCommand::gBody[2], "\010STK500_2", 9);
+    SMoCommand::SendResponse(STATUS_CMD_OK, 11);
+#else
     memcpy(&SMoCommand::gBody[2], "\015SCRATCHMONKEY", 15);
     SMoCommand::SendResponse(STATUS_CMD_OK, 16);
+#endif
 }
 
 void    
