@@ -136,14 +136,14 @@ public:
     }
 private:
     static void SendBit(bool bit) {
-        SMoPORT(PORT) = (SMoPIN(PORT) & ~_BV(TPI_DATA)) | (bit << TPI_DATA);
+        SMoPORT(PORT) = (SMoPIN(PORT) & ~(_BV(TPI_DATA)|_BV(TPI_CLK))) | (bit << TPI_DATA);
         SMoDelay50ns(); // Respect setup time for TPI_CLK
-        SMoPORT(PORT) |= _BV(TPI_CLK);
+        SMoPIN(PORT) = _BV(TPI_CLK);
         SMoDelay50ns(); // Clock high pulse width >= 200ns
         SMoDelay50ns();
         SMoDelay50ns();
         SMoDelay50ns();
-        SMoPORT(PORT) &= ~_BV(TPI_CLK);
+        SMoPIN(PORT) = _BV(TPI_CLK);
     }
     static bool ReadBit()
     {
