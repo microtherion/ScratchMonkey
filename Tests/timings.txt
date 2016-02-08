@@ -13,8 +13,8 @@ atmega1284					        38.9s   37.9s    3.6s    3.6s           48.4s   48.0s   5
 
 HVSP	Uno    	Flash W	R	EEPROM	R	Micro	Flash W	R	EEPROM	R       Mega	Flash W	R	EEPROM	R
 
-attiny85	      					11.4s 	 7.9s	 1.8s	 1.3s
-attiny84	 3.2s    2.1s   1.6s    1.1s      	11.4s 	 7.9s	 1.8s	 1.3s
+attiny85	 3.2s    2.1s 	1.6s	1.1s		11.4s 	 7.9s	 1.8s	 1.3s
+attiny84	 3.1s    2.1s   1.6s    1.1s      	11.4s 	 7.9s	 1.8s	 1.3s		 3.0s    2.2s	1.3s	1.0s
 
 HVPP	Uno    	Flash W	R	EEPROM	R	Micro	Flash W	R	EEPROM	R       Mega	Flash W	R	EEPROM	R
 
