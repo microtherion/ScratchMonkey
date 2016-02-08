@@ -69,7 +69,7 @@ public:
         SMoDebug.println((uint8_t)byte, HEX);
     #endif
 
-        pinMode(12, OUTPUT);
+        SMoDDR(PORT) |= _BV(TPI_DATA);
 
         // Start bit
         SendBit(LOW);
