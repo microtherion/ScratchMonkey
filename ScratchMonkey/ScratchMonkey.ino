@@ -23,6 +23,7 @@
 
 #include <SPI.h>
 #include <SoftwareSerial.h>
+#include <avr/io.h>
 
 #include "SMoCommand.h"
 #include "SMoGeneral.h"
@@ -42,7 +43,6 @@ setup()
 {
 #ifdef DEBUG_COMM
     SMoDebugInit();
-    SMoDebug.println("Yo!");
 #endif
     SMoHWIF::Status::Setup();
 }

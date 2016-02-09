@@ -58,11 +58,12 @@ public:
             delayMicroseconds(10);
         }
         digitalWrite(HVSP_RESET, LOW);
-        delayMicroseconds(1);
+        delayMicroseconds(20);
         // 
         // Now make SDO an INPUT again
         //
         SMoDDR(PORT) &= ~_BV(HVSP_SDO);
+        delayMicroseconds(300);
     }
     static void Stop() {
         digitalWrite(HVSP_RESET, HIGH);
@@ -115,8 +116,8 @@ private:
         SMoDelay50ns(); // Enforce setup time for SCI
         SMoPIN(PORT) = _BV(HVSP_SCI);
         SMoDelay50ns(); // Enforce setup time for SDO
-        bool dataOutBit = (SMoPIN(PORT) & _BV(HVSP_SDO)) != 0;
         SMoDelay50ns(); // Enforce SCI high time
+        bool dataOutBit = (SMoPIN(PORT) & _BV(HVSP_SDO)) != 0;
         SMoPIN(PORT) = _BV(HVSP_SCI);
 
         return dataOutBit;
