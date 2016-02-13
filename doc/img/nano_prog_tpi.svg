@@ -24,6 +24,34 @@
         style="fill:white">
     GND
   </text>
+  <rect class="funbox" x="1" y="121.17999999999999"
+        width="69" height="13" rx="3"
+        style="fill:green"/>
+  <text class="function" x="34" y="132.68"
+        style="fill:white">
+    ⚪️ (RDY)
+  </text>
+  <rect class="funbox" x="1" y="135.58"
+        width="69" height="13" rx="3"
+        style="fill:gold"/>
+  <text class="function" x="34" y="147.08"
+        style="fill:black">
+    ⚪️ (VFY)
+  </text>
+  <rect class="funbox" x="1" y="149.98"
+        width="69" height="13" rx="3"
+        style="fill:orange"/>
+  <text class="function" x="34" y="161.48"
+        style="fill:black">
+    ⚪️ (PGM)
+  </text>
+  <rect class="funbox" x="1" y="164.38"
+        width="69" height="13" rx="3"
+        style="fill:red"/>
+  <text class="function" x="34" y="175.88"
+        style="fill:white">
+    ⚪️ (ERR)
+  </text>
   <rect class="funbox" x="1" y="193.18"
         width="69" height="13" rx="3"
         style="fill:darkgreen"/>
@@ -38,19 +66,26 @@
         style="fill:white">
     VCC
   </text>
-  <rect class="funbox" x="1" y="221.98"
+  <rect class="funbox" x="178.8" y="149.98"
         width="69" height="13" rx="3"
-        style="fill:blue"/>
-  <text class="function" x="34" y="233.48"
-        style="fill:white">
+        style="fill:white"/>
+  <text class="function" x="213.8" y="161.48"
+        style="fill:black">
     TPIDATA
   </text>
-  <rect class="funbox" x="178.8" y="221.98"
+  <rect class="funbox" x="178.8" y="135.58"
         width="69" height="13" rx="3"
         style="fill:gold"/>
-  <text class="function" x="213.8" y="233.48"
+  <text class="function" x="213.8" y="147.08"
         style="fill:black">
     TPICLK
+  </text>
+  <rect class="funbox" x="178.8" y="121.17999999999999"
+        width="69" height="13" rx="3"
+        style="fill:lime"/>
+  <text class="function" x="213.8" y="132.68"
+        style="fill:black">
+    (DEBUG)
   </text>
 
 </svg>

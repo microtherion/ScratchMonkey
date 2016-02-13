@@ -2,9 +2,10 @@
 %color 	VCC		red		white
 %color	HVRESET		darkgreen	white	"⚡️RESET⚡️"
 %color	RESET		green		white
-%color 	TPIDATA		blue		white
+%color 	TPIDATA		white		black
 %color	TPICLK		gold		black
 %color  (RDY_LED)	green		white	"⚪️ (RDY)"
 %color  (VFY_LED)	gold		black	"⚪️ (VFY)"
 %color  (PGM_LED)	orange		black	"⚪️ (PGM)"
 %color  (ERR_LED)	red		white	"⚪️ (ERR)"
+%color  (DEBUG)		lime		black

@@ -25,6 +25,41 @@
         style="fill:white">
     GND
   </text>
+  <rect class="funbox" x="1" y="323.5"
+        width="69" height="13" rx="3"
+        style="fill:blue"/>
+  <text class="function" x="34" y="335.0"
+        style="fill:white">
+    SDI
+  </text>
+  <rect class="funbox" x="1" y="337.90000000000003"
+        width="69" height="13" rx="3"
+        style="fill:orchid"/>
+  <text class="function" x="34" y="349.40000000000003"
+        style="fill:black">
+    SII
+  </text>
+  <rect class="funbox" x="1" y="352.3"
+        width="69" height="13" rx="3"
+        style="fill:white"/>
+  <text class="function" x="34" y="363.8"
+        style="fill:black">
+    SDO
+  </text>
+  <rect class="funbox" x="1" y="366.7"
+        width="69" height="13" rx="3"
+        style="fill:gold"/>
+  <text class="function" x="34" y="378.2"
+        style="fill:black">
+    SCI
+  </text>
+  <rect class="funbox" x="1" y="381.1"
+        width="69" height="13" rx="3"
+        style="fill:lime"/>
+  <text class="function" x="34" y="392.6"
+        style="fill:black">
+    (DEBUG)
+  </text>
   <rect class="funbox" x="380.4" y="323.5"
         width="69" height="13" rx="3"
         style="fill:green"/>
@@ -53,13 +88,6 @@
         style="fill:white">
     ⚪️ (ERR)
   </text>
-  <rect class="funbox" x="380.4" y="257.26"
-        width="69" height="13" rx="3"
-        style="fill:orchid"/>
-  <text class="function" x="415.4" y="268.76"
-        style="fill:black">
-    SII
-  </text>
   <rect class="funbox" x="380.4" y="242.85999999999999"
         width="69" height="13" rx="3"
         style="fill:darkgreen"/>
@@ -73,20 +101,6 @@
   <text class="function" x="415.4" y="239.95999999999998"
         style="fill:white">
     VCC
-  </text>
-  <rect class="funbox" x="380.4" y="214.05999999999997"
-        width="69" height="13" rx="3"
-        style="fill:white"/>
-  <text class="function" x="415.4" y="225.55999999999997"
-        style="fill:black">
-    SDO
-  </text>
-  <rect class="funbox" x="380.4" y="199.66"
-        width="69" height="13" rx="3"
-        style="fill:gold"/>
-  <text class="function" x="415.4" y="211.16"
-        style="fill:black">
-    SCI
   </text>
 
 </svg>

@@ -69,9 +69,9 @@
   </text>
   <rect class="funbox" x="178.8" y="178.78"
         width="69" height="13" rx="3"
-        style="fill:blue"/>
+        style="fill:white"/>
   <text class="function" x="213.8" y="190.28"
-        style="fill:white">
+        style="fill:black">
     TPIDATA
   </text>
   <rect class="funbox" x="178.8" y="164.38"
@@ -80,6 +80,13 @@
   <text class="function" x="213.8" y="175.88"
         style="fill:black">
     TPICLK
+  </text>
+  <rect class="funbox" x="178.8" y="149.98"
+        width="69" height="13" rx="3"
+        style="fill:lime"/>
+  <text class="function" x="213.8" y="161.48"
+        style="fill:black">
+    (DEBUG)
   </text>
 
 </svg>

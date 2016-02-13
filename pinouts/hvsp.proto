@@ -10,3 +10,4 @@
 %color  (VFY_LED)	gold		black	"⚪️ (VFY)"
 %color  (PGM_LED)	orange		black	"⚪️ (PGM)"
 %color  (ERR_LED)	red		white	"⚪️ (ERR)"
+%color  (DEBUG)		lime		black

@@ -1,6 +1,6 @@
 D10	= HVRESET
 D11	= VCC
-D0      = CTRL0
+RX      = CTRL0
 D2	= CTRL2
 D3	= CTRL3
 D4	= CTRL4

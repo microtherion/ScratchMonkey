@@ -17,7 +17,14 @@
   <image xlink:href="fritzing/svg/core/breadboard/Arduino Nano3_breadboard.svg"
       x="74" y="5" width="100.8" height="255.168" />
   
-    <rect class="funbox" x="1" y="63.580000000000005"
+    <rect class="funbox" x="1" y="34.78000000000001"
+        width="69" height="13" rx="3"
+        style="fill:silver"/>
+  <text class="function" x="34" y="46.28000000000001"
+        style="fill:black">
+    CTRL0
+  </text>
+  <rect class="funbox" x="1" y="63.580000000000005"
         width="69" height="13" rx="3"
         style="fill:black"/>
   <text class="function" x="34" y="75.08000000000001"
@@ -149,13 +156,6 @@
   <text class="function" x="213.8" y="89.47999999999999"
         style="fill:white">
     RDY
-  </text>
-  <rect class="funbox" x="1" y="221.98"
-        width="69" height="13" rx="3"
-        style="fill:silver"/>
-  <text class="function" x="34" y="233.48"
-        style="fill:black">
-    CTRL0
   </text>
 
 </svg>

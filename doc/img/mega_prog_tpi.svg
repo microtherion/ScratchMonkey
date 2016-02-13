@@ -18,7 +18,28 @@
       x="74" y="-297.4" width="611.946" height="302.4"     transform="rotate(90, 74, 5)"
 />
   
-    <rect class="funbox" x="380.4" y="366.7"
+    <rect class="funbox" x="1" y="352.3"
+        width="69" height="13" rx="3"
+        style="fill:white"/>
+  <text class="function" x="34" y="363.8"
+        style="fill:black">
+    TPIDATA
+  </text>
+  <rect class="funbox" x="1" y="366.7"
+        width="69" height="13" rx="3"
+        style="fill:gold"/>
+  <text class="function" x="34" y="378.2"
+        style="fill:black">
+    TPICLK
+  </text>
+  <rect class="funbox" x="380.4" y="424.3"
+        width="69" height="13" rx="3"
+        style="fill:lime"/>
+  <text class="function" x="415.4" y="435.8"
+        style="fill:black">
+    (DEBUG)
+  </text>
+  <rect class="funbox" x="380.4" y="366.7"
         width="69" height="13" rx="3"
         style="fill:green"/>
   <text class="function" x="415.4" y="378.2"
@@ -45,20 +66,6 @@
   <text class="function" x="415.4" y="335.0"
         style="fill:white">
     ⚪️ (ERR)
-  </text>
-  <rect class="funbox" x="380.4" y="271.66"
-        width="69" height="13" rx="3"
-        style="fill:blue"/>
-  <text class="function" x="415.4" y="283.16"
-        style="fill:white">
-    TPIDATA
-  </text>
-  <rect class="funbox" x="380.4" y="257.26"
-        width="69" height="13" rx="3"
-        style="fill:gold"/>
-  <text class="function" x="415.4" y="268.76"
-        style="fill:black">
-    TPICLK
   </text>
   <rect class="funbox" x="380.4" y="242.85999999999999"
         width="69" height="13" rx="3"
