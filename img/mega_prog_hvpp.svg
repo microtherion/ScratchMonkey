@@ -130,6 +130,13 @@
         style="fill:orchid">
     DATA7
   </text>
+  <rect class="funbox" x="380.4" y="424.3"
+        width="69" height="13" rx="3"
+        style="fill:lime"/>
+  <text class="function" x="415.4" y="435.8"
+        style="fill:black">
+    (DEBUG)
+  </text>
   <rect class="funbox" x="380.4" y="366.7"
         width="69" height="13" rx="3"
         style="fill:green"/>

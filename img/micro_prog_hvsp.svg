@@ -95,5 +95,12 @@
         style="fill:black">
     SCI
   </text>
+  <rect class="funbox" x="178.8" y="149.98"
+        width="69" height="13" rx="3"
+        style="fill:lime"/>
+  <text class="function" x="213.8" y="161.48"
+        style="fill:black">
+    (DEBUG)
+  </text>
 
 </svg>

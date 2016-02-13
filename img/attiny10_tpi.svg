@@ -32,9 +32,9 @@
   </text>
   <rect class="funbox" x="1" y="10.500000000000002"
         width="99" height="25.0" rx="3"
-        style="fill:blue"/>
+        style="fill:white"/>
   <text class="function" x="49" y="29.0"
-        style="fill:white">
+        style="fill:black">
     TPIDATA
   </text>
   <rect class="pin" x="174.0" y="45.5" width="15.0" height="15.0"/>

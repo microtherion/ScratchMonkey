@@ -32,6 +32,13 @@
         style="fill:white">
     GND
   </text>
+  <rect class="funbox" x="1" y="381.1"
+        width="69" height="13" rx="3"
+        style="fill:lime"/>
+  <text class="function" x="34" y="392.6"
+        style="fill:black">
+    (DEBUG)
+  </text>
   <rect class="funbox" x="380.4" y="323.5"
         width="69" height="13" rx="3"
         style="fill:green"/>
