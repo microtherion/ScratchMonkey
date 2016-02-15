@@ -25,10 +25,6 @@
 #include <Arduino.h>
 #include <SPI.h>
 
-enum {
-    HVPP_XTAL   = SMoHWIF::HVPP::XTAL
-};
-
 //
 // HVPP, for 28 pins and more, requires 8 output signals and 1 input 
 // signal. 20 pin MCUs multiplex some of the output signals, and they
@@ -96,6 +92,7 @@ HVPPSetDataRaw(uint8_t dataOut)
 inline uint8_t
 HVPPGetDataRaw()
 {
+    delay(1);
     uint8_t dataIn = SMoHWIF::HVPP::GetData();
     
 #ifdef DEBUG_HVPP
@@ -111,8 +108,7 @@ HVPPWriteData(uint8_t controlIx, uint8_t dataOut)
 {
     HVPPSetControls(controlIx);
     HVPPSetDataRaw(dataOut);
-    digitalWrite(HVPP_XTAL, HIGH);
-    digitalWrite(HVPP_XTAL, LOW);
+    SMoHWIF::HVPP::PulseXTAL();
 }
 
 inline void
@@ -120,8 +116,7 @@ HVPPWriteData(uint8_t controlIx, uint8_t byteSel, uint8_t dataOut)
 {
     HVPPSetControls(controlIx, byteSel);
     HVPPSetDataRaw(dataOut);
-    digitalWrite(HVPP_XTAL, HIGH);
-    digitalWrite(HVPP_XTAL, LOW);
+    SMoHWIF::HVPP::PulseXTAL();
 }
 
 inline void

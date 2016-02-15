@@ -77,6 +77,10 @@ public:
     static uint8_t GetData() {
         return Data_Port::Get();
     }
+    static void PulseXTAL() {
+        digitalWrite(HVPP_XTAL, HIGH);
+        digitalWrite(HVPP_XTAL, LOW);
+    }
     static bool GetReady() {
         return Ready_Pin::Get();
     }
