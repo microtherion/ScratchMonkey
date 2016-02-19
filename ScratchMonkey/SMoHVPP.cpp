@@ -61,7 +61,7 @@ HVPPSetControls(uint8_t controlIx)
     SMoDebug.println();
 #endif
     SMoHWIF::HVPP::SetControlSignals(SMoGeneral::gControlStack[controlIx]);
-    delayMicroseconds(2);
+    delayMicroseconds(1);
 }
 
 inline void
@@ -92,7 +92,6 @@ HVPPSetDataRaw(uint8_t dataOut)
 inline uint8_t
 HVPPGetDataRaw()
 {
-    delay(1);
     uint8_t dataIn = SMoHWIF::HVPP::GetData();
     
 #ifdef DEBUG_HVPP
