@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link href="manual.css" rel="stylesheet" type="text/css">
+<title>Tested Configurations</title>
+</head>
+<body>
+<table class="nav">
+<td>
+<a href="Connection.html">Connection Diagrams</a> &larr; 
+</td>
+<td>
+&uarr; <a href="index.html"><span class=logo>ScratchMonkey</span></a>
+</td>
+<td>
+&rarr; <a href="index.html">Table of Contents</a>
+</td>
+</table>
+<h2>Tested Configurations</h2>
+
+The following table lists MCUs and boards with their level of testing in <span class=logo>ScratchMonkey</span>. The following symbols are used:
+
+<dl>
+<dt>&#x2705;</dt>
+<dd>This configuration has been tested successfully.</dd>
+<dt>&#x2713;</dt>
+<dd>This configuration has not been tested yet, but is expected to work by analogy with another configuration.</dd>
+<dt>&#x2754;</dt>
+<dd>This configuration has not been tested yet. It is possible that it would work.</dd>
+<dt>&#x2573;</dt>
+<dd>This configuration could be made to work, but would require extra code that has not been written yet.</dd>
+<dt>&#x2B55;</dt>
+<dd>This configuration is not supported by the underlying MCU.</dd>
+<dt>&#x274C;</dt>
+<dd>This configuration cannot work due to the design of the board.</dd>
+</dl>
+
+If you have tested any of these configurations, and obtained results beyond those in the table (results for configurations not listed; successful test or failure of configurations marked &#x2713 or &#x2754) or, of course, contradicting the table (failure of &#x2705; or success of &#x2573;&#x2B55;&#x274C;), I'd appreciate if you reported your results on the <a href="https://github.com/microtherion/ScratchMonkey/issues">Github issue tracker</a> or by e-mail to microtherion at gmail dot com
+
+<h3>Programmers</h3>
+
+The following development boards should be usable as programmers (i.e. to execute the <span class=logo>ScratchMonkey</span> sketch):
+
+<table border="1" style="margin:5%" width="90%" class="striped">
+	<tr>
+		<th width="20%">Board</th>
+		<th width="10%">ISP</th><th width="10%">HVSP</th><th width="10%">HVPP</th>
+		<th width="40%">Comment</th>
+	</tr>
+	<tr><td>Arduino Uno<td class=result>&#x2705;<td class=result>&#x2705;<td class=result>&#x2705;<td></tr>
+	<tr><td>Arduino Duemilanove<td class=result>&#x2713;<td class=result>&#x2713;<td class=result>&#x2713;<td>Pin compatible with Uno</tr>
+	<tr><td>Arduino Diecimila<td class=result>&#x2713;<td class=result>&#x2713;<td class=result>&#x2713;<td>Pin compatible with Uno</tr>
+	<tr><td>Arduino Micro<td class=result>&#x2705;<td class=result>&#x2705;<td class=result>&#x2705;<td></tr>
+	<tr><td>Arduino Leonardo<td class=result>&#x2713;<td class=result>&#x2713;<td class=result>&#x2713;<td>Pin compatible with Micro</tr>
+	<tr><td>Arduino Mega<td class=result>&#x2754;<td class=result>&#x2754;<td class=result>&#x2754;<td>Designed to work, but not tested.</tr>
+	<tr><td>Arduino Mega 2560<td class=result>&#x2754;<td class=result>&#x2754;<td class=result>&#x2754;<td>Designed to work, but not tested.</tr>
+	<tr><td>Sanguino<td class=result>&#x2573;<td class=result>&#x2573;<td class=result>&#x2573;<td></tr>
+</table>
+
+There are many other boards that are basically pin compatible with the standard Arduino, and it's likely that any board with an ATmega168 or ATmega328, standard Arduino pinout, and pins 2-13 and A0-A5 available would work, but I will only list further variants if I have concrete test results to go by.
+
+<h3>Board Targets</h3>
+
+The following development boards can be reprogrammed using <span class=logo>ScratchMonkey</span>:
+
+<table border="1" style="margin:5%" width="90%" class="striped">
+	<tr>
+		<th width="20%">Board</th>
+		<th width="10%">ISP</th><th width="10%">HVSP</th><th width="10%">HVPP</th>
+		<th width="40%">Comment</th>
+	</tr>
+	<tr><td>Arduino Uno<td class=result>&#x2705;<td class=result>&#x2B55;<td class=result>&#x274C;<td>XTAL1 not available, so no HVPP</tr>
+	<tr><td>Arduino Micro<td class=result>&#x2705;<td class=result>&#x2B55;<td class=result>&#x274C;<td>XTAL1 not available, so no HVPP</tr>
+	<tr><td>Arduino Mega<td class=result>&#x2754;<td class=result>&#x2B55;<td class=result>&#x274C;<td>ISP designed to work, but not tested.</tr>
+	<tr><td>Arduino Mega 2560<td class=result>&#x2754;<td class=result>&#x2B55;<td class=result>&#x274C;<td>ISP designed to work, but not tested.</tr>
+	<tr><td>Sanguino<td class=result>&#x2754;<td class=result>&#x2B55;<td class=result>&#x274C;<td>ISP designed to work, but not tested.</tr>
+	<tr><td>Digispark<td class=result>&#x274C;<td class=result>&#x2705;<td class=result>&#x2B55;<td>RESET disabled, so no ISP.</tr>
+</table>
+
+<h3>MCU Targets</h3>
+
+The following MCUs can be reprogrammed using <span class=logo>ScratchMonkey</span>. With rare exceptions, I have only tested MCUs available in DIP packages, although there is no technical reason why others would not work.
+
+<table border="1" style="margin:5%" width="90%" class="striped">
+	<tr>
+		<th width="20%">MCU</th>
+		<th width="10%">ISP</th><th width="10%">HVSP</th><th width="10%">HVPP</th>
+		<th width="40%">Comment</th>
+	</tr>
+	<tr><td>ATtiny4/5/9/10<td class=result>&#x2B55;<td class=result>&#x2B55;<td class=result>&#x2B55;<td>6 pins</tr>
+	<tr><td>ATtiny85<td class=result>&#x2705;<td class=result>&#x2705;<td class=result>&#x2B55;<td>8 pins</tr>
+	<tr><td>ATtiny45/25/13<td class=result>&#x2713;<td class=result>&#x2713;<td class=result>&#x2B55;<td>Pin compatible with ATtiny85</tr>
+	<tr><td>ATtiny84<td class=result>&#x2705;<td class=result>&#x2705;<td class=result>&#x2B55;<td>14 pins</tr>
+	<tr><td>ATtiny44/24<td class=result>&#x2713;<td class=result>&#x2713;<td class=result>&#x2B55;<td>Pin compatible with ATtiny84</tr>
+	<tr><td>ATtiny861<td class=result>&#x2705;<td class=result>&#x2B55;<td class=result>&#x2705;<td>20 pins</tr>
+	<tr><td>ATtiny461/261/26<td class=result>&#x2713;<td class=result>&#x2B55;<td class=result>&#x2713;<td>Pin compatible with ATtiny861</tr>
+	<tr><td>ATtiny4313<td class=result>&#x2705;<td class=result>&#x2B55;<td class=result>&#x2705;<td>20 pins</tr>
+	<tr><td>ATtiny2313<td class=result>&#x2713;<td class=result>&#x2B55;<td class=result>&#x2713;<td>Pin compatible with ATtiny4313</tr>
+	<tr><td>ATtiny1634<td class=result>&#x2705;<td class=result>&#x2B55;<td class=result>&#x2705;<td>20 pin SOIC</tr>
+	<tr><td>ATtiny88/48<td class=result>&#x2754;<td class=result>&#x2B55;<td class=result>&#x2754;<td>28 pins</tr>
+	<tr><td>ATmega328<td class=result>&#x2705;<td class=result>&#x2B55;<td class=result>&#x2705;<td>28 pins</tr>	
+	<tr><td>ATmega48/88/168<td class=result>&#x2713;<td class=result>&#x2B55;<td class=result>&#x2713;<td>Pin compatible with ATmega328</tr>
+	<tr><td>ATmega1284<td class=result>&#x2705;<td class=result>&#x2B55;<td class=result>&#x2705;<td>40 pins</tr>	
+	<tr><td>ATmega164/324/644<td class=result>&#x2713;<td class=result>&#x2B55;<td class=result>&#x2713;<td>Pin compatible with ATmega1284</tr>
+	<tr><td>ATmega32u4<td class=result>&#x2705;<td class=result>&#x2B55;<td class=result>&#x2754;<td>44 pin TQFP</tr>
+	<tr><td>ATmega2560<td class=result>&#x2705;<td class=result>&#x2B55;<td class=result>&#x2754;<td>100 pin TQFP; would need to find board w/o external clock to test HVPP.</tr>
+</table>
+<table class="nav">
+<td>
+<a href="Connection.html">Connection Diagrams</a> &larr; 
+</td>
+<td>
+&uarr; <a href="index.html"><span class=logo>ScratchMonkey</span></a>
+</td>
+<td>
+&rarr; <a href="index.html">Table of Contents</a>
+</td>
+</table>
+</body>
+</html>
