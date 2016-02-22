@@ -98,7 +98,8 @@ typedef SMoHWIF_TPI<SMoHWIF_HV_Platform, SMoHWIF_PORT_C,
 // Data split across ports B and C.
 //
 //      Signal      Pin         Comment
-//      CTRL0        0
+//      CTRL0        0          Arduino Uno (DIP MCU)
+//      CTRL0       12          Arduino Pro Mini etc (SMD MCU)
 //      CTRL2        2
 //      CTRL3        3
 //      CTRL4        4
@@ -117,21 +118,25 @@ typedef SMoHWIF_TPI<SMoHWIF_HV_Platform, SMoHWIF_PORT_C,
 //      RDY         A7          Arduino Pro Mini etc (SMD MCU)
 //      XTAL        13
 //
-#define SMO_SHARE_SERIAL_PINS
 
 typedef SMoHWIF_Port_Dual<SMoHWIF_PORT_B, 0x03, 6,
                           SMoHWIF_PORT_C, 0x3F, 0>          SMoHWIF_HVPP_Data;
-typedef SMoHWIF_Port_Simple<SMoHWIF_PORT_D>                 SMoHWIF_HVPP_Control;
 
 #if NUM_ANALOG_INPUTS==8
 //
 // Arduino Pro Mini et al, SMD MCU, 8 analog inputs
 //
+typedef SMoHWIF_Port_Dual<SMoHWIF_PORT_D, 0xFC, 0,
+                          SMoHWIF_PORT_B, 0x10, 4>          SMoHWIF_HVPP_Control;
 typedef SMoHWIF_Input_Pin_Analog<7>                         SMoHWIF_HVPP_Ready;
+
 #else
 //
 // Arduino Uno, usually DIP MCU, 6 analog inputs
 //
+#define SMO_SHARE_SERIAL_PINS
+
+typedef SMoHWIF_Port_Simple<SMoHWIF_PORT_D>                 SMoHWIF_HVPP_Control;
 typedef SMoHWIF_Input_Pin_Digital<12>                       SMoHWIF_HVPP_Ready;
 #endif
 
