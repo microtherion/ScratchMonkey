@@ -1,10 +1,6 @@
 ScratchMonkey
 =============
 
-Arduino software programmer sketch, supporting ISP, HVSP, and HVPP
+Arduino software programmer sketch, supporting ISP, HVSP, HVPP and TPI.
 
 For details, please consult the [User Manual](http://microtherion.github.com/ScratchMonkey/)
-
-This branch represents a major refactoring; the documentation is quite seriously out of sync with actual practice, and tests are incomplete.
-
-**DO NOT USE YET**
