@@ -1,0 +1,86 @@
+div.epigram {
+	background-color: #eeeeee;
+	float: right;
+	width: 40%;
+	margin: 0mm 0mm 5mm 0mm;
+	padding: 0mm 3mm 0mm 3mm;
+   -moz-box-shadow:    inset 0 0 10px #000000;
+   -webkit-box-shadow: inset 0 0 10px #000000;
+   box-shadow:         inset 0 0 10px #000000;
+}
+span.logo {
+	font-variant:small-caps;
+}
+img.circuit {
+	width: 35%;
+	float: right;
+	margin: 20px;
+}
+table.striped {
+	margin-left: 5%;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+table.striped td {
+	padding: 5px
+}
+table.striped th {
+	background-color: #d0d0d0
+}
+table.striped tr:nth-child(odd) {background: #f0f0f0}
+table.striped tr:nth-child(even) {background: #ffffff}
+td.result {
+	text-align: center;
+}
+table.nav {
+	border: none;
+	margin: 1mm 5% 1mm 5%;
+	width: 90%;
+	padding: 2mm 2mm 2mm 2mm;
+	background-color: #dddeff;
+	font-family: sans-serif;
+}
+table.nav td:nth-child(1) {
+	text-align: left;
+	width: 35%;
+}
+table.nav td:nth-child(2) {
+	text-align: center;
+	width: 30%;
+}
+table.nav td:nth-child(3) {
+	text-align: right;
+	width: 35%;
+}
+div.conn {
+	background-color: #f8f8f8;
+	width: 49%;
+	padding-bottom: 2%;
+	float: right
+}
+div.conn img {
+	width: 90%;
+	margin: 1mm 5% 1mm 5%;
+	max-height: 8cm;
+	text-align: center;
+}
+p.conn {
+	font-family: Courier;
+	font-size: 25px;
+	text-align: center;
+}
+h4.mcu {
+	clear: both;
+	background-color: #e0e0e0;
+	font-size: 25px;
+	text-align: center;
+	width: 40%;
+	margin-left: 30%;
+	margin-right: 30%;
+}
+
+form {
+	margin-bottom: 3mm;
+	padding: 2mm;
+	background-color: #99cc00;
+}

@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 450.0 136.0">
+  <defs>
+  <style type="text/css"><![CDATA[
+     .thinline { fill:none; stroke:#000000; stroke-width:1.0 }
+     .thickline{ fill:none; stroke:#000000; stroke-width:2.0 }
+     .pinno    { font-family:"Courier"; font-size:12px }
+     .label    { font-family:"Helvetica"; font-size:18px }
+     .function { font-family:"Comic Sans MS"; font-size:24px }
+     .title    { font-family:"Helvetica-Bold"; font-size:20px; text-anchor:middle; writing-mode:tb; alignment-baseline:central }
+     ]]>
+  </style>
+  </defs>
+  <rect class="thickline" x="195.0" y="5" width="60.0" height="126.0"/>
+  <path class="thinline" d="M214.5,5 a10.5,10.5 0 0,0 21.0,0"/>
+    <text class="title" x="225.0" y="68.0">
+    ATtiny85
+  </text>
+
+    <rect class="thinline" x="180.0" y="15.5" width="15.0" height="15.0"/>
+  <text class="function" x="95.0" y="30.5" text-anchor="end">
+    RESET
+  </text>
+  <text class="label" x="175.0" y="29.0" text-anchor="end">
+    PB5
+  </text>
+  <text class="pinno" x="198.0" y="26.5">
+    1
+  </text>
+  <rect class="thinline" x="180.0" y="45.5" width="15.0" height="15.0"/>
+  <text class="function" x="95.0" y="60.5" text-anchor="end">
+    SCI
+  </text>
+  <text class="label" x="175.0" y="59.0" text-anchor="end">
+    PB3
+  </text>
+  <text class="pinno" x="198.0" y="56.5">
+    2
+  </text>
+  <rect class="thinline" x="180.0" y="75.5" width="15.0" height="15.0"/>
+  <text class="function" x="95.0" y="90.5" text-anchor="end">
+    
+  </text>
+  <text class="label" x="175.0" y="89.0" text-anchor="end">
+    PB4
+  </text>
+  <text class="pinno" x="198.0" y="86.5">
+    3
+  </text>
+  <rect class="thinline" x="180.0" y="105.5" width="15.0" height="15.0"/>
+  <text class="function" x="95.0" y="120.5" text-anchor="end">
+    GND
+  </text>
+  <text class="label" x="175.0" y="119.0" text-anchor="end">
+    GND
+  </text>
+  <text class="pinno" x="198.0" y="116.5">
+    4
+  </text>
+  <rect class="thinline" x="255.0" y="105.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="252.0" y="116.5" text-anchor="end">
+    5
+  </text>
+  <text class="label" x="275.0" y="119.0">
+    PB0
+  </text>
+  <text class="function" x="355.0" y="120.5">
+    SDI
+  </text>
+  <rect class="thinline" x="255.0" y="75.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="252.0" y="86.5" text-anchor="end">
+    6
+  </text>
+  <text class="label" x="275.0" y="89.0">
+    PB1
+  </text>
+  <text class="function" x="355.0" y="90.5">
+    SII
+  </text>
+  <rect class="thinline" x="255.0" y="45.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="252.0" y="56.5" text-anchor="end">
+    7
+  </text>
+  <text class="label" x="275.0" y="59.0">
+    PB2
+  </text>
+  <text class="function" x="355.0" y="60.5">
+    SDO
+  </text>
+  <rect class="thinline" x="255.0" y="15.5" width="15.0" height="15.0"/>
+  <text class="pinno" x="252.0" y="26.5" text-anchor="end">
+    8
+  </text>
+  <text class="label" x="275.0" y="29.0">
+    VCC
+  </text>
+  <text class="function" x="355.0" y="30.5">
+    VCC
+  </text>
+
+</svg>
