@@ -34,6 +34,7 @@ public:
             SMoDDR(PORT) = 0xFF;
         } else {
             SMoDDR(PORT) = 0x00;
+            SMoPORT(PORT)= 0x00;
         }
     }
     static void Stop() {
@@ -61,6 +62,8 @@ public:
         } else {
             SMoDDR(PORT_L) &= ~MASK_L;
             SMoDDR(PORT_H) &= ~MASK_H;
+            SMoPORT(PORT_L) &= ~MASK_L;
+            SMoPORT(PORT_H) &= ~MASK_H;
         }
     }
     static void Stop() {
