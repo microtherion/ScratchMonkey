@@ -1,10 +1,10 @@
 // -*- mode: c++; tab-width: 4; indent-tabs-mode: nil -*-
 //
-// ScratchMonkey 2.0            - STK500v2/STK600ish compatible programmer for Arduino
+// ScratchMonkey 2.0            - STK500v2/STK600ish compatible programming sketch for Arduino
 //
 // File: ScratchMonkey.ino      - Main program of sketch
 //
-// Copyright (c) 2013 Matthias Neeracher <microtherion@gmail.com>
+// Copyright (c) 2013-2016 Matthias Neeracher <microtherion@gmail.com>
 // All rights reserved.
 //
 // See license at bottom of this file or at
@@ -14,11 +14,14 @@
 // protocols:
 //
 //  * stk500v2    for ISP programming (largely pin compatible with ArduinoISP 
-//                sketch). See SMoISP.h for pinout.
+//                sketch) and TPI programming.
 //  * stk500hvsp  for HVSP programming (high voltage serial, for 8 and 14 pin 
-//                ATtinys). See SMoHVSP.h for pinout.
+//                ATtinys). 
 //  * stk500pp    for HVPP programming (high voltage parallel, for 20 pin 
-//                ATtinys and all ATmegas). See SMoHVPP.h for pinout.
+//                ATtinys and all ATmegas). 
+//
+// For pinouts and usage information, please refer to the user manual at 
+// http://microtherion.github.com/ScratchMonkey/
 //
 
 #include <SPI.h>

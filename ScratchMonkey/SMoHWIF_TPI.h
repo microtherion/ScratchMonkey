@@ -1,14 +1,11 @@
 // -*- mode: c++; tab-width: 4; indent-tabs-mode: nil -*-
 //
-// ScratchMonkey 2.0        - STK500v2 compatible programmer for Arduino
+// ScratchMonkey 2.0        - STK500v2/STK600ish compatible programming sketch for Arduino
 //
-// File: SMoHWIF_TPI.h     - Programmer hardware interface for tiny programming interface protocol
+// File: SMoHWIF_TPI.h      - Programmer hardware interface for tiny programming interface protocol
 //
 // Copyright (c) 2013-2015 Matthias Neeracher <microtherion@gmail.com>
 // All rights reserved.
-//
-// See license at bottom of this file or at
-// http://opensource.org/licenses/bsd-license.php
 //
 // Hardware interface refactoring based on Leong Yu Siang's work.
 //
@@ -161,4 +158,4 @@ private:
     }
 };
 
-#endif /* _SMO_HWIF_HVSP_ */
+#endif /* _SMO_HWIF_TPI_ */
