@@ -1,0 +1,4 @@
+# See: http://code.google.com/p/arduino/wiki/Platforms
+# http://playground.arduino.cc/Main/CustomizeArduinoIDE
+
+# This file has to exist to make this a valid Arduino IDE 1.5 3rd party Hardware specification

@@ -1,0 +1,55 @@
+# http://playground.arduino.cc/Main/CustomizeArduinoIDE
+
+scratchmonkey.name=ScratchMonkey
+scratchmonkey.communication=serial
+scratchmonkey.protocol=scratchmonkey
+scratchmonkey.speed=115200
+scratchmonkey.program.protocol=scratchmonkey
+scratchmonkey.program.speed=115200
+scratchmonkey.program.tool=avrdude
+scratchmonkey.program.extra_params=-P{serial.port} -b{program.speed}
+
+scratchmonkey_hvsp.name=ScratchMonkey HVSP
+scratchmonkey_hvsp.communication=serial
+scratchmonkey_hvsp.protocol=scratchmonkey_hvsp
+scratchmonkey_hvsp.speed=115200
+scratchmonkey_hvsp.program.protocol=scratchmonkey_hvsp
+scratchmonkey_hvsp.program.speed=115200
+scratchmonkey_hvsp.program.tool=avrdude
+scratchmonkey_hvsp.program.extra_params=-P{serial.port} -b{program.speed}
+
+scratchmonkey_hvpp.name=ScratchMonkey HVPP
+scratchmonkey_hvpp.communication=serial
+scratchmonkey_hvpp.protocol=scratchmonkey_pp
+scratchmonkey_hvpp.speed=115200
+scratchmonkey_hvpp.program.protocol=scratchmonkey_hvpp
+scratchmonkey_hvpp.program.speed=115200
+scratchmonkey_hvpp.program.tool=avrdude
+scratchmonkey_hvpp.program.extra_params=-P{serial.port} -b{program.speed}
+
+scratchmonkey_stk500v2.name=ScratchMonkey (STK500 Mode)
+scratchmonkey_stk500v2.communication=serial
+scratchmonkey_stk500v2.protocol=stk500v2
+scratchmonkey_stk500v2.speed=115200
+scratchmonkey_stk500v2.program.protocol=stk500v2
+scratchmonkey_stk500v2.program.speed=115200
+scratchmonkey_stk500v2.program.tool=avrdude
+scratchmonkey_stk500v2.program.extra_params=-P{serial.port} -b{program.speed}
+
+scratchmonkey_stk500v2_hvsp.name=ScratchMonkey HVSP (STK500 Mode)
+scratchmonkey_stk500v2_hvsp.communication=serial
+scratchmonkey_stk500v2_hvsp.protocol=stk500hvsp
+scratchmonkey_stk500v2_hvsp.speed=115200
+scratchmonkey_stk500v2_hvsp.program.protocol=stk500hvsp
+scratchmonkey_stk500v2_hvsp.program.speed=115200
+scratchmonkey_stk500v2_hvsp.program.tool=avrdude
+scratchmonkey_stk500v2_hvsp.program.extra_params=-P{serial.port} -b{program.speed}
+
+scratchmonkey_stk500v2_hvpp.name=ScratchMonkey HVPP (STK500 Mode)
+scratchmonkey_stk500v2_hvpp.communication=serial
+scratchmonkey_stk500v2_hvpp.protocol=stk500pp
+scratchmonkey_stk500v2_hvpp.speed=115200
+scratchmonkey_stk500v2_hvpp.program.protocol=stk500pp
+scratchmonkey_stk500v2_hvpp.program.speed=115200
+scratchmonkey_stk500v2_hvpp.program.tool=avrdude
+scratchmonkey_stk500v2_hvpp.program.extra_params=-P{serial.port} -b{program.speed}
